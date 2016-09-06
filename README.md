@@ -1,8 +1,13 @@
 # FarMar: The Farmers' Market Finder
 In this assignment we will be creating an application to look up farmers markets and their related vendors, products, and sales. We will use __CSV__ files as our _database_.
 
- [Baseline](#baseline)    
- [Primary](#primary)
+  Project Data
+    [Markets](#markets)
+    [Vendors](#vendors)
+    [Products](#products)
+    [Sales](#sales)
+  [Baseline](#baseline)    
+  [Primary](#primary)
 
 ## Learning Goals
 - Reinforce and practice all of the Ruby and programming concepts we've covered in class
@@ -47,7 +52,7 @@ For example, `Sale` is a very generic _class_ name that could very realistically
 You must have __90% test coverage__ from `simplecov`. The HTML files that are generated from `simplecov` should _not_ be included in your git repository. Tests should be in the form of __minitest specs__. Complete the necessary boilerplate to create a `Rakefile` and `spec_helper.rb` so that all of your tests run when you run `$ rake` from the project root.
 
 ### Project Data
-#### FarMar::Market
+#### <a name="markets">FarMar::Market</a>
 Each individual market has many vendors associated with it. The `FarMar::Market` data, in order in the CSV, consists of:
 
 1. ID - (Fixnum) a unique identifier for that market
@@ -58,7 +63,7 @@ Each individual market has many vendors associated with it. The `FarMar::Market`
 6. State - (String) state in which the market is located
 7. Zip - (String) zipcode in which the market is located
 
-#### FarMar::Vendor
+#### <a name="vendors">FarMar::Vendor</a>
 Each vendor belongs to a market, the `market_id` field refers to the `FarMar::Market` ID field.
 Each vendor has many products for sell. The `FarMar::Vendor` data, in order in the CSV, consists of:
 
@@ -67,14 +72,14 @@ Each vendor has many products for sell. The `FarMar::Vendor` data, in order in t
 3. No. of Employees - (Fixnum) How many employees the vendor has at the market
 4. Market_id - (Fixnum) a reference to which market the vendor attends
 
-#### FarMar::Product
+#### <a name="products>FarMar::Product</a>
 Each product belongs to a vendor. The `vendor_id` field refers to the `FarMar::Vendor` ID field. The `FarMar::Product` data, in order in the CSV, consists of:
 
 1. ID - (Fixnum) uniquely identifies the product
 2. Name - (String) the name of the product (not guaranteed unique)
 3. Vendor_id - (Fixnum) a reference to which vendor sells this product
 
-#### FarMar::Sale
+#### <a name="sales">FarMar::Sale</a>
 Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id` fields refer to the `FarMar::Vendor` and `FarMar::Product` ID fields, respectively. The `FarMar::Sale` data, in order in the CSV, consists of:
 
 1. ID - (Fixnum) uniquely identifies the sale
