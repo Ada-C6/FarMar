@@ -4,8 +4,8 @@ require 'csv'
 describe FarMar::Product do
   describe "#initialize" do
     it "can initialize a new instance of Product" do
-      market = FarMar::Product.new("1","Dry Beets","1")
-      market.must_be_instance_of(FarMar::Product)
+      product = FarMar::Product.new("1","Dry Beets","1")
+      product.must_be_instance_of(FarMar::Product)
     end
   end
 

@@ -16,12 +16,11 @@ module FarMar
     end
 
     def self.all
-      vndrs = []
+      mrkt = []
       CSV.read('/Users/madeleinejohnson/Ada/project-forks/FarMar/support/markets.csv','r'). each do |line|
-        vndrs << FarMar::Market.new(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
+        mrkt << FarMar::Market.new(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
       end
-
-      return vndrs
+      return mrkt
     end
 
     def self.find(id)
