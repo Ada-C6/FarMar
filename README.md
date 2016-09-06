@@ -2,6 +2,7 @@
 In this assignment we will be creating an application to look up farmers markets and their related vendors, products, and sales. We will use __CSV__ files as our _database_.
 
  [Baseline](#baseline)    
+ [Primary](#primary)
 
 ## Learning Goals
 - Reinforce and practice all of the Ruby and programming concepts we've covered in class
@@ -83,7 +84,7 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 5. Product_id - (Fixnum) a reference to which product was sold
 
 ## Requirements
-### Baseline <a name="baseline"></a>
+### <a name="baseline">Baseline </a>
 #### Project Setup
 1. You'll be working as an individual on this project.
 1. Fork the Ada-C6 repo to your Github account.
@@ -103,7 +104,7 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 - Complete the boilerplate necessary for testing. You should be able to `$ rake` from the project root to run your specs. Have at least one spec to verify this setup before submitting your baseline.
 - **Once you have completed your baseline, you must submit a pull-request and get it approved by an instructor.**
 
-## Primary Requirements
+## <a name="primary">Primary Requirements</a>  
 ### For each of the data classes build the following methods:
 1. `self.all`: returns a collection of instances, representing all of the objects described in the CSV
 1. `self.find(id)`: returns an instance of the object where the value of the `id` field in the CSV matches the passed parameter.
