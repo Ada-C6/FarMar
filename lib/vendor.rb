@@ -1,4 +1,4 @@
-class FarMar::Vendors
+class FarMar::Vendor
     attr_reader :id, :name, :no_employees, :market_id
 
     def initialize(vendor_hash)
