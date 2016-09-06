@@ -13,7 +13,7 @@ module FarMar
         def self.all
             product_list = []
 
-            product_file = CSV.read('../support/products.csv', 'r')
+            product_file = CSV.read('/Users/kelly/Desktop/Ada_C6/FarMar/support/products.csv', 'r')
             product_file.each do |line|
                 product_list << self.new(line[0].to_i, line[1], line[2].to_i)
             end

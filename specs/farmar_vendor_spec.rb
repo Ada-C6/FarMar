@@ -11,4 +11,19 @@ describe FarMar::Vendor do
             a.market_id.must_equal(123)
         end
     end
+
+    describe "self.all" do
+        it "should return a collection of instances, representing all of the objects described in the CSV" do
+            a = FarMar::Vendor.all
+            a[0].name.must_equal("Feil-Farrell")
+        end
+
+    end
+
+    describe "self.find(id)" do
+        it "should return an instance of the object where the value of the id field in the CSV matches the passed parameter" do
+            FarMar::Vendor.find(1).name.must_equal("Feil-Farrell")
+        end
+
+    end
 end

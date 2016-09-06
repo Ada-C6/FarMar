@@ -10,3 +10,4 @@ require 'minitest/pride'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 require_relative '../far_mar'
+require 'csv'

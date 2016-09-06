@@ -17,7 +17,7 @@ module FarMar
         def self.all
             market_list = []
 
-            market_file = CSV.read('../support/markets.csv', 'r')
+            market_file = CSV.read('/Users/kelly/Desktop/Ada_C6/FarMar/support/markets.csv', 'r')
             market_file.each do |line|
                 market_list << self.new(line[0].to_i, line[1], line[2], line[3], line[4], line[5], line[6])
             end

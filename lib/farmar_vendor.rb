@@ -14,7 +14,7 @@ module FarMar
         def self.all
             vendor_list = []
 
-            vendor_file = CSV.read('../support/vendors.csv', 'r')
+            vendor_file = CSV.read('/Users/kelly/Desktop/Ada_C6/FarMar/support/vendors.csv', 'r')
             vendor_file.each do |line|
                 vendor_list << self.new(line[0].to_i, line[1], line[2].to_i, line[3].to_i)
             end

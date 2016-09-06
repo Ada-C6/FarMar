@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+require_relative '../lib/farmar_market'
 
 describe FarMar::Market do
     describe "#initialize" do
@@ -13,5 +14,20 @@ describe FarMar::Market do
             a.state.must_equal('WA')
             a.zip.must_equal(98074)
         end
+    end
+
+    describe "self.all" do
+        it "should return a collection of instances, representing all of the objects described in the CSV" do
+            a = FarMar::Market.all
+            a[0].name.must_equal("People's Co-op Farmers Market")
+        end
+
+    end
+
+    describe "self.find(id)" do
+        it "should return an instance of the object where the value of the id field in the CSV matches the passed parameter" do
+            FarMar::Market.find(1).name.must_equal("People's Co-op Farmers Market")
+        end
+
     end
 end
