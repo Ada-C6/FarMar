@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-require_relative '../lib/market.rb'
+# require_relative '../lib/market.rb'
 
 describe FarMar::Market do
   describe "#initialize" do

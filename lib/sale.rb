@@ -1,10 +1,10 @@
-require 'csv'
+# require 'csv'
 
 module FarMar
   class Sale
 
     def initialize
-      
+
     end
 
   end
