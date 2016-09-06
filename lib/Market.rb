@@ -41,6 +41,8 @@ module FarMar
       end
   end
 
+  #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
+
 
   end
 

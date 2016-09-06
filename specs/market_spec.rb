@@ -32,9 +32,10 @@ module FarMar
       a = Market.find(8)
       # a.name.must_equal("Charlestown Farmers Market")
       a.id.must_equal(8)
-
       end
-    end
+    end #end self.find method
+
+    # describe "vendors" do 
 
     end
   end
