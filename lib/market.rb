@@ -1,5 +1,3 @@
-require 'csv'
-
 module FarMar
 	class Market
 		def initialize(market_hash)

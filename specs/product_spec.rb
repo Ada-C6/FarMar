@@ -8,4 +8,13 @@ describe FarMar::Product do
 			product.must_be_instance_of(FarMar::Product)
 		end
 	end
+
+	describe "self.all" do
+		it "must return a collection of Product instances" do
+			products = FarMar::Product.all
+			products.first.must_be_instance_of(FarMar::Product)
+			products.last.must_be_instance_of(FarMar::Product)
+		end
+	end
+
 end

@@ -19,9 +19,10 @@ describe FarMar::Market do
 	end
 
 	describe "self.all" do
-		it "must return all Markets in the CSV" do
+		it "must return a collection of Market instances" do
 			markets = FarMar::Market.all
-			markets[0].must_be_instance_of(FarMar::Market)
+			markets.first.must_be_instance_of(FarMar::Market)
+			markets.last.must_be_instance_of(FarMar::Market)
 		end
 	end
 end
