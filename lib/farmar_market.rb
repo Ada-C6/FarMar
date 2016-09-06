@@ -15,11 +15,34 @@ module FarMar
       # State - (String) state in which the market is located
       # Zip - (String) zipcode in which the market is located)
     end
+
+    def self.all
+      # self.all: returns a collection of instances, representing all of the objects described in the CSV
+      markets = {}
+
+      CSV.read("support/markets.csv").each do |line|
+        # Is there a way to do this with an enumerable instead of an each?
+        id = line[0].to_i
+        name = line[1]
+        address = line[2]
+        city = line[3]
+        county = line[4]
+        state = line[5]
+        zip = line[6].to_i
+        markets[id] = self.new(id, name, address, city, county, state, zip)
+      end
+
+      return markets
+    end
+
+    def self.find(id)
+      # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+      all_markets = self.all
+      return all_markets[id]
+    end
   end
 end
 
-# self.all: returns a collection of instances, representing all of the objects described in the CSV
-# self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
 
 # This is what I wrote for the accounts self.all to read in the csv file.
 # def self.all
