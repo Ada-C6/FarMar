@@ -5,7 +5,7 @@ require 'csv'
 
 module FarMar
   class Vendor
-    attr_reader
+    attr_reader :vendor_id, :name, :employees, :market_id
     attr_accessor
     attr_writer
 
@@ -20,16 +20,16 @@ module FarMar
       vendors = []
       CSV.read("./support/vendors.csv").each do |line|
         vendor_hash = {}
-        vendor_hash[:vendor_id] = line[0].to_i
-        vendor_hash[:name] = line[1]
-        vendor_hash[:employees] = line[2].to_i
-        vendor_hash[:market_id] = line[3].to_i
+        vendor_hash["vendor_id"] = line[0].to_i
+        vendor_hash["name"] = line[1]
+        vendor_hash["employees"] = line[2].to_i
+        vendor_hash["market_id"] = line[3].to_i
         vendors << FarMar::Vendor.new(vendor_hash)
       end
       return vendors
     end
 
-    def self.find(vendor_id)
+    def self.find(input)
       vendors = self.all
       vendors.each do |var|
         if var.vendor_id == input

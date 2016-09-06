@@ -1,6 +1,4 @@
 require 'csv'
-#require_relative 'vendor'
-#require_relative 'sale'
 
 module FarMar
   class Product
@@ -18,15 +16,15 @@ module FarMar
       products = []
       CSV.read("./support/products.csv").each do |line|
         product_hash = {}
-        product_hash[:product_id] = line[0].to_i
-        product_hash[:name] = line[1]
-        product_hash[:vendor_id] = line[2]
+        product_hash["product_id"] = line[0].to_i
+        product_hash["name"] = line[1]
+        product_hash["vendor_id"] = line[2]
         products << FarMar::Product.new(product_hash)
       end
       return products
     end
 
-    def self.find(product_id)
+    def self.find(input)
       products = self.all
       products.each do |var|
         if var.product_id == input
@@ -37,7 +35,7 @@ module FarMar
     end
 
     def print_props
-      return "Product ID #{ @id } is named #{ @name } and is sold by Vendor ID #{ @vendor_id }."
+      return "Product ID #{ @product_id } is named #{ @name } and is sold by Vendor ID #{ @vendor_id }."
     end
 
   end

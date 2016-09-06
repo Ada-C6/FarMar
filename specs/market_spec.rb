@@ -20,16 +20,17 @@ describe FarMar::Market do
 
   end
 
-  describe "self.find(id)" do
+  describe "self.find(input)" do
     let(:markets) { FarMar::Market.find(2) }
 
     it "should return an instance of FarMar::Market" do
-      markets.must_be_kind_of(FarMar::Market)
+      markets.must_be_instance_of(FarMar::Market)
     end
 
-    it "should have a value property" do
-      markets.must_respond_to(2)
+    it "should return a market based on market_id input" do
+      markets.market_id.must_equal(2)
     end
 
   end
+
 end

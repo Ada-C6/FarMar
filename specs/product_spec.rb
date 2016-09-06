@@ -20,11 +20,17 @@ describe FarMar::Product do
 
   end
 
-  describe "self.find(id)" do
-    let(:products) { FarMar::Product.all }
+  describe "self.find(input)" do
+    let(:products) { FarMar::Product.find(2) }
 
-    it "should return a Array" do
-      products.must_be_kind_of(Array)
+    it "should return an instance of FarMar::Product" do
+      products.must_be_instance_of(FarMar::Product)
     end
+
+    it "should return a product based on product_id input" do
+      products.product_id.must_equal(2)
+    end
+
   end
+
 end

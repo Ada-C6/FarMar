@@ -20,11 +20,16 @@ describe FarMar::Sale do
 
   end
 
-  describe "self.find(id)" do
-    let(:sales) { FarMar::Sale.all }
+  describe "self.find(input)" do
+    let(:sales) { FarMar::Sale.find(2) }
 
-    it "should return a Array" do
-      sales.must_be_kind_of(Array)
+    it "should return an instance of FarMar::Sale" do
+      sales.must_be_instance_of(FarMar::Sale)
     end
+
+    it "should return a market based on sale_id input" do
+      sales.sale_id.must_equal(2)
+    end
+
   end
 end
