@@ -22,7 +22,7 @@ describe FarMar::Market do
       FarMar::Market.all.must_be_kind_of Hash
     end
 
-    it "should have a hash key of \"1\" (as a symbol)" do
+    it "should have a hash key of \"1\" (as a fixnum)" do
       hash = FarMar::Market.all
       hash.has_key?(1).must_equal true
     end

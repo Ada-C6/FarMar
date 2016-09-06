@@ -14,7 +14,7 @@ describe FarMar::Vendor do
       FarMar::Vendor.all.must_be_kind_of Hash
     end
 
-    it "should have a hash key of \"1\" (as a symbol)" do
+    it "should have a hash key of \"1\" (as a fixnum)" do
       hash = FarMar::Vendor.all
       hash.has_key?(1).must_equal true
     end
