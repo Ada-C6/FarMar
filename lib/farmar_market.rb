@@ -22,13 +22,18 @@ module FarMar
 
       CSV.read("support/markets.csv").each do |line|
         # Is there a way to do this with an enumerable instead of an each?
-        id = line[0].to_i
-        name = line[1]
-        address = line[2]
-        city = line[3]
-        county = line[4]
-        state = line[5]
-        zip = line[6].to_i
+        # id = line[0].to_i
+        # name = line[1]
+        # address = line[2]
+        # city = line[3]
+        # county = line[4]
+        # state = line[5]
+        # zip = line[6].to_i
+
+        id, name, address, city, county, state, zip = line # parallel assignment!
+        id = id.to_i # need id to be a fixnum
+        zip = zip.to_i # want zip to be a fixnum also (I think)
+
         markets[id] = self.new(id, name, address, city, county, state, zip)
       end
 
