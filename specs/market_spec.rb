@@ -6,8 +6,14 @@ module FarMar
     describe "#initialize" do
       let(:market) { Market.new(:name) }
 
-      it "should create an instance of Market with a name parameter" do
+      it "should create an instance of Market" do
         market.must_be_instance_of(Market)
+      end
+    end
+
+    describe "all" do
+      it "should return an Array" do
+        Market.all.must_be_kind_of(Array)
       end
     end
   end

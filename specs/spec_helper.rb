@@ -1,3 +1,6 @@
+#adds coverage folder to tree
+#to run coverage report type this into terminal: open coverage/index.html
+
 require 'simplecov'
 SimpleCov.start
 

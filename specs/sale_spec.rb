@@ -6,8 +6,13 @@ module FarMar
     describe "#initialize" do
       let(:sale) {Sale.new(:name) }
 
-      it "should create an instance of Sale with a name parameter" do
+      it "should create an instance of Sale" do
         sale.must_be_instance_of(Sale)
+      end
+    end
+    describe "all" do
+      it "should return an Array" do
+        Sale.all.must_be_kind_of(Array)
       end
     end
   end
