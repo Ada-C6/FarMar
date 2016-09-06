@@ -1,0 +1,89 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/dlaguerta/ada/project-forks/FarMar/far_mar.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/dlaguerta/ada/project-forks/FarMar/lib/Market.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/dlaguerta/ada/project-forks/FarMar/lib/Product.rb": [
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/dlaguerta/ada/project-forks/FarMar/lib/Sale.rb": [
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/dlaguerta/ada/project-forks/FarMar/lib/Vendor.rb": [
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/dlaguerta/ada/project-forks/FarMar/specs/product_spec.rb": [
+
+      ],
+      "/Users/dlaguerta/ada/project-forks/FarMar/specs/sale_spec.rb": [
+
+      ],
+      "/Users/dlaguerta/ada/project-forks/FarMar/specs/vendor_spec.rb": [
+
+      ]
+    },
+    "timestamp": 1473189034
+  }
+}
