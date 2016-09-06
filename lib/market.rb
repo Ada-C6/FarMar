@@ -1,29 +1,37 @@
 require 'csv'
+#require_relative 'vendor'
 
 module FarMar
   class Market
-    attr_reader
+    attr_reader :market_id, :name, :address, :city, :county, :state, :zip
     attr_accessor
     attr_writer
 
-    def initialize() #(account_hash)
-      # @balance = account_hash[:balance]
-      # @id = account_hash[:id]
-      # @creation_time = account_hash[:creation_time]
-      # create_account(account_hash[:balance])
+    def initialize(market_hash)
+      @market_id = market_hash["market_id"]
+      @name = market_hash["name"]
+      @address = market_hash["address"]
+      @city = market_hash["city"]
+      @county = market_hash["county"]
+      @state = market_hash["state"]
+      @zip = market_hash["zip"]
     end
 
-    # def self.all
-    #   accounts = []
-    #   CSV.read("./support/accounts.csv").each do |line|
-    #     account_hash = {}
-    #     account_hash[:id] = line[0].to_i
-    #     account_hash[:balance] = line[1].to_f
-    #     account_hash[:creation_time] = line[2]
-    #     accounts << Bank::Account.new(account_hash)
-    #   end
-    #   return accounts
-    # end
+    def self.all
+      markets = []
+      CSV.read("./support/markets.csv").each do |line|
+        market_hash = {}
+        market_hash[:market_id] = line[0].to_i
+        market_hash[:name] = line[1]
+        market_hash[:address] = line[2]
+        market_hash[:city] = line[3]
+        market_hash[:county] = line[4]
+        market_hash[:state] = line[5]
+        market_hash[:zip] = line[6]
+        markets << FarMar::Market.new(market_hash)
+      end
+      return markets
+    end
 
   end
 end

@@ -1,4 +1,7 @@
 require 'csv'
+#require_relative 'market'
+#require_relative 'product'
+#require_relative 'sale'
 
 module FarMar
   class Vendor
@@ -6,24 +9,25 @@ module FarMar
     attr_accessor
     attr_writer
 
-    def initialize() #(account_hash)
-      # @balance = account_hash[:balance]
-      # @id = account_hash[:id]
-      # @creation_time = account_hash[:creation_time]
-      # create_account(account_hash[:balance])
+    def initialize(vendor_hash)
+      @vendor_id = vendor_hash["vendor_id"]
+      @name = vendor_hash["name"]
+      @employees = vendor_hash["employees"]
+      @market_id = vendor_hash["market_id"]
     end
 
-    # def self.all
-    #   accounts = []
-    #   CSV.read("./support/accounts.csv").each do |line|
-    #     account_hash = {}
-    #     account_hash[:id] = line[0].to_i
-    #     account_hash[:balance] = line[1].to_f
-    #     account_hash[:creation_time] = line[2]
-    #     accounts << Bank::Account.new(account_hash)
-    #   end
-    #   return accounts
-    # end
+    def self.all
+      vendors = []
+      CSV.read("./support/vendors.csv").each do |line|
+        vendor_hash = {}
+        vendor_hash[:vendor_id] = line[0].to_i
+        vendor_hash[:name] = line[1]
+        vendor_hash[:employees] = line[2].to_i
+        vendor_hash[:market_id] = line[3].to_i
+        vendors << FarMar::Vendor.new(vendor_hash)
+      end
+      return vendors
+    end
 
 
   end
