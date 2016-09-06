@@ -33,7 +33,7 @@ module FarMar
       return markets
     end
 
-    def self.find(market_id)
+    def self.find(input)
       markets = self.all
       markets.each do |var|
         if var.market_id == input

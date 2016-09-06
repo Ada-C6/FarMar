@@ -21,14 +21,14 @@ describe FarMar::Market do
   end
 
   describe "self.find(id)" do
-    let(:markets) { FarMar::Market.all }
+    let(:markets) { FarMar::Market.find(2) }
 
-    it "should return a Array" do
-      markets.must_be_kind_of(Array)
+    it "should return an instance of FarMar::Market" do
+      markets.must_be_kind_of(FarMar::Market)
     end
 
     it "should have a value property" do
-      markets.must_respond_to("2")
+      markets.must_respond_to(2)
     end
 
   end
