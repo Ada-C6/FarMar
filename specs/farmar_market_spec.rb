@@ -43,4 +43,20 @@ describe FarMar::Market do
 
   end
 
+  describe "#market" do
+    silverdale = FarMar::Market.find(2)
+
+    it "should return a collection of FarMar::Vendor instances associated with the market" do
+      silverdale.market.must_be_kind_of(Array)
+    end
+
+    it "should return an array of the vendors associated with silverdale market" do
+      vendors = silverdale.market
+      vendor_names = vendors.map do |vendor|
+        vendor.name
+      end
+      vendor_names.must_include("Quigley, Breitenberg and Schuster")
+    end
+  end
+
 end
