@@ -12,7 +12,3 @@ module FarMar
 
   end
 end
-
-
-vendor = FarMar::Vendor.new
-puts vendor.vendor_csv

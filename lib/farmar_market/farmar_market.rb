@@ -12,7 +12,3 @@ module FarMar
 
   end
 end
-
-
-market = FarMar::Market.new
-puts market.market_csv

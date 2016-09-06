@@ -12,8 +12,3 @@ module FarMar
 
   end
 end
-
-
-
-sale = FarMar::Sale.new
-puts sale.sale_csv

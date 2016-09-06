@@ -12,7 +12,3 @@ module FarMar
 
   end
 end
-
-
-product = FarMar::Product.new
-puts product.product_csv
