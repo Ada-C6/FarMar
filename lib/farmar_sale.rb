@@ -3,13 +3,13 @@
 
 class FarMar::Sale
   attr_reader :id
-  def initialize(id, name, employees_num, market_id)
+  def initialize(id, amount, purchase_time, vendor_id, product_id)
     @id = id
-    @name = name
-    @employees_num = employees_num
-    @market_id = market_id
+    @amount = amount
+    @purchase_time = purchase_time
+    @vendor_id = vendor_id
+    @product_id = product_id
   end
-
 
   # load sale infomation from sale csv file
   # input: csv file name (optional)
@@ -20,11 +20,12 @@ class FarMar::Sale
     sales = []
     CSV.foreach(sale_csv_file) do |row|
       id = row[0].to_s
-      name = row[1].to_s
-      employees_num =row[2].to_s
-      market_id = row[3].to_s
+      amount = row[1].to_s
+      purchase_time =row[2].to_s
+      vendor_id = row[3].to_s
+      product_id = row[4].to_s
 
-      sales << FarMar::Sale.new(id, name, employees_num, market_id)
+      sales << FarMar::Sale.new(id, amount, purchase_time, sale_id, product_id)
     end
     return sales
   end
@@ -40,6 +41,6 @@ class FarMar::Sale
         break
       end
     end
-    return found_sale
+    return found_vendor
   end
 end

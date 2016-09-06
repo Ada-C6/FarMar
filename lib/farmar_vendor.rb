@@ -1,31 +1,30 @@
 # lib/farmar_vendor.rb
 # require_relative '../far_mar'
 
-class FarMar::Vendor
+class FarMar::vendor
   attr_reader :id
-  def initialize(id, amount, purchase_time, vendor_id, product_id)
+  def initialize(id, name, employees_num, market_id)
     @id = id
-    @amount = amount
-    @purchase_time = purchase_time
-    @vendor_id = vendor_id
-    @product_id = product_id
+    @name = name
+    @employees_num = employees_num
+    @market_id = market_id
   end
+
 
   # load vendor infomation from vendor csv file
   # input: csv file name (optional)
-  # output: an array of class Vendor objects
+  # output: an array of class vendor objects
   def self.all
     vendor_csv_file = "/Users/mengyao/ADA_class/FarMar/support/vendors.csv"
 
     vendors = []
     CSV.foreach(vendor_csv_file) do |row|
       id = row[0].to_s
-      amount = row[1].to_s
-      purchase_time =row[2].to_s
-      vendor_id = row[3].to_s
-      product_id = row[4].to_s
+      name = row[1].to_s
+      employees_num =row[2].to_s
+      market_id = row[3].to_s
 
-      vendors << FarMar::Vendor.new(id, amount, purchase_time, vendor_id, product_id)
+      vendors << FarMar::Vendor.new(id, name, employees_num, market_id)
     end
     return vendors
   end

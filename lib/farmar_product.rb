@@ -3,10 +3,10 @@
 
 class FarMar::Product
   attr_reader :id
-  def initialize(id, name, product_id)
+  def initialize(id, name, vendor_id)
     @id = id
     @name =name
-    @product_id = product_id
+    @pvendor_id = vendor_id
   end
 
   # load product infomation from product csv file
@@ -19,9 +19,9 @@ class FarMar::Product
     CSV.foreach(product_csv_file) do |row|
       id = row[0].to_s
       name = row[1].to_s
-      product_id =row[2].to_s
+      vendor_id =row[2].to_s
 
-      products << FarMar::Product.new(id, name, product_id)
+      products << FarMar::Product.new(id, name, vendor_id)
     end
     return products
   end

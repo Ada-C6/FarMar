@@ -46,4 +46,18 @@ class FarMar::Market
     end
     return found_market
   end
+
+  #
+  # input:
+  # output: an array of FarMar::Vendor objects that are associated with the market by the market_id field.
+  def self.vendors
+
+    vendor = []
+
+
+    return vendors
+  end
+
+
+
 end
