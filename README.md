@@ -84,13 +84,13 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 ### Baseline
 #### Project Setup
 1. You'll be working as an individual on this project.
-1. Fork the Ada-C6 repo to your Github account.
-1. Clone your fork to your projects directory, and `cd` into the cloned repo.
-1. Create a _gemset_ for your project
+1. Fork the Ada-C6 repo to your Github account. DONE
+1. Clone your fork to your projects directory, and `cd` into the cloned repo. DONE
+1. Create a _gemset_ for your project IGNORE
   1. `$ echo 2.3.0 > .ruby-version`
   1. `$ echo farmar > .ruby-gemset`
   1. `$ cd .`
-1. Install necessary gems via Terminal:
+1. Install necessary gems via Terminal: DONE
   - `$ gem install minitest-reporters`
   - `$ gem install simplecov`
 
