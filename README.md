@@ -86,10 +86,10 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 1. You'll be working as an individual on this project.
 1. Fork the Ada-C6 repo to your Github account.
 1. Clone your fork to your projects directory, and `cd` into the cloned repo.
-1. Create a _gemset_ for your project
+<!-- SKIP 1. Create a _gemset_ for your project
   1. `$ echo 2.3.0 > .ruby-version`
   1. `$ echo farmar > .ruby-gemset`
-  1. `$ cd .`
+  1. `$ cd .` -->
 1. Install necessary gems via Terminal:
   - `$ gem install minitest-reporters`
   - `$ gem install simplecov`
@@ -154,4 +154,4 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 
 #### Try some inheritance or some composition
 - __Inheritance:__ Create a new _class_ that defines the shared/duplicated methods (i.e., `find`, `all`). Update your data classes to _inherit_ this _class_ .
-- __Composition with a Mixin:__ Create a new _module_ that defines the duplicated methods (i.e., `find`, `all`). Update your data classes to _mixin_ this _module_. 
+- __Composition with a Mixin:__ Create a new _module_ that defines the duplicated methods (i.e., `find`, `all`). Update your data classes to _mixin_ this _module_.
