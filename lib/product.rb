@@ -25,14 +25,3 @@ module FarMar
     end
   end
 end
-
-
-# def self.find(id)
-#   FarMar::Market.all.each do |line|
-#     if id == line.id.to_i
-#       return line
-#     end
-#   end
-# end
-# end
-# end
