@@ -1,0 +1,3 @@
+class FarMar::Markets
+
+end
