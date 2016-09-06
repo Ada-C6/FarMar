@@ -2,10 +2,14 @@ require 'csv'
 
 module FarMar
   class Market
+    attr_reader :id, :name, :address
     def initialize (id, name, address, city, county, state, zip)
       # ID - (Fixnum) a unique identifier for that market
+      @id = id
       # Name - (String) the name of the market (not guaranteed unique)
+      @name = name
       # Address - (String) street address of the market
+      @address = address
       # City - (String) city in which the market is located
       # County - (String) county in which the market is located
       # State - (String) state in which the market is located
