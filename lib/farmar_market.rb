@@ -1,4 +1,5 @@
 require 'csv'
+require_relative 'farmar_vendor'
 
 module FarMar
     class Market
@@ -33,6 +34,18 @@ module FarMar
             end
             puts "Sorry, invalid Market ID"
             return nil
+        end
+
+        def vendors
+            # retrieve the entire vendor list
+            vendor_list = FarMar::Vendor.all
+            # group vendors by market id
+            vendor_by_market_id = vendor_list.group_by do |i|
+                i.market_id
+            end
+            # retrieve the collection of vendors that have the same market id with the instance variable's market value
+            current_market_id = @id
+            vendor_by_market_id[current_market_id]
         end
     end
 end

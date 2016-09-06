@@ -28,6 +28,14 @@ describe FarMar::Market do
         it "should return an instance of the object where the value of the id field in the CSV matches the passed parameter" do
             FarMar::Market.find(1).name.must_equal("People's Co-op Farmers Market")
         end
-
     end
+
+    describe "#vendors" do
+        it "should return a collection of FarMar::Vendor instances that are associated with the market by the market_id field " do
+            kelly_market = FarMar::Market.new(141, 'KellyMarket', '9th NE 6 Drive', 'Sammmamish', 'King County', 'WA', 98074)
+            vendors = kelly_market.vendors
+            vendors.length.must_equal(9)
+        end
+    end
+    #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
 end
