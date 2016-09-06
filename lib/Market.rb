@@ -33,23 +33,16 @@ module FarMar
     return markets
   end
 
+  def self.find(id)
+      self.all.each do |market|
+        if market.id == id
+          return market
+        end
+      end
+  end
 
 
   end
 
 
 end
-
-
-#model for reading CSV files
-#   def self.all
-#   accounts = []
-#   CSV.read("./support/accounts.csv").each do |line|
-#     accounts_hash = {}
-#     accounts_hash[:id] = line[0].to_i
-#     accounts_hash[:balance] = line[1].to_f/100
-#     accounts_hash[:account_open_date] = line[2]
-#     accounts << Bank::Account.new(accounts_hash)
-#   end
-#   return accounts
-# end

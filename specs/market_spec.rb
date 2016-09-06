@@ -25,6 +25,17 @@ module FarMar
        Market.all.must_be_kind_of(Array)
       end
 
+    describe "self.find(id)" do
+      let(:markets) { Market.find(8) }
+      it "should return an instance of a specific market from the CSV file when you pass its id" do
+
+      a = Market.find(8)
+      # a.name.must_equal("Charlestown Farmers Market")
+      a.id.must_equal(8)
+
+      end
+    end
+
     end
   end
 end
