@@ -10,10 +10,13 @@ describe FarMar::Sale do
 	end
 
 	describe "self.all" do
+		sales = FarMar::Sale.all
+		
 		it "must return a collection of Sale instances" do
-			sales = FarMar::Sale.all
 			sales.first.must_be_instance_of(FarMar::Sale)
 			sales.last.must_be_instance_of(FarMar::Sale)
 		end
+
+
 	end
 end
