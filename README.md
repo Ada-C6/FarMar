@@ -1,6 +1,8 @@
 # FarMar: The Farmers' Market Finder
 In this assignment we will be creating an application to look up farmers markets and their related vendors, products, and sales. We will use __CSV__ files as our _database_.
 
+ [Baseline](#baseline)    
+
 ## Learning Goals
 - Reinforce and practice all of the Ruby and programming concepts we've covered in class
   - Practice writing specs and using TDD
@@ -81,7 +83,7 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 5. Product_id - (Fixnum) a reference to which product was sold
 
 ## Requirements
-### Baseline
+### Baseline <a name="baseline"></a>
 #### Project Setup
 1. You'll be working as an individual on this project.
 1. Fork the Ada-C6 repo to your Github account.
@@ -154,4 +156,4 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 
 #### Try some inheritance or some composition
 - __Inheritance:__ Create a new _class_ that defines the shared/duplicated methods (i.e., `find`, `all`). Update your data classes to _inherit_ this _class_ .
-- __Composition with a Mixin:__ Create a new _module_ that defines the duplicated methods (i.e., `find`, `all`). Update your data classes to _mixin_ this _module_. 
+- __Composition with a Mixin:__ Create a new _module_ that defines the duplicated methods (i.e., `find`, `all`). Update your data classes to _mixin_ this _module_.
