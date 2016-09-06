@@ -9,5 +9,7 @@ module FarMar
         Market.new(1, "name", "address", "city", "county", "ST", 98017).must_be_instance_of(Market)
       end
     end
+    # self.all: returns a collection of instances, representing all of the objects described in the CSV
+    # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
   end
 end

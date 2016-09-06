@@ -14,6 +14,9 @@ module FarMar
   end
 end
 
+# self.all: returns a collection of instances, representing all of the objects described in the CSV
+# self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+
 # This is what I wrote for the accounts self.all to read in the csv file.
 # def self.all
 #   accounts = {}
