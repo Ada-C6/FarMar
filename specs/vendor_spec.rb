@@ -30,9 +30,13 @@ module FarMar
         Vendor.all.must_include(2)
     end
     describe "self.find(id)" do
+      # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+      it "should return a vendor, given an id" do
+        Vendor.find(2).must_be_instance_of(Vendor)
+      end
+
       it "should return the correct name given the id" do
-        # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-        skip
+        Vendor.find(74).name.must_equal("Haag-Padberg")
         # 74,Haag-Padberg,3,17
       end
     end

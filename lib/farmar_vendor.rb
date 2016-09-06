@@ -15,6 +15,7 @@ module FarMar
     end
 
     def self.all
+      # self.all: returns a collection of instances, representing all of the objects described in the CSV
       vendors = {}
 
       CSV.read("support/vendors.csv").each do |line|
@@ -28,8 +29,10 @@ module FarMar
 
       return vendors
     end
+    def self.find(id)
+      # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+      all_vendors = self.all
+      all_vendors[id] 
+    end
   end
 end
-
-# self.all: returns a collection of instances, representing all of the objects described in the CSV
-# self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.

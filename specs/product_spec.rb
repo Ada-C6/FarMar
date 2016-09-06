@@ -2,10 +2,11 @@ require_relative 'spec_helper' #get all the stuff we need for testing.
 
 module FarMar
   describe Product do
+    let(:pro_deal) {Product.new(1, "product", 123)}
     describe "#initialize" do
       it "should make a new instance of product" do
         #write test to check that a new product instance was created.
-        Product.new(1, "product", 123).must_be_instance_of(Product)
+        pro_deal.must_be_instance_of(Product)
         # ID - (Fixnum) uniquely identifies the product
         # Name - (String) the name of the product (not guaranteed unique)
         # Vendor_id - (Fixnum) a reference to which vendor sells this product
