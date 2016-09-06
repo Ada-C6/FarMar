@@ -1,5 +1,4 @@
 require_relative 'spec_helper'
-require_relative '../lib/farmar_product'
 
 describe FarMar::Product do
   describe "#initialize" do
