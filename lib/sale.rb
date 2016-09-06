@@ -5,6 +5,11 @@ class Sale
 attr_reader :id, :amount_in_cents, :purchase_time, :vendor_id, :product_id
 
   def initialize(sale)
+    @id = sale[:id]
+    @amount_in_cents = sale[:amount_in_cents]
+    @purchase_time = sale[:purchase_time]
+    @vendor_id = sale[:vendor_id]
+    @product_id = sale[:product_id]
   end
 
   def self.all
@@ -23,4 +28,14 @@ attr_reader :id, :amount_in_cents, :purchase_time, :vendor_id, :product_id
 
     return all_sales
   end
+
+  def self.find(id)
+    all.each do |sale|
+      if sale.id == id
+        return sale
+      end
+    end
+    # if id > 500, returns entire array....fix later
+  end
+
 end

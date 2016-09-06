@@ -5,6 +5,9 @@ class Product
  attr_reader :id, :name, :vendor_id
 
   def initialize(product)
+    @id = product[:id]
+    @name = product[:name]
+    @vendor_id = product[:vendor_id]
   end
 
   def self.all
@@ -20,6 +23,15 @@ class Product
     end
 
     return all_products
+  end
+
+  def self.find(id)
+    all.each do |product|
+      if product.id == id
+        return product
+      end
+    end
+    # if id > 500, returns entire array....fix later
   end
 
 end
