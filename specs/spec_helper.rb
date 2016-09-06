@@ -1,4 +1,5 @@
 require 'simplecov'
+require_relative '../far_mar'
 SimpleCov.start
 
 require 'minitest'
