@@ -1,4 +1,5 @@
-require 'CSV'
+# Won't technically be needed except if the file is being run by itself
+require 'csv'
 
 module FarMar
   class Market
@@ -20,7 +21,6 @@ module FarMar
         vndrs << FarMar::Market.new(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
       end
 
-      puts vndrs
       return vndrs
     end
 
@@ -30,9 +30,10 @@ module FarMar
           return line
         end
       end
-
     end
   end
 end
 
 FarMar::Market.all
+puts
+puts FarMar::Market.find(500).name
