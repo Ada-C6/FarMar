@@ -4,8 +4,13 @@ require_relative '../lib/farmar_market'#file name(as same as class name)
 
 describe FarMar::Market do
 
-	it "baseline test returns 'Yeah! baseline test passed'." do
-	  expect( FarMar::Market.new.baseline_test ).must_equal('Yeah! baseline test passed.')
-	end
+  it "loading a market csv file creates an array of market objects" do
+    expect( FarMar::Market.all.class ).must_equal(Array)
+    expect( FarMar::Market.all[0].class ).must_equal(FarMar::Market)
+  end
+
+  it "Input a market id '5' returns the corresponding market object" do
+     expect(FarMar::Market.find("5").class).must_equal(FarMar::Market)
+  end
 
 end

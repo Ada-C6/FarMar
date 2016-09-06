@@ -10,3 +10,6 @@ require_relative './lib/farmar_product'
 require_relative './lib/farmar_sale'
 require_relative './lib/farmar_vendor'
 # ...require all needed classes
+
+
+puts FarMar::Market.find("5").inspect
