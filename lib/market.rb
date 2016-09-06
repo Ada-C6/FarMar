@@ -46,5 +46,15 @@ module FarMar
       return "Market ID #{ @market_id } is named #{ @name } and is located at #{ @address }, #{ @city }, #{ @state } #{ @zip }, in #{ @county } county."
     end
 
+    def vendors
+      vendors = []
+      # @vendors = FarMar::Vendor.all
+      # @vendors.each do |var|
+      #   if var.market_id == @market_id
+      #     vendors << var
+      #   end
+      # end
+      # return vendors
+    end
   end
 end
