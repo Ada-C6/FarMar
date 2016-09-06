@@ -1,6 +1,6 @@
 module FarMar
 	class Product
-		def initialize(id, name, vendor_id)
+		def initialize(product_hash)
 		end
 	end
 end
