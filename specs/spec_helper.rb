@@ -9,4 +9,8 @@ require "minitest/autorun"
 require "minitest/reporters"
 require 'minitest/pride'
 
+# The far_mar file will reference all the farmer's market class files.
+
+require_relative '../far_mar'
+
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new

@@ -1,4 +1,3 @@
-require_relative '../lib/farmar_vendor'
 require_relative 'spec_helper'
 
 module FarMar

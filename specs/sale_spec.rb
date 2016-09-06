@@ -1,4 +1,3 @@
-require_relative '../lib/farmar_sale'
 require_relative 'spec_helper'
 
 module FarMar

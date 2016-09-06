@@ -1,5 +1,4 @@
 require_relative 'spec_helper' #get all the stuff we need for testing.
-require_relative '../lib/farmar_market' #this is the class we're testing here.
 
 module FarMar
   describe Market do
