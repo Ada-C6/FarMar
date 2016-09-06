@@ -1,4 +1,6 @@
 require 'csv'
+require 'minitest'
+
 require 'lib/market'
 require 'lib/vendor'
 require 'lib/product'

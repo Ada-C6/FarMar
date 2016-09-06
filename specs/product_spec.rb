@@ -1,5 +1,6 @@
-require 'minitest'
+require_relative 'spec_helper'
+require_relative '../lib/product.rb'
 
-describe Product do
+describe FarMar::Product do
 
 end

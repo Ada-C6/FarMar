@@ -1,5 +1,6 @@
-require 'minitest'
+require_relative 'spec_helper'
+require_relative '../lib/market.rb'
 
-describe Market do
+describe FarMar::Market do
 
 end

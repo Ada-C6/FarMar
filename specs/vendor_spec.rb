@@ -1,5 +1,6 @@
-require 'minitest'
+require_relative 'spec_helper'
+require_relative '../lib/vendor.rb'
 
-describe Vendor do
+describe FarMar::Vendor do
 
 end

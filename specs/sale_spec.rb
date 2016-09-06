@@ -1,5 +1,7 @@
-require 'minitest'
+require_relative 'spec_helper'
+require_relative '../lib/sale.rb'
 
-describe Sale do
+describe FarMar::Sale do
+
 
 end
