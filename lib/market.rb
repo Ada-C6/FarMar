@@ -1,4 +1,5 @@
 # Won't technically be needed except if the file is being run by itself
+require_relative 'vendor'
 require 'csv'
 
 module FarMar
@@ -30,9 +31,17 @@ module FarMar
         end
       end
     end
+
+    def vendors
+      vndrs = []
+      FarMar::Vendor.all.each do |line|
+        if @id == line.market_id
+          vndrs << line
+        end
+      end
+      puts vndrs
+      return vndrs
+    end
+
   end
 end
-
-FarMar::Market.all
-puts
-puts FarMar::Market.find(500).name

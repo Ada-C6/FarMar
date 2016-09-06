@@ -9,13 +9,13 @@ describe FarMar::Product do
     end
   end
 
-  describe "#self.all" do
+  describe "self.all" do
     it "returns a collection of instances, representing CSV" do
       FarMar::Product.all.length.must_equal(8193)
     end
   end
 
-  describe "#self.find(id)" do
+  describe "self.find(id)" do
     it "should return an instance where the id matches the CSV field" do
       FarMar::Product.all
       FarMar::Product.find(8166).name.must_equal("Faithful Apples")

@@ -9,13 +9,13 @@ describe FarMar::Sale do
     end
   end
 
-  describe "#self.all" do
+  describe "self.all" do
     it "returns a collection of instances, representing CSV" do
       FarMar::Sale.all.length.must_equal(12798)
     end
   end
 
-  describe "#self.find(id)" do
+  describe "self.find(id)" do
     it "should return an instance where the id matches the CSV field" do
       FarMar::Sale.all
       FarMar::Sale.find(6666).amount.must_equal("2270")
