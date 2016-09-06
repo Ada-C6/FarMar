@@ -10,4 +10,21 @@ describe FarMar::Vendor do
     end
 
   end
+
+  describe "self.all" do
+    let(:vendors) { FarMar::Vendor.all }
+
+    it "should return an Array" do
+      vendors.must_be_kind_of(Array)
+    end
+
+  end
+
+  describe "self.find(id)" do
+    let(:vendors) { FarMar::Vendor.all }
+
+    it "should return a Array" do
+      vendors.must_be_kind_of(Array)
+    end
+  end
 end

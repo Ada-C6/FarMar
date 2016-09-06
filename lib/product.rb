@@ -4,7 +4,7 @@ require 'csv'
 
 module FarMar
   class Product
-    attr_reader
+    attr_reader :product_id, :name, :vendor_id
     attr_accessor
     attr_writer
 
@@ -26,6 +26,19 @@ module FarMar
       return products
     end
 
+    def self.find(product_id)
+      products = self.all
+      products.each do |var|
+        if var.product_id == input
+          puts var.print_props
+          return var
+        end
+      end
+    end
+
+    def print_props
+      return "Product ID #{ @id } is named #{ @name } and is sold by Vendor ID #{ @vendor_id }."
+    end
 
   end
 end

@@ -29,6 +29,21 @@ module FarMar
       return vendors
     end
 
+    def self.find(vendor_id)
+      vendors = self.all
+      vendors.each do |var|
+        if var.vendor_id == input
+          puts var.print_props
+          return var
+        end
+      end
+    end
+
+    def print_props
+      return "Vendor ID #{ @vendor_id }, named #{ @name }, has #{ @employees } employees #{ @amount } and is sold at Market ID #{ @market_id }."
+    end
+
+
 
   end
 end

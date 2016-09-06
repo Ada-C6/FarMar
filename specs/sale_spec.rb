@@ -10,4 +10,21 @@ describe FarMar::Sale do
     end
 
   end
+
+  describe "self.all" do
+    let(:sales) { FarMar::Sale.all }
+
+    it "should return an Array" do
+      sales.must_be_kind_of(Array)
+    end
+
+  end
+
+  describe "self.find(id)" do
+    let(:sales) { FarMar::Sale.all }
+
+    it "should return a Array" do
+      sales.must_be_kind_of(Array)
+    end
+  end
 end

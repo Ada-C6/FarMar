@@ -4,7 +4,7 @@ require 'csv'
 
 module FarMar
   class Sale
-    attr_reader
+    attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
     attr_accessor
     attr_writer
 
@@ -28,6 +28,20 @@ module FarMar
         sales << FarMar::Sale.new(sale_hash)
       end
       return sales
+    end
+
+    def self.find(sale_id)
+      sales = self.all
+      sales.each do |var|
+        if var.sale_id == input
+          puts var.print_props
+          return var
+        end
+      end
+    end
+
+    def print_props
+      return "Sale ID #{ @sale_id }, purchased at #{ @purchase_time }, refers to Product ID #{ @product_id }, costs #{ @amount } and is sold by Vendor ID #{ @vendor_id }."
     end
 
 
