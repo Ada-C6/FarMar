@@ -23,5 +23,13 @@ describe Vendor do
     end
   end
 
+  describe "#market" do
+    it "should return the Market instance associated with this vendor" do
+      a = Vendor.new(293,"Kerluke-Denesik",11,54)
+      b = a.market
+      b.must_be_instance_of(Market)
+      b.name.must_equal("Crescent City Farmers Market")
+    end
+  end
 
 end

@@ -1,4 +1,5 @@
 require 'csv'
+require '../far_mar'
 
 class Vendor
   attr_reader :id, :name, :employees, :market_id
@@ -26,5 +27,11 @@ class Vendor
   def self.find(id)
     v = Vendor.all
     return v[id]
+  end
+
+  def market
+    market_list = Market.all
+    match = market_list.find_all { |n| n[1].id == @market_id }
+    return match[0][1]
   end
 end
