@@ -40,6 +40,58 @@ describe FarMar::Product do
     it "should return the instance of FarMar::Product that matches the passed id, check for name" do
       FarMar::Product.find(127).name.must_equal("Helpful Fish")
     end
+  end
+
+  describe "#vendor" do
+    before(:each) do
+      @fish = FarMar::Product.find(127)
+    end
+
+    it "should return an instance of FarMar::Vendor" do
+      @fish.vendor.must_be_instance_of(FarMar::Vendor)
+    end
+
+    it "should return the instance of FarMar::Vendor that matches the Product instance's vendor_id" do
+      @fish.vendor.id.must_equal(@fish.vendor_id)
+    end
 
   end
+
+  describe "#sales" do
+    before(:each) do
+      @greens = FarMar::Product.find(131)
+    end
+
+    it "should return an array of FarMar::Sale instances" do
+      @greens.sales[1].must_be_instance_of(FarMar::Sale)
+    end
+
+    it "should return FarMar::Sale instances that match the product_id" do
+      @greens.sales[1].product_id.must_equal(@greens.id)
+    end
+
+  end
+
+  describe "#number_of_sales" do
+    before(:each) do
+      @greens = FarMar::Product.find(131)
+    end
+
+    it "should return the number of times this product has been sold" do
+      @greens.number_of_sales.must_equal(@greens.sales.length)
+    end
+
+  end
+
+  describe "self.by_vendor(vendor_id)" do
+    it "should return an array of Product instances" do
+      FarMar::Product.by_vendor(15)[1].must_be_instance_of(FarMar::Product)
+    end
+
+    it "should return the Product instances with vendor_id that matches the passed vendor_id" do
+      FarMar::Product.by_vendor(15)[1].vendor_id.must_equal(15)
+    end
+
+  end
+
 end
