@@ -48,5 +48,20 @@ module FarMar
       end
     end
 
+    describe "#products" do
+      let(:example_vendor) { Vendor.new({id: 5, name: "Allison", num_employees: 75, market_id: 6}) }
+
+      it "should return an array" do
+        example_vendor.products.must_be_kind_of(Array)
+      end
+
+      it "should return an object: Product at any index of the array" do
+        #puts example_vendor.products
+        #puts example_vendor.products[0]
+
+        example_vendor.products[0].must_be_instance_of(Product)
+        example_vendor.products[2].must_be_instance_of(Product)
+      end
+    end
   end
 end
