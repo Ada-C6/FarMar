@@ -8,5 +8,14 @@ describe "#initialize" do
     sam.must_be_instance_of(FarMar::Product)
   end
 end
-
+describe "self.all" do
+  it "should return an array" do
+    FarMar::Product.all.must_be_kind_of(Array)
+  end
+end
+describe "self.find(id)" do
+  it "should return the id that was passed through" do
+    FarMar::Product.find(1).id.must_equal(1)
+  end
+end
 end
