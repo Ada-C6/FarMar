@@ -30,6 +30,14 @@ module FarMar
         Market.find(155).city.must_equal("Charles Town")
       end
     end
+
+    describe "#vendor" do
+
+      it "should return true if the amount of vendors for the instance of Market is the number of instances of Vendor with that market_id." do
+        m = Market.find(2)
+        m.vendor.length.must_equal(3)
+      end
+    end
   end
 end
 

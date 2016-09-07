@@ -37,4 +37,9 @@ attr_reader :id, :name, :address, :city, :county, :state, :zip
     end
     # if id > 500, returns entire array....fix later
   end
+
+
+  def vendor
+    Vendor.by_market(@id)
+  end
 end
