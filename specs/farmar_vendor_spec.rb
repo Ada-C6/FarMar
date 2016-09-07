@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe FarMar::Vendor do
 
-  let(:vendor) { FarMar::Vendor.new }
+let(:vendor) { FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", num_employees: 8, market_id: 1}) }
 
   describe "#initialize" do
 
@@ -11,4 +11,27 @@ describe FarMar::Vendor do
     end
 
   end
+
+  describe "all" do
+    it "should put all values of its CSV file into an array" do
+      FarMar::Vendor.all.length.must_equal(2690)
+    end
+  end
+
+  describe "find(id)" do
+    it "should let the user know if the id is not present" do
+      proc { FarMar::Vendor.find(2691) }.must_raise("ID was not present")
+    end
+
+    it "should find a specific Market by the market_id" do
+      FarMar::Vendor.all
+      found_vendor = FarMar::Vendor.find(1)
+      found_vendor.vendor_id.must_equal(1)
+      found_vendor.vendor_name.must_equal(vendor.vendor_name)
+    end
+
+
+
+  end
+
 end
