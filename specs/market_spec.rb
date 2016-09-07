@@ -42,5 +42,21 @@ module FarMar
         Market.find(12).name.must_equal("Coxsackie Farmers' Market")
       end
     end
+    describe "#vendors" do
+      let(:coop_market) {Market.new(1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon",97202)}
+      it "should return an array" do
+        coop_market.vendors.must_be_instance_of(Array)
+        # I'm going to make it an array of Vendors.
+      end
+      it "should return an array of Vendor objects" do
+        # Check that the first item is a vendor.
+        coop_market.vendors[0].must_be_instance_of(Vendor)
+      end
+      it "the vendor returned, should have a market_id that matches the market" do
+        # Checking that the objects returned have the same as the market instance I'm working with.
+        # This will check using the market method in Vendor.
+        coop_market.vendors[0].market.must_equal(coop_market)
+      end
+    end
   end
 end

@@ -5,7 +5,6 @@ module FarMar
     let(:buy_a_thing) {Sale.new(1,100,"2013-11-07", 1, 1)}
     describe "#initialize" do
       it "should make a new instance of sale" do
-        #write something here to test new instance of sale
         buy_a_thing.must_be_instance_of(Sale)
         # ID - (Fixnum) uniquely identifies the sale
         # Amount - (Fixnum) the amount of the transaction, in cents (i.e., 150 would be $1.50)
@@ -29,7 +28,7 @@ module FarMar
         # I'm going to start with hash with sale ID as the key. I think I'm going to need to get back out the vendor and product associated with it, but this seems good for now.
         Sale.all.must_be_instance_of(Hash)
       end
-      
+
     end
     # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
   end

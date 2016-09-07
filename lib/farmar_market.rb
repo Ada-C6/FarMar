@@ -45,6 +45,13 @@ module FarMar
       all_markets = self.all
       return all_markets[id]
     end
+
+    def vendors
+      Vendor.all.values.group_by { |vendor| vendor.market_id }[@id]
+      # Call Vendor.all (returns a hash of vendors)
+      # The Vaules of the Vendor.all hash is an array of Vendors, so want to group those on their market_id.
+      # Then, want only the vendors that correspond to the market instance's id.
+    end
   end
 end
 
