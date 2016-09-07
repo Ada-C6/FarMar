@@ -1,6 +1,47 @@
 module FarMar
   class Vendor
-    def initialize(id)
+    attr_reader :id, :name, :num_of_employees, :market_id
+
+    def initialize(id, name, num_of_employees, market_id)
+      @id = id
+      @name = name
+      @num_of_employees = num_of_employees
+      @market_id = market_id
     end
-  end  
+
+    # def market_by(vendor_id)
+    #   vendor = vendor_id
+    #   vendor.market_id
+    # end
+
+    def self.all
+      all_vendors = {}
+      CSV.read('support/vendors.csv').each do | line |
+        all_vendors[line[0].to_i] = self.new(line[0].to_i, line[1], line[2].to_i, line[3].to_i)
+      end
+      return all_vendors
+    end
+
+    def self.find(id)
+      vendors = self.all
+      return vendors[id]
+    end
+
+    def self.by_market(id)
+      all_vendors = self.all
+      vendors_by_market = []
+
+      #key is vendor_id and the value is the vendor object
+      all_vendors.each do | vendor_key, value|
+        if value.market_id == id
+          vendors_by_market << value
+        end
+      end
+      return vendors_by_market
+    end
+
+
+    #returns all of the vendors with the given market_id
+
+  end
 end
