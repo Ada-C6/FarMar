@@ -31,14 +31,10 @@ describe Market do
   end
 
   describe "#vendors" do
-    m = Market.all
     it "should return a collection of FarMar::Vendor instances that are associated with the market" do
+      m = Market.new(500, "name", "address", "city", "county", "state", "zip")
       m.vendors.length.must_equal(10)
     end
   end
-
-  # #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
-
-
-
+  
 end

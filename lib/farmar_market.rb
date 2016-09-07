@@ -37,11 +37,7 @@ class Market
 
   def vendors
     vendor_list = Vendor.all
-    vendor_list.find_all { |n| n[market_id] == @id}
-      # vendor[n].market_id == market
-      #
-      # ehash['employee'].find_all { |e| e['level'] == 2}
-
+    vendor_list.find_all { |n| n[1].market_id == @id }
   end
 
 end
