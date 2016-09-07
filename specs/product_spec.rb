@@ -1,18 +1,32 @@
 require_relative 'spec_helper'
 
-#WED - clean up the initialize test by using let() syntax, see market_spec.rb for reference.
-
 describe FarMar::Product do
     describe "#initialize" do
+        let (:p) {FarMar::Product.new({id: 2345, name: "Gluten Free Ice Cream Sandwich", vendor_id: 1234})}
         it "can create a new instance of Product" do
-            p = FarMar::Product.new({id: 2345, name: "Gluten Free Ice Cream Sandwich", vendor_id: 1234})
             p.must_be_instance_of(FarMar::Product)
         end
 
         it "can assign instance variables according to the input hash" do
-            p = FarMar::Product.new({id: 2345, name: "Gluten Free Ice Cream Sandwich", vendor_id: 1234})
             p.name.must_equal("Gluten Free Ice Cream Sandwich")
             p.vendor_id.must_be_instance_of(Fixnum)
+        end
+    end
+
+    describe "self.all" do
+        it "will output an array" do
+            FarMar::Product.all.must_be_instance_of(Array)
+        end
+
+        it "will contain an object as each element of the array" do
+            FarMar::Product.all[0].must_be_instance_of(FarMar::Product)
+            FarMar::Product.all[0].id.must_be_instance_of(Fixnum)
+        end
+    end
+    
+    describe "self.find(id)" do
+        it "will output an object" do
+            FarMar::Product.find(FarMar::Product.all[0].id).must_be_instance_of(FarMar::Product)
         end
     end
 end
