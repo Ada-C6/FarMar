@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 module FarMar
   describe Vendor do
-    describe "initialize" do
+    describe "#initialize" do
       my_hash = {
         id:  112,
         name: "Ada Farms",

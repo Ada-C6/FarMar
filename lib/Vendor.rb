@@ -2,6 +2,7 @@
 module FarMar
   class Vendor
     attr_reader :id, :name, :num_employees, :market_id
+
     def initialize(vendors_hash)
       @id = vendors_hash[:id]
       @name = vendors_hash[:name]
@@ -21,6 +22,14 @@ module FarMar
         vendors << FarMar::Vendor.new(vendors_hash)
       end
       return vendors
+    end
+
+    def self.find(id)
+      self.all.each do |market|
+        if market.id == id
+          return market
+        end
+      end
     end
 
 
