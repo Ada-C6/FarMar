@@ -1,6 +1,6 @@
 class FarMar::Market
 
-    attr_accessor :id, :name, :address, :city, :county, :state, :zip
+    attr_accessor :market_id, :name, :address, :city, :county, :state, :zip
     # ID - (Fixnum) a unique identifier for that market
     # Name - (String) the name of the market (not guaranteed unique)
     # Address - (String) street address of the market
@@ -9,7 +9,7 @@ class FarMar::Market
     # State - (String) state in which the market is located
     # Zip - (String) zipcode in which the market is located
     def initialize(market_info_hash)
-        @id = market_info_hash[:id]
+        @market_id = market_info_hash[:market_id]
         @name = market_info_hash[:name]
         @address = market_info_hash[:address]
         @city = market_info_hash[:city]
@@ -22,7 +22,7 @@ class FarMar::Market
         all_markets = {}
         CSV.read('support/markets.csv').each do |line|
             new_market_info_hash = {
-                id: line[0].to_i,
+                market_id: line[0].to_i,
                 name: line[1],
                 address: line[2],
                 city: line[3],
@@ -37,8 +37,11 @@ class FarMar::Market
         return all_markets
     end # self.all
 
-    def self.find(id)
-        return self.all[id]
+    def self.find(market_id)
+        # to_return = self.all[id]
+        # p to_return
+        # return to_return
+        return self.all[market_id]
     end # self.find
 
 end # FarMar::Market
