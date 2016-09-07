@@ -6,18 +6,20 @@ module FarMar
         id:  112,
         name: "Ada Farms",
         num_employees: 12,
-        market_id: 1234
+        market_id: 1202
       }
       let(:vendor) { Vendor.new(my_hash) }
       it "should create an instance of a vendor" do
         vendor.must_be_instance_of(Vendor)
-
       end
-
     end #end initialize
 
     describe "self.all" do
+        let(:vendors) { Vendor.all }
+        it "should create an array of instances of markets through the CSV file" do
 
+         Vendor.all.must_be_kind_of(Array)
+        end
     end #end self.all
 
   end #end vendor

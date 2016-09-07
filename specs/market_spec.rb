@@ -1,6 +1,7 @@
 require_relative 'spec_helper'
 module FarMar
   describe Market do
+    
     describe "#initialize" do
       my_hash = {
         id:  112,
@@ -35,7 +36,7 @@ module FarMar
       end
     end #end self.find method
 
-    # describe "vendors" do 
+    # describe "vendors" do
 
     end
   end
