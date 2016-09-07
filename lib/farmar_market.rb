@@ -38,9 +38,6 @@ class FarMar::Market
     end # self.all
 
     def self.find(market_id)
-        # to_return = self.all[id]
-        # p to_return
-        # return to_return
         return self.all[market_id]
     end # self.find
 
