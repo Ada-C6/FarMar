@@ -27,5 +27,27 @@ module FarMar
       end
     end
 
+    def vendor
+      winner = nil
+      FarMar::Vendor.all.each do |line|
+        if @vendor_id == line.id
+          winner = line
+          break
+        end
+      end
+      return winner
+    end
+
+    def product
+      category = nil
+      FarMar::Product.all.each do |line|
+        if @product_id == line.id
+          category = line
+          break
+        end
+      end
+      return category
+    end
+
   end
 end
