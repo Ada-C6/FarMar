@@ -28,9 +28,14 @@ module FarMar
     end
 
     def vendors
-      hash_of_vendors = Vendor.all
-      return hash_of_vendors
-    end
+      market_vendors = {}
+      Vendor.all.each { |vendor_id, vendor|
+        if vendor.market_id == id
+          market_vendors[vendor_id] = vendor
+        end
+      }
+      return market_vendors
 
+    end
   end #class
 end #module

@@ -19,7 +19,12 @@ module FarMar
       vendors = self.all
       return vendors[id]
     end
-
+    def market
+      return @market_id
+    end
+    def products
+      # @todo START HERE START HERE START HERE
+    end
 
 
   end

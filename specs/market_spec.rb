@@ -56,8 +56,9 @@ module FarMar
         @market = Market.new(:id, :name, :address, :city, :county, :state, :zipcode)
       end
       it "should request vendors associated with itself (its instance of Market)" do
-        @market.vendors.each do |key, vendor|
-          puts @market.id # @todo testputs
+        #puts "VVVVVVV" # This puts fine
+        @market.vendors.each do |vendor_id, vendor|
+        #  puts "#{vendor.market_id} is this market id" #this is not putsing?!
           vendor.market_id.must_equal(@market.id)
         end
 

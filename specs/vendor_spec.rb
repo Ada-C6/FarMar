@@ -49,6 +49,28 @@ module FarMar
       end
     end #self.find(id)
 
+    describe "#market" do
+        before(:each) do
+          @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
+        end
+        it "should reutrn the Market instance that it is associated to" do
+          @vendor.market.must_equal(@vendor.market_id)
+        end
+      end
+
+    describe "#products" do
+      before(:each) do
+        @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
+      end
+      #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+      it "should return a collection of Product instances associated to current vendor" do
+        @vendor.products.each do |product_id, product|
+        #  puts "#{vendor.market_id} is this market id" #this is not putsing?!
+          product.vendor_id.must_equal(@vendor.id)
+        end
+      end
+
+    end
 
   end
 end
