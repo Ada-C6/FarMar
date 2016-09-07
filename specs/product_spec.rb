@@ -3,7 +3,7 @@ require_relative 'spec_helper'
 describe "FarMar::Product" do
     describe "#initialize" do
         it "should be an instance of the FarMar::Product class" do
-            FarMar::Product.new.must_be_instance_of(FarMar::Product)
+            FarMar::Product.new({}).must_be_instance_of(FarMar::Product)
         end
     end # initialize
 
@@ -21,8 +21,8 @@ describe "FarMar::Product" do
         it "should return a FarMar::Product object with data that corresponds to the id argument passed in" do
             found_product = FarMar::Product.find(272)
             found_product.must_be_instance_of(FarMar::Product)
-            found_product.id.must_equal(272)
-            found_product.zip.must_equal("Wide-eyed Fish")
+            found_product.product_id.must_equal(272)
+            found_product.name.must_equal("Wide-eyed Fish")
         end #
     end # self.find
 
