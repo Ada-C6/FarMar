@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 module FarMar
   describe Sale do
-    let(:buy_a_thing) {Sale.new(1,100,2016, 1, 1)}
+    let(:buy_a_thing) {Sale.new(1,100,"2013-11-07", 1, 1)}
     describe "#initialize" do
       it "should make a new instance of sale" do
         #write something here to test new instance of sale
@@ -29,6 +29,7 @@ module FarMar
         # I'm going to start with hash with sale ID as the key. I think I'm going to need to get back out the vendor and product associated with it, but this seems good for now.
         Sale.all.must_be_instance_of(Hash)
       end
+      
     end
     # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
   end

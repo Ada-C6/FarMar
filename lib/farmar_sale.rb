@@ -11,7 +11,7 @@ module FarMar
       # Amount - (Fixnum) the amount of the transaction, in cents (i.e., 150 would be $1.50)
       @amount = amount
       # Purchase_time - (Datetime) when the sale was completed
-      @purchase_time = DateTime.new(purchase_time) #BUG: purchase_time in csv is the string representation of a datetime, not the comma delimited input that Datetime is expecting. https://ruby-doc.org/stdlib-2.3.1/libdoc/date/rdoc/DateTime.html#method-c-parse 
+      @purchase_time = DateTime.parse(purchase_time) # purchase_time in csv is the string representation of a datetime, not the comma delimited input that Datetime is expecting. https://ruby-doc.org/stdlib-2.3.1/libdoc/date/rdoc/DateTime.html#method-c-parse
       # Vendor_id - (Fixnum) a reference to which vendor completed the sale
       @vendor_id = vendor_id
       # Product_id - (Fixnum) a reference to which product was sold
@@ -26,7 +26,6 @@ module FarMar
         sale_id, amount, purchase_time, vendor_id, product_id = line # parallel assignment!
         sale_id = sale_id.to_i # need sale_id to be a fixnum
         amount = amount.to_i # want amount to be a fixnum also
-        purchase_time = DateTime.new(purchase_time) #BUG: the purchase_times are strings, that are the DateTime format, but not the format for making a new DateTime. This is currently breaking the .all test in sale_spec.
         vendor_id = vendor_id # want vendor_id to be a fixnum
         product_id = product_id # want product_id also to be a fixnum
 
