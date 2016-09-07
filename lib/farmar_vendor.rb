@@ -1,4 +1,6 @@
 require 'csv'
+require_relative 'farmar_market'
+require_relative 'farmar_product'
 
 module FarMar
     class Vendor
@@ -32,5 +34,32 @@ module FarMar
             return nil
         end
 
+        #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
+        def market
+            market_list = FarMar::Market.all
+            market_by_market_id = market_list.group_by do |i|
+                i.id # this is the instance variable @id in Farmar::Market class
+            end
+            current_market_id = @market_id
+            market_by_market_id[current_market_id]
+        end
+
+        #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+        def products
+            product_list = FarMar::Product.all
+            product_by_vendor_id = product_list.group_by do |i|
+                i.vendor_id # this is the instance variable @vendor_id in FarMar::Product class
+            end
+            current_vendor_id = @id
+            product_by_vendor_id[current_vendor_id]
+        end
+
+        #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+        def sales
+            
+        end
+
+        #revenue: returns the the sum of all of the vendor's sales (in cents)
+        #self.by_market(market_id): returns all of the vendors with the given market_id
     end
 end
