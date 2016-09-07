@@ -1,11 +1,11 @@
 module FarMar
   class Sale
-    attr_reader :id, :amount, :vendor_id, :product_id
+    attr_reader :id, :amount, :vendor_id, :product_id, :purchase_time
 
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id = id.to_i
       @amount = amount.to_i
-      @purchase_time = purchase_time
+      @purchase_time = DateTime.parse(purchase_time.to_s)
       @vendor_id = vendor_id.to_i
       @product_id = product_id.to_i
     end
@@ -26,5 +26,21 @@ module FarMar
         end
       end
     end
+
+    def vendor
+      FarMar::Vendor.find(@vendor_id)
+    end
+
+    def product
+      FarMar::Product.find(@product_id)
+    end
+
+    def self.between(beginning_time, end_time)
+      sales_window = self.all.select do |sale|
+        sale.purchase_time > beginning_time && sale.purchase_time < end_time
+      end
+      return sales_window
+    end
+
   end
 end

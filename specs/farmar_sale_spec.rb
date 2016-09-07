@@ -42,4 +42,47 @@ describe FarMar::Sale do
     end
 
   end
+
+  describe "#vendor" do
+    before(:each) do
+      @sale = FarMar::Sale.find(38)
+    end
+
+    it "should return a FarMar::Vendor instance" do
+      @sale.vendor.must_be_instance_of(FarMar::Vendor)
+    end
+
+    it "should return the Vendor instance that matches the vendor_id of the Product instance" do
+      @sale.vendor.id.must_equal(@sale.vendor_id)
+    end
+
+  end
+
+  describe "#product" do
+    before(:each) do
+      @sale = FarMar::Sale.find(38)
+    end
+
+    it "should return a FarMar::Product instance" do
+      @sale.product.must_be_instance_of(FarMar::Product)
+    end
+
+    it "should return the Product instance associated with sale using Sale product_id" do
+      @sale.product.id.must_equal(@sale.product_id)
+    end
+
+  end
+
+  describe "self.between(beginning_time, end_time)" do
+    beginning_time = DateTime.new(2013, 11, 07)
+    end_time = DateTime.new(2013, 11, 12)
+    sale = FarMar::Sale.between(beginning_time, end_time)
+    it "should return an array of FarMar::Sale objects" do
+      sale[1].must_be_instance_of(FarMar::Sale)
+    end
+
+    # it "should return an array of Sale objects that were sold between the two times given" do
+    #   sale.must_include(FarMar::Sale.find(39))
+    # end
+  end
 end
