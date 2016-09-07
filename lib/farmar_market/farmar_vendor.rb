@@ -6,11 +6,11 @@ module FarMar
 
     attr_reader :vendor_id, :vendor_name, :num_employees, :market_id
 
-    def initialize(market_hash)
-      @vendor_id = market_hash[:vendor_id]
-      @vendor_name = market_hash[:vendor_name]
-      @num_employees = market_hash[:num_employees]
-      @market_id = market_hash[:market_id]
+    def initialize(vendor_hash)
+      @vendor_id = vendor_hash[:vendor_id]
+      @vendor_name = vendor_hash[:vendor_name]
+      @num_employees = vendor_hash[:num_employees]
+      @market_id = vendor_hash[:market_id]
     end
 
     def self.all
@@ -36,6 +36,11 @@ module FarMar
         end
       end
       raise Exception("ID was not present")
+    end
+
+    def market
+      associated_market = FarMar::Market.find(@market_id)
+      return associated_market.market_name
     end
 
   end

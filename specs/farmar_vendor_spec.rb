@@ -29,9 +29,17 @@ let(:vendor) { FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", nu
       found_vendor.vendor_id.must_equal(1)
       found_vendor.vendor_name.must_equal(vendor.vendor_name)
     end
-
-
-
   end
 
+  describe "#market" do
+    it "should return the Market instance associated with this vendor's market_id" do
+      vendor.market.must_equal("People\'s Co-op Farmers Market")
+    end
+
+    it "should be an instance of market" do
+      associated_market = FarMar::Market.find(vendor.vendor_id)
+      associated_market.must_be_instance_of(FarMar::Market)
+    end
+
+  end
 end
