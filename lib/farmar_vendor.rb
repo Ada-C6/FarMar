@@ -49,5 +49,9 @@ module FarMar
       return vendors
     end
 
+    def products
+      return FarMar::Product.by_vendor(@id)
+    end
+
   end
 end

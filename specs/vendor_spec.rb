@@ -24,33 +24,42 @@ describe FarMar::Vendor do
 
       FarMar::Vendor.all[0].must_be_instance_of(FarMar::Vendor)
     end
+  end
 
-    describe "self.find" do
-      it "returns a Vendor instance" do
+  describe "self.find" do
+    it "returns a Vendor instance" do
 
 
-        FarMar::Vendor.find(123).must_be_instance_of(FarMar::Vendor)
-      end
+      FarMar::Vendor.find(123).must_be_instance_of(FarMar::Vendor)
     end
+  end
 
-    describe "#market" do
-      it "must return a Market object"do
-        another_vendor = FarMar::Vendor.new({market_id:10})
-        another_vendor.market.must_be_instance_of FarMar::Market
-      end
+  describe "#market" do
+    it "must return a Market object"do
+    another_vendor = FarMar::Vendor.new({market_id:10})
+    another_vendor.market.must_be_instance_of FarMar::Market
+    another_vendor.market.name.must_equal "Saratoga Farmers' Market"
+  end
 
-    end
+end
 
-    describe "self.by_market" do
-      it "returns an array of Vendors" do
-        FarMar::Vendor.by_market(37).must_be_instance_of Array
-        FarMar::Vendor.by_market(37)[0].must_be_instance_of FarMar::Vendor
-        FarMar::Vendor.by_market(34)[0].name.must_equal "Weissnat LLC"
+describe "self.by_market" do
+  it "returns an array of Vendors" do
+    FarMar::Vendor.by_market(37).must_be_instance_of Array
+    FarMar::Vendor.by_market(37)[0].must_be_instance_of FarMar::Vendor
+    FarMar::Vendor.by_market(34)[0].name.must_equal "Weissnat LLC"
+  end
+end
 
+describe "#products" do
+  new_vendor = FarMar::Vendor.new({id:10})
+  it "must return an array of Products" do
+    new_vendor.products.must_be_instance_of Array
+    new_vendor.products[0].must_be_instance_of FarMar::Product
 
-      end
-    end
 
   end
+
+end
 
 end
