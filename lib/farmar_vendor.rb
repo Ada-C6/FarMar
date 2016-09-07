@@ -1,4 +1,5 @@
 require 'csv'
+require_relative 'farmar_market'
 
 module FarMar
   class Vendor
@@ -27,9 +28,10 @@ module FarMar
       self.all.find do |vendor|
         vendor.id == num
       end
+    end
 
-
-
+    def market
+      FarMar::Market.find(@market_id)
     end
 
   end

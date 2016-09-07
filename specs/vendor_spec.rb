@@ -2,19 +2,15 @@ require_relative 'spec_helper'
 
 describe FarMar::Vendor do
   describe "#initialize" do
-    my_hash = {id: 120,
-      name: "Guin's Peaches",
-      employees: 4,
-      market_id: 12
-    }
-    let (:my_vendor) {FarMar::Vendor.new(my_hash)}
-    it "has a vendor ID" do
 
-      my_vendor.id.must_equal(120)
+    let (:my_vendor) {FarMar::Vendor.new({})}
+    it "must respond to vendor id attribute" do
+
+      my_vendor.must_respond_to(:id)
     end
 
-    it "is associated with a market" do
-      my_vendor.market_id.must_equal 12
+    it "must respond to market id attribute" do
+      my_vendor.must_respond_to(:market_id)
     end
   end
 
@@ -35,6 +31,14 @@ describe FarMar::Vendor do
 
         FarMar::Vendor.find(123).must_be_instance_of(FarMar::Vendor)
       end
+    end
+
+    describe "#market" do
+      it "must return a Market object"do
+        another_vendor = FarMar::Vendor.new({market_id:10})
+        another_vendor.market.must_be_instance_of FarMar::Market
+      end
+
     end
 
   end
