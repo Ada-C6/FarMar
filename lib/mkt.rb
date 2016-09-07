@@ -4,29 +4,36 @@ module FarMar
 
   class Market
     attr_accessor :id, :name, :city
-    def initialize(id)
+    def initialize(id, name, street, city, county, state, zip)
       @id = id
-      #@street = street
-      #@city = city
-      #@county = county
-      #@state = state
-      #@zip = zip
+      @name = name
+      @street = street
+      @city = city
+      @county = county
+      @state = state
+      @zip = zip
+      @all = all
+
+    end
+
+    def compile
+      @all = {:id => @id, :name => @name, :street => @street , :city => @city, :county => @county, :state => @state, :zip => @zip}
+        return @all
     end
 
     def self.all
-    mkt =  {}
+      mkt =  {}
 
-      CSV.read('../support/markets.csv').each do |line|
-      @id = (line[0])
-      mkt.line[@id] = line[1..line.length]
-
-          #self.new = all
-              #self.new line[1..line.length]
-        puts all
+        CSV.read('../support/markets.csv').each do |line|
+        mkt[line[0]] = line[1..line.length]
+          puts mkt
       end
-      return mkt
+        return mkt
     end
   end
-end
 
-puts FarMar::Market.all
+
+end
+#FarMar::Market.new("9999999", "Natasha", "737 Olive Way", "Seattle", "King", "WA", "98101")
+
+  puts FarMar::Market.all
