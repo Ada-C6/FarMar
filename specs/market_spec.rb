@@ -28,4 +28,11 @@ describe FarMar::Market do
       west_seattle.id.must_equal(2)
     end
   end
+
+  describe "vendors" do
+    it "should return all vendor instances associated with the market's id" do
+      west_seattle = FarMar::Market.find(5)
+      west_seattle.vendors.length.must_equal(2)
+    end
+  end
 end

@@ -31,5 +31,33 @@ module FarMar
     def self.find(id)
       return self.all[id]
     end
+
+    def vendors
+      # FarMar::Vendor.by_market(@id)
+
+      vendors = []
+      CSV.read('support/vendors.csv').each do |line|
+        if line[-1].to_i == @id
+          vendors << line
+        end
+      end
+      return vendors
+
+    #   all_vendors = FarMar::Vendor.all
+    #   vendors = []
+    #
+    #   all_vendors.each do |vendor, value|
+    #     if value.market_id == @id
+    #       vendors << value
+    #     end
+    #   end
+    #   return vendors
+    end
+
   end
 end
+
+# all_markets = FarMar::Market.all
+# west_seattle = all_markets[5]
+#
+# puts west_seattle.vendors
