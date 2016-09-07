@@ -37,7 +37,13 @@ class Market
 
   def vendors
     vendor_list = Vendor.all
-    vendor_list.find_all { |n| n[1].market_id == @id }
+    instances = vendor_list.find_all { |n| n[1].market_id == @id }
+
+    vendor_instances = []
+    instances.length.times do |i|
+      vendor_instances << instances[i][1]
+    end
+    return vendor_instances
   end
 
 end
