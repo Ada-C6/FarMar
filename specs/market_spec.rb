@@ -19,10 +19,26 @@ describe FarMar::Market do
 	end
 
 	describe "self.all" do
+		markets = FarMar::Market.all
+
 		it "must return a collection of Market instances" do
-			markets = FarMar::Market.all
 			markets.first.must_be_instance_of(FarMar::Market)
 			markets.last.must_be_instance_of(FarMar::Market)
+		end
+	end
+
+	describe "self.find(id)" do
+
+		it "must take a Fixnum as an argument" do
+			bad_args = ["2", "2.4", 2.4, "hat"]
+
+			bad_args.each do |item|
+				proc { FarMar::Market.find(item) }.must_raise(ArgumentError)
+			end
+		end
+
+		it "must return an instance of Market" do
+			FarMar::Market.find(5).must_be_instance_of(FarMar::Market)
 		end
 	end
 end

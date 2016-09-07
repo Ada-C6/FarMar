@@ -17,4 +17,20 @@ describe FarMar::Product do
 		end
 	end
 
+	describe "self.find(id)" do
+
+		it "must take a Fixnum as an argument" do
+			bad_args = ["2", "2.4", 2.4, "hat"]
+
+			bad_args.each do |item|
+				proc { FarMar::Product.find(item) }.must_raise(ArgumentError)
+			end
+		end
+
+		it "must return an instance of Product" do
+			FarMar::Product.find(5).must_be_instance_of(FarMar::Product)
+		end
+	end
+
+
 end

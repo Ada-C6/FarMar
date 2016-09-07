@@ -1,5 +1,7 @@
 module FarMar
 	class Market
+		attr_reader :id
+
 		def initialize(market_hash)
 			@id = market_hash[:id]
 			@name = market_hash[:name]
@@ -24,7 +26,19 @@ module FarMar
 				market = FarMar::Market.new(info_hash)
 				markets << market
 			end
+
 			return markets
+		end
+
+		def self.find(id)
+			raise ArgumentError.new("Invalid ID") if !id.is_a?(Fixnum)
+			markets = self.all
+			markets.each do |market|
+				if market.id == id
+					return market
+				end
+			end
+
 		end
 	end
 end

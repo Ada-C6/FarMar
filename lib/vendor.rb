@@ -1,5 +1,7 @@
 module FarMar
 	class Vendor
+		attr_reader :id
+		
 		def initialize(vendor_hash)
 			@id = vendor_hash[:id]
 			@name = vendor_hash[:name]
@@ -19,6 +21,17 @@ module FarMar
 				vendors << vendor
 			end
 			return vendors
+		end
+
+		def self.find(id)
+			raise ArgumentError.new("Invalid ID") if !id.is_a?(Fixnum)
+			vendors = self.all
+			vendors.each do |vendor|
+				if vendor.id == id
+					return vendor
+				end
+			end
+
 		end
 	end
 end

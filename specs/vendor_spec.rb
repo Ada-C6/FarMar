@@ -16,8 +16,6 @@ describe FarMar::Vendor do
 	end
 
 
-# This might be reaaally slow on a much larger dataset. Maybe just look
-# at a few of them?
 	describe "self.all" do
 		it "must return a collection of Vendor instances" do
 			vendors = FarMar::Vendor.all
@@ -25,4 +23,21 @@ describe FarMar::Vendor do
 			vendors.last.must_be_instance_of(FarMar::Vendor)
 		end
 	end
+
+
+	describe "self.find(id)" do
+
+		it "must take a Fixnum as an argument" do
+			bad_args = ["2", "2.4", 2.4, "hat"]
+
+			bad_args.each do |item|
+				proc { FarMar::Vendor.find(item) }.must_raise(ArgumentError)
+			end
+		end
+
+		it "must return an instance of Vendor" do
+			FarMar::Vendor.find(5).must_be_instance_of(FarMar::Vendor)
+		end
+	end
+
 end

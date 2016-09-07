@@ -1,5 +1,7 @@
 module FarMar
 	class Product
+		attr_reader :id
+
 		def initialize(product_hash)
 			@id = product_hash[:id]
 			@name = product_hash[:name]
@@ -18,5 +20,17 @@ module FarMar
 			end
 			return products
 		end
+
+		def self.find(id)
+			raise ArgumentError.new("Invalid ID") if !id.is_a?(Fixnum)
+			products = self.all
+			products.each do |product|
+				if product.id == id
+					return product
+				end
+			end
+
+		end
+
 	end
 end

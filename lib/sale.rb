@@ -1,5 +1,7 @@
 module FarMar
 	class Sale
+		attr_reader :id
+
 		def initialize(sale_hash)
 			@id = sale_hash[:id]
 			@amount = sale_hash[:amount]
@@ -14,6 +16,7 @@ module FarMar
 				info_hash = {}
 				info_hash[:id] = line[0].to_i
 				info_hash[:amount] = line[1].to_i
+				# this must be a Datetime - look into this before doing self.between(beginning_time, end_time)
 				info_hash[:purchase_time] = line[2]
 				info_hash[:vendor_id] = line[3].to_i
 				info_hash[:product_id] = line[4].to_i
@@ -22,6 +25,18 @@ module FarMar
 			end
 			return sales
 		end
+
+		def self.find(id)
+			raise ArgumentError.new("Invalid ID") if !id.is_a?(Fixnum)
+			sales = self.all
+			sales.each do |sale|
+				if sale.id == id
+					return sale
+				end
+			end
+
+		end
+
 
 	end
 end
