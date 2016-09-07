@@ -41,6 +41,7 @@ module FarMar
       end
     end
     describe "#market" do
+      #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
       let(:feil_f) {Vendor.new(1,"Feil-Farrell",8,1)}
       it "should return the market object that is associated with the market_id" do
         #this seems like it'll use Market.find ?
@@ -48,6 +49,17 @@ module FarMar
       end
       it "should return a market object" do
         feil_f.market.must_be_instance_of(Market)
+      end
+    end
+
+    describe "self.by_market" do
+      # self.by_market(market_id): returns all of the vendors with the given market_id
+      it "should return an array" do
+        Vendor.by_market(1).must_be_instance_of(Array)
+      end
+
+      it "should be an array of Vendors" do
+        Vendor.by_market(1)[0].must_be_instance_of(Vendor)
       end
     end
   end

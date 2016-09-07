@@ -53,7 +53,8 @@ module FarMar
         coop_market.vendors[0].must_be_instance_of(Vendor)
       end
       it "the vendor returned, should have a market_id that matches the market" do
-        # Checking that the objects returned have the same as the market instance I'm working with.
+        # Checking that the objects returned have the same id as the market instance I'm working with.
+        # NOTE: It's not ACTUALLY the same object (same data, different object id), since I have created coop_market here. I wonder if I should check for the same object. I'm not sure how. 
         # This will check using the market method in Vendor.
         coop_market.vendors[0].market_id.must_be_same_as(coop_market.id)
       end
