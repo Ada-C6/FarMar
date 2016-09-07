@@ -54,12 +54,22 @@ module FarMar
       ven_id = @id
       vendor_sales = []
 
-      FarMar::Sales.all.each do |s|
+      FarMar::Sale.all.each do |s|
         if s.vendor_id == ven_id
           vendor_sales << s
         end
       end
       return vendor_sales
+    end
+
+    def revenue #returns the sum of all the vendor's sales
+      all_sales = self.sales
+      total = 0
+
+      all_sales.each do |s|
+        total += s.amount
+      end
+      return total
     end
 
   end
