@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe FarMar::Vendor do
-  let(:sam){FarMar::Vendor.new(19, "Betty", 8, 20)}
+  let(:sam){FarMar::Vendor.new(19, "Betty", 8, 1)}
   describe "#initialize" do
     it "can create a new instance of Vendor" do
       sam.must_be_instance_of(FarMar::Vendor)
@@ -27,8 +27,10 @@ describe FarMar::Vendor do
   describe "#market" do
     it "will return instances of FarMar::Market" do
       vendor_num = sam.market
-      vendor_num[0].must_be_instance_of(FarMar::Market)
-
+      vendor_num.must_be_instance_of(FarMar::Market)
+    end
+    it "will return an array of the market" do
+      sam.market.must_be_kind_of(Object)
     end
   end
 end
