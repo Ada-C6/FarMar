@@ -17,5 +17,14 @@ module FarMar
         @sale.must_be_instance_of(Sale)
       end
     end
+
+    describe "self.all" do
+        let(:sales) { Sale.all }
+
+      it "should create an array of instances of sales from the CSV file" do
+       Sale.all.must_be_kind_of(Array)
+      end
+      
+    end #end self.all
   end #end sale
 end #end module

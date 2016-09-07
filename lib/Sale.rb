@@ -13,5 +13,21 @@ module FarMar
       @market_id = sales_hash[:market_id]
 
     end
+
+    def self.all
+      sales = []
+      CSV.read("./support/sales.csv").each do |line|
+        sales_hash = {}
+        sales_hash[:id] = line[0].to_i
+        sales_hash[:amount] = line[1]
+        sales_hash[:purchase_time] = line[2]
+        sales_hash[:vendor_id] = line[3]
+        sales_hash[:market_id] = line[4]
+        sales << FarMar::Sale.new(sales_hash)
+      end
+      return sales
+    end
+
+
   end
 end
