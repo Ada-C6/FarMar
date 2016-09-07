@@ -28,5 +28,13 @@ module FarMar
         Vendor.find(238).name.must_equal("West Inc")
       end
     end
+
+    describe "by_market(market_id)" do
+      it "should return all of the vendors with the given market_id" do
+        Vendor.by_market(500).count.must_equal(10)
+
+      end
+
+    end
   end
 end

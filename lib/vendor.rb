@@ -7,8 +7,8 @@ attr_reader :id, :name, :num_of_employees, :market_id
   def initialize(vendor)
     @id = vendor[:id]
     @name = vendor[:name]
-    @num_of_employees = [:num_of_employees]
-    @market_id = [:market_id]
+    @num_of_employees = vendor[:num_of_employees]
+    @market_id = vendor[:market_id]
   end
 
   def self.all
@@ -19,7 +19,7 @@ attr_reader :id, :name, :num_of_employees, :market_id
       vendor[:id] = line[0].to_i
       vendor[:name] = line[1]
       vendor[:num_of_employees] = line[2].to_i
-      vendor[:market_id] = line[3]
+      vendor[:market_id] = line[3].to_i
 
 
       all_vendors << self.new(vendor)
@@ -35,5 +35,12 @@ attr_reader :id, :name, :num_of_employees, :market_id
       end
     end
     # if id > 500, returns entire array....fix later
+  end
+
+  def self.by_market(market_id)
+    all_vendors = self.all
+    all_vendors.find_all do |i|
+      i.market_id == market_id
+    end
   end
 end
