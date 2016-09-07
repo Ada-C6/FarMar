@@ -9,11 +9,11 @@ describe "FarMar::Market" do
     end # initialize
 
     describe "self.all" do
-        it "should return a hash of FarMar::Market objects with quantity matching CSV length" do
+        it "should return a hash of FarMar::Market objects with length matching CSV size" do
             csv_markets = FarMar::Market.all
-            csv_markets.class.must_equal(Hash)
-            csv_markets.values[rand(1..500)].must_be_instance_of(FarMar::Market)
             expected_length = CSV.read('support/markets.csv').size
+            csv_markets.class.must_equal(Hash)
+            csv_markets.values[rand(0..expected_length)].must_be_instance_of(FarMar::Market)
             csv_markets.length.must_equal(expected_length)
         end
 
