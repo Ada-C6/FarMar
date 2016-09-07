@@ -29,9 +29,13 @@ describe FarMar::Market do
     end
   end
   describe "vendors" do
-    it "should return a list of venders associated by market id" do
-      puts "#{cap_hill.vendors}"
+    it "should return an array" do
+
       cap_hill.vendors.must_be_kind_of(Array)
+    end
+    it "should be an instance of vendor" do
+      vendor = cap_hill.vendors
+      vendor[0].must_be_instance_of(FarMar::Vendor)
     end
   end
 
