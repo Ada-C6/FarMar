@@ -23,4 +23,17 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#market" do
+    it "should return the FarMar::Market instance associated with vendor" do
+      ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
+      ven.market.name.must_equal("Dolgeville Farmer's Market")
+    end
+  end
+
+  describe "#products" do
+    it "should return a collection of FarMar::Product instances associated by vendor_id" do
+      ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
+      ven.products.must_equal(["Fierce Beef", "Helpless Bread", "Yummy Bread", "Broken Beets"])
+    end
+  end
 end

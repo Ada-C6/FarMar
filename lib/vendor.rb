@@ -24,5 +24,34 @@ module FarMar
         end
       end
     end
+
+    def market
+      the_one = nil
+      FarMar::Market.all.each do |line|
+        if @market_id == line.id
+          the_one = line
+          break
+        end
+      end
+      return the_one
+    end
+
+    def products
+
+    end
+
+
+
+
+
+    # prdts = []
+    # FarMar::Product.all.each do |line|
+    #   if "10" = line.vendor_id
+    #     prdts.push(line.name)
+    #   end
+    # end
+
+
+
   end
 end
