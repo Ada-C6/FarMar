@@ -28,8 +28,15 @@ describe FarMar::Market do
       found_market.market_name.must_equal(market.market_name)
     end
 
-
-
   end
+
+  # Explore structure of
+  # describe "#vendors" do
+  #   it "should find a specific Vendor by the vendor_id" do
+  #     FarMar::Market.all
+  #     FarMar::Vendor.all
+  #     found_vendor =
+  #   end
+  # end
 
 end
