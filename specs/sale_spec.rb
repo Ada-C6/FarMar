@@ -7,4 +7,15 @@ describe FarMar::Sale do
       sam.must_be_instance_of(FarMar::Sale)
     end
   end
+
+  describe "self.all" do
+    it "should return an array" do
+      FarMar::Sale.all.must_be_kind_of(Array)
+    end
+  end
+  describe "self.find(id)" do
+    it "should return the id that was passed through" do
+      FarMar::Sale.find(1).id.must_equal(1)
+    end
+ end
 end
