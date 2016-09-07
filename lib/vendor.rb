@@ -62,9 +62,7 @@ module FarMar
       rvn = 0
       FarMar::Sale.all.each do |line|
         if "10" == line.vendor_id
-          puts line.id
           rvn += line.amount.to_i
-          puts rvn
         end
       end
       return rvn

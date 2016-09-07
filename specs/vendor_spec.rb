@@ -33,7 +33,30 @@ describe FarMar::Vendor do
   describe "#products" do
     it "should return a collection of FarMar::Product instances associated by vendor_id" do
       ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
-      ven.products.must_equal(["Fierce Beef", "Helpless Bread", "Yummy Bread", "Broken Beets"])
+      vnames = []
+      ven.products.each do |item|
+        vnames.push(item.name)
+      end
+      vnames.must_equal(["Calm Carrots", "Fierce Beef", "Helpless Bread", "Yummy Bread", "Broken Beets"])
     end
   end
+
+  describe "#sales" do
+    it "should return a collection of FarMar::Sale instances associated by vendor_id" do
+      ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
+      vsales = []
+      ven.sales.each do |item|
+        vsales.push(item.id)
+      end
+      vsales.must_equal(["53", "54", "55", "56", "57", "58", "59", "60"])
+    end
+  end
+
+  describe "#revenue" do
+    it "should return the num of all the vendor sales (in cents)" do
+      ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
+      ven.revenue.must_equal(32628)
+    end
+  end
+
 end

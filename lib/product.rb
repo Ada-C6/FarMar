@@ -1,3 +1,5 @@
+require_relative '../far_mar'
+
 module FarMar
   class Product
     attr_accessor :id, :name, :vendor_id
@@ -23,5 +25,27 @@ module FarMar
         end
       end
     end
+
+    def vendor
+      vndr = nil
+      FarMar::Vendor.all.each do |line|
+        if @id == line.id
+          vndr = line
+          break
+        end
+      end
+      return vndr
+    end
+
+    def sales
+      vnsls = []
+      FarMar::Sale.all.each do |line|
+        if @id == line.product_id
+          vnsls.push(line)
+        end
+      end
+      return vnsls
+    end
+
   end
 end
