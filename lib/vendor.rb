@@ -43,5 +43,23 @@ module FarMar
 
       return all_products
     end
+
+    def sales
+      all_sales = FarMar::Sale.all
+
+      all_sales.delete_if do |k, v|
+        v.vendor_id != @id
+      end
+
+      return all_sales
+    end
+
+    def revenue
+      sales_amounts = sales.map do |k, v|
+        v.amount
+      end
+
+      sales_amounts.reduce(:+)
+    end
   end
 end

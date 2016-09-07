@@ -49,8 +49,28 @@ describe FarMar::Vendor do
     end
 
     it "should return a hash of one object for a vendor ID of 1" do
-      @vendor.products.length.must_equal 1
+      @vendor.products.length.must_equal 1 # because @vendor on top is set up for a vendor ID of 1, this works
     end
   end
-  
+
+  describe "#sales" do
+    it "should return a hash of products" do
+      @vendor.sales.must_be_kind_of Hash
+    end
+
+    it "should return a hash of one object for a vendor ID of 2" do
+      vend_test = FarMar::Vendor.new(2,"Test Vendor",1,1) # because @vendor on the top is set up for vendor id 1, this test needs its own instance
+      vend_test.sales.length.must_equal 1
+    end
+  end
+
+  describe "#revenue" do
+    it "should return a fixnum" do
+      @vendor.revenue.must_be_kind_of Fixnum
+    end
+
+    it "should only be a positive number" do
+      @vendor.revenue.must_be :>=, 0
+    end
+  end
 end
