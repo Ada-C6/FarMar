@@ -8,13 +8,28 @@ describe "FarMar::Sale" do
     end # initialize
 
     describe "self.all" do
-        it "should return a hash of FarMar::Sale objects with length matching CSV size" do
-            csv_sales = FarMar::Sale.all
-            expected_length = CSV.read('support/sales.csv').size
+        csv_sales = FarMar::Sale.all
+
+        before(:each) do
+            # select a random value from csv_sales hash. range 0..12002 because csv contains 12002 unique sale IDs
+            @random_sale = csv_sales.values[rand(0..12002)]
+        end
+
+        it "should return a hash of FarMar::Sale objects (ideally with length matching CSV size)" do
             csv_sales.class.must_equal(Hash)
-            csv_sales.values[rand(0..12001)].must_be_instance_of(FarMar::Sale)
-            # @todo - commented out length check due to duplicated IDs in sales.csv, these are causing length mismatch here
+            @random_sale.must_be_instance_of(FarMar::Sale)
+
+            # p @random_sale # @todo - remove/debug
+
+            # @todo - commented out length validation due to duplicated IDs in sales.csv, these are causing length mismatch here
+            # expected_length = CSV.read('support/sales.csv').size
             # csv_sales.length.must_equal(expected_length)
+        end
+
+        it "should parse the purchase_time string into a DateTime object" do
+            @random_sale.purchase_time.must_be_instance_of(DateTime)
+
+            # p @random_sale # @todo - remove/debug
         end
     end # self.all
 
@@ -24,7 +39,7 @@ describe "FarMar::Sale" do
             found_sale.must_be_instance_of(FarMar::Sale)
             found_sale.sale_id.must_equal(10837)
             found_sale.amount.must_equal(6040)
-            found_sale.purchase_time.must_equal("2013-11-11 16:39:42 -0800")
+            found_sale.purchase_time.must_be_instance_of(DateTime)
         end #
     end # self.find
 
