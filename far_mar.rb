@@ -15,4 +15,4 @@ end
 # vendor = FarMar::Vendor.new(1,"Test Vendor",1,1)  #testing an instance method
 # puts vendor.revenue
 
-puts FarMar::Vendor.by_market(1).length # testing class methods
+puts FarMar::Vendor.by_market(1) # testing class methods

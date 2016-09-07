@@ -20,10 +20,10 @@ module FarMar
     end
 
     def self.find(id)
-      all_vendors = self.all
+      # all_vendors = self.all
 
-      if all_vendors.has_key?(id)
-        return all_vendors[id]
+      if all.has_key?(id)
+        return all[id]
       else
         raise ArgumentError.new("We do not have a vendor with that ID.")
       end
