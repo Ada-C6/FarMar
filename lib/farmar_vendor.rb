@@ -38,6 +38,34 @@ module FarMar
           vendor_products << product
         end
       end
+      return vendor_products
+    end
+
+    def sales
+      all_sales = FarMar::Sale.all
+      vendor_sales = []
+      all_sales.each do |sale|
+        if sale.vendor_id == @id
+          vendor_sales << sale
+        end
+      end
+      return vendor_sales
+    end
+
+    def revenue
+      vendor_sales = sales
+      revenue_array = vendor_sales.map do |sale|
+        sale.amount
+      end
+      revenue_total = revenue_array.reduce(:+)
+      return revenue_total
+    end
+
+    def self.by_market(market_id)
+      all_vendors = self.all
+      all_vendors.select do |vendor|
+        vendor.market_id == market_id
+      end
     end
 
   end
