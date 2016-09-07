@@ -1,7 +1,4 @@
 require 'csv'
-#require_relative 'market'
-#require_relative 'product'
-#require_relative 'sale'
 
 module FarMar
   class Vendor
@@ -44,11 +41,11 @@ module FarMar
     end
 
     def self.by_market(input)
-      vendors = self.all
       vendor_by_market = []
+      vendors = self.all
       vendors.each do |var|
         if var.market_id == input
-          vendor_by_market << vendors
+          vendor_by_market << var
         end
       end
       return vendor_by_market
