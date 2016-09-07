@@ -29,6 +29,12 @@ module FarMar
       end
     end
 
+    def self.by_market(market_id)
+      all.delete_if do |k, v|
+        v.market_id != market_id
+      end
+    end
+
     def market
       all_markets = FarMar::Market.all
       return all_markets[@id]
@@ -61,5 +67,6 @@ module FarMar
 
       sales_amounts.reduce(:+)
     end
+
   end
 end

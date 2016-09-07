@@ -33,6 +33,17 @@ describe FarMar::Vendor do
 
   end
 
+  describe "#self.by_market" do
+    it "should return a hash" do
+      FarMar::Vendor.by_market(1).must_be_kind_of Hash
+    end
+
+    it "should return a hash of six objects with a market id of 1" do
+      FarMar::Vendor.by_market(1).length.must_equal 6
+    end
+
+  end
+
   describe "#market" do
     it "should return an instance of Market" do
       @vendor.market.must_be_instance_of FarMar::Market
@@ -73,4 +84,5 @@ describe FarMar::Vendor do
       @vendor.revenue.must_be :>=, 0
     end
   end
+
 end

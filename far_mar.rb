@@ -11,6 +11,8 @@ module FarMar
 end
 # puts FarMar::Market.all
 # market = FarMar::Market.new(2,"Test Market","123 Main St","King", "Seattle", "WA", "98125")
-vendor = FarMar::Vendor.new(1,"Test Vendor",1,1)
 
-puts vendor.revenue
+# vendor = FarMar::Vendor.new(1,"Test Vendor",1,1)  #testing an instance method
+# puts vendor.revenue
+
+puts FarMar::Vendor.by_market(1).length # testing class methods
