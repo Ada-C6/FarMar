@@ -41,4 +41,24 @@ describe FarMar::Vendor do
     end
 
   end
+
+  windler_vendor = FarMar::Vendor.find(12)
+
+  describe "#market" do
+    it "should return a FarMar::Market instance" do
+      windler_vendor.market.must_be_instance_of(FarMar::Market)
+    end
+
+    it "should return the FarMar::Market instance that is associated with this vendor using market_id" do
+      windler_vendor.market.name.must_equal("Dolgeville Farmer's Market")
+    end
+  end
+
+  describe "#products" do
+    it "should return an array" do
+      windler_vendor.products.must_be_kind_of(Array)
+    end
+
+    ## continue here
+  end
 end
