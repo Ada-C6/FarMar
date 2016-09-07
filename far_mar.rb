@@ -9,6 +9,28 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
+##TESTING... FarMar::Sale.find(id)
+# test = FarMar::Sale.find(FarMar::Sale.all[0].id)
+# puts test
+#
+# puts "Woo hoo!"
+
+
+# #TESTING... FarMar::Sale.all
+# test = FarMar::Sale.all
+#
+# puts "Woo hoo!"
+#
+# test.each do |item|
+#     puts item.id
+#     puts item.purchase_time
+#     puts ""
+# end
+#
+# puts "end of test"
+
+
+
 ##TESTING... FarMar::Product.find(id)
 # test = FarMar::Product.find(FarMar::Product.all[0].id)
 # puts test
