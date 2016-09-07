@@ -34,6 +34,19 @@ module FarMar
       end
     end
 
+    describe "#market" do
+      let(:example_vendor) { Vendor.new({id: 9876, name: "Allison", num_employees: 75, market_id: 6}) }
+
+      it "should return an object: Market" do
+        example_vendor.market.must_be_instance_of(Market)
+      end
+
+      it "should return the correct instance of Market" do
+        jcfm = example_vendor.market
+        jcfm.name.must_equal("Jefferson City Farmer's Market")
+        jcfm.id.must_equal(6)
+      end
+    end
 
   end
 end
