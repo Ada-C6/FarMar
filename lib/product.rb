@@ -20,11 +20,15 @@ module FarMar
 
     def self.find(id)
       if all.has_key?(id)
-        return all_products[id]
+        return all[id]
       else
         raise ArgumentError.new("We do not have a product with that ID.")
       end
     end
-    
+
+    def vendor
+      all_vendors = FarMar::Vendor.all
+      return all_vendors[@id]
+    end
   end
 end

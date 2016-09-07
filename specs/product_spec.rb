@@ -31,4 +31,15 @@ describe FarMar::Product do
       proc { FarMar::Product.find(0) }.must_raise(ArgumentError)
     end
   end
+
+  describe "#vendor" do
+    it "should return an instance of Vendor" do
+      @product.vendor.must_be_instance_of FarMar::Vendor
+    end
+
+    it "should return only one instance, not a collection" do
+      @product.vendor.wont_be_kind_of Hash, Array
+    end
+  end
+
 end
