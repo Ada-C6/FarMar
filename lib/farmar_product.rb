@@ -24,9 +24,21 @@ module FarMar
       self.all.find do |product|
         product.id == num
       end
+    end
 
+    def self.by_vendor(vendor_id)
 
+      products = []
+      CSV.open('./support/vendors.csv', 'r').each do |line|
 
+        if line[3].to_i == vendor_id
+          products << FarMar::Product.new(id:line[0],
+          name:line[1],
+          vendor_id:line[2])
+        end
+
+      end
+      return products
     end
 
   end

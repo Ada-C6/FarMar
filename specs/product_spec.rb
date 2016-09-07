@@ -38,4 +38,14 @@ describe FarMar::Product do
       FarMar::Product.find(123).must_be_instance_of(FarMar::Product)
     end
   end
+
+  describe "self.by_vendor" do
+    it "returns an array of Products" do
+      FarMar::Product.by_vendor(37).must_be_instance_of Array
+      FarMar::Product.by_vendor(37)[0].must_be_instance_of FarMar::Product
+      FarMar::Product.by_vendor(34)[0].name.must_equal "Weissnat LLC"
+
+
+    end
+  end
 end
