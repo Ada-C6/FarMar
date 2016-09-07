@@ -20,8 +20,6 @@ module FarMar
     end
 
     def self.find(id)
-      # all_vendors = self.all
-
       if all.has_key?(id)
         return all[id]
       else

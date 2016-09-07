@@ -19,14 +19,12 @@ module FarMar
     end
 
     def self.find(id)
-      all_products = self.all
-
-      if all_products.has_key?(id)
+      if all.has_key?(id)
         return all_products[id]
       else
         raise ArgumentError.new("We do not have a product with that ID.")
       end
     end
+    
   end
-
 end
