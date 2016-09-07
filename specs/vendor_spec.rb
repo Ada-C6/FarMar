@@ -112,6 +112,12 @@ module FarMar
         vendors_by_market[0].must_be_instance_of(Vendor)
         vendors_by_market[3].must_be_instance_of(Vendor)
       end
+
+      it "should return the correct vendors" do
+        vendors_by_market[0].id.must_equal(13)
+        vendors_by_market[2].id.must_equal(15)
+        vendors_by_market[3].id.must_equal(16)
+      end
     end
   end
 end
