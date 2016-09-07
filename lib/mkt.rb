@@ -6,7 +6,6 @@ module FarMar
     attr_accessor :id, :name, :city
     def initialize(id)
       @id = id
-      #@name = name
       #@street = street
       #@city = city
       #@county = county
