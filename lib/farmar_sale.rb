@@ -1,5 +1,5 @@
 require 'csv'
-
+require 'date'
 
 class Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
@@ -7,11 +7,27 @@ class Sale
   def initialize(id, amount, purchase_time, vendor_id, product_id)
     @id = id
     @amount = amount
-    @purchase_time = purchase_time
+    @purchase_time = DateTime.strptime(purchase_time, '%Y-%m-%d %H:%M:%S %z')
     @vendor_id = vendor_id
     @product_id = product_id
   end
 
+  def self.all
+    sale = {}
+    CSV.read('../support/sales.csv').each do |line|
+      id = line[0].to_i
+      amount = line[1]
+      purchase_time = line[2]
+      vendor_id = line[3]
+      product_id = line[4]
 
+      sale[id] = self.new(id, amount, purchase_time, vendor_id, product_id)
+    end
+    return sale
+  end
 
+  def self.find(id)
+    sale = Sale.all
+    return sale[id]
+  end
 end
