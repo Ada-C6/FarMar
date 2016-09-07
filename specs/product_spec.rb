@@ -22,5 +22,15 @@ module FarMar
 
      #Should i write a test here to make sure it's returning the right information? exam make sure vendor_id returns number,not nil?
    end
+
+   describe "self.find(id)" do
+     let(:products) { Product.find(12) }
+     it "should return instance of a product by its product id" do
+       foots = Product.find(12)
+       foots.id.must_equal(12)
+     end
+   end #end self.find method
+
+
  end #end Product
 end #end module
