@@ -24,4 +24,10 @@ describe FarMar::Market do
             FarMar::Market.all[0].id.must_be_instance_of(Fixnum)
         end
     end
+
+    describe "self.find(id)" do
+        it "will output an object" do
+            FarMar::Market.find(FarMar::Market.all[0].id).must_be_instance_of(FarMar::Market)
+        end
+    end
 end

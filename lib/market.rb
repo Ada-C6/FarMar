@@ -29,4 +29,12 @@ class FarMar::Market
         end
         markets_from_csv
     end
+
+    def self.find(id)
+        self.all.each do |m_object|
+            if m_object.id == id
+                return m_object
+            end
+        end
+    end
 end
