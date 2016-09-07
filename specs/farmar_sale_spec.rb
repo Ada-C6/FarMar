@@ -3,7 +3,8 @@ require_relative 'spec_helper'
 describe FarMar::Sale do
 
   # Will need to determine how to format time data into non-String
-  # Will need to determine data clean-up steps--add 797 to second listed set of ids, and make 00 be 12002?
+  #DateTime.parse is promising
+  #https://ruby-doc.org/stdlib-2.3.1/libdoc/date/rdoc/DateTime.html
   let(:sale) { FarMar::Sale.new({sale_id: 1, sale_amount: 9290, purchase_time: "2013-11-07 04:34:56 -0800", vendor_id: 1, product_id: 1, market_zip: 0}) }
 
   describe "#initialize" do
@@ -30,4 +31,5 @@ describe FarMar::Sale do
       found_sale.sale_amount.must_equal(sale.sale_amount)
     end
   end
+
 end

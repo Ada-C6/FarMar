@@ -21,10 +21,10 @@ module FarMar
 
       sale_csv_file.each do |sale|
         sale_hash = {}
-        # Will need to determine data clean-up steps--add 797 to second listed set of ids, and make 00 be 12002? What about nil values?
         sale_hash[:sale_id] = sale[0].to_i
         sale_hash[:sale_amount] = sale[1].to_i
-        # Will need to determine how to format time data into non-String
+        # Will need to determine how to format time data into non-String; DateTime.parse is promising
+        #https://ruby-doc.org/stdlib-2.3.1/libdoc/date/rdoc/DateTime.html
         sale_hash[:sale_purchase_time] = sale[2].to_s
         sale_hash[:vendor_id] = sale[3].to_i
         sale_hash[:product_id] = sale[4].to_i
