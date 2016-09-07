@@ -35,4 +35,12 @@ class FarMar::Market
             end
         end
     end
+
+    def vendors
+        vendors_at_market = FarMar::Vendor.all.select {|v| v.FarMar::Vendor.market_id == @id}
+    end
 end
+
+# THIS IS WHAT I'M EXPLORING ABOVE IN VENDORS
+# (1..100).to_a.select {|n| n % 10 == 0 }
+# # => [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
