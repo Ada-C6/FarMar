@@ -1,7 +1,7 @@
 # lib/farmar_vendor.rb
 # require_relative '../far_mar'
 
-class FarMar::vendor
+class FarMar::Vendor
   attr_reader :id
   def initialize(id, name, employees_num, market_id)
     @id = id

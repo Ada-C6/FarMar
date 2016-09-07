@@ -25,7 +25,7 @@ class FarMar::Sale
       vendor_id = row[3].to_s
       product_id = row[4].to_s
 
-      sales << FarMar::Sale.new(id, amount, purchase_time, sale_id, product_id)
+      sales << FarMar::Sale.new(id, amount, purchase_time, vendor_id, product_id)
     end
     return sales
   end
@@ -41,6 +41,6 @@ class FarMar::Sale
         break
       end
     end
-    return found_vendor
+    return found_sale
   end
 end

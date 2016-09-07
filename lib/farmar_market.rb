@@ -47,17 +47,21 @@ class FarMar::Market
     return found_market
   end
 
-  #
-  # input:
+
+  # find vendor information by market_id
+  # input: market id as a string
   # output: an array of FarMar::Vendor objects that are associated with the market by the market_id field.
-  def self.vendors
+  def self.vendors(market_id)
+    vendor_csv_file = "/Users/mengyao/ADA_class/FarMar/support/vendors.csv"
 
-    vendor = []
-
-
-    return vendors
+    found_vendors = []
+    CSV.foreach(vendor_csv_file) do |vendor|
+      if market.id.include?(vendor[3]) # market.id does not work at all...I knew it.
+        found_vendors << vendor
+      end
+    end
+    return found_vendors
   end
-
 
 
 end
