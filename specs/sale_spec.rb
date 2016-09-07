@@ -28,10 +28,12 @@ module FarMar
 
     describe "self.find(id)" do
       let(:sales) { Sale.find(20) }
+
       it "should return instance of a sale by its sale id" do
         sold_foots = Sale.find(20)
         sold_foots.id.must_equal(20)
       end
+
     end
   end #end sale
 end #end module
