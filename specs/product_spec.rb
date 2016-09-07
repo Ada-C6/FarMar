@@ -1,67 +1,52 @@
-# require_relative 'spec_helper'
-# module FarMar
-#
-#   describe Product do
-#
-#         describe "#initialize" do
-#           let(:product) { Product.new(:id, :name, :no_of_employees, :market_id) }
-#
-#           # ID - (Fixnum) uniquely identifies the vendor
-#           # Name - (String) the name of the vendor (not guaranteed unique)
-#           # No. of Employees - (Fixnum) How many employees the vendor has at the market
-#           # Market_id - (Fixnum) a reference to which market the vendor attends
-#           it "can create an instance of Market" do
-#             market.must_be_instance_of(Market)
-#           end
-#           it "must respond to (have parameters of) of market information" do
-#             market.must_respond_to(:id)
-#             market.must_respond_to(:name)
-#             market.must_respond_to(:address)
-#             market.must_respond_to(:city)
-#             market.must_respond_to(:county)
-#             market.must_respond_to(:state)
-#             market.must_respond_to(:zipcode)
-#           end
-#         end
-#
-#         describe "#self.all" do
-#
-#           it "should return a hash" do
-#             Market.all.must_be_instance_of(Hash)
-#           end
-#           it "should return information about markets" do
-#             # @todo unsure if this is the way to test reading off csv files, or if even needed
-#             # first listed market
-#             Market.all["1"].id.must_equal("1")
-#             Market.all["1"].name.must_equal("People's Co-op Farmers Market")
-#             Market.all["1"].address.must_equal("30th and Burnside")
-#             Market.all["1"].city.must_equal("Portland")
-#             Market.all["1"].county.must_equal("Multnomah")
-#             Market.all["1"].state.must_equal("Oregon")
-#             Market.all["1"].zipcode.must_equal("97202")
-#             # last listed market
-#             Market.all["500"].id.must_equal("500")
-#             Market.all["500"].name.must_equal("Montefiore Medical Center Farmers Market_Thursday")
-#             Market.all["500"].address.must_equal("111 E. 210th Street")
-#             Market.all["500"].city.must_equal("Bronx")
-#             Market.all["500"].county.must_equal("Bronx")
-#             Market.all["500"].state.must_equal("New York")
-#             Market.all["500"].zipcode.must_equal("10467")
-#           end
-#         end #self.all
-#         describe "#self.find(id)" do
-#           it "should return an instance of a Market object of a certain id" do
-#             random_market_id = rand(1..500).to_s
-#             Market.find(random_market_id).must_be_instance_of(Market)
-#             Market.find(random_market_id).id.must_equal(random_market_id)
-#           end
-#         end #self.find(id)
-#
-#
-#
-#
-#   end
-# end
-#
-#
-#
+require_relative 'spec_helper'
+module FarMar
+
+  describe Product do
+
+        describe "#initialize" do
+          let(:product) { Product.new(:id, :name, :vendor_id) }
+
+  # ID - (Fixnum) uniquely identifies the product
+  # Name - (String) the name of the product (not guaranteed unique)
+  # Vendor_id - (Fixnum) a reference to which vendor sells this product
+
+          it "can create an instance of Product" do
+            product.must_be_instance_of(Product)
+          end
+          it "must respond to (have parameters of) of Product information" do
+            product.must_respond_to(:id)
+            product.must_respond_to(:name)
+            product.must_respond_to(:vendor_id)
+          end
+        end
+
+        describe "#self.all" do
+
+          it "should return a hash" do
+            Product.all.must_be_instance_of(Hash)
+          end
+          it "should return information about markets" do
+            # first listed product
+            Product.all[1].id.must_equal(1)
+            Product.all[1].name.must_equal("Dry Beets")
+            Product.all[1].vendor_id.must_equal(1)
+            # last listed product
+            Product.all[8193].id.must_equal(8193)
+            Product.all[8193].name.must_equal("Cruel Beef")
+            Product.all[8193].vendor_id.must_equal(2690)
+          end
+        end #self.all
+#@todo START HERE START HERE START HERE START HERE
+        # describe "#self.find(id)" do
+        #   it "should return an instance of a Product object of a certain id" do
+        #     random_product_id = rand(1..8193).to_s
+        #     Product.find(random_product_id).must_be_instance_of(Product)
+        #     Product.find(random_product_id).id.must_equal(random_product_id)
+        #   end
+        # end #self.find(id)
+
+
+
+
+  end
+end
