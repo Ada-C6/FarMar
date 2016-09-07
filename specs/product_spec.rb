@@ -3,18 +3,14 @@ require_relative 'spec_helper'
 describe FarMar::Product do
 
   describe "#initialize" do
-    my_hash = {id: 45,
-      name: "Unicorn Meat",
-      vendor_id: 120
-      }
-    let (:my_product) {FarMar::Product.new(my_hash)}
+    let (:my_product) {FarMar::Product.new({})}
     it "must create a Product object" do
 
       my_product.must_be_instance_of(FarMar::Product)
     end
 
     it "has a name" do
-      my_product.name.must_equal("Unicorn Meat")
+      my_product.must_respond_to :name
     end
   end
 
@@ -45,6 +41,14 @@ describe FarMar::Product do
       FarMar::Product.by_vendor(37)[0].must_be_instance_of FarMar::Product
       FarMar::Product.by_vendor(34)[0].name.must_equal "Weissnat LLC"
 
+
+    end
+  end
+
+  describe "#vendor" do
+    new_product = FarMar::Product.new({vendor_id: 4})
+    it "returns the vendor given by product's vendor id" do
+      new_product.vendor.id.must_equal 4
 
     end
   end

@@ -56,8 +56,6 @@ describe "#products" do
   it "must return an array of Products" do
     new_vendor.products.must_be_instance_of Array
     new_vendor.products[0].must_be_instance_of FarMar::Product
-
-
   end
 
 end
