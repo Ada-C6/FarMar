@@ -35,20 +35,8 @@ module FarMar
     end
 
     def vendors
-      vendors = []
-      CSV.open('./support/vendors.csv', 'r').each do |line|
 
-        if line[3].to_i == @id
-        vendors << FarMar::Vendor.new(id:line[0],
-        name:line[1],
-        employees:line[2],
-        market_id:line[3])
-        end
-
-      end
-
-      return vendors
-
+      return FarMar::Vendor.by_market(@id)
     end
 
   end

@@ -41,6 +41,16 @@ describe FarMar::Vendor do
 
     end
 
+    describe "self.by_market" do
+      it "returns an array of Vendors" do
+        FarMar::Vendor.by_market(37).must_be_instance_of Array
+        FarMar::Vendor.by_market(37)[0].must_be_instance_of FarMar::Vendor
+        FarMar::Vendor.by_market(34)[0].name.must_equal "Weissnat LLC"
+
+
+      end
+    end
+
   end
 
 end
