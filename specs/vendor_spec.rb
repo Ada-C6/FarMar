@@ -65,8 +65,8 @@ module FarMar
       end
 
       it "each object should have the correct vendor id" do #IS THIS A BETTER TEST?
-        example_vendor.products[0].vendor_id.must_equal(5)
-        example_vendor.products[2].vendor_id.must_equal(5)
+        example_vendor.products[0].vendor_id.must_equal(example_vendor.id)
+        example_vendor.products[2].vendor_id.must_equal(example_vendor.id)
       end
     end
 
@@ -83,6 +83,10 @@ module FarMar
         example_vendor.sales[0].must_be_instance_of(Sale)
         example_vendor.sales[8].must_be_instance_of(Sale)
       end
+
+      it "each sale should have the correct vendor id" do
+        example_vendor.sales[0].vendor_id.must_equal(example_vendor.id)
+      end
     end
 
     describe "#revenue" do
@@ -92,9 +96,22 @@ module FarMar
         example_vendor.revenue.must_be_kind_of(Fixnum)
       end
 
-      # it "should return the correct amount" do #is this a good test since it relys on this particular set of data
-      #   puts example_vendor.revenue
-      # end
+      it "should return the correct amount" do
+        example_vendor.revenue.must_equal(61749)
+      end
+    end
+
+    describe "self.by_market(market_id)" do
+      let(:vendors_by_market) { Vendor.by_market(4) }
+
+      it "should return an array" do
+        vendors_by_market.must_be_kind_of(Array)
+      end
+
+      it "should have an object:Vendor at any index of the array" do
+        vendors_by_market[0].must_be_instance_of(Vendor)
+        vendors_by_market[3].must_be_instance_of(Vendor)
+      end
     end
   end
 end
