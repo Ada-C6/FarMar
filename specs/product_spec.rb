@@ -1,5 +1,7 @@
 require_relative 'spec_helper'
 
+#WED - clean up the initialize test by using let() syntax, see market_spec.rb for reference.
+
 describe FarMar::Product do
     describe "#initialize" do
         it "can create a new instance of Product" do
