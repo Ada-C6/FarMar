@@ -4,13 +4,6 @@ module FarMar
   describe Vendor do
     describe "#initialize" do
       let(:vendor) { Vendor.new(:id, :name, :number_of_employees, :market_id) }
-
-      # Remember the datatypes!
-      # ID - (Fixnum) uniquely identifies the vendor
-      # Name - (String) the name of the vendor (not guaranteed unique)
-      # No. of Employees - (Fixnum) How many employees the vendor has at the market
-      # Market_id - (Fixnum) a reference to which market the vendor attends
-
       it "can create an instance of Vendor" do
         vendor.must_be_instance_of(Vendor)
       end
@@ -28,9 +21,14 @@ module FarMar
       it "should return a hash" do
         Vendor.all.must_be_instance_of(Hash)
       end
+      it "should be a collection of Vendor objects" do
+        Vendor.all.each do |vendor_id, vendor|
+          vendor_id.must_equal(vendor.id)
+          vendor.must_be_instance_of(Vendor)
+        end
+      end
       it "should return information about vendors" do
         # first listed vendor
-        puts Vendor.all[1]
         Vendor.all[1].id.must_equal(1)
         Vendor.all[1].name.must_equal("Feil-Farrell")
         Vendor.all[1].number_of_employees.must_equal(8)
@@ -53,6 +51,4 @@ module FarMar
 
 
   end
-
-
 end
