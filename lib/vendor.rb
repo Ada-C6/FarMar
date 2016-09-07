@@ -43,7 +43,16 @@ module FarMar
       return "Vendor ID #{ @vendor_id }, named #{ @name }, has #{ @employees } employees #{ @amount } and is sold at Market ID #{ @market_id }."
     end
 
-
+    def self.by_market(input)
+      vendors = self.all
+      vendor_by_market = []
+      vendors.each do |var|
+        if var.market_id == input
+          vendor_by_market << vendors
+        end
+      end
+      return vendor_by_market
+    end
 
   end
 end

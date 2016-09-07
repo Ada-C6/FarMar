@@ -32,4 +32,17 @@ describe FarMar::Vendor do
     end
 
   end
+
+  describe "self.by_market(market_id)" do
+    let(:vendors) { FarMar::Vendor.by_market(12) }
+
+    it "should return an array" do
+      vendors.must_be_kind_of(Array)
+    end
+
+    it "should return all vendors with a given market ID" do
+      vendors.by_market.must_equal(12)
+    end
+
+  end
 end
