@@ -18,11 +18,12 @@ module FarMar
         products_hash = {}
         products_hash[:id] = line[0].to_i
         products_hash[:name] = line[1]
-        products_hash[:market_id] = line[2]
+        products_hash[:vendor_id] = line[2].to_i
         products << FarMar::Product.new(products_hash)
       end
       return products
     end
+
 
   end #end class
 end #end module
