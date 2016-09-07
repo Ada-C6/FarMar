@@ -37,5 +37,8 @@ def self.find(id)
     end
   end
 end
+def vendors
+  FarMar::Vendor.by_market(@id)
+end
   end
 end

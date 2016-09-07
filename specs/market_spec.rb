@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 
 describe FarMar::Market do
-  let(:cap_hill) {FarMar::Market.new( 123, "Judy", "723 Herman ave", "Skokie", "Cook", "Il", "60076")}
+  let(:cap_hill) {FarMar::Market.new( 1, "Judy", "723 Herman ave", "Skokie", "Cook", "Il", "60076")}
   describe "#initialize" do
     it "can create a new instance of Market" do
       cap_hill.must_be_instance_of(FarMar::Market)
@@ -26,6 +26,12 @@ describe FarMar::Market do
 
     it "should return the state the corresponds to the id" do
       FarMar::Market.find(290).state.must_equal("North Carolina")
+    end
+  end
+  describe "vendors" do
+    it "should return a list of venders associated by market id" do
+      puts "#{cap_hill.vendors}"
+      cap_hill.vendors.must_be_kind_of(Array)
     end
   end
 
