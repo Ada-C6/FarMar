@@ -39,7 +39,27 @@ module FarMar
     end
 
     def products #returns an array of object:Products that belong to this Vendor
+      ven_id = @id
+      vendor_products = []
 
+      FarMar::Product.all.each do |pro|
+        if pro.vendor_id == ven_id
+          vendor_products << pro
+        end
+      end
+      return vendor_products
+    end
+
+    def sales #returns a collection of object:Sales that are associated with this vendor
+      ven_id = @id
+      vendor_sales = []
+
+      FarMar::Sales.all.each do |s|
+        if s.vendor_id == ven_id
+          vendor_sales << s
+        end
+      end
+      return vendor_sales
     end
 
   end
