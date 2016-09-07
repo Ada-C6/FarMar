@@ -30,7 +30,22 @@ describe FarMar::Product do
     it "should return a product based on product_id input" do
       products.product_id.must_equal(2)
     end
+  end
 
+  describe "self.by_vendor(vendor_id)" do
+    before(:each) do
+      @products = FarMar::Product.by_vendor(38)
+    end
+
+    it "should return an array" do
+      @products.must_be_kind_of(Array)
+    end
+
+    it "should return all products with a given vendor ID" do
+      @products.each do |i|
+        i.vendor_id.must_equal(38)
+      end
+    end
   end
 
 end

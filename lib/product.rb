@@ -38,5 +38,16 @@ module FarMar
       return "Product ID #{ @product_id } is named #{ @name } and is sold by Vendor ID #{ @vendor_id }."
     end
 
+    def self.by_vendor(input)
+      product_by_vendor = []
+      products = self.all
+      products.each do |var|
+        if var.vendor_id == input
+          product_by_vendor << var
+        end
+      end
+      return product_by_vendor
+    end
+
   end
 end
