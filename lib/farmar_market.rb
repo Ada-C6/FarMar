@@ -1,4 +1,5 @@
 require 'csv'
+require '../far_mar'
 
 class Market
 
@@ -30,8 +31,17 @@ class Market
   end
 
   def self.find(id)
-    markets = Market.all
-    return markets[id]
+    market = Market.all
+    return market[id]
+  end
+
+  def vendors
+    vendor_list = Vendor.all
+    vendor_list.find_all { |n| n[market_id] == @id}
+      # vendor[n].market_id == market
+      #
+      # ehash['employee'].find_all { |e| e['level'] == 2}
+
   end
 
 end
