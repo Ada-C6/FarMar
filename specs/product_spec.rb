@@ -4,13 +4,13 @@ require_relative 'spec_helper'
 
 describe FarMar::Product do
 
-  market_hash = {
-    id: 123,
-    name: "Market",
-    vendor_id: 98102
-  }
+  # market_hash = {
+  #   id: 123,
+  #   name: "Market",
+  #   vendor_id: 98102
+  # }
 
-  p = FarMar::Product.new(market_hash)
+  p = FarMar::Product.new(123, "name", 9812)
 
   describe "initialize" do
     it "should be an instance of Product" do

@@ -3,14 +3,14 @@ require_relative 'spec_helper'
 
 describe FarMar::Vendor do
 
-  vendor_info = {
-    id: 123,
-    name: "bibi",
-    no_of_employee: 88,
-    market_id: 888
-  }
+  # vendor_info = {
+  #   id: 123,
+  #   name: "bibi",
+  #   no_of_employee: 88,
+  #   market_id: 888
+  # }
 
-  p = FarMar::Vendor.new(vendor_info)
+  p = FarMar::Vendor.new(123, "bibi", 88, 888)
 
   describe "#initialize" do
     it "should be an instance of Vendor" do
