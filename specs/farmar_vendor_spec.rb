@@ -2,14 +2,12 @@ require_relative 'spec_helper'
 
 describe FarMar::Vendor do
 
-let(:vendor) { FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", num_employees: 8, market_id: 1}) }
+  let(:vendor) { FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", num_employees: 8, market_id: 1}) }
 
   describe "#initialize" do
-
     it "can create a new instance of Vendor" do
       vendor.must_be_instance_of(FarMar::Vendor)
     end
-
   end
 
   describe "all" do
@@ -41,5 +39,16 @@ let(:vendor) { FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", nu
       associated_market.must_be_instance_of(FarMar::Market)
     end
 
+    describe "#products" do
+      it "should return a collection of FarMar::Product instances associated with a vendor_id" do
+        vendor.products.length.must_equal(1)
+      end
+    end
+
+    describe "#sales" do
+      it "should return a collection of FarMar::Sale instances associated with a vendor_id" do
+        vendor.sales.length.must_equal(1)
+      end
+    end
   end
 end
