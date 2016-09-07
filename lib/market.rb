@@ -16,6 +16,7 @@ module FarMar
     def self.all
       markets = {}
       CSV.read('support/markets.csv').each do |line|
+        #these are the arguments fed into the class instance -don't confuse with an array
         market = self.new(line[0].to_i,line[1],line[2],line[3],line[4],line[5],line[6])
         markets[market.id] = market
       end
@@ -26,14 +27,10 @@ module FarMar
       return markets[id]
     end
 
+    def vendors
+      hash_of_vendors = Vendor.all
+      return hash_of_vendors
+    end
 
-  end
-end
-
-# # From BANK ACCOUNT PROJECT
-#
-# # Method returns an instance of Account where the value of the id field in the CSV matches the passed parameter
-# def self.find(id)
-#   accounts = self.all
-#   return accounts[id]
-# end
+  end #class
+end #module

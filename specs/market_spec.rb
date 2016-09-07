@@ -51,6 +51,27 @@ module FarMar
       end
     end #self.find(id)
 
+    describe "#vendors" do
+      before(:each) do
+        @market = Market.new(:id, :name, :address, :city, :county, :state, :zipcode)
+      end
+      it "should return a collection of hash" do
+        skip
+        @market.vendors.each do |vendor|
+          vendor.must_be_instance_of(Hash)
+        end
+      # it "should return a collection of instances of Vendor" do
+      #   @market.vendors.each do |vendor|
+      #     puts "#{vendor} and more" #@todo help help
+      #     vendor.must_be_instance_of(Vendor)
+      #   end
+
+
+      end
+      it "should request vendors associated with itself (its instance of Market)" do
+        skip
+      end
+    end
 
   end
 

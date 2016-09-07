@@ -1,13 +1,13 @@
 # FarMar: The Farmers' Market Finder
 In this assignment we will be creating an application to look up farmers markets and their related vendors, products, and sales. We will use __CSV__ files as our _database_.
 
-  Project Data
-    [Markets](#markets)
-    [Vendors](#vendors)
-    [Products](#products)
-    [Sales](#sales)
-  [Baseline](#baseline)    
-  [Primary](#primary)
+  Project Data  
+    [Markets](#markets)  
+    [Vendors](#vendors)  
+    [Products](#products)  
+    [Sales](#sales)  
+  [Baseline](#baseline)      
+  [Primary](#primary)  
 
 ## Learning Goals
 - Reinforce and practice all of the Ruby and programming concepts we've covered in class
