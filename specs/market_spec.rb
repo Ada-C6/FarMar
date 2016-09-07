@@ -43,6 +43,8 @@ describe FarMar::Market do
       my_market.vendors.must_be_instance_of(Array)
     end
 
-    it ""
+    it "contains the market information" do
+      my_market.vendors[0][1].must_equal("Sipes Group")
+    end
   end
 end
