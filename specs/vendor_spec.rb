@@ -49,16 +49,43 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "#market" do
-    it "should return an instance of Market" do
-      market.must_be_instance_of(FarMar::Market)
+
+
+
+  # describe "#market" do
+  #   before(:each) do
+  #     @markets = FarMar::Market.new({})
+  #     @vendors = FarMar::Vendor.all
+  #   end
+  #
+  #   it "should return an instance of Market" do
+  #     @markets.market.must_be_instance_of(FarMar::Market)
+  #   end
+  #
+  #   it "should use the vendor's market_id to return that vendor's market" do
+  #     @markets.each do |i|
+  #       i.market_id.must_equal(2)
+  #     end
+  #   end
+  #
+  # end
+
+
+  describe "#products" do
+    it "should return an Array" do
+      vendors = FarMar::Vendor.new({})
+      vendors.products.must_be_kind_of(Array)
     end
 
-    it "should use the vendor's market_id to return that vendor's market" do
+    it "should return an array of products based on the vendor_id" do
+      products = FarMar::Product.by_market(2)
 
+      products.each do |i|
+        i.vendor_id.must_equal(2)
+      end
     end
-
   end
+
 
 
 end
