@@ -10,8 +10,5 @@ describe FarMar::Vendor do
       vendor.must_be_instance_of(FarMar::Vendor)
     end
 
-    it "should know about its related CSV file" do
-      vendor.vendor_csv.wont_be_empty
-    end
   end
 end
