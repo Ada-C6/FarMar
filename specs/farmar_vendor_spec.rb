@@ -32,4 +32,14 @@ describe Vendor do
     end
   end
 
+  describe "#products" do
+      it "should return a collection of product instances associated by product vendor id" do
+        a = Vendor.new(293,"Kerluke-Denesik",11,54)
+        b = a.products
+        b.class.must_equal(Array)
+        b.length.must_equal(4)
+      end
+  end
+
+
 end

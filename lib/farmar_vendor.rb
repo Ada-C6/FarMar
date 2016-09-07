@@ -31,7 +31,17 @@ class Vendor
 
   def market
     market_list = Market.all
-    match = market_list.find_all { |n| n[1].id == @market_id }
-    return match[0][1]
+    match = market_list.find { |n| n[1].id == @market_id }
+    return match[1]
+  end
+
+  def products
+    product_list = Product.all
+    prods = product_list.find_all { |n| n[1].vendor_id == @id}
+    product_instances = []
+    prods.length.times do |i|
+      product_instances << prods[i][1]
+    end
+    return product_instances
   end
 end
