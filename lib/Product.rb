@@ -24,6 +24,13 @@ module FarMar
       return products
     end
 
+    def self.find(id)
+      self.all.each do |product|
+        if product.id == id
+          return product
+        end
+      end
+    end
 
   end #end class
 end #end module
