@@ -12,7 +12,7 @@ module FarMar
 
     def self.all
       info = {}
-      CSV.read('../support/products.csv').each do |line|
+      CSV.read('support/products.csv').each do |line|
         id = line[0].to_i
         name = line[1]
         num_of_employees = line[2]
