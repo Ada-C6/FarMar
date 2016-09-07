@@ -14,10 +14,14 @@ require_relative './lib/farmar_vendor'
 
 # puts FarMar::Market.find("5").inspect
 # puts FarMar::Market.new.vendors("3").inspect
+
 # vendor = FarMar::Vendor.new("3", "Breitenberg Inc", "5", "1")
 # puts vendor.revenue
+
 # product = FarMar::Product.new("1","Dry Beets","1")
 # puts product.sales
+# product = FarMar::Product.new("1","Dry Beets","1")
+# puts product.number_of_sales
 
-product = FarMar::Product.new("1","Dry Beets","1")
-puts product.number_of_sales
+# puts FarMar::Sale.between("2013-11-03 04:34:56 -0800","2013-11-03 05:14:56 -0900").size
+# => 12798

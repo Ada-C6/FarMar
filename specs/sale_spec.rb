@@ -25,4 +25,9 @@ describe FarMar::Sale do
     expect( sale.product[0].class ).must_equal(FarMar::Product)
   end
 
+  # Will make tests with more fun and meaning from now on. :D
+  it "Given a beginning time: 2013-11-03 04:34:56 -0800 and a end time: 2013-11-03 05:14:56 -0900, there are 12798 number of Sale objects with purchase time that fall between the period " do
+    expect ( FarMar::Sale.between("2013-11-03 04:34:56 -0800","2013-11-03 05:14:56 -0900").size ). must_equal(12798)
+  end
+
 end

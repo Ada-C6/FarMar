@@ -2,7 +2,7 @@
 # require_relative '../far_mar'
 
 class FarMar::Sale
-  attr_reader :id, :vendor_id, :amount, :product_id
+  attr_reader :id, :vendor_id, :amount, :product_id, :purchase_time
   def initialize(id, amount, purchase_time, vendor_id, product_id)
     @id = id
     @amount = amount
@@ -45,14 +45,14 @@ class FarMar::Sale
   end
 
   # returns an array of FarMar::Sale objects where the purchase time is between the two times given as arguments
-  # TIME method needed
+  # Assume beginning_time and end_time are in String data type
   def self.between(beginning_time, end_time)
-    return FarMar::Sale.all.select { |sale| }
+    FarMar::Sale.all.select do |sale|
+      # covert purchase_time from string to object
+      purchase_time_object = Time.new(sale.purchase_time)
+      purchase_time_object >= Time.new(beginning_time) && purchase_time_object <= Time.new(end_time)
+    end
   end
-
-
-
-
 
   # returns an array of FarMar::Vendor objects that is associated with Sale's vendor_id
   def vendor
