@@ -47,6 +47,18 @@ describe FarMar::Vendor do
         i.market_id.must_equal(12)
       end
     end
+  end
+
+  describe "#market" do
+    it "should return an instance of Market" do
+      market.must_be_instance_of(FarMar::Market)
+    end
+
+    it "should use the vendor's market_id to return that vendor's market" do
+
+    end
 
   end
+
+
 end

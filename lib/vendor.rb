@@ -51,5 +51,15 @@ module FarMar
       return vendor_by_market
     end
 
+    def market
+      market = FarMar::Market.new({})
+      market.each do |var|
+        if var.market_id == vendor.by_market
+          return var
+        end
+      end
+    end
+
+
   end
 end
