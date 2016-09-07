@@ -17,7 +17,7 @@ module FarMar
     end
 
     def self.all
-      CSV.open('./support/markets.csv', 'r').map do |line|
+      CSV.open('../support/markets.csv', 'r').map do |line|
       self.new({id: line[0].to_i,
         name: line[1],
         address:line[2],
@@ -34,15 +34,22 @@ module FarMar
       end
     end
 
-    def vendors(market_id)
-      CSV.open('./support/vendors.csv', 'r').find_all do |line|
-        line[3] == market_id
+    def vendors
+      CSV.open('../support/vendors.csv', 'r').find_all do |line|
+
+        line[3].to_i == @id
+
       end
+
+
+      ## TODO: USE THE CURRENT MARKET OBJECT'S ID!!!! This is an instance method,
+      ## so it's gonna be great.
 
     end
   end
 end
 
-# print FarMar::Market.all
-# print FarMar::Market.find(123).name
-# puts FarMar::Market.find(123).name
+my_market = FarMar::Market.new(id:1)
+puts my_market.id
+print my_market.vendors
+puts
