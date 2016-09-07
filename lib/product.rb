@@ -47,5 +47,15 @@ module FarMar
       return vnsls
     end
 
+    def number_of_sales
+      vnsls = []
+      FarMar::Sale.all.each do |line|
+        if @id == line.product_id
+          vnsls.push(line)
+        end
+      end
+      return vnsls.length
+    end
+
   end
 end

@@ -14,26 +14,26 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-07T16:04:16-07:00">2016-09-07T16:04:16-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-07T16:07:57-07:00">2016-09-07T16:07:57-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">62.7%</span></span>
+    (<span class="covered_percent"><span class="red">64.39%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1663.49
+         2266.67
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>5</b> files in total.
-    <b>126</b> relevant lines. 
-    <span class="green"><b>79</b> lines covered</span> and
+    <b>132</b> relevant lines. 
+    <span class="green"><b>85</b> lines covered</span> and
     <span class="red"><b>47</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -73,11 +73,11 @@
       <tr>
         <td class="strong"><a href="#26e4b5c8d769de4d682d93ccaa52784cc08fbe1c" class="src_link" title="lib/product.rb">lib/product.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>51</td>
-        <td>30</td>
-        <td>30</td>
+        <td>61</td>
+        <td>36</td>
+        <td>36</td>
         <td>0</td>
-        <td>3977.5</td>
+        <td>3670.4</td>
       </tr>
       
       <tr>
@@ -87,7 +87,7 @@
         <td>18</td>
         <td>15</td>
         <td>3</td>
-        <td>4266.5</td>
+        <td>8532.7</td>
       </tr>
       
       <tr>
@@ -487,8 +487,8 @@
     <h3>lib/product.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>30</b> relevant lines. 
-      <span class="green"><b>30</b> lines covered</span> and
+      <b>36</b> relevant lines. 
+      <span class="green"><b>36</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -538,20 +538,20 @@
           <code class="ruby">    def initialize(id, name, vendor_id)</code>
         </li>
       
-        <li class="covered" data-hits="24582" data-linenumber="8">
-          <span class="hits">24582</span>
+        <li class="covered" data-hits="24583" data-linenumber="8">
+          <span class="hits">24583</span>
           
           <code class="ruby">      @id = id</code>
         </li>
       
-        <li class="covered" data-hits="24582" data-linenumber="9">
-          <span class="hits">24582</span>
+        <li class="covered" data-hits="24583" data-linenumber="9">
+          <span class="hits">24583</span>
           
           <code class="ruby">      @name = name</code>
         </li>
       
-        <li class="covered" data-hits="24582" data-linenumber="10">
-          <span class="hits">24582</span>
+        <li class="covered" data-hits="24583" data-linenumber="10">
+          <span class="hits">24583</span>
           
           <code class="ruby">      @vendor_id = vendor_id</code>
         </li>
@@ -790,13 +790,73 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="50">
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def number_of_sales</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="51">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      vnsls = []</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="52">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      FarMar::Sale.all.each do |line|</code>
+        </li>
+      
+        <li class="covered" data-hits="12798" data-linenumber="53">
+          <span class="hits">12798</span>
+          
+          <code class="ruby">        if @id == line.product_id</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="54">
+          <span class="hits">2</span>
+          
+          <code class="ruby">          vnsls.push(line)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="57">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      return vnsls.length</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">end</code>
@@ -850,32 +910,32 @@
           <code class="ruby">    def initialize(id, amount, purchase_time, vendor_id, product_id)</code>
         </li>
       
-        <li class="covered" data-hits="12798" data-linenumber="6">
-          <span class="hits">12798</span>
+        <li class="covered" data-hits="25596" data-linenumber="6">
+          <span class="hits">25596</span>
           
           <code class="ruby">      @id = id</code>
         </li>
       
-        <li class="covered" data-hits="12798" data-linenumber="7">
-          <span class="hits">12798</span>
+        <li class="covered" data-hits="25596" data-linenumber="7">
+          <span class="hits">25596</span>
           
           <code class="ruby">      @amount = amount</code>
         </li>
       
-        <li class="covered" data-hits="12798" data-linenumber="8">
-          <span class="hits">12798</span>
+        <li class="covered" data-hits="25596" data-linenumber="8">
+          <span class="hits">25596</span>
           
           <code class="ruby">      @purchase_time = purchase_time</code>
         </li>
       
-        <li class="covered" data-hits="12798" data-linenumber="9">
-          <span class="hits">12798</span>
+        <li class="covered" data-hits="25596" data-linenumber="9">
+          <span class="hits">25596</span>
           
           <code class="ruby">      @vendor_id = vendor_id</code>
         </li>
       
-        <li class="covered" data-hits="12798" data-linenumber="10">
-          <span class="hits">12798</span>
+        <li class="covered" data-hits="25596" data-linenumber="10">
+          <span class="hits">25596</span>
           
           <code class="ruby">      @product_id = product_id</code>
         </li>
@@ -904,20 +964,20 @@
           <code class="ruby">    def self.all</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="15">
+          <span class="hits">2</span>
           
           <code class="ruby">      sls = []</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="16">
+          <span class="hits">2</span>
           
           <code class="ruby">      CSV.read(&#39;/Users/madeleinejohnson/Ada/project-forks/FarMar/support/sales.csv&#39;,&#39;r&#39;). each do |line|</code>
         </li>
       
-        <li class="covered" data-hits="12798" data-linenumber="17">
-          <span class="hits">12798</span>
+        <li class="covered" data-hits="25596" data-linenumber="17">
+          <span class="hits">25596</span>
           
           <code class="ruby">        sls &lt;&lt; FarMar::Sale.new(line[0], line[1], line[2], line[3], line[4])</code>
         </li>
@@ -928,8 +988,8 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="19">
+          <span class="hits">2</span>
           
           <code class="ruby">      return sls</code>
         </li>

@@ -40,6 +40,13 @@ describe FarMar::Product do
     end
   end
 
+  describe "#number_of_sales" do
+    it "should return the number of times the product has been sold" do
+      prdct = FarMar::Product.new("7","Quaint Beef","4")
+      prdct.number_of_sales.must_equal(2)
+    end
+  end
+
 
 end
 #
