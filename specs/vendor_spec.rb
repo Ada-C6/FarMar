@@ -61,7 +61,40 @@ module FarMar
 
         example_vendor.products[0].must_be_instance_of(Product)
         example_vendor.products[2].must_be_instance_of(Product)
+        #REVIEW should I do better at calling an index - for example, should I say .products[rand(0..length-1??)]
       end
+
+      it "each object should have the correct vendor id" do #IS THIS A BETTER TEST?
+        example_vendor.products[0].vendor_id.must_equal(5)
+        example_vendor.products[2].vendor_id.must_equal(5)
+      end
+    end
+
+    describe "#sales" do
+      let(:example_vendor) { Vendor.new({id: 5, name: "Allison", num_employees: 75, market_id: 6}) }
+
+      it "should return an array" do
+        example_vendor.sales.must_be_kind_of(Array)
+      end
+
+      it "should return an object:Sale at any index of the array" do
+        #puts example_vendor.sales
+
+        example_vendor.sales[0].must_be_instance_of(Sale)
+        example_vendor.sales[8].must_be_instance_of(Sale)
+      end
+    end
+
+    describe "#revenue" do
+      let(:example_vendor) { Vendor.new({id: 5, name: "Allison", num_employees: 75, market_id: 6}) }
+
+      it "should return a fixnum" do
+        example_vendor.revenue.must_be_kind_of(Fixnum)
+      end
+
+      # it "should return the correct amount" do #is this a good test since it relys on this particular set of data
+      #   puts example_vendor.revenue
+      # end
     end
   end
 end
