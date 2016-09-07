@@ -35,6 +35,8 @@ def self.by_market(market_id)
   vend_search.find_all do |i|
    i.market_id == market_id
   end
-
+end
+def market
+  FarMar::Market.find(@market_id)
 end
 end
