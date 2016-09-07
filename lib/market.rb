@@ -23,7 +23,7 @@ module FarMar
           address: line[2],
           city: line[3],
           county: line[4],
-          state: line[5], 
+          state: line[5],
           zip: line[6]
         } #create a new hash for each market to store specific info
 
@@ -40,16 +40,18 @@ module FarMar
       end
     end
 
-    def vendors(market_id) #returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field
-      market_vendors = []
+    def vendors #returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field
+      FarMar::Vendor.by_market(@id)
 
-      vendors = FarMar::Vendor.all #iterates over all vendors
-      vendors.each do |v|
-        if v.market_id == market_id #finds vendors whose ids match argument
-          market_vendors << v #pushes them to array of all vendors at that market
-        end
-      end
-      return market_vendors
+      # market_vendors = []
+      # #use .select
+      # vendors = FarMar::Vendor.all #iterates over all vendors
+      # vendors.each do |v|
+      #   if v.market_id == market_id #finds vendors whose ids match argument
+      #     market_vendors << v #pushes them to array of all vendors at that market
+      #   end
+      # end
+      # return market_vendors
     end
 
   end
