@@ -32,15 +32,17 @@ describe FarMar::Market do
 
   describe "#vendors" do
 
-    it "should return an Array" do
-      markets = FarMar::Market.new("market_hash")
-      markets.vendors.must_be_kind_of(Array)
-    end
-
-    it "should return an array of vendors based on the market_id" do
-      vending = FarMar::Vendor.all
-      vendors << (vending[market_id] = 4)
-    end
+    # it "should return an Array" do
+    #   market = FarMar::Market.new(905)
+    #   vendor = FarMar::Vendor.new(905)
+    #   market.vendors.must_be_kind_of(Array)
+    # end
+    #
+    # it "should return an array of vendors based on the market_id" do
+    #   market = FarMar::Market.new({"market_id" => 905, "name" => "Howdy", "address" => "42987 Street", "city" => "Seattle", "county" => "Allegheny", "state" => "WA", "zip" => "98102"})
+    #   vendor = FarMar::Vendor.new({"vendor_id" => 2, "name" => "Capitol Hill", "employees" => 2, "market_id" => 905})
+    #   market.vendors.must_equal(vendor)
+    # end
 
   end
 

@@ -48,13 +48,14 @@ module FarMar
 
     def vendors
       vendors = []
-      # @vendors = FarMar::Vendor.all
-      # @vendors.each do |var|
-      #   if var.market_id == @market_id
-      #     vendors << var
-      #   end
-      # end
-      # return vendors
+      @vendor = FarMar::Vendor.all
+      @market = FarMar::Market.all
+      @vendor.each_with_index do |var, i|
+        if var.market_id == @market_id
+            vendors[i] << var
+        end
+      end
+      return vendors
     end
   end
 end
