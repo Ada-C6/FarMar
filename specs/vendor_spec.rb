@@ -1,9 +1,9 @@
 require_relative 'spec_helper'
 
 describe FarMar::Vendor do
+  let(:sam){FarMar::Vendor.new(19, "Betty", 8, 20)}
   describe "#initialize" do
     it "can create a new instance of Vendor" do
-      sam = FarMar::Vendor.new(19, "Betty", 8, 20)
       sam.must_be_instance_of(FarMar::Vendor)
     end
   end
@@ -21,8 +21,14 @@ describe FarMar::Vendor do
   end
   describe "self.by_market" do
     it "should return vendors with a given market id" do
-    
       FarMar::Vendor.by_market(1).must_be_kind_of(Array)
+    end
+  end
+  describe "#market" do
+    it "will return instances of FarMar::Market" do
+      vendor_num = sam.market
+      vendor_num[0].must_be_instance_of(FarMar::Market)
+
     end
   end
 end
