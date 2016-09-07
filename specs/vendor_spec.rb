@@ -23,7 +23,7 @@ module FarMar
     end #end self.all
 
     describe "self.find(id)" do
-      let(:markets) { Vendor.find(8) }
+      let(:vendors) { Vendor.find(8) }
       it "should return instance of a vendor by its id" do
         foots = Vendor.find(8)
         foots.id.must_equal(8)
