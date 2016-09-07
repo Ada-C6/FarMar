@@ -15,6 +15,20 @@ module FarMar
       it "should return an Array" do
         Product.all.must_be_kind_of(Array)
       end
+
+      it "represents all of the objects described in the CSV" do
+        Product.all.count.must_equal(8193)
+      end
+    end
+
+    describe "find(id)" do
+      it "should return the id that the passed argument matches" do
+        Product.find(122).id.must_equal(122)
+      end
+
+      it "should return the name that the passed argument matches" do
+        Product.find(200).name.must_equal("Odd Pretzel")
+      end
     end
   end
 end

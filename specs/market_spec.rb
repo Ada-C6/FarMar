@@ -15,13 +15,23 @@ module FarMar
       it "should return an Array" do
         Market.all.must_be_kind_of(Array)
       end
+
+      it "represents all of the objects described in the CSV" do
+        Market.all.count.must_equal(500)
+      end
     end
 
     describe "find(id)" do
-      it "should return a hash if the input id equals one of the ids in the hash" do
-        m = Market.new(501) # , "Pike Place Market", "123 Pike St", "Seattle", "King", "WA", "98119"
-        m.find(501).must_equal(market[:id])
+      it "should return the id that the passed parameter matches" do
+        Market.find(12).id.must_equal(12)
+      end
+
+      it "should return the city that the passed parameter matches" do
+        Market.find(155).city.must_equal("Charles Town")
       end
     end
   end
 end
+
+
+# self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.

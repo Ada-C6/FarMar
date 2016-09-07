@@ -14,6 +14,19 @@ module FarMar
       it "should return an Array" do
         Sale.all.must_be_kind_of(Array)
       end
+      it "represents all of the objects described in the CSV" do
+        Sale.all.count.must_equal(12798)
+      end
+    end
+
+    describe "find(id)" do
+      it "should return the id that the passed parameter matches" do
+        Sale.find(55).id.must_equal(55)
+      end
+
+      it "should return the amount in cents  that the passed parameter matches" do
+        Sale.find(277).amount_in_cents.must_equal(925)
+      end
     end
   end
 end
