@@ -2,6 +2,7 @@ require 'csv'
 
 module FarMar
   class Product
+    attr_reader :id, :product, :vendor_id
 
     def initialize(id, product, vendor_id)
       @id = id

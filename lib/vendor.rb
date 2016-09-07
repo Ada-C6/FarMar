@@ -1,7 +1,9 @@
 require 'csv'
+# require_relative 'market.rb'
 
 module FarMar
   class Vendor
+    attr_reader :id, :name, :num_empls, :market_id
 
     def initialize(id, name, num_empls, market_id)
       @id = id
@@ -27,6 +29,16 @@ module FarMar
         raise ArgumentError.new("We do not have a vendor with that ID.")
       end
     end
+
+    def market
+      all_markets = FarMar::Market.all
+
+      return all_markets[@id]
+    end
   end
 
 end
+
+vend = FarMar::Vendor.new(1,"Test Vendor",1,1)
+
+puts vend.market

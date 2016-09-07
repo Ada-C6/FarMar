@@ -1,11 +1,13 @@
 require_relative 'spec_helper'
 
 describe FarMar::Vendor do
-  vendor = FarMar::Vendor.new(1,"Test Vendor",1,1)
+  before (:each) do
+    @vendor = FarMar::Vendor.new(1,"Test Vendor",1,1)
+  end
 
   describe "#initialize" do
     it "should create a new instance of Vendor" do
-      vendor.must_be_instance_of FarMar::Vendor
+      @vendor.must_be_instance_of FarMar::Vendor
     end
   end
 
@@ -30,4 +32,15 @@ describe FarMar::Vendor do
     end
 
   end
+
+  describe "#market" do
+    it "should return an instance of Market" do
+      @vendor.market.must_be_instance_of FarMar::Market
+    end
+
+    it "should have the Market ID match the Vendor Market ID" do
+      @vendor.market.id.must_equal @vendor.id
+    end
+  end
+
 end

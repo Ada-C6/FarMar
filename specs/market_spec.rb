@@ -1,19 +1,20 @@
 require_relative 'spec_helper'
 
 describe FarMar::Market do
-  market = FarMar::Market.new(1,"Test Market","123 Main St","King", "Seattle", "WA", "98125")
-
+  before (:each) do
+    @market = FarMar::Market.new(1,"Test Market","123 Main St","King", "Seattle", "WA", "98125")
+  end
 
   describe "#initialize" do
     it "should create a new instance of Market" do
-      market.must_be_instance_of FarMar::Market
+      @market.must_be_instance_of FarMar::Market
     end
 
   end
 
   describe "#id" do
     it "should have an ID of fixnum type" do
-      market.id.must_be_kind_of Fixnum
+      @market.id.must_be_kind_of Fixnum
     end
   end
 
@@ -39,4 +40,14 @@ describe FarMar::Market do
 
   end
 
+  describe "#vendors" do
+    it "should return a hash of vendors" do
+      @market.vendors.must_be_kind_of Hash
+    end
+
+    it "should return a hash of six objects for @market_id 1" do
+      @market.vendors.length.must_equal 6
+    end
+
+  end
 end

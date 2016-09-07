@@ -1,4 +1,5 @@
 require 'csv'
+# require_relative 'vendor.rb'
 
 module FarMar
   class Market
@@ -32,8 +33,15 @@ module FarMar
       end
     end
 
+    def vendors
+      all_vendors = FarMar::Vendor.all
+
+      all_vendors.delete_if do |k, v|
+        v.market_id != @id
+      end
+
+      return all_vendors
+    end
   end
 
 end
-
-puts FarMar::Market.all

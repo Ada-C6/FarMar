@@ -1,11 +1,13 @@
 require_relative 'spec_helper'
 
 describe FarMar::Product do
-  product = FarMar::Product.new(1,"Test Product",1)
+  before (:each) do
+    @product = FarMar::Product.new(1,"Test Product",1)
+  end
 
   describe "#initialize" do
     it "should create a new instance of Product" do
-      product.must_be_instance_of FarMar::Product
+      @product.must_be_instance_of FarMar::Product
     end
   end
 
