@@ -13,4 +13,16 @@ describe FarMar::Sale do
      expect(FarMar::Sale.find("5").class).must_equal(FarMar::Sale)
   end
 
+  it "Input a sale id '1', returns all the corresponding Vendor objects with the same Sale's vendor id" do
+    sale = FarMar::Sale.new("1",9290,"2013-11-07 04:34:56 -0800","1","1")
+    expect( sale.vendor.class ).must_equal(Array)
+    expect( sale.vendor[0].class ).must_equal(FarMar::Vendor)
+  end
+
+  it "Input a sale id '1', returns all the corresponding Product objects with the same Sale's product id" do
+    sale = FarMar::Sale.new("1",9290,"2013-11-07 04:34:56 -0800","1","1")
+    expect( sale.product.class ).must_equal(Array)
+    expect( sale.product[0].class ).must_equal(FarMar::Product)
+  end
+
 end

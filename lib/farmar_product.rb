@@ -2,11 +2,11 @@
 # require_relative '../far_mar'
 
 class FarMar::Product
-  attr_reader :id
+  attr_reader :id, :vendor_id
   def initialize(id, name, vendor_id)
     @id = id
     @name =name
-    @pvendor_id = vendor_id
+    @vendor_id = vendor_id
   end
 
   # load product infomation from product csv file
@@ -39,4 +39,27 @@ class FarMar::Product
     end
     return found_product
   end
+
+  # returns all of the FarMar::Product objects with the given vendor_id
+  def self.by_vendor(vendor_id)
+    return self.all.select {|product| product.vendor_id == vendor_id }
+  end
+
+  # returns an array of FarMar::Vendor objects that is associated with Product's vendor_id
+  def vendor
+    return FarMar::Vendor.all.select { |vendor| vendor.id == @vendor_id }
+  end
+
+  # return an array of FarMar::Sale objects that are associated with the product_id
+  def sales
+    return FarMar::Sale.all.select { |sale| sale.product_id == @id }
+  end
+
+  # returns the number of times this product has been sold(fixnum)
+  def number_of_sales
+    # means return the size of array of Sale objects with the same product_id
+    return self.sales.size
+  end
+
+
 end

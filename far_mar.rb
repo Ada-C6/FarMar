@@ -13,4 +13,11 @@ require_relative './lib/farmar_vendor'
 
 
 # puts FarMar::Market.find("5").inspect
-puts FarMar::Market.vendors("3").inspect
+# puts FarMar::Market.new.vendors("3").inspect
+# vendor = FarMar::Vendor.new("3", "Breitenberg Inc", "5", "1")
+# puts vendor.revenue
+# product = FarMar::Product.new("1","Dry Beets","1")
+# puts product.sales
+
+product = FarMar::Product.new("1","Dry Beets","1")
+puts product.number_of_sales

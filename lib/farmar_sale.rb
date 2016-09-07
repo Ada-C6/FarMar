@@ -2,7 +2,7 @@
 # require_relative '../far_mar'
 
 class FarMar::Sale
-  attr_reader :id
+  attr_reader :id, :vendor_id, :amount, :product_id
   def initialize(id, amount, purchase_time, vendor_id, product_id)
     @id = id
     @amount = amount
@@ -20,7 +20,7 @@ class FarMar::Sale
     sales = []
     CSV.foreach(sale_csv_file) do |row|
       id = row[0].to_s
-      amount = row[1].to_s
+      amount = row[1].to_f
       purchase_time =row[2].to_s
       vendor_id = row[3].to_s
       product_id = row[4].to_s
@@ -43,4 +43,27 @@ class FarMar::Sale
     end
     return found_sale
   end
+
+  # returns an array of FarMar::Sale objects where the purchase time is between the two times given as arguments
+  # TIME method needed
+  def self.between(beginning_time, end_time)
+    return FarMar::Sale.all.select { |sale| }
+  end
+
+
+
+
+
+  # returns an array of FarMar::Vendor objects that is associated with Sale's vendor_id
+  def vendor
+    return FarMar::Vendor.all.select { |vendor| vendor.id == @vendor_id }
+  end
+
+  # returns an array of FarMar::Product objects that is associated with Sale's product_id
+  def product
+    return FarMar::Product.all.select { |product| product.id == @product_id }
+  end
+
+
+
 end

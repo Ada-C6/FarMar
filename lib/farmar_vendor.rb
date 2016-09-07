@@ -2,7 +2,7 @@
 # require_relative '../far_mar'
 
 class FarMar::Vendor
-  attr_reader :id
+  attr_reader :id, :market_id
   def initialize(id, name, employees_num, market_id)
     @id = id
     @name = name
@@ -42,4 +42,36 @@ class FarMar::Vendor
     end
     return found_vendor
   end
+
+  # returns all of the FarMar::Vendor objects with the given market_id
+  def self.by_market(market_id)
+    return self.all.select {|vendor| vendor.market_id == market_id }
+  end
+
+  # find market information by market_id
+  # output: an array of FarMar::Market objects that are associated with the market_id
+  def market
+    return FarMar::Market.all.select { |market| market.id == @market_id }
+  end
+
+  # return an array of FarMar::Vendor objects that are associated with the vendor_id
+  def products
+    return FarMar::Product.all.select { |product| product.vendor_id == @id }
+  end
+
+  # return an array of FarMar::Sale objects that are associated with the vendor_id
+  def sales
+    return FarMar::Sale.all.select { |sale| sale.vendor_id == @id }
+  end
+
+  # returns the sum of all of the vendor's sales in cents(a float)
+  def revenue
+      # returns an array of the vendor's sale amount
+    amounts = self.sales.map! {|sale| sale.amount}
+    # add up the sale amount and return the sum
+    return amounts.inject {|sum, amount| sum + amount}
+  end
+
+
+
 end
