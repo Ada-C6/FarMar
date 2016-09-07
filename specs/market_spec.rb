@@ -55,7 +55,7 @@ module FarMar
       it "the vendor returned, should have a market_id that matches the market" do
         # Checking that the objects returned have the same as the market instance I'm working with.
         # This will check using the market method in Vendor.
-        coop_market.vendors[0].market.must_equal(coop_market)
+        coop_market.vendors[0].market_id.must_be_same_as(coop_market.id)
       end
     end
   end

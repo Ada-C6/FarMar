@@ -40,6 +40,16 @@ module FarMar
         # 74,Haag-Padberg,3,17
       end
     end
+    describe "#market" do
+      let(:feil_f) {Vendor.new(1,"Feil-Farrell",8,1)}
+      it "should return the market object that is associated with the market_id" do
+        #this seems like it'll use Market.find ?
+        feil_f.market.name.must_equal("People's Co-op Farmers Market")
+      end
+      it "should return a market object" do
+        feil_f.market.must_be_instance_of(Market)
+      end
+    end
   end
 
   end

@@ -32,7 +32,11 @@ module FarMar
     def self.find(id)
       # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
       all_vendors = self.all
-      all_vendors[id] 
+      all_vendors[id]
+    end
+    def market
+      # Return the market object that corresponds to the instance's market_id.
+      Market.find(@market_id)
     end
   end
 end
