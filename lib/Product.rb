@@ -10,5 +10,19 @@ module FarMar
       @vendor_id = products_hash[:vendor_id]
 
     end
-  end
-end
+
+
+    def self.all
+      products = []
+      CSV.read("./support/products.csv").each do |line|
+        products_hash = {}
+        products_hash[:id] = line[0].to_i
+        products_hash[:name] = line[1]
+        products_hash[:market_id] = line[2]
+        products << FarMar::Product.new(products_hash)
+      end
+      return products
+    end
+
+  end #end class
+end #end module

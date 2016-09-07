@@ -11,9 +11,14 @@ module FarMar
      let(:product) { Product.new(my_hash) }
      it "should create an instance of a product" do
        product.must_be_instance_of(Product)
+     end #end initialize method
+   end
+   describe "self.all" do
+       let(:products) { Product.all }
+
+     it "should create an array of instances of markets through the CSV file" do
+      Product.all.must_be_kind_of(Array)
      end
-
-   end #end initialize method
-
+   end
  end #end Product
 end #end module
