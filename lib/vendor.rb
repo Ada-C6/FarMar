@@ -72,5 +72,15 @@ module FarMar
       return total
     end
 
+    def self.by_market(market_id) #returns an array of the vendors with the given market_id
+      market_vendors = []
+      #use .select
+      self.all.each do |v|
+        if v.market_id == market_id #finds vendors whose ids match argument
+          market_vendors << v #pushes them to array of all vendors at that market
+        end
+      end
+      return market_vendors
+    end
   end
 end
