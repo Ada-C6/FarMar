@@ -28,6 +28,14 @@ module FarMar
       return sales
     end
 
+    def self.find(id)
+      self.all.each do |sale|
+        if sale.id == id
+          return sale
+        end
+      end
+    end
+
 
   end
 end
