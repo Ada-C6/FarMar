@@ -1,5 +1,4 @@
 require 'csv'
-# require_relative 'market.rb'
 
 module FarMar
   class Vendor
@@ -32,13 +31,17 @@ module FarMar
 
     def market
       all_markets = FarMar::Market.all
-
       return all_markets[@id]
     end
+
+    def products
+      all_products = FarMar::Product.all
+
+      all_products.delete_if do |k, v|
+        v.vendor_id != @id
+      end
+
+      return all_products
+    end
   end
-
 end
-
-vend = FarMar::Vendor.new(1,"Test Vendor",1,1)
-
-puts vend.market

@@ -45,9 +45,9 @@ describe FarMar::Market do
       @market.vendors.must_be_kind_of Hash
     end
 
-    it "should return a hash of six objects for @market_id 1" do
+    it "should return a hash of six objects for a market ID of 1" do
       @market.vendors.length.must_equal 6
     end
-
+    
   end
 end

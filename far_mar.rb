@@ -10,6 +10,7 @@ require_relative 'lib/sale.rb'
 module FarMar
 end
 # puts FarMar::Market.all
-market = FarMar::Market.new(2,"Test Market","123 Main St","King", "Seattle", "WA", "98125")
+# market = FarMar::Market.new(2,"Test Market","123 Main St","King", "Seattle", "WA", "98125")
+vendor = FarMar::Vendor.new(1,"Test Vendor",1,1)
 
-puts market.vendors
+puts vendor.market

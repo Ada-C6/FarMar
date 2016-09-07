@@ -43,4 +43,14 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#products" do
+    it "should return a hash of products" do
+      @vendor.products.must_be_kind_of Hash
+    end
+
+    it "should return a hash of one object for a vendor ID of 1" do
+      @vendor.products.length.must_equal 1
+    end
+  end
+  
 end

@@ -1,5 +1,4 @@
 require 'csv'
-# require_relative 'vendor.rb'
 
 module FarMar
   class Market
