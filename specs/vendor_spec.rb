@@ -98,4 +98,15 @@ describe FarMar::Vendor do
       end
     end
   end
+
+  describe "#revenue" do
+    before(:each) do
+      @vendors = FarMar::Vendor.all
+    end
+
+    it "should return a Fixnum" do
+      @vendors.revenue.must_be_kind_of(Fixnum)
+    end
+
+  end
 end

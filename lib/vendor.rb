@@ -75,5 +75,9 @@ module FarMar
       return sales_by_vendor
     end
 
+    def revenue
+      4
+    end
+
   end
 end
