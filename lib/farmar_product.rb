@@ -33,4 +33,11 @@ class Product
     return v[1]
   end
 
+  def number_of_sales
+    s = Sale.all
+    sale_instances = s.find_all { |n| n[1].product_id == @id }
+
+    return sale_instances.length
+  end
+
 end

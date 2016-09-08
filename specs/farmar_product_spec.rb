@@ -39,5 +39,11 @@ describe Product do
     end
   end
 
+  describe "#number_of_sales" do
+    it "should return the number of times this product has been sold" do
+      Product.new(1,"Dry Beets",1).number_of_sales.must_equal(7)
+
+    end
+  end
 
 end
