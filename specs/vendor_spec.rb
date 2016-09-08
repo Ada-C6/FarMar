@@ -26,11 +26,22 @@ describe FarMar::Vendor do
   end
   describe "#market" do
     it "will return instances of FarMar::Market" do
-      vendor_num = sam.market
-      vendor_num.must_be_instance_of(FarMar::Market)
+      sam.market.must_be_instance_of(FarMar::Market)
     end
     it "will return an array of the market" do
+      puts "#{sam.market}"
       sam.market.must_be_kind_of(Object)
+    end
+    it "will return the market that matches the market ID" do
+      sam.market.id.must_equal(1)
+    end
+  end
+  describe "#products" do
+    it "can return products associated by the vendor ID " do
+      puts "#{sam.products}"
+      sam.products.each do |x|
+        x.vend_id.must_equal(19)
+      end
     end
   end
 end
