@@ -39,7 +39,7 @@ describe FarMar::Product do
     it "returns an array of Products" do
       FarMar::Product.by_vendor(37).must_be_instance_of Array
       FarMar::Product.by_vendor(37)[0].must_be_instance_of FarMar::Product
-      FarMar::Product.by_vendor(34)[0].name.must_equal "Weissnat LLC"
+      FarMar::Product.by_vendor(34)[0].name.must_equal "Nutty Pretzel"
     end
   end
 
