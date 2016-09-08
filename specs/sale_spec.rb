@@ -15,6 +15,7 @@ module FarMar
       let(:all_sales) { Sale.all }
 
       it "should return an array" do
+        #puts FarMar::Sale.all.length
         all_sales.must_be_kind_of(Array)
       end
 
@@ -43,6 +44,40 @@ module FarMar
 
       it "should return the correct vendor" do
         new_sale.vendor.name.must_equal("Reynolds, Schmitt and Klocko")
+      end
+    end
+
+    describe "#product" do
+      let(:new_sale) { Sale.new({product_id: 5}) }
+      it "should return an object:Product" do
+        new_sale.product.must_be_instance_of(Product)
+      end
+
+      it "should return the correct Product" do
+        new_sale.product.name.must_equal("Green Apples")
+      end
+    end
+
+    describe "self.between(beginning_time, end_time)" do
+      let(:sales_between) { Sale.between(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800")) }
+
+      it "should return an array" do
+        sales_between.must_be_kind_of(Array)
+      end
+
+      it "should have an object:Sale at any index of the array" do
+        #puts sales_between.length
+        sales_between[0].must_be_instance_of(Sale)
+        sales_between[10].must_be_instance_of(Sale)
+        sales_between[50].must_be_instance_of(Sale)
+        sales_between[100].must_be_instance_of(Sale)
+      end
+
+      it "the time of the sale at any index should be between the arguments(beg_time, end_time)" do
+        sales_between[0].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
+        sales_between[10].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
+        sales_between[50].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
+        sales_between[100].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
       end
     end
   end
