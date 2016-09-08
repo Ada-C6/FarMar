@@ -4,32 +4,28 @@ module FarMar
   class Product
     attr_reader :id, :name, :vendor_id
 
-    def initialize(products_hash)
-      @id = products_hash[:id]
-      @name = products_hash[:name]
-      @vendor_id = products_hash[:vendor_id]
+    def initialize(id, name, vendor_id)
+      @id = id
+      @name = name
+      @vendor_id = vendor_id
 
     end
 
 
     def self.all
-      products = []
+      products_hash = {}
       CSV.read("./support/products.csv").each do |line|
-        products_hash = {}
-        products_hash[:id] = line[0].to_i
-        products_hash[:name] = line[1]
-        products_hash[:vendor_id] = line[2].to_i
-        products << FarMar::Product.new(products_hash)
+
+        id = line[0].to_i
+        name = line[1]
+        vendor_id = line[2].to_i
+        products_hash[id] = self.new(id, name, vendor_id)
       end
-      return products
+      return products_hash
     end
 
     def self.find(id)
-      self.all.each do |product|
-        if product.id == id
-          return product
-        end
-      end
+      return self.all[id]
     end
 
   end #end class
