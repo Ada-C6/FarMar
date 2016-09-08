@@ -40,24 +40,15 @@ module FarMar
     end
 
     def revenue #returns the sum of all the vendor's sales
-      all_sales = self.sales
       total = 0
-
-      all_sales.each do |s|
+      self.sales.each do |s|
         total += s.amount
       end
       return total
     end
 
     def self.by_market(market_id) #returns an array of the vendors with the given market_id
-      market_vendors = []
-      #use .select
-      self.all.each do |v|
-        if v.market_id == market_id #finds vendors whose ids match argument
-          market_vendors << v #pushes them to array of all vendors at that market
-        end
-      end
-      return market_vendors
+      self.all.select { |v| v.market_id == market_id }
     end
   end
 end
