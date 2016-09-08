@@ -1,5 +1,5 @@
 class FarMar::Sale
-  attr_reader :id
+  attr_reader :id, :amount, :purch_time, :vend_id, :prod_id
   def initialize(id, amount, purch_time, vend, prod)
     @id = id
     @amount = amount
@@ -14,10 +14,10 @@ class FarMar::Sale
     CSV.open('support/markets.csv', 'r').each do |line|
       sales[line[0]] = line[1..4]
       id = line[0].to_i
-      amount = line[1]
+      amount = line[1].to_i
       purch_time = line[2]
-      vend = line[3]
-      prod = line[4]
+      vend = line[3].to_i
+      prod = line[4].to_i
       discount << self.new(id, amount, purch_time, vend, prod)
     end
     return discount
