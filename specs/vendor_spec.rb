@@ -90,4 +90,16 @@ describe FarMar::Vendor do
 			vendor.revenue.must_equal(61749)
 		end
 	end
+
+	describe "self.by_market(market_id)" do
+		vendor_list = FarMar::Vendor.by_market(5)
+		it "must return instances of Vendors" do
+			vendor_list.first.must_be_instance_of(FarMar::Vendor)
+		end
+
+		it "must return vendors whose market id matches the argument" do
+			vendor_list.first.market_id.must_equal(5)
+			vendor_list.last.market_id.must_equal(5)
+		end
+	end
 end

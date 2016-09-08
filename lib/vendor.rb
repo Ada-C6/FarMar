@@ -41,25 +41,11 @@ module FarMar
 		end
 
 		def products
-			product_list = []
-			all_products = FarMar::Product.all
-			all_products.each do |product|
-				if product.vendor_id == id
-					product_list << product
-				end
-			end
-			return product_list
+			FarMar::Product.all.select {|product| product.vendor_id == id}
 		end
 
 		def sales
-			sales_list = []
-			all_sales = FarMar::Sale.all
-			all_sales.each do |sale|
-				if sale.vendor_id == id
-					sales_list << sale
-				end
-			end
-			return sales_list
+			FarMar::Sale.all.select {|sale| sale.vendor_id == id }
 		end
 
 		def revenue
@@ -71,5 +57,8 @@ module FarMar
 			return total
 		end
 
+		def self.by_market(market_id)
+			FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id}
+		end
 	end
 end
