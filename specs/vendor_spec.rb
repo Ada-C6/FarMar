@@ -45,8 +45,17 @@ describe FarMar::Vendor do
     end
     describe "#sales" do
       it "returns an array of values" do
-        puts "#{sam.sales}"
+
         sam.sales.must_be_kind_of(Array)
+      end
+    end
+    describe "#revenue" do
+      it "returns a Fixnum" do
+    
+        sam.revenue.must_be_kind_of(Fixnum)
+      end
+      it "won't be zero" do
+        sam.revenue.wont_equal(0)
       end
     end
   end
