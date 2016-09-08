@@ -10,7 +10,6 @@ module FarMar
       @product_id = sale_hash[:product_id]
     end
 
-# TO DO - figure out how to convert purchase_time to datetime data type
     def self.all
       # IDEA make this an instance variable so you only have to make it run once
       sales = [] #array to store all of the hashes with sale info
@@ -39,14 +38,15 @@ module FarMar
     end
 
     def self.between(beginning_time, end_time)
-      sales_between = []
-
-      self.all.each do |s|
-        if s.purchase_time >= beginning_time && s.purchase_time <= end_time
-          sales_between << s
-        end
-      end
-      return sales_between
+      self.all.select { |s| beginning_time <= s.purchase_time && s.purchase_time <= end_time }
+      # sales_between = []
+      #
+      # self.all.each do |s|
+      #   if s.purchase_time >= beginning_time && s.purchase_time <= end_time
+      #     sales_between << s
+      #   end
+      # end
+      # return sales_between
     end
   end
 end
