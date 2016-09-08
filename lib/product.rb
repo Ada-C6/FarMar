@@ -41,4 +41,8 @@ class Product
       i.vendor_id == vendor_id
     end
   end
+
+  def vendor
+    Vendor.find(@vendor_id)
+  end
 end

@@ -36,7 +36,15 @@ module FarMar
         Product.by_vendor(245).count.must_equal(4)
 
       end
+    end
 
+    describe "#vendor" do
+      it "returns true if the returned instance is of the same vendor id" do
+        p = Product.find(2)
+        p.vendor do |i|
+          i.vendor_id.must_equal(2)
+        end
+      end
     end
   end
 end
