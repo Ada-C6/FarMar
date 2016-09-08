@@ -52,7 +52,10 @@ module FarMar
     def self.between(beginning_time, end_time)
       array_o_sales = []
       FarMar::Sale.all.each do |line|
-        if beginning_time <= line.purchase_time && end_time >= line.purchase_time
+        beg = DateTime.strptime(beginning_time, '%Y-%m-%d %H:%M:%S %z')
+        ends = DateTime.strptime(end_time, '%Y-%m-%d %H:%M:%S %z')
+        a = DateTime.strptime(line.purchase_time, '%Y-%m-%d %H:%M:%S %z')
+        if beg <= a && ends >= a
           array_o_sales.push(line)
         end
       end
@@ -61,3 +64,5 @@ module FarMar
 
   end
 end
+
+# 2013-11-11 02:43:04 -0800,10,23

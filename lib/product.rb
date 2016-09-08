@@ -64,21 +64,20 @@ module FarMar
       end
       return propven
     end
-
-    def self.revenue
-      p_revenue = {}
-
-      # Setting eachvalue in the key to 0 so that the revenues can be added to the values. 
-      FarMar::Product.all.each do |line|
-        p_revenue[line.vendor_id] = 0
-      end
-
-      FarMar::Sale.all.each do |line|
-        line.product_id.push(line.amount.to_i)
-        puts
-
-      end
-    end
+    #
+    # def self.revenue
+    #   p_revenue = {}
+    #
+    #   # Setting eachvalue in the key to 0 so that the revenues can be added to the values.
+    #   FarMar::Product.all.each do |line|
+    #     p_revenue[line.vendor_id] = 0
+    #   end
+    #
+    #   FarMar::Sale.all.each do |line|
+    #
+    #
+    #   end
+    # end
 
 
     # def self.most_revenue(n)

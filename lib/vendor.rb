@@ -78,11 +78,12 @@ module FarMar
 
     #OPTIONAL REQUIREMENTS: PART 1
 
-    def self.most_revenue(n)
-      FarMar::Sale.all.each do |line|
-
-      end
-    end
+    # def self.most_revenue(n)
+    #   FarMar::Sale.all.each do |line|
+    #
+    #
+    #   end
+    # end
 
   end
 end
