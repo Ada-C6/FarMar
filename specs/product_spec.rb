@@ -17,6 +17,11 @@ describe "self.find(id)" do
     FarMar::Product.find(1).id.must_equal(1)
   end
 end
+describe "#vendor" do
+  it "returns an instance of FarMar ::Vendor" do
+    sam.vendor.must_be_instance_of(FarMar::Vendor)
+  end
+end
 describe "self.by_vendor(vendor_id)" do
   it "returns the vendors of a given vendor id" do
 
