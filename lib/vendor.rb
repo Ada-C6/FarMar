@@ -36,18 +36,6 @@ module FarMar
       return this_market
     end
 
-    def self.by_market(id)
-      all_vendors = self.all
-      vendors = []
-
-      all_vendors.each do |vendor, value|
-        if value.market_id == id
-          vendors << value
-        end
-      end
-      return vendors
-    end
-
     def products
       all_products = FarMar::Product.all
       products = []
@@ -84,6 +72,17 @@ module FarMar
       return revenue
     end
 
+    def self.by_market(id)
+      all_vendors = self.all
+      vendors = []
 
+      all_vendors.each do |vendor, value|
+        if value.market_id == id
+          vendors << value
+        end
+      end
+      return vendors
+    end
+    
   end
 end

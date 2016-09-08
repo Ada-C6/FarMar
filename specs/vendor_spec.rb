@@ -57,4 +57,12 @@ describe FarMar::Market do
       zulauf.revenue.must_equal(2977.0)
     end
   end
+
+  describe "self.by_market(market_id)" do
+    it "shoulld return all vendors associated with that market id" do
+      quincy_market = FarMar::Vendor.by_market(5)
+      quincy_market.length.must_equal(2)
+
+    end
+  end
 end
