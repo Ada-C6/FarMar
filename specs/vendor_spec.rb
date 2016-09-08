@@ -56,5 +56,12 @@ module FarMar
         v.sales.count.must_equal(8)
       end
     end
+
+    describe "#revenue" do
+      it "should return true if the returned fixnum is the sum of all the vendor's sales (in cents)" do
+        v = Vendor.find(86)
+        v.revenue.must_equal(20633)
+      end
+    end
   end
 end

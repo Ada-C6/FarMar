@@ -59,7 +59,13 @@ attr_reader :id, :name, :num_of_employees, :market_id
     end
   end
 
-
+  def revenue
+    y = []
+    sales[0..-1].each do |x|
+      y << x.amount_in_cents
+    end
+      y.reduce (:+)
+  end
 
 end
 #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
