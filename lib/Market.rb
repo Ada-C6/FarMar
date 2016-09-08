@@ -2,11 +2,11 @@ require_relative '../FarMar.rb'
 
 class FarMar::Market
 
-  attr_reader :ID, :name, :city, :county, :state, :zip
+  attr_reader :MARKET_ID, :name, :city, :county, :state, :zip
 
   def initialiaze
 
-    @ID = ID
+    @MARKET_ID = market_id
     @name = name
     @city = city
     @county = county
