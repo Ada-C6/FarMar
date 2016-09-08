@@ -29,4 +29,9 @@ class FarMar::Vendor
             end
         end
     end
+
+    def self.by_market(market_id)
+        vendors_by_market = self.all.select {|v_object| v_object.market_id == market_id}
+        vendors_by_market
+    end
 end
