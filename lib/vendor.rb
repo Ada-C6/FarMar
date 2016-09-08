@@ -27,6 +27,11 @@ module FarMar
       end
     end
 
+    def market
+      FarMar::Market.find(@market_id)
+    end
+
+
 
   end
 end
