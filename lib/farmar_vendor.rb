@@ -43,4 +43,11 @@ class FarMar::Vendor
   def products
     FarMar::Product.by_vendor(@vend_id)
   end
+  def sales
+    sales = FarMar::Sale.all
+    sales.find_all do |x|
+      x.vend_id == @vend_id
+    end
+
+  end
 end
