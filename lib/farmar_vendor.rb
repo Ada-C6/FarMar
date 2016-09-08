@@ -53,13 +53,7 @@ module FarMar
     end
 
     def sales
-      sales = []
-      FarMar::Sale.all.each do |sale|
-        if sale.vendor_id == @id
-          sales << sale
-        end
-      end
-      return sales
+      FarMar::Sale.all.select {|sale| sale.vendor_id == @id}
     end
 
   end

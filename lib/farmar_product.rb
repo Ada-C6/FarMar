@@ -45,5 +45,9 @@ module FarMar
       FarMar::Vendor.find(@vendor_id)
     end
 
+    def sales
+      FarMar::Sale.all.select {|sale| sale.product_id == @id}
+    end
+
   end
 end

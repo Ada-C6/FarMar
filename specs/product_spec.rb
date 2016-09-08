@@ -50,4 +50,14 @@ describe FarMar::Product do
       new_product.vendor.must_be_instance_of FarMar::Vendor
     end
   end
+
+  describe "#sales" do
+    new_product = FarMar::Product.new({id:45})
+    it "must return an array of Sales" do
+      new_product.sales.must_be_instance_of Array
+      if new_product.sales.length > 0
+        new_product.sales[0].must_be_instance_of FarMar::Sale
+      end
+    end
+  end
 end
