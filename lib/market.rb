@@ -10,7 +10,7 @@ module FarMar
       @city = city
       @county = county
       @state = state
-      @zip = state
+      @zip = zip
     end
 
     def self.all
@@ -20,5 +20,15 @@ module FarMar
       end
       list_of_markets
     end
+
+    def self.find(this_id)
+      Market.all.each do |m|
+        if this_id == m.id
+          return m
+        end
+      end
+      return "That is not an existing market ID"
+    end
+
   end
 end
