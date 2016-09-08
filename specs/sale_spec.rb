@@ -55,7 +55,7 @@ describe FarMar::Sale do
       between_test2.length.must_equal 911
     end
 
-    it "should raise an ArgumentError if the times provided are outside the databases range" do
+    it "should raise an ArgumentError if the time range provided is outside the sales overall date range" do
       proc { FarMar::Sale.between("1999-11-08 04:31:41 -0800","1999-11-08 16:36:03 -0800") }.must_raise ArgumentError
     end
   end
