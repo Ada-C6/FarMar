@@ -24,4 +24,27 @@ describe FarMar::Sale do
       fruit.id.must_equal(2)
     end
   end
+
+  describe "#vendor" do
+    it "should return the vendor associated with that sale" do
+      fruit = FarMar::Sale.find(7)
+      fruit_vendor = FarMar::Vendor.find(1)
+      fruit.vendor.must_equal(fruit_vendor)
+    end
+  end
+
+  describe "#products" do
+    it "should return the product associated with that sale" do
+      fruit = FarMar::Sale.find(7)
+      fruit_product = FarMar::Product.find(1)
+      fruit.product.must_equal(fruit_product)
+    end
+  end
+
+  describe "self.between(beginning_time, end_time)" do
+    it "should return a collection of sales whose purchase time is between both time arguments" do
+      morning_sales = FarMar::Sale.between("2013-11-10 04:16:12", "2013-11-13 04:14:40")
+      morning_sales.length.must_equal(5146)
+    end
+  end
 end
