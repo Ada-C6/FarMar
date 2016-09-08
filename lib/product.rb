@@ -29,7 +29,6 @@ class FarMar::Product
     end
 
     def self.by_vendor(vendor_id)
-        products_by_vendor = self.all.select {|p_object| p_object.vendor_id == vendor_id}
-        products_by_vendor
+        return self.all.select {|p_object| p_object.vendor_id == vendor_id}
     end
 end
