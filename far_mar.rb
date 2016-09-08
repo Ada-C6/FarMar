@@ -9,11 +9,24 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
+##TEST #14... FarMar::Vendor.sales
+# v = FarMar::Vendor.all.last
+# puts v.sales.to_s
+# print "I expect the two vendor id's below to be:"
+# puts v.id
+# puts ""
+# puts v.sales.first.vendor_id
+# puts v.sales.last.vendor_id
+# puts "Awesome!"
+
+
+
+
 ##TEST #13... FarMar::Vendor.products
 # v = FarMar::Vendor.all.last
 # puts v.products.to_s
 # print "I expect the two vendor id's below to be:"
-# puts FarMar::Vendor.all.last.id
+# puts v.id
 # puts ""
 # puts v.products.first.vendor_id
 # puts v.products.last.vendor_id
@@ -25,7 +38,7 @@ require_relative './lib/sale'
 ##TEST #12... FarMar::Vendor.market
 # v = FarMar::Vendor.all.last
 # print "I expect the market id below to be:"
-# puts FarMar::Vendor.all.last.market_id
+# puts v.market_id
 # puts ""
 # puts v.market.id
 #
@@ -37,7 +50,7 @@ require_relative './lib/sale'
 ##TEST #11... FarMar::Market.vendors
 # m = FarMar::Market.all.last
 # print "I expect the two market id's below to be:"
-# puts FarMar::Market.all.last.id
+# puts m.id
 # puts ""
 # puts m.vendors.first.market_id
 # puts m.vendors.last.market_id
@@ -88,11 +101,15 @@ require_relative './lib/sale'
 # puts "Glorious!"
 
 
+
+
 ##TEST #8... FarMar::Sale.find(id)
 # test = FarMar::Sale.find(FarMar::Sale.all[0].id)
 # puts test
 #
 # puts "Woo hoo!"
+
+
 
 
 # #TEST #7... FarMar::Sale.all
@@ -110,11 +127,14 @@ require_relative './lib/sale'
 
 
 
+
 ##TEST #6... FarMar::Product.find(id)
 # test = FarMar::Product.find(FarMar::Product.all[0].id)
 # puts test
 #
 # puts "Woo hoo!"
+
+
 
 
 # #TEST #5... FarMar::Product.all
@@ -140,6 +160,8 @@ require_relative './lib/sale'
 # puts "Woo hoo!"
 
 
+
+
 # #TEST #3... FarMar::Vendor.all
 # test = FarMar::Vendor.all
 #
@@ -161,6 +183,8 @@ require_relative './lib/sale'
 # puts test
 #
 # puts "Woo hoo!"
+
+
 
 
 ##TEST #1... FarMar::Market.all

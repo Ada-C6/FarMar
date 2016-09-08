@@ -70,4 +70,16 @@ describe FarMar::Vendor do
             v.products.last.vendor_id.must_equal(v.id)
         end
     end
+
+    describe "sales" do
+        let(:v) {FarMar::Vendor.all.last}
+        it "will output an array" do
+            v.sales.must_be_instance_of(Array)
+        end
+
+        it "will output sale objects that correspond to the current vendor id" do
+            v.sales.first.vendor_id.must_equal(v.id)
+            v.sales.last.vendor_id.must_equal(v.id)
+        end
+    end
 end

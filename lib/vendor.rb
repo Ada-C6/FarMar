@@ -42,6 +42,10 @@ class FarMar::Vendor
         return FarMar::Product::by_vendor(@id)
     end
 
+    def sales
+        return FarMar::Sale::all.select {|s_object| s_object.vendor_id == @id}
+    end
+
     def self.by_market(market_id)
         return self.all.select {|v_object| v_object.market_id == market_id}
     end
