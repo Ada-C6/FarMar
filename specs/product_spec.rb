@@ -41,6 +41,18 @@ describe FarMar::Product do
         end
     end
 
+    describe "sales" do
+        let(:p) {FarMar::Product.all.last}
+        it "will output an array" do
+            p.sales.must_be_instance_of(Array)
+        end
+
+        it "will output sale objects that correspond to the current product id" do
+            p.sales.first.product_id.must_equal(p.id)
+            p.sales.last.product_id.must_equal(p.id)
+        end
+    end
+
     describe "self.by_vendor(vendor_id)" do
         let(:vendor_id) {FarMar::Vendor.all.last.id}
         it "will output an array" do
