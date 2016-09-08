@@ -13,13 +13,19 @@ describe FarMar::Market do
      expect(FarMar::Market.find("5").class).must_equal(FarMar::Market)
   end
 
-  it "Input a market id '3' returns all the corresponding vendor objects with the same market id" do
+  it "Input a market id '2' returns all the corresponding vendor objects with the same market id" do
     market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
     expect( market.vendors.class ).must_equal(Array)
     expect( market.vendors[0].class ).must_equal(FarMar::Vendor)
   end
 
+  it "There are 3 Product objects associated with market id '2'" do
+    market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
+    expect( market.products("2").size).must_equal(3)
+  end
 
-
+  it "There are 3 Market objects that have 'school' in either in its market name or its vendor name" do
+    expect(FarMar::Market.search("school").size).must_equal(3)
+  end
 
 end

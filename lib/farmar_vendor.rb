@@ -2,7 +2,7 @@
 # require_relative '../far_mar'
 
 class FarMar::Vendor
-  attr_reader :id, :market_id
+  attr_reader :id, :market_id, :name
   def initialize(id, name, employees_num, market_id)
     @id = id
     @name = name

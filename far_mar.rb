@@ -25,3 +25,9 @@ require_relative './lib/farmar_vendor'
 
 # puts FarMar::Sale.between("2013-11-03 04:34:56 -0800","2013-11-03 05:14:56 -0900").size
 # => 12798
+
+# market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
+# puts market.products("2").size
+# => 3
+
+puts FarMar::Market.search("school").size

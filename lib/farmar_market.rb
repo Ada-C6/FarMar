@@ -2,7 +2,7 @@
 # require_relative '../far_mar'
 
 class FarMar::Market
-  attr_reader :id
+  attr_reader :id, :name
   def initialize(id, name, address, city, county, state, zip)
      @id = id
      @name = name
@@ -47,14 +47,41 @@ class FarMar::Market
     return found_market
   end
 
-  def select
-  end
 
-  # find vendor information by market_id
-  # output: an array of FarMar::Vendor objects that are associated with the market by the market_id field
+  # returns an array of FarMar::Market objects where the market name or vendor name contain the search_term
+  def self.search(search_term)
+    term = search_term.downcase
+    # return an array of Market objects found with the matched market name or vendor name
+    return FarMar::Market.all.select do |market|
+      # a Market obejct's market name
+      market_name = market.name
+      # a Market object's associated (an array of) Vendor objects
+      vendors = FarMar::Vendor.by_market(market.id)
+      # get an array of each Vendor objects' vendor name
+      vendor_names = vendors.map!{|vendor| vendor.name}
+      # find search_term in market name(a string) and in each vendor name in an array of vendor names string
+      market_name.downcase.include?(term) || vendor_names.any?{ |vendor_name| vendor_name.downcase.include?(term) }
+    end
+  end
+  # RUNNING TIME of above method: 0m10.792s. TOO LONG. Need to optimize the loop and restructure.
+
+  # return an array of FarMar::Vendor objects that are associated with the market by the market_id field
   def vendors
     return FarMar::Vendor.all.select { |vendor| @id == vendor.market_id }
   end
 
+  # returns an array of FarMar::Product objects that are associated to the market through the FarMar::Vendor class.
+  # In another word, input a market_id and return the Product objects that associated with that market_id.
+  def products(market_id)
+    # give a market_id, return an array of its associated Vendor objects
+    vendors = FarMar::Vendor.by_market(market_id)
+    # get an array of each vendor's vendor_id
+    vendor_ids = vendors.map {|vendor| vendor.id }
+    # iterate over all vendor_ids. for each vendor_id, return Product objects that associated with this vendor_id.
+    return vendor_ids.map do |vendor_id|
+      FarMar::Product.all.select { |product| product.vendor_id == vendor_id }
+    end
+  end
+  # very happy with the way of handling the above products method. Great satisfaction of accomplishment. XD
 
 end
