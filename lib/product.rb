@@ -31,15 +31,7 @@ module FarMar
     end
 
     def sales #returns an array of Sale objects that are accociated with this product
-      all_sales = FarMar::Sale.all
-      product_sales = []
-
-      all_sales.each do |s|
-        if s.product_id == @id
-          product_sales << s
-        end
-      end
-      return product_sales
+      FarMar::Sale.all.select { |s| s.product_id == @id }
     end
 
     def number_of_sales #returns the number of times this product has been sold
