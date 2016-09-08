@@ -25,7 +25,7 @@ describe FarMar::Product do
       proc { FarMar::Product.find(8194) }.must_raise("ID was not present")
     end
 
-    # considered with variable dataset in mind
+    # would need to change if dataset were to change
     it "should find a specific Product by the market_id" do
       FarMar::Product.all
       found_product = FarMar::Product.find(1)
