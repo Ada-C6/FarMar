@@ -26,8 +26,8 @@ module FarMar
         sale_id, amount, purchase_time, vendor_id, product_id = line # parallel assignment!
         sale_id = sale_id.to_i # need sale_id to be a fixnum
         amount = amount.to_i # want amount to be a fixnum also
-        vendor_id = vendor_id # want vendor_id to be a fixnum
-        product_id = product_id # want product_id also to be a fixnum
+        vendor_id = vendor_id.to_i # want vendor_id to be a fixnum
+        product_id = product_id.to_i # want product_id also to be a fixnum
 
         sales[sale_id] = self.new(sale_id, amount, purchase_time, vendor_id, product_id)
       end
