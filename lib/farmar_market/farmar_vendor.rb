@@ -44,15 +44,7 @@ module FarMar
     end
 
     def products
-      all_products = FarMar::Product.all
-      associated_products = []
-
-      all_products.each do |product|
-        if product.vendor_id == @vendor_id
-          associated_products.push(product)
-        end
-      end
-      return associated_products
+      return FarMar::Product.by_vendor(@vendor_id)
     end
 
     def sales
