@@ -34,5 +34,16 @@ module FarMar
       end
     end
 
+    describe "#vendor" do
+      let(:new_sale) { Sale.new({vendor_id: 5}) }
+
+      it "should return an object:Vendor" do
+        new_sale.vendor.must_be_instance_of(Vendor)
+      end
+
+      it "should return the correct vendor" do
+        new_sale.vendor.name.must_equal("Reynolds, Schmitt and Klocko")
+      end
+    end
   end
 end
