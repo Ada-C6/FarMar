@@ -1,5 +1,6 @@
 # lib/farmar_sale.rb
 # require_relative '../far_mar'
+require 'date'
 
 class FarMar::Sale
   attr_reader :id, :vendor_id, :amount, :product_id, :purchase_time
@@ -45,17 +46,15 @@ class FarMar::Sale
     end
   end
 
-  # load sale infomation from sale csv file
-  # input: csv file name (optional)
-  # output: an array of class sale objects
+
+  # return an array of Sale objects
   def self.all
     load
     return @sales
   end
 
-  # identify sale information by sale id
-  # input: sale id (string)
-  # output: an sale object that corresponds to the given sale id
+
+  # return an Sale object that corresponds to the given sale id
   def self.find(id)
     load
     return @sale_by_id[id]
@@ -78,8 +77,8 @@ class FarMar::Sale
   def self.between(beginning_time, end_time)
     FarMar::Sale.all.select do |sale|
       # covert purchase_time from string to object
-      purchase_time_object = Time.new(sale.purchase_time)
-      purchase_time_object >= Time.new(beginning_time) && purchase_time_object <= Time.new(end_time)
+      purchase_time_object = DateTime.parse(sale.purchase_time)
+      purchase_time_object >= DateTime.parse(beginning_time) && purchase_time_object <= DateTime.parse(end_time)
     end
   end
 
@@ -92,7 +91,6 @@ class FarMar::Sale
   def product
     return FarMar::Product.find(@product_id)
   end
-
 
 
 end

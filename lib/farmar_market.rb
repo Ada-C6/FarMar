@@ -1,5 +1,6 @@
 # lib/farmar_market.rb
 # require_relative '../far_mar'
+require 'date'
 
 class FarMar::Market
   attr_reader :id, :name
@@ -13,9 +14,8 @@ class FarMar::Market
      @zip = zip
   end
 
-  # load market infomation from market csv file
-  # input: csv file name (optional)
-  # output: an array of class Market objects
+
+  # return an array of class Market objects
   def self.all
     market_csv_file = "/Users/mengyao/ADA_class/FarMar/support/markets.csv"
 
@@ -33,9 +33,7 @@ class FarMar::Market
     return markets
   end
 
-  # identify market information by market id
-  # input: market id (string)
-  # output: an market object that corresponds to the given market id
+  # return an Market object that corresponds to the given market id
   def self.find(id)
     found_market = nil
     all.each do |market|
@@ -82,13 +80,27 @@ class FarMar::Market
     end
   end
 
-  # returns the Vendor object with the highest revenue
-  def prefered_vendor
+  # returns the Vendor object with the highest revenue among a group of vendors
+  def prefered_vendor_direct(vendors)
+    # vendors => FarMar::Vendor.all can put this in method call
     #return an array Vendor objects sorted by vendor revenue in accending order
-    revenues = FarMar::Vendor.all.sort_by { |vendor| vendor.revenue }
+    revenues =  vendors.sort_by { |vendor| vendor.revenue }
     # return the vendor that has the highest revenue(the last element in the array)
     return revenues.last
   end
 
+  # returns the Vendor object with the highest revenue for the given date
+  def prefered_vendor(date)
+    # Assume the date will be given a string in "year-month-day" format
+    beginning_time = Date.parse(date).to_datetime.to_s
+    end_time = Date.parse(date).next.to_datetime.to_s
+    # return an array of Sale objects in the given date
+    sales = FarMar::Sale.between(beginning_time, end_time)
+    # return an array of Vendors associated with the Sale objects
+    vendors = sales.map{|sale| sale.vendor}
+    # return the prefered vendor associate with the Sale object on that date
+    return self.prefered_vendor_direct(vendors)
+  end
+  # OPTIMZE vendors = sales.map{|sale| sale.vendor}, it takes 0m9.898s to test.
 
 end

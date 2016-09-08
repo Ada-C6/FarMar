@@ -30,10 +30,13 @@ describe FarMar::Market do
 
   it "Input a market id '2' returns and return the vendor who has highest revenue(prefered vendor) of that market" do
     market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
-    expect( market.prefered_vendor.class ).must_equal(FarMar::Vendor)
+    expect( market.prefered_vendor_direct(FarMar::Vendor.all).class ).must_equal(FarMar::Vendor)
   end
 
-
+  it "Input a date '2013-11-07' returns and return Vendor who has highest revenue(prefered vendor) of that date. The vendor id is: 2590" do
+    market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
+    expect( market.prefered_vendor("2013-11-07").id ).must_equal("2590")
+  end
 
 
 end
