@@ -11,6 +11,12 @@ describe FarMar::Product do
     end
   end
 
+  describe "#id" do
+    it "should have an ID of fixnum type" do
+      @product.id.must_be_kind_of Fixnum
+    end
+  end
+
   describe "#self.all" do
     it "should return a hash" do
       FarMar::Product.all.must_be_kind_of Hash

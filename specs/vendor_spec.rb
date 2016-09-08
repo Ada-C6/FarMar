@@ -11,6 +11,12 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#id" do
+    it "should have an ID of fixnum type" do
+      @vendor.id.must_be_kind_of Fixnum
+    end
+  end
+
   describe "#self.all" do
     it "should return a hash" do
       FarMar::Vendor.all.must_be_kind_of Hash

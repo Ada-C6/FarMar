@@ -11,6 +11,12 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#id" do
+    it "should have an ID of fixnum type" do
+      @sale.id.must_be_kind_of Fixnum
+    end
+  end
+
   describe "#self.all" do
     it "should return a hash" do
       FarMar::Sale.all.must_be_kind_of Hash
@@ -47,6 +53,10 @@ describe FarMar::Sale do
       between_test2 = FarMar::Sale.between("2013-11-08 04:31:41 -0800","2013-11-08 16:36:03 -0800")
 
       between_test2.length.must_equal 911
+    end
+
+    it "should raise an ArgumentError if the times provided are outside the databases range" do
+      proc { FarMar::Sale.between("1999-11-08 04:31:41 -0800","1999-11-08 16:36:03 -0800") }.must_raise ArgumentError
     end
   end
 

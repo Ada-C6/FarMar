@@ -21,16 +21,20 @@ module FarMar
     end
 
     def self.find(id)
-      all_sales = self.all
-
-      if all_sales.has_key?(id)
-        return all_sales[id]
+      if all.has_key?(id)
+        return all[id]
       else
         raise ArgumentError.new("We do not have a sale with that ID.")
       end
     end
 
     def self.between(beginning_time, end_time)
+      all_purchase_times = all.map do |k, v|
+        v.purchase_time
+      end
+
+      raise ArgumentError.new("These dates are beyond the date range in our database") if beginning_time < all_purchase_times.min || end_time > all_purchase_times.max
+
       all.delete_if do |k, v|
         v.purchase_time < beginning_time || v.purchase_time > end_time
       end

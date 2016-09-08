@@ -15,4 +15,4 @@ end
 # sale = FarMar::Sale.new(1,200,"12:00",1,1)  #testing an instance method
 # puts sale.
 
-puts FarMar::Sale.between("2013-11-08 04:31:41 -0800","2013-11-08 16:36:03 -0800").length # testing class methods
+# puts FarMar::Sale.between("2013-11-08 04:31:41 -0800","2013-11-08 16:36:03 -0800") # testing class methods
