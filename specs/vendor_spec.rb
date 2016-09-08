@@ -2,12 +2,7 @@ require_relative 'spec_helper'
 module FarMar
   describe Vendor do
     describe "#initialize" do
-      my_hash = {
-        id:  112,
-        name: "Ada Farms",
-        num_employees: 12,
-        market_id: 1202
-      }
+
       let(:vendor) { Vendor.new(112, "ada farms", 12, 1202) }
       it "should create an instance of a vendor" do
         vendor.must_be_instance_of(Vendor)
@@ -29,6 +24,17 @@ module FarMar
         foots.id.must_equal(8)
       end
     end #end self.find method
+
+    describe "products"
+
+    describe "#market" do
+      let(:vendors) { Vendor.all }
+      it "should return the market hash that the vendor is a part of, using the vendor's market id" do
+        cat_vendor = FarMar::Vendor.find(2)
+        cat_vendor.markets.market_id.must_equal(1)
+        # Maybe try "Toy and Sons"
+      end #this is not a good test
+    end
 
   end #end vendor
 

@@ -1,4 +1,4 @@
-# require 'csv'
+ # require 'csv'
 
 module FarMar
   class Market
@@ -54,12 +54,6 @@ module FarMar
       end
      end
      return @vendors_at_market
-
-    #we have a market, let's say market 8
-    #we want all vendors at market 8
-    #we'll need the method to find vendors by its market_id field
-    #we can shovel these results into a vendors array
-    #we should return this array/collection
 
   end #end vendors method
 

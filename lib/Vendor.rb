@@ -5,9 +5,10 @@ module FarMar
 
     def initialize(id, name, num_employees, market_id)
       @id = id
-      @name = name
+      @name = name.to_s
       @num_employees = num_employees
       @market_id = market_id
+      @vendors_markets = []
 
     end
 
@@ -32,6 +33,24 @@ module FarMar
       # end
     end
 
+    # def market #is this method returning information about a particular market, or all the markets one vendor is a part of?
+    # #calling the FarMar::VEndor market id, you should be able to return the market
+    def markets
+    all_markets = FarMar::Market.all
+
+    all_markets.each do |market, value|
+      if  @market_id == value.id
+         @vendors_markets << value
+      end
+     end
+     return @vendors_markets
+    end
+    # # this method will return the instance of Market that field the vendor is a part of
+    # # returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id
+    # end
+
+    # def products :return a list of products associated with the vendor
+    # end
 
 
 
