@@ -27,6 +27,10 @@ attr_reader :id, :name, :vend_id
     end
   end
 
+  def vendor
+    FarMar::Vendor.find(@vend_id)
+  end
+
   def self.by_vendor(vendor_id)
     prod_search = self.all
     prod_search.find_all do |i|
