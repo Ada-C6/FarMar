@@ -51,16 +51,14 @@ module FarMar
       return vendor_by_market
     end
 
-
-
-    # def market
-    #   markets = FarMar::Market.all({})
-    #   markets.each do |var|
-    #     if var.market_id == vendor.by_market(input)
-    #       return var
-    #     end
-    #   end
-    # end
+    def market
+      markets = FarMar::Market.all
+      markets.each do |var|
+        if var.market_id == @market_id # Need one instance of market_id (don't need @ sign)
+          return var
+        end
+      end
+    end
 
     def products
       return FarMar::Product.by_vendor(vendor_id)

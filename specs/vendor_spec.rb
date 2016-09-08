@@ -49,27 +49,23 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#market" do
+    before(:each) do
+      @vendors = FarMar::Vendor.new({"market_id" => 2})
+    end
 
+    # The thing to the left of the dot is what is being acted upon by the method
+    # to the right of the dot; in this case, passing in only one instance, as
+    # defined in before/end
+    it "should return an instance of Market" do
+      @vendors.market.must_be_instance_of(FarMar::Market)
+    end
 
+    it "should use the vendor's market_id to return that vendor's market" do
+      @vendors.market.market_id.must_equal(2)
+    end
 
-  # describe "#market" do
-  #   before(:each) do
-  #     @markets = FarMar::Market.new({})
-  #     @vendors = FarMar::Vendor.all
-  #   end
-  #
-  #   it "should return an instance of Market" do
-  #     @markets.market.must_be_instance_of(FarMar::Market)
-  #   end
-  #
-  #   it "should use the vendor's market_id to return that vendor's market" do
-  #     @markets.each do |i|
-  #       i.market_id.must_equal(2)
-  #     end
-  #   end
-  #
-  # end
-
+  end
 
   describe "#products" do
     it "should return an Array" do
@@ -78,7 +74,7 @@ describe FarMar::Vendor do
     end
 
     it "should return an array of products based on the vendor_id" do
-      products = FarMar::Product.by_market(2)
+      products = FarMar::Product.by_vendor(2)
 
       products.each do |i|
         i.vendor_id.must_equal(2)
