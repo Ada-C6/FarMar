@@ -36,9 +36,9 @@ describe FarMar::Product do
   end
 
   describe "self.all" do
-    before (:each) do
-      @bread = FarMar::Product.new(11, "gigantic bread", 6)
-    end
+    # before (:each) do
+    #   @bread = FarMar::Product.new(11, "gigantic bread", 6)
+    # end
 
     it "should return an array" do
       FarMar::Product.all.must_be_kind_of(Array)
@@ -58,35 +58,22 @@ describe FarMar::Product do
   end
 
   describe "self.find" do
-    before (:each) do
-
-    end
+    # before (:each) do
+    #   @pretzel = FarMar::Product.new(15, "comfortable pretzel", 8)
+    # end
 
     it "should return a FarMar::Product instance" do
-
+      FarMar::Product.find(15).must_be_kind_of(FarMar::Product)
     end
 
     it "should return an instance whose id matches that of the id passed into the the parameter" do
-
+      FarMar::Product.find(15).id.must_equal(15)
     end
 
-    it "should be invoked with a fixnum passed into the parameter" do
-      
+    it "should raise an error if id parameter is not a fixnum" do
+      proc { FarMar::Product.find("15") }.must_raise(ArgumentError)
     end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end
