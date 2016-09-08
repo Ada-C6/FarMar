@@ -38,7 +38,7 @@ describe FarMar::Vendor do
   end
   describe "#products" do
     it "can return products associated by the vendor ID " do
-      puts "#{sam.products}"
+
       sam.products.each do |x|
         x.vend_id.must_equal(19)
       end
@@ -51,11 +51,14 @@ describe FarMar::Vendor do
     end
     describe "#revenue" do
       it "returns a Fixnum" do
-    
+
         sam.revenue.must_be_kind_of(Fixnum)
       end
       it "won't be zero" do
         sam.revenue.wont_equal(0)
+      end
+      it "it will return the revenue in cents based on vendor" do
+        sam.revenue.must_equal(25722)
       end
     end
   end
