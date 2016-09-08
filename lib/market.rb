@@ -37,6 +37,6 @@ class FarMar::Market
     end
 
     def vendors
-        return FarMar::Vendor::by_market(id)
+        return FarMar::Vendor::by_market(@id)
     end
 end

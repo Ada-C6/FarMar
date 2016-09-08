@@ -9,6 +9,19 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
+##TEST #13... FarMar::Vendor.products
+# v = FarMar::Vendor.all.last
+# puts v.products.to_s
+# print "I expect the two vendor id's below to be:"
+# puts FarMar::Vendor.all.last.id
+# puts ""
+# puts v.products.first.vendor_id
+# puts v.products.last.vendor_id
+# puts "Awesome!"
+
+
+
+
 ##TEST #12... FarMar::Vendor.market
 # v = FarMar::Vendor.all.last
 # print "I expect the market id below to be:"
