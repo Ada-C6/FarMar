@@ -35,10 +35,9 @@ module FarMar
       return sales
     end
     def self.find(id)
+      # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
       #this is going to call self.all, and then find the one with key of id
       all[id]
     end
   end
 end
-
-# self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
