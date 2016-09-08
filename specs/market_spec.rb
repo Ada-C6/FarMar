@@ -36,6 +36,7 @@ describe FarMar::Market do
     it "can find a specific market by ID" do
       FarMar::Market.find(10).name.must_equal("Saratoga Farmers' Market")
     end
+
   end
 
   describe "#vendors" do
@@ -47,5 +48,6 @@ describe FarMar::Market do
     it "contains information about the market" do
       another_market.vendors[0].name.must_equal("Sipes Group")
     end
+
   end
 end

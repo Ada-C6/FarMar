@@ -22,6 +22,7 @@ describe FarMar::Sale do
   end
 
   describe "self.all" do
+
     it "must return an array" do
       FarMar::Sale.all.must_be_instance_of(Array)
     end
@@ -37,29 +38,34 @@ describe FarMar::Sale do
   end
 
   describe "self.find" do
+
     it "returns a Sale instance" do
       FarMar::Sale.find(14).must_be_instance_of(FarMar::Sale)
     end
+
   end
 
   describe "#vendor" do
+
     new_sale = FarMar::Sale.new({vendor_id: 4})
     it "returns the vendor given by sale's vendor id" do
       new_sale.vendor.id.must_equal 4
       new_sale.vendor.must_be_instance_of FarMar::Vendor
-
     end
   end
 
   describe "#product" do
+
     new_sale = FarMar::Sale.new({product_id: 4})
     it "returns the product given by sale's product id" do
       new_sale.product.id.must_equal 4
       new_sale.product.must_be_instance_of FarMar::Product
     end
+
   end
 
   describe "self.between" do
+
     it "must return an Array of Sales" do
       start_time = DateTime.new(2013, 11, 01, 0, 0, 0, "-8")
       end_time = DateTime.new(2013, 11, 30, 23, 59, 59, "-8")
@@ -67,5 +73,6 @@ describe FarMar::Sale do
       FarMar::Sale.between(start_time, end_time).must_be_instance_of Array
       FarMar::Sale.between(start_time, end_time)[0].must_respond_to(:purchase_time)
     end
+    
   end
 end
