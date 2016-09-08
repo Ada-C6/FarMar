@@ -37,5 +37,16 @@ module FarMar
 			market = FarMar::Market.find(market_id)
 			return market
 		end
+
+		def products
+			product_list = []
+			all_products = FarMar::Product.all
+			all_products.each do |product|
+				if product.vendor_id == id
+					product_list << product
+				end
+			end
+			return product_list
+		end
 	end
 end
