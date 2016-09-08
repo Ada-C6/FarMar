@@ -36,7 +36,9 @@ module FarMar
       FarMar::Vendor.find(@vendor_id)
     end
 
-
+    def product
+      FarMar::Product.find(@product_id)
+    end
 
   end
 end

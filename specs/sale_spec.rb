@@ -50,4 +50,14 @@ describe FarMar::Sale do
 
     end
   end
+
+  describe "#product" do
+    new_sale = FarMar::Sale.new({product_id: 4})
+    it "returns the product given by sale's product id" do
+      new_sale.product.id.must_equal 4
+      new_sale.product.must_be_instance_of FarMar::Product
+    end
+
+
+  end
 end
