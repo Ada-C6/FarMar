@@ -43,9 +43,13 @@ module FarMar
       all.values.group_by { |product| product.vendor_id }[vendor_id]
       #I don't like that these things are called the same thing -- I have an instance variable @vendor_id for a product instance, and the argument vendor_id that is getting passed in. Seems to be working though.
     end
+
+    def sales
+      #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+      Sale.all.values.group_by {|sale| sale.product_id}[@product_id]
+    end
   end
 end
 
 
-#sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
 #number_of_sales: returns the number of times this product has been sold.

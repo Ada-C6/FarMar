@@ -3,6 +3,8 @@ require_relative 'spec_helper' #get all the stuff we need for testing.
 module FarMar
   describe Product do
     let(:pro_deal) {Product.new(1, "product", 123)}
+    let(:carrot) {Product.new(41,"Thundering Carrots",15)}
+
     describe "#initialize" do
       it "should make a new instance of product" do
         #write test to check that a new product instance was created.
@@ -40,7 +42,6 @@ module FarMar
     describe "#vendor" do
       #vendor: returns the FarMar::Vendor instance that is associated with this product using the FarMar::Product vendor_id field - this will work LIKE the vendor.market method.
       # 41,Thundering Carrots,15
-      let(:carrot) {Product.new(41,"Thundering Carrots",15)}
       it "should return the vendor that is associated with the vendor_id" do
         carrot.vendor.id.must_equal(15)
       end
@@ -57,6 +58,19 @@ module FarMar
 
       it "should be an array of Products" do
         Product.by_vendor(1)[0].must_be_instance_of(Product)
+      end
+    end
+    describe "#sales" do
+      #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+      it "should return an Array" do
+        # going to collect sales (using Sale.all), group by sale.product_id, grab only the array from this instance's product_id.
+        carrot.sales.must_be_instance_of(Array)
+      end
+      it "should return an array of Sales" do
+        carrot.sales[0].must_be_instance_of(Sale)
+      end
+      it "should return sales whose product_id is the same as this product_id" do
+        carrot.sales[0].product_id.must_equal(carrot.product_id)
       end
     end
   end
