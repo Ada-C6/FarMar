@@ -32,6 +32,19 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#self.between" do
+
+    it "should return an array" do
+      FarMar::Sale.between("2013-11-07 04:34:56 -0800","2013-11-10 02:44:56 -0800").must_be_kind_of Hash
+    end
+
+    it "should return something of an instance of Sale" do
+      between_test = FarMar::Sale.between("2013-11-07 04:34:56 -0800","2013-11-10 02:44:56 -0800")
+
+      between_test.values.first.must_be_instance_of FarMar::Sale
+    end
+  end
+
   describe "#vendor" do
     it "should return an instance of vendor" do
       @sale.vendor.must_be_instance_of FarMar::Vendor
@@ -46,5 +59,17 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#product" do
+    it "should return an instance of Product" do
+      @sale.product.must_be_instance_of FarMar::Product
+    end
 
+    it "should return only one instance, not a collection" do
+      @sale.product.wont_be_kind_of Hash, Array
+    end
+
+    it "should return a product_id of 1 with a sale_id of 1" do
+      @sale.product.id.must_equal 1
+    end
+  end
 end

@@ -30,9 +30,20 @@ module FarMar
       end
     end
 
+    def self.between(beginning_time, end_time)
+      all.delete_if do |k, v|
+        v.purchase_time >= beginning_time && v.purchase_time <= end_time
+      end
+    end
+
     def vendor
       all_vendors = FarMar::Vendor.all
       return all_vendors[@id]
+    end
+
+    def product
+      all_products = FarMar::Product.all
+      return all_products[@id]
     end
   end
 end
