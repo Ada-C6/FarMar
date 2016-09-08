@@ -17,7 +17,7 @@ class FarMar::Product
             new_product_info_hash = {
                 product_id: line[0].to_i,
                 name: line[1],
-                vendor_id: line[2]
+                vendor_id: line[2].to_i
             }
 
             all_products[line[0].to_i] = self.new(new_product_info_hash)
