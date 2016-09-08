@@ -22,7 +22,7 @@ module FarMar
         vendor_hash[:vendor_id] = vendor[0].to_i
         vendor_hash[:vendor_name] = vendor[1].to_s
         vendor_hash[:num_employees] = vendor[2].to_i
-        vendor_hash[:vendor_id] = vendor[3].to_i
+        vendor_hash[:market_id] = vendor[3].to_i
         vendor_array << self.new(vendor_hash)
       end
       return vendor_array
@@ -39,7 +39,8 @@ module FarMar
     end
 
     def market
-      return FarMar::Vendor.by_market(@market_id)
+      associated_market = FarMar::Market.find(@market_id)
+      return associated_market.market_name
     end
 
     def products
@@ -81,8 +82,17 @@ module FarMar
     end
 
     def self.by_market(market_id)
-      associated_market = FarMar::Market.find(market_id)
-      return associated_market.market_name
+      all_vendors = all
+      associated_vendors = []
+
+      all_vendors.each do |vendor|
+
+        if vendor.market_id == market_id
+          associated_vendors.push(vendor)
+        end
+      end
+      return associated_vendors
     end
+
   end
 end

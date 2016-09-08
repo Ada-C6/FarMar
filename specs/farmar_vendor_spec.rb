@@ -30,7 +30,7 @@ describe FarMar::Vendor do
   end
 
   describe "#market" do
-    it "should use Vendor's self.by_market(market_id) method to return the FarMar::Market's instance associated with the vendor_id" do
+    it "should use Vendor's self.by_market(market_id) method to return the FarMar::Market instance associated with the vendor_id" do
       vendor.market.must_equal("People\'s Co-op Farmers Market")
     end
 
@@ -60,7 +60,8 @@ describe FarMar::Vendor do
 
   describe "by_market(market_id)" do
     it "should return all of the vendors with a given market_id" do
-      vendor.market.must_equal("People\'s Co-op Farmers Market")
+      FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", num_employees: 8, market_id: 1})
+      FarMar::Vendor.by_market(1).length.must_equal(6)
     end
   end
 
