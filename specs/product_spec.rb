@@ -44,4 +44,43 @@ describe "FarMar::Product" do
         end
     end # self.by_vendor
 
+    describe "instance methods" do
+        before(:all) do
+                # Make a new product instance from a single line of products.csv
+                test_product_info_hash = {
+                    product_id: 7818,
+                    name: "Purple Beets",
+                    vendor_id: 2566
+                }
+                @test_product = FarMar::Product.new(test_product_info_hash)
+
+                @test_vendor = @test_product.vendor
+                @test_sales = @test_product.sales
+        end # before(:each)
+
+        describe "#vendor" do
+            it "should return a FarMar::Vendor instance with the correct vendor_id" do
+                @test_vendor.must_be_instance_of(FarMar::Vendor)
+                @test_vendor.vendor_id.must_equal(2566)
+            end
+        end #vendor
+
+        describe "#sales" do
+            it "should return an array of FarMar::Sale instances" do
+                @test_sales.must_be_instance_of(Array)
+                @test_sales[rand(0..@test_sales.length-1)].must_be_instance_of(FarMar::Sale)
+            end
+
+            it "should return the FarMar::Sale instances with the correct product_id" do
+                @test_sales[rand(0..@test_sales.length-1)].product_id.must_equal(7818)
+            end
+        end #sales
+
+
+        describe "#number_of_sales" do
+            it "should return the correct quantity of product sales" do
+                @test_product.number_of_sales.must_equal(3)
+            end
+        end #number_of_sales
+    end # instance methods before(:each) block
 end # FarMar::Product
