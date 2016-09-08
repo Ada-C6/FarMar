@@ -67,29 +67,52 @@ module FarMar
       end
 
     describe "#products" do
-      before(:each) do
-        @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
-      end
+      # before(:each) do
+      #   @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
+      # end
       it "should return a collection of Product instances associated to specific vendor" do
-        @vendor.products.each do |product_id, product|
-          puts "#{vendor.market_id} is this market id" #this is not puts-ing?!
-          product.vendor_id.must_equal(@vendor.id)
+        all_vendors = Vendor.all
+        random_vendor_id = rand(1..2690)
+        random_vendor = all_vendors[random_vendor_id]
+        random_vendor.products.each do |product_id, product|
+          product.vendor_id.must_equal(random_vendor_id)
+        end
+        # @vendor.products.each do |product_id, product|
+        #   puts "#{vendor.market_id} is this market id" #this is not puts-ing?!
+        #   product.vendor_id.must_equal(@vendor.id)
+        # end
+      end
+    end
+
+    describe "#sales" do
+      it "should return the sales associated to the instance of Vendor" do
+        all_vendors = Vendor.all
+        random_vendor_id = rand(1..2690)
+        random_vendor = all_vendors[random_vendor_id]
+        random_vendor.sales.each do |sale_id, sale|
+          sale.vendor_id.must_equal(random_vendor_id)
         end
       end
     end
 
-    # describe "#sales" do
-    #   before(:each) do
-    #     @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
-    #   end
-    #   it "should return a collection of Sale instances that are associated to a specific vendor" do
-    #     @vendor.sales.each do |sale_id, sale|
-    #       sale.vendor_id.must_equal(@vendor.id)
-    #     end
-    #   end
-    # 
-    # end
+    describe "#revenue" do
+      # Here it seems to use the same code for the test and the method.
+      it "returns the sum of all of the vendor's sales (in cents)" do
+        random_vendor_id = rand(1..2690)
+        random_vendor = Vendor.all[random_vendor_id]
+        vendor_revenue = 0
+        random_vendor.sales.each do |sale_id, sale|
+          vendor_revenue += (sale.amount * 100) # back to cents
+        end
+        random_vendor.revenue.must_equal(vendor_revenue)
+      end
+      # Here is the specific vendor revenue for vendor 1: 38259
+      it "returns the sum of all of the vendor's sales (in cents)" do
+        all_vendors = Vendor.all
+        all_vendors[1].revenue.must_equal(38259)
+      end
 
+    end
 
 
   end

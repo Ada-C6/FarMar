@@ -56,13 +56,14 @@ module FarMar
         all_markets = Market.all
         random_market_id = rand(1..500)
         random_market = all_markets[random_market_id]
-        random_market.vendors(random_market_id).each do |vendor_id, vendor|
+        random_market.vendors.each do |vendor_id, vendor|
           vendor.market_id.must_equal(random_market_id)
         end
       end
-
-
     end #vendors
+
+
+
 
   end #market
 

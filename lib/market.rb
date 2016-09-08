@@ -27,15 +27,15 @@ module FarMar
       return markets[id]
     end
 
-    def vendors(id)
+    def vendors
       market_vendors = {}
       Vendor.all.each do |vendor_id, vendor|
-        if vendor.market_id == id
+        if vendor.market_id == id # id is attr_reader id, no need for argument
           market_vendors[vendor_id] = vendor
         end
       end #each
       return market_vendors
-
     end
+
   end #class
 end #module

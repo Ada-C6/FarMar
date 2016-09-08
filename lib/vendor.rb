@@ -29,23 +29,33 @@ module FarMar
 
     def products
       vendor_products = {}
-      Product.all.each { |product_id, product|
-        if product.vendor_id == id
+      Product.all.each do |product_id, product|
+        if product.vendor_id == id # finding id because it is an attr_reader
           vendor_products[product_id] = product # creates a hash of products carried by specific vendor
         end
-      }
+      end
       return vendor_products
     end
 
-# #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
-  # def sales
-  #   vendor_sales = {}
-  #   Sale.all.each do |sale_id, sale|
-  #     if sale.vendor_id == id
-  #       vendor_sales[sale_id] = sale
-  #     end
-  #   end
-  # end
+#sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+  def sales
+    vendor_sales = {}
+    Sale.all.each do |sale_id, sale|
+      if sale.vendor_id == id
+        vendor_sales[sale_id] = sale
+      end
+    end #each
+    return vendor_sales
+  end #def
+
+  def revenue
+    revenue = 0
+    sales.each do |sale_id, sale|
+       revenue += (sale.amount * 100)
+    end
+    return revenue
+  end
+
 
   end
 
