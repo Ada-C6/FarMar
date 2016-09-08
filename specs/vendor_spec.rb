@@ -25,16 +25,25 @@ module FarMar
       end
     end #end self.find method
 
-    describe "products"
+    # describe "products"
 
     describe "#market" do
       let(:vendors) { Vendor.all }
-      it "should return the market hash that the vendor is a part of, using the vendor's market id" do
+      it "should return the market instance that the vendor is a part of, using the vendor's market id" do
         cat_vendor = FarMar::Vendor.find(2)
-        cat_vendor.markets.market_id.must_equal(1)
-        # Maybe try "Toy and Sons"
-      end #this is not a good test
+        cat_vendor.market.id.must_equal(1)
+
+      end #is this a good test?
     end
+
+    describe "self.by_market(id)" do
+      it "should return a list of vendors related to the passed market_id" do
+        all = FarMar::Vendor.by_market(1)
+        all.length.must_equal(6)
+
+      end #end test block
+
+    end #end describe self.by_market
 
   end #end vendor
 

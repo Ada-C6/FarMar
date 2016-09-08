@@ -8,7 +8,7 @@ module FarMar
   #
   # end
   def initialize(id, name, address, city, county, state, zip)
-      @id = id
+      @id = id.to_i
       @name = name
       @address= address
       @city = city
@@ -43,18 +43,16 @@ module FarMar
       # end
   end
 
-  #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
-
   def vendors
-    all_vendors = FarMar::Vendor.all
-
-    all_vendors.each do |vendor, value|
-      if  @id == value.market_id
-         @vendors_at_market << value
-      end
-     end
-     return @vendors_at_market
-
+    # all_vendors = FarMar::Vendor.all
+    #
+    # all_vendors.each do |vendor, value|
+    #   if  @id == value.market_id
+    #      @vendors_at_market << value
+    #   end
+    #  end
+    #  return @vendors_at_market
+    FarMar::Vendor.by_market(@id)
   end #end vendors method
 
 

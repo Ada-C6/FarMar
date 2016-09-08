@@ -6,8 +6,10 @@ require_relative 'lib/Sale'
 require_relative 'lib/Vendor'
 
 
-puts "vendor: #{cat_vendor = FarMar::Vendor.find(2)}"
-puts "markets #{cat_vendor.markets}"
+# puts "vendor: #{cat_vendor = FarMar::Vendor.find(2)}"
+# puts "markets #{cat_vendor.markets}"
+
+
 
 end
 

@@ -4,11 +4,11 @@ module FarMar
     attr_reader :id, :name, :num_employees, :market_id
 
     def initialize(id, name, num_employees, market_id)
-      @id = id
+      @id = id.to_i
       @name = name.to_s
-      @num_employees = num_employees
-      @market_id = market_id
-      @vendors_markets = []
+      @num_employees = num_employees.to_i
+      @market_id = market_id.to_i
+
 
     end
 
@@ -26,33 +26,37 @@ module FarMar
 
     def self.find(id)
       return self.all[id]
-      # self.all.each do |vendor|
-      #   if vendor.id == id
-      #     return vendor
-      #   end
-      # end
     end
 
-    # def market #is this method returning information about a particular market, or all the markets one vendor is a part of?
-    # #calling the FarMar::VEndor market id, you should be able to return the market
-    def markets
+
+    def market
     all_markets = FarMar::Market.all
 
     all_markets.each do |market, value|
       if  @market_id == value.id
-         @vendors_markets << value
+         return value
       end
      end
-     return @vendors_markets
     end
-    # # this method will return the instance of Market that field the vendor is a part of
-    # # returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id
-    # end
+
 
     # def products :return a list of products associated with the vendor
     # end
 
+    def self.by_market(a_market_id)
+      all_vendors = self.all #returns hash of all vendors
+      #returns a list of vendors associated with the market id
+      vendors_list = []
+      all_vendors.each do |vendor_key, vendor_value|
+        if  vendor_value.market_id == a_market_id
+          puts vendor_value.market_id
+          puts vendor_value
+          vendors_list << vendor_value
+        end
+      end
+      return vendors_list
 
+    end
 
   end #end class
 end #end module
