@@ -30,7 +30,7 @@ describe FarMar::Vendor do
   end
 
   describe "#market" do
-    it "should return the Market instance associated with this vendor's market_id" do
+    it "should use Vendor's self.by_market(market_id) method to return the FarMar::Market's instance associated with the vendor_id" do
       vendor.market.must_equal("People\'s Co-op Farmers Market")
     end
 
@@ -55,6 +55,12 @@ describe FarMar::Vendor do
   describe "#revenue" do
     it "should return the sum of all the vendor's sales (in cents)" do
       vendor.revenue.must_equal(38259)
+    end
+  end
+
+  describe "by_market(market_id)" do
+    it "should return all of the vendors with a given market_id" do
+      vendor.market.must_equal("People\'s Co-op Farmers Market")
     end
   end
 

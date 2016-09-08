@@ -39,8 +39,7 @@ module FarMar
     end
 
     def market
-      associated_market = FarMar::Market.find(@market_id)
-      return associated_market.market_name
+      return FarMar::Vendor.by_market(@market_id)
     end
 
     def products
@@ -79,7 +78,11 @@ module FarMar
         end
       end
       return associated_sales.reduce(:+)
+    end
 
+    def self.by_market(market_id)
+      associated_market = FarMar::Market.find(market_id)
+      return associated_market.market_name
     end
   end
 end
