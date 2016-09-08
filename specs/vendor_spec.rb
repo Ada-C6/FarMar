@@ -29,7 +29,7 @@ describe FarMar::Vendor do
       sam.market.must_be_instance_of(FarMar::Market)
     end
     it "will return an array of the market" do
-      puts "#{sam.market}"
+
       sam.market.must_be_kind_of(Object)
     end
     it "will return the market that matches the market ID" do
