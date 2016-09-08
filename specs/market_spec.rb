@@ -3,16 +3,8 @@ module FarMar
   describe Market do
 
     describe "#initialize" do
-      my_hash = {
-        id:  112,
-        name: "Ada",
-        address: "213 fire lane",
-        city: "jacksonville",
-        county: "duval",
-        state: "FL",
-        zip: "23454"
-      }
-      let(:market) { Market.new(my_hash) }
+
+      let(:market) { Market.new(112, "ada", "213d", "jax","duval", "Fl", 23332) }
 
       it "should create an instance of Market" do
         market.must_be_instance_of(Market)
@@ -23,7 +15,7 @@ module FarMar
       let(:markets) { Market.all }
       it "should create an array of instances of markets through the CSV file" do
 
-       Market.all.must_be_kind_of(Array)
+       Market.all.must_be_kind_of(Hash)
       end
 
     describe "self.find(id)" do
@@ -36,7 +28,13 @@ module FarMar
       end
     end #end self.find method
 
-    # describe "vendors" do
+     describe "#vendors" do
+      it "should return a collection of vendors with the same market id" do
+       foots_market = FarMar::Market.find(20)
+       foots_market.vendors.length.must_equal(7)
+
+      end
+     end
 
     end
   end

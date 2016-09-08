@@ -18,7 +18,7 @@ module FarMar
         let(:vendors) { Vendor.all }
         it "should create an array of instances of markets through the CSV file" do
 
-         Vendor.all.must_be_kind_of(Array)
+         Vendor.all.must_be_kind_of(Hash)
         end
     end #end self.all
 
