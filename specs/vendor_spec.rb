@@ -30,4 +30,22 @@ describe "FarMar::Vendor" do
         end #
     end # self.find
 
+    describe "self.by_market(market_id)" do
+        it "should raise an ArgumentError if not passed a Fixnum argument" do
+            proc { FarMar::Vendor.by_market("cats") }.must_raise(ArgumentError)
+        end
+
+        it "should return an array of FarMar::Vendor instances" do
+            by_market_vendors = FarMar::Vendor.by_market(rand(0..500)) #vendors.csv contains 500 markets
+            by_market_vendors.must_be_instance_of(Array)
+            by_market_vendors[rand(0..by_market_vendors.length-1)].must_be_instance_of(FarMar::Vendor)
+        end
+
+        it "should return FarMar::Vendor instances with market_id matching the argument" do
+            rand_id = rand(0..500)
+            rand_vendors = FarMar::Vendor.by_market(rand_id)
+            rand_vendors[rand(0..rand_vendors.length-1)].market_id.must_equal(rand_id)
+        end
+    end # self.by_market
+
 end # FarMar::Vendor

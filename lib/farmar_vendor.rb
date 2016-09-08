@@ -35,4 +35,11 @@ class FarMar::Vendor
         return self.all[vendor_id]
     end # self.find
 
+    # self.by_market(market_id): returns all of the vendors with the given market_id
+    def self.by_market(market_id)
+        raise ArgumentError, "Expected a Fixnum market_id" if market_id.class != Fixnum
+
+        return self.all.values.select { |vendor| vendor.market_id == market_id }
+    end
+
 end # FarMar::Vendor
