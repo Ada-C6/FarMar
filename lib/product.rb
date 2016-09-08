@@ -30,5 +30,19 @@ module FarMar
       all_vendors = FarMar::Vendor.all
       return all_vendors[@id]
     end
+
+    def sales
+      all_sales = FarMar::Sale.all
+
+      all_sales.delete_if do |k, v|
+        v.product_id != @id
+      end
+
+      return all_sales
+    end
+
+    def number_of_sales
+      return sales.length
+    end
   end
 end

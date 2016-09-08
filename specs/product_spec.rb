@@ -42,4 +42,23 @@ describe FarMar::Product do
     end
   end
 
+  describe "#sales" do
+    it "should return a hash" do
+      @product.sales.must_be_kind_of Hash
+    end
+
+    it "should return a hash with length of 7 for product ID of 1" do
+      @product.sales.length.must_equal 7
+    end
+  end
+
+  describe "#number_of_sales" do
+    it "should return a single fixnum" do
+      @product.number_of_sales.must_be_kind_of Fixnum
+    end
+
+    it "should return 7 for amount of product id 1s sold" do
+      @product.number_of_sales.must_equal 7
+    end
+  end
 end
