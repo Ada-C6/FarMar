@@ -16,6 +16,7 @@ module FarMar
       @zip = market_hash["zip"]
     end
 
+    # Reads the CSV file to generate an array of market hashes
     def self.all
       markets = []
       CSV.read("./support/markets.csv").each do |line|
@@ -32,6 +33,8 @@ module FarMar
       return markets
     end
 
+    # Goes through the generated market array to find markets with a
+    # specified market_id and prints information about them
     def self.find(input)
       markets = self.all
       markets.each do |var|
@@ -46,9 +49,10 @@ module FarMar
       return "Market ID #{ @market_id } is named #{ @name } and is located at #{ @address }, #{ @city }, #{ @state } #{ @zip }, in #{ @county } county."
     end
 
+    # Returns an array of vendors that are associated with a
+    # market according to its market_id
     def vendors
       return FarMar::Vendor.by_market(market_id)
     end
-
   end
 end

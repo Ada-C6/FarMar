@@ -3,12 +3,10 @@ require_relative '../lib/vendor'
 
 describe FarMar::Vendor do
   describe "#initialize" do
-
     it "can create a new instance of Vendor" do
       vendor_hash = FarMar::Vendor.new("vendor_hash")
       vendor_hash.must_be_instance_of(FarMar::Vendor)
     end
-
   end
 
   describe "self.all" do
@@ -17,7 +15,6 @@ describe FarMar::Vendor do
     it "should return an Array" do
       vendors.must_be_kind_of(Array)
     end
-
   end
 
   describe "self.find(input)" do
@@ -30,7 +27,6 @@ describe FarMar::Vendor do
     it "should return a product based on vendor_id input" do
       vendors.vendor_id.must_equal(2)
     end
-
   end
 
   describe "self.by_market(market_id)" do
@@ -55,7 +51,7 @@ describe FarMar::Vendor do
     end
 
     # The thing to the left of the dot is what is being acted upon by the method
-    # to the right of the dot; in this case, passing in only one instance, as
+    # to the right of the dot; in this case, it's passing in only one instance, as
     # defined in before/end
     it "should return an instance of Market" do
       @vendors.market.must_be_instance_of(FarMar::Market)
@@ -64,7 +60,6 @@ describe FarMar::Vendor do
     it "should use the vendor's market_id to return that vendor's market" do
       @vendors.market.market_id.must_equal(2)
     end
-
   end
 
   describe "#products" do
