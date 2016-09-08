@@ -32,12 +32,19 @@ module FarMar
      end
    end #end vendor spec
 
-  #  describe "#sales" do
-  #    let
-  #    it "should return a collection of sales instances for the specific product" do
-   #
-  #    end
-  #  end #end sales spec
+   describe "#sales" do
+     let(:products) { Product.find(4) } #the product with an id of 4 has 8 sales
+     it "should return a collection of sales instances for the specific product" do
+      #  puts products.sales
+       products.sales.must_be_instance_of(Array)
+       #need to find a partular prodcut
+       #return the sales related to that product
+     end
+     it "should return the exact number of sales related to that product" do
+      #  puts products.sales.length
+       products.sales.length.must_equal(8)
+     end
+   end #end sales spec
 
 
  end #end Product

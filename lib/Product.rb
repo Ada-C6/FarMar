@@ -35,8 +35,20 @@ module FarMar
           return vendor_values
         end
       end
-
     end
+
+    def sales
+      #get all sales
+      #find and pull out the sales that share the same product id
+      all_sales = FarMar::Sale.all
+      product_sales = []
+      all_sales.each do |sale_key, sale_values|
+        if @id == sale_values.product_id
+          product_sales << sale_key
+        end
+      end
+      return product_sales 
+    end #end sales method
 
   end #end class
 end #end module
