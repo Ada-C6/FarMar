@@ -21,9 +21,9 @@ module FarMar
       list_of_markets
     end
 
-    def self.find(this_id)
+    def self.find(market_id)
       Market.all.each do |m|
-        if this_id == m.id
+        if market_id == m.id
           return m
         end
       end

@@ -17,5 +17,14 @@ module FarMar
       end
       list_of_sales
     end
+
+    def self.find(sale_id)
+      Sale.all.each do |s|
+        if sale_id == s.id
+          return s
+        end
+      end
+      return "That does not match an existing sale IDs"
+    end
   end
 end

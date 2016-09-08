@@ -16,5 +16,14 @@ module FarMar
       end
       list_of_vendors
     end
+
+    def self.find(vendor_id)
+      Vendor.all.each do |v|
+        if vendor_id == v.id
+          return v
+        end
+      end
+      return "That is not an existing vendor ID"
+    end
   end
 end

@@ -11,8 +11,14 @@ describe FarMar::Market do
 
   describe "all" do
     it "returns all instances of Market" do
-      FarMar::Market.all.must_include(@id=1, @name="People's Co-op Farmers Market", @address="30th and Burnside", @city="Portland", @county="Multnomah", @state="Oregon", @zip="Oregon")
+      FarMar::Market.all.length.must_equal(500)
     end
+  end
 
+  describe "find" do
+    it "returns the instance of Market whose market id matches the argument's market id" do
+      this_market = FarMar::Market.find(20)
+      this_market.name.must_equal("Scottdale Farmers Market")
+    end
   end
 end

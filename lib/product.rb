@@ -15,5 +15,15 @@ module FarMar
       end
       list_of_products
     end
+
+    def self.find(product_id)
+      Product.all.each do |p|
+        if product_id == p.id
+          return p
+        end
+      end
+      return "That is not an existing product ID"
+    end
+
   end
 end
