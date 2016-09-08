@@ -1,6 +1,7 @@
 require_relative 'spec_helper'
 
 describe FarMar::Market do
+
   describe "#initialize" do
 
     it "should create an instance of Market" do
@@ -29,7 +30,7 @@ describe FarMar::Market do
     end
   end
 
-  describe "vendors" do
+  describe "#vendors" do
     it "should return all vendor instances associated with the market's id" do
       west_seattle = FarMar::Market.find(5)
       west_seattle.vendors.length.must_equal(2)
