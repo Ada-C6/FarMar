@@ -21,9 +21,7 @@ module FarMar
     end
 
     def self.find(num)
-      self.all.find do |product|
-        product.id == num
-      end
+      self.all.find {|product| product.id == num}
     end
 
     def self.by_vendor(vendor_id)
