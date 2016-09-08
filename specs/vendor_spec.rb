@@ -18,6 +18,10 @@ describe "FarMar::Vendor" do
     end # self.all
 
     describe "self.find(id)" do
+        it "should raise an ArgumentError if not passed a Fixnum argument" do
+            proc { FarMar::Vendor.find("cats") }.must_raise(ArgumentError)
+        end
+
         it "should return a FarMar::Vendor object with data that corresponds to the id argument passed in" do
             found_vendor = FarMar::Vendor.find(2468)
             found_vendor.must_be_instance_of(FarMar::Vendor)

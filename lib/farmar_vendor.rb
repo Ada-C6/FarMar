@@ -19,8 +19,8 @@ class FarMar::Vendor
             new_vendor_info_hash = {
                 vendor_id: line[0].to_i,
                 name: line[1],
-                employees: line[2],
-                market_id: line[3]
+                employees: line[2].to_i,
+                market_id: line[3].to_i
             }
 
             all_vendors[line[0].to_i] = self.new(new_vendor_info_hash)
@@ -30,6 +30,8 @@ class FarMar::Vendor
     end # self.all
 
     def self.find(vendor_id)
+        raise ArgumentError, "Expected a Fixnum vendor_id" if vendor_id.class != Fixnum
+
         return self.all[vendor_id]
     end # self.find
 
