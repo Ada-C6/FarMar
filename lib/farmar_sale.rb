@@ -1,3 +1,4 @@
+
 class FarMar::Sale
   attr_reader :id, :amount, :purch_time, :vend_id, :prod_id
   def initialize(id, amount, purch_time, vend, prod)
@@ -37,5 +38,13 @@ class FarMar::Sale
   end
   def product
     FarMar::Product.find(@prod_id)
+  end
+  def self.between(begin_time, end_time)
+    start = Chronic.parse(begin_time)
+    fin = Chronic.parse(end_time)
+    all.drop_while do |i|
+      time = Chronic.parse(i.purch_time)
+      time >= start && time <= fin
+    end
   end
 end
