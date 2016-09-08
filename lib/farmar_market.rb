@@ -101,6 +101,27 @@ class FarMar::Market
     # return the prefered vendor associate with the Sale object on that date
     return self.prefered_vendor_direct(vendors)
   end
-  # OPTIMZE vendors = sales.map{|sale| sale.vendor}, it takes 0m9.898s to test.
+    # OPTIMZE vendors = sales.map{|sale| sale.vendor}, it takes 0m9.898s to test.
+
+  def worst_vendor_direct(vendors)
+    # vendors => FarMar::Vendor.all can put this in method call
+    #return an array Vendor objects sorted by vendor revenue in accending order
+    revenues =  vendors.sort_by { |vendor| vendor.revenue }
+    # return the vendor that has the lowest revenue(the last element in the array)
+    return revenues.first
+  end
+
+  def worst_vendor(date)
+    # Assume the date will be given a string in "year-month-day" format
+    beginning_time = Date.parse(date).to_datetime.to_s
+    end_time = Date.parse(date).next.to_datetime.to_s
+    # return an array of Sale objects in the given date
+    sales = FarMar::Sale.between(beginning_time, end_time)
+    # return an array of Vendors associated with the Sale objects
+    vendors = sales.map{|sale| sale.vendor}
+    # return the prefered vendor associate with the Sale object on that date
+    return self.worst_vendor_direct(vendors)
+  end
+    # DRY the above two methods. They are repetitive of the prefered_vendor methods.
 
 end

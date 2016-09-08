@@ -38,5 +38,17 @@ describe FarMar::Market do
     expect( market.prefered_vendor("2013-11-07").id ).must_equal("2590")
   end
 
+  it "Input a market id '2' returns and return the vendor who has lowest revenue(worst vendor) of that market. Vendor id = 1160" do
+    market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
+    expect( market.worst_vendor_direct(FarMar::Vendor.all).id ).must_equal("1160")
+  end
+ #=> <FarMar::Vendor:0x007ff54c1d1480 @id="1160", @name="Maggio, Spencer and Bergstrom", @employees_num="9", @market_id="213">
+
+
+  it "Input a date '2013-11-07' returns and return Vendor who has highest revenue(prefered vendor) of that date. The vendor id is: 1470" do
+    market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
+    expect( market.worst_vendor("2013-11-07").id ).must_equal("1470")
+  end
+ #=> <FarMar::Vendor:0x007ff54d80f2d8 @id="1470", @name="Quitzon LLC", @employees_num="8", @market_id="271">
 
 end
