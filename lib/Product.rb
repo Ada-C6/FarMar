@@ -47,8 +47,15 @@ module FarMar
           product_sales << sale_key
         end
       end
-      return product_sales 
+      return product_sales
     end #end sales method
+
+    def number_of_sales
+      product_sales = self.sales
+      return product_sales.length
+    end
+
+    
 
   end #end class
 end #end module

@@ -40,11 +40,23 @@ module FarMar
        #need to find a partular prodcut
        #return the sales related to that product
      end
+
      it "should return the exact number of sales related to that product" do
       #  puts products.sales.length
        products.sales.length.must_equal(8)
      end
    end #end sales spec
+
+   describe "#number_of_sales" do
+     let(:products) { Product.find(4) }
+     it "should return a number of times the product has sold" do
+       products.number_of_sales.must_equal(8)
+     end
+   end
+
+   describe "self.by_vendor(vendor_id)" do
+     let 
+   end
 
 
  end #end Product
