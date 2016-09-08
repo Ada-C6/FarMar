@@ -48,7 +48,14 @@ module FarMar
     end
 
     def self.by_market(market_id) #returns an array of the vendors with the given market_id
+      #vendors_by_market =
       self.all.select { |v| v.market_id == market_id }
+
+      # if vendors_by_market.length != 4
+      #   raise ArgumentError.new("There are no vendors associated with this market")
+      # else
+      #   return vendors_by_market
+      # end
     end
   end
 end

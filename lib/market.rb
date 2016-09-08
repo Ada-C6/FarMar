@@ -41,14 +41,7 @@ module FarMar
     end
 
     def vendors #returns a collection of FarMar::Vendor instances that are associated with the market
-      #vendors = 
       FarMar::Vendor.by_market(@id)
-
-      # if vendors == nil
-      #   raise ArgumentError.new("There are no vendors associated with this market")
-      # else
-      #   return vendors
-      # end
     end
 
   end
