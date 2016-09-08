@@ -48,5 +48,16 @@ module FarMar
         carrot.vendor.must_be_instance_of(Vendor)
       end
     end
+    describe "self.by_vendor(vendor_id)" do
+      # self.by_vendor(vendor_id): returns all of the products with the given vendor_id (will call this in the Vendor #products method. )
+      # This is similar to self.by_market method in vendor.
+      it "should return an array" do
+        Product.by_vendor(1).must_be_instance_of(Array)
+      end
+
+      it "should be an array of Products" do
+        Product.by_vendor(1)[0].must_be_instance_of(Product)
+      end
+    end
   end
 end

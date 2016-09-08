@@ -37,10 +37,15 @@ module FarMar
       #vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field - this will work LIKE the vendor.market method.
       Vendor.find(@vendor_id)
     end
+
+    def self.by_vendor(vendor_id)
+      # self.by_vendor(vendor_id): returns all of the products with the given vendor_id (will call this in the Vendor #products method. )
+      all.values.group_by { |product| product.vendor_id }[vendor_id]
+      #I don't like that these things are called the same thing -- I have an instance variable @vendor_id for a product instance, and the argument vendor_id that is getting passed in. Seems to be working though.
+    end
   end
 end
 
 
 #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
 #number_of_sales: returns the number of times this product has been sold.
-# self.by_vendor(vendor_id): returns all of the products with the given vendor_id (will call this in the Vendor #products method. )
