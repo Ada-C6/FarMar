@@ -1,4 +1,4 @@
-# require_relative '../FarMar.rb'
+puts "Loading Market.rb"
 
 class FarMar::Market
 
@@ -18,3 +18,5 @@ class FarMar::Market
 end
 
 nada_whole_foods = FarMar::Market.new("All the whole fuds, half the check")
+
+puts "Done loading Market.rb"

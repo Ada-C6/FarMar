@@ -10,7 +10,9 @@ module FarMar; end
 #require 'lib/far_mar_market'
 
 # [] ...require all needed classes
+puts "Loading the project library."
 require './lib/Market.rb'
 require './lib/Product.rb'
 require './lib/Sale.rb'
 require './lib/Vendor.rb'
+puts "Done Loading library!"
