@@ -29,8 +29,7 @@ class Product
   end
 
   def vendor
-    v = Vendor.all.find { |n| n[1].id == @vendor_id}
-    return v[1]
+    Vendor.find(@vendor_id)
   end
 
   def sales
@@ -42,7 +41,6 @@ class Product
   def number_of_sales
     s = Sale.all
     sale_instances = s.find_all { |n| n[1].product_id == @id }
-
     return sale_instances.length
   end
 

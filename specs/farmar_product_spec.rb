@@ -1,5 +1,4 @@
 require_relative 'spec_helper'
-# require '../lib/farmar_product'
 
 describe Product do
   let all = Product.all

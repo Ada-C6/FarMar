@@ -1,5 +1,4 @@
 require_relative 'spec_helper'
-# require '../lib/farmar_market'
 
 describe Market do
 
@@ -36,5 +35,5 @@ describe Market do
       m.vendors.length.must_equal(10)
     end
   end
-  
+
 end
