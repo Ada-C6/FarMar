@@ -48,4 +48,20 @@ attr_reader :id, :name, :num_of_employees, :market_id
   def products
     Product.by_vendor(@id)
   end
+
+  def market
+    Market.find(@market_id)
+  end
+
+  def sales
+    Sale.all.find_all do |instance|
+      instance.vendor_id == @id
+    end
+  end
+
+
+
 end
+#market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
+#products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+#sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
