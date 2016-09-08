@@ -4,6 +4,7 @@ require 'csv'
 class Vendor
 attr_reader :id, :name, :num_of_employees, :market_id
 
+
   def initialize(vendor)
     @id = vendor[:id]
     @name = vendor[:name]
