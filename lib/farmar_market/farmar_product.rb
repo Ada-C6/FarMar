@@ -67,5 +67,9 @@ module FarMar
       return associated_sales
     end
 
+    def number_of_sales
+      return sales.length
+    end
+
   end
 end

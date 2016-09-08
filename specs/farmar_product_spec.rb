@@ -59,4 +59,10 @@ describe FarMar::Product do
     end
   end
 
+  describe "#number_of_sales" do
+    it "should return the number of times this product has been sold" do
+      product.number_of_sales.must_equal(7)
+    end
+  end
+
 end
