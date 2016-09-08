@@ -46,5 +46,13 @@ module FarMar
         end
       end
     end
+
+    describe "#sales" do
+      it "returns true if the returned instances of Sale are of the same product id" do
+        p = Product.find(2)
+        p.sales.count.must_equal(1)
+      end
+    end
+
   end
 end

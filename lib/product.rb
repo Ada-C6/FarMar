@@ -45,4 +45,10 @@ class Product
   def vendor
     Vendor.find(@vendor_id)
   end
+
+  def sales
+    Sale.all.find_all do |instance|
+      instance.vendor_id == @vendor_id
+    end
+  end
 end
