@@ -60,19 +60,6 @@ module FarMar
         end
       end
       return sales
-      # sales = []
-      # CSV.open('./support/sales.csv', 'r').each do |line|
-      #
-      #   if line[3].to_i == @id
-      #   sales << FarMar::Sale.new({id:line[0],
-      #   amount:line[1],
-      #   purchase_time:line[2],
-      #   vendor_id:line[3],
-      #   product_id:line[4]})
-      #   end
-      # end
-      # return sales
-
     end
 
   end
