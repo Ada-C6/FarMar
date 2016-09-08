@@ -20,6 +20,7 @@ module FarMar
         ven.name.must_equal("vendor name")
       end
     end
+
     describe "#self.all" do
       # self.all: returns a collection of instances, representing all of the objects described in the CSV
       it "should return a collection of Vendor objects" do
@@ -28,9 +29,11 @@ module FarMar
       end
       it "should contain a specific Vendor object, given the key" do
         Vendor.all.must_include(2)
+      end
     end
+
     describe "self.find(id)" do
-      # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+      # self.find(id): returns an instance of the object where the value of the id  field in the CSV matches the passed parameter.
       it "should return a vendor, given an id" do
         Vendor.find(2).must_be_instance_of(Vendor)
       end
@@ -40,8 +43,9 @@ module FarMar
         # 74,Haag-Padberg,3,17
       end
     end
+
     describe "#market" do
-      #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
+      #market: returns the FarMar::Market instance that is associated with this   vendor using the FarMar::Vendor market_id field
       let(:feil_f) {Vendor.new(1,"Feil-Farrell",8,1)}
       it "should return the market object that is associated with the market_id" do
         #this seems like it'll use Market.find ?
@@ -62,7 +66,27 @@ module FarMar
         Vendor.by_market(1)[0].must_be_instance_of(Vendor)
       end
     end
-  end
 
+    describe "#products" do
+      # Products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+      # This is going to call the Products.by_vendor(vendor_id) method!
+      let(:some_vendor) {Vendor.new(28,"Watsica and Sons",10,8)}
+      it "should return an array" do
+        some_vendor.products.must_be_instance_of(Array)
+        # I'm going to make it an array of Products.
+      end
+      it "should return an array of Product objects" do
+        # Check that the first item is a vendor.
+        skip
+        some_vendor.products[0].must_be_instance_of(Product)
+      end
+      it "the products returned should have a vendor_id that matches the vendor" do
+        # Checking that the objects returned have the same id as the vendor instance I'm working with.
+        # NOTE: It's not ACTUALLY the same object (same data, different object id), since I have created some_vendor here in the test.
+        # This will check using the Vendor method in Product.
+        skip
+        some_vendor.products[0].vendor_id.must_be_same_as(some_vendor.id)
+      end
+    end
   end
 end
