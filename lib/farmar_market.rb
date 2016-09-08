@@ -51,7 +51,6 @@ module FarMar
       # Call Vendor.all (returns a hash of vendors)
       # The Vaules of the Vendor.all hash is an array of Vendors, so want to group those on their market_id.
       # Then, want only the vendors that correspond to the market instance's id.
-      # TODO: This can be updated when I write the Vendor.by_market(market_id): returns all of the vendors with the given market_id - and I don't have to do Vendor.all. The code currently here will move to the Vendor class, and this method will call that method. Maybe I'll do that now.
     end
   end
 end

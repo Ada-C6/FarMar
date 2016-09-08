@@ -77,14 +77,12 @@ module FarMar
       end
       it "should return an array of Product objects" do
         # Check that the first item is a vendor.
-        skip
         some_vendor.products[0].must_be_instance_of(Product)
       end
       it "the products returned should have a vendor_id that matches the vendor" do
         # Checking that the objects returned have the same id as the vendor instance I'm working with.
         # NOTE: It's not ACTUALLY the same object (same data, different object id), since I have created some_vendor here in the test.
         # This will check using the Vendor method in Product.
-        skip
         some_vendor.products[0].vendor_id.must_be_same_as(some_vendor.id)
       end
     end
