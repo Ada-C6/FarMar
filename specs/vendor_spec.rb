@@ -89,7 +89,7 @@ module FarMar
     end
     describe "#sales" do
       #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
-      # for this vendor object, I should get the list of products associated with it, then call product.sales for each of those products, which should return a collection of sales (probably as a hash, keyed off of product_id).
+      # for this vendor object, I should get the list of products associated with it, then call product.sales for each of those products, which should return a collection of sales (as a hash, keyed off of product_id).
       it "should return a Hash" do
         some_vendor.sales.must_be_instance_of(Hash)
       end

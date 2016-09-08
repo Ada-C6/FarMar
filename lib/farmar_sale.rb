@@ -47,8 +47,8 @@ module FarMar
     end
 
     def product
+      #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
       Product.find(@product_id)
     end
-
   end
 end
