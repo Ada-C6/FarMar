@@ -43,5 +43,11 @@ describe FarMar::Vendor do
         x.vend_id.must_equal(19)
       end
     end
+    describe "#sales" do
+      it "returns an array of values" do
+        puts "#{sam.sales}"
+        sam.sales.must_be_kind_of(Array)
+      end
+    end
   end
 end
