@@ -44,4 +44,8 @@ attr_reader :id, :name, :num_of_employees, :market_id
       i.market_id == market_id
     end
   end
+
+  def products
+    Product.by_vendor(@id)
+  end
 end

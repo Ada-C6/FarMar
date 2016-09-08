@@ -36,5 +36,12 @@ module FarMar
       end
 
     end
+    describe "#products" do
+      it "should return true if the amount of products for the instance of Vendor is the number of instances of Product with that vendor_id." do
+      v= Vendor.find(2)
+      # puts "#{v.products}"
+      v.products.count.must_equal(2)
+      end
+    end
   end
 end
