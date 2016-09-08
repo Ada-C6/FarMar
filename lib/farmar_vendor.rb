@@ -33,7 +33,7 @@ module FarMar
     end
 
     def self.by_market(market_id)
-      self.all.select{|vendor| vendor.market_id == market_id}
+      self.all.select {|vendor| vendor.market_id == market_id}
     end
 
     def products

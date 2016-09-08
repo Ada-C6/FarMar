@@ -57,7 +57,15 @@ describe FarMar::Sale do
       new_sale.product.id.must_equal 4
       new_sale.product.must_be_instance_of FarMar::Product
     end
+  end
 
+  describe "self.between" do
+    it "must return an Array of Sales" do
+      start_time = DateTime.new(2013, 11, 01, 0, 0, 0, "-8")
+      end_time = DateTime.new(2013, 11, 30, 23, 59, 59, "-8")
 
+      FarMar::Sale.between(start_time, end_time).must_be_instance_of Array
+      FarMar::Sale.between(start_time, end_time)[0].must_respond_to(:purchase_time)
+    end
   end
 end

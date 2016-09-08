@@ -26,6 +26,12 @@ module FarMar
       end
     end
 
+    def self.between(start_time, end_time)
+      self.all.each.select do |sale|
+        (start_time < sale.purchase_time) && (sale.purchase_time < end_time)
+      end
+    end
+
     def self.find (num)
       self.all.find {|sale| sale.id == num}
     end
@@ -40,3 +46,7 @@ module FarMar
 
   end
 end
+
+# start_time = DateTime.new(2013, 11, 8, 12, 0, 0, "-8")
+# end_time = DateTime.new(2013, 11, 8, 12, 59, 59, "-8")
+# FarMar::Sale.between(start_time, end_time)
