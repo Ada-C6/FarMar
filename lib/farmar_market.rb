@@ -32,7 +32,7 @@ class FarMar::Market
             }
 
             all_markets[line[0].to_i] = self.new(new_market_info_hash)
-        end # CSV.open
+        end # CSV parse
 
         return all_markets
     end # self.all
@@ -40,5 +40,10 @@ class FarMar::Market
     def self.find(market_id)
         return self.all[market_id]
     end # self.find
+
+    #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
+    def vendors
+        return FarMar::Vendor.by_market(@market_id)
+    end # #vendors
 
 end # FarMar::Market

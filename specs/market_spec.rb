@@ -27,4 +27,31 @@ describe "FarMar::Market" do
         end #
     end # self.find
 
+    describe "#vendors" do
+        # Make a new market instance from a single line of markets.csv
+        test_market_array = CSV.read('support/markets.csv')[200]
+        test_market_info_hash = {
+            market_id: test_market_array[0].to_i,
+            name: test_market_array[1],
+            address: test_market_array[2],
+            city: test_market_array[3],
+            county: test_market_array[4],
+            state: test_market_array[5],
+            zip: test_market_array[6]
+        }
+        test_market = FarMar::Market.new(test_market_info_hash)
+
+        # assign result of #vendors method on test_market to a variable for use below
+        test_vendors = test_market.vendors
+
+        it "should return an array of FarMar::Vendor instances" do
+            test_vendors.must_be_instance_of(Array)
+            test_vendors[rand(0..test_vendors.length-1)].must_be_instance_of(FarMar::Vendor)
+        end
+
+        it "should return FarMar::Vendor instances with the correct market_id" do
+            test_vendors[rand(0..test_vendors.length-1)].market_id.must_equal(test_market.market_id)
+        end
+    end # #vendors
+
 end # FarMar::Market
