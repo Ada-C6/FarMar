@@ -31,5 +31,23 @@ describe FarMar::Sale do
       sales.sale_id.must_equal(2)
     end
 
+    describe "#vendor" do
+      before(:each) do
+        @sale = FarMar::Sale.new({"vendor_id" => 2})
+      end
+
+      # The thing to the left of the dot is what is being acted upon by the method
+      # to the right of the dot; in this case, passing in only one instance, as
+      # defined in before/end
+      it "should return an instance of Vendor" do
+        @sale.vendor.must_be_instance_of(FarMar::Vendor)
+      end
+
+      it "should use the sale's vendor_id to return that sale's vendor" do
+        @sale.vendor.vendor_id.must_equal(2)
+      end
+
+    end
+
   end
 end

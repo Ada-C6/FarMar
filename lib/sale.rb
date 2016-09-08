@@ -44,6 +44,14 @@ module FarMar
       return "Sale ID #{ @sale_id }, purchased at #{ @purchase_time }, refers to Product ID #{ @product_id }, costs #{ @amount } and is sold by Vendor ID #{ @vendor_id }."
     end
 
+    def vendor
+      vendors = FarMar::Vendor.all
+      vendors.each do |var|
+        if var.vendor_id == @vendor_id # Need one instance of market_id (don't need @ sign)
+          return var
+        end
+      end
+    end
 
   end
 end
