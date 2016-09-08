@@ -30,4 +30,8 @@ class Sale
     sale = Sale.all
     return sale[id]
   end
+
+  def vendor
+    Vendor.find(@vendor_id)
+  end
 end
