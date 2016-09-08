@@ -3,6 +3,8 @@ require_relative 'spec_helper'
 module FarMar
   describe Vendor do
     let(:ven) {Vendor.new(1, "vendor name", 1, 1)}
+    let(:some_vendor) {Vendor.new(28,"Watsica and Sons",10,8)}
+
     describe "#initialize" do
       it "should make a new instance of vendor" do
         #write something here to test new instance of vendor
@@ -70,7 +72,6 @@ module FarMar
     describe "#products" do
       # Products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
       # This is going to call the Products.by_vendor(vendor_id) method!
-      let(:some_vendor) {Vendor.new(28,"Watsica and Sons",10,8)}
       it "should return an array" do
         some_vendor.products.must_be_instance_of(Array)
         # I'm going to make it an array of Products.
@@ -84,6 +85,29 @@ module FarMar
         # NOTE: It's not ACTUALLY the same object (same data, different object id), since I have created some_vendor here in the test.
         # This will check using the Vendor method in Product.
         some_vendor.products[0].vendor_id.must_be_same_as(some_vendor.id)
+      end
+    end
+    describe "#sales" do
+      #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+      # for this vendor object, I should get the list of products associated with it, then call product.sales for each of those products, which should return a collection of sales (probably as a hash, keyed off of product_id).
+      it "should return a Hash" do
+        some_vendor.sales.must_be_instance_of(Hash)
+      end
+      it "should return a Hash where the keys are Products" do
+        skip
+        some_vendor.sales.keys[0].must_be_instance_of(Product)
+      end
+      it "should return a Hash where the values are an array of Sales" do
+        skip
+        some_vendor.sales.values[0].must_be_instance_of(Array)
+      end
+      it "elements within the value Arrays should be Sale objects" do
+        skip
+        some_vendor.sales.values[0][0].must_be_instance_of(Sale)
+      end
+      it "should return Sales where the vendor_id is the same as it's vendor_id" do
+        skip
+        some_vendor.sales.values[0][0].vendor_id.must_equal(some_vendor.id)
       end
     end
   end
