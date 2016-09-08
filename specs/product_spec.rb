@@ -30,5 +30,13 @@ module FarMar
         Product.find(200).name.must_equal("Odd Pretzel")
       end
     end
+
+    describe "by_vendor(vendor_id)" do
+      it "should return all of the products with the given vendor_id" do
+        Product.by_vendor(245).count.must_equal(4)
+
+      end
+
+    end
   end
 end

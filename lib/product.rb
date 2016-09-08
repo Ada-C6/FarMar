@@ -34,4 +34,11 @@ class Product
     # if id > 500, returns entire array....fix later
   end
 
+
+  def self.by_vendor(vendor_id)
+    all_products = self.all
+    all_products.find_all do |i|
+      i.vendor_id == vendor_id
+    end
+  end
 end
