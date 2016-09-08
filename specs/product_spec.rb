@@ -46,5 +46,58 @@ module FarMar
       end
     end
 
+    describe "#sales" do
+      let(:new_product) { Product.new({id: 21, name: "greens", vendor_id: 4}) }
+
+      it "should return an array" do
+        new_product.sales.must_be_kind_of(Array)
+      end
+
+      it "should have an object:Sale at any index of that array" do
+        #puts new_product.sales
+        new_product.sales[0].must_be_instance_of(Sale)
+        new_product.sales[1].must_be_instance_of(Sale)
+      end
+
+      it "should have the correct sales in the array" do
+        new_product.sales[0].amount.must_equal(2510)
+        new_product.sales[1].amount.must_equal(9341)
+      end
+    end
+
+    describe "#number_of_sales" do
+      let(:new_product) { Product.new({id: 21, name: "greens", vendor_id: 4}) }
+
+      it "should return a fixnum" do
+        #puts new_product.number_of_sales
+        new_product.number_of_sales.must_be_kind_of(Fixnum)
+      end
+
+      it "should return the correct number of sales" do
+        new_product.number_of_sales.must_equal(2)
+      end
+    end
+
+    describe "self.by_vendor(vendor_id)" do
+      let(:example_vendor) { Vendor.new({id: 5, name: "Allison", num_employees: 75, market_id: 6}) }
+
+      it "should return an array" do
+        FarMar::Product.by_vendor(example_vendor.id).must_be_kind_of(Array)
+      end
+
+      it "should return an object: Product at any index of the array" do
+        puts example_vendor.products
+        puts "SPACE"
+        puts example_vendor.products[1]
+
+        FarMar::Product.by_vendor(example_vendor.id)[0].must_be_instance_of(Product)
+        FarMar::Product.by_vendor(example_vendor.id)[2].must_be_instance_of(Product)
+      end
+
+      it "each object returned should be associated with the correct vendor_id by checking the name" do #IS THIS A BETTER TEST?
+        FarMar::Product.by_vendor(example_vendor.id)[0].name.must_equal("Shaky Honey")
+        FarMar::Product.by_vendor(example_vendor.id)[2].name.must_equal("Black Apples")
+      end
+    end
   end
 end
