@@ -82,6 +82,20 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#sales" do
+    before(:each) do
+      @vendors = FarMar::Vendor.new({"vendor_id" => 5})
+      @sales = FarMar::Sale.all
+    end
 
+    it "should return an Array" do
+      @vendors.sales.must_be_kind_of(Array)
+    end
 
+    it "should return an array of sale instances based on the vendor_id" do
+      @vendors.sales.each do |i|
+        i.vendor_id.must_equal(5)
+      end
+    end
+  end
 end

@@ -31,7 +31,7 @@ describe FarMar::Market do
   end
 
   describe "#vendors" do
-    it "should return an Array" do
+    it "should return an Array of vendor instances" do
       markets = FarMar::Market.new({})
       markets.vendors.must_be_kind_of(Array)
     end

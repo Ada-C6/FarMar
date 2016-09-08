@@ -64,5 +64,16 @@ module FarMar
       return FarMar::Product.by_vendor(vendor_id)
     end
 
+    def sales
+      sales_by_vendor = []
+      sales = FarMar::Sale.all
+      sales.each do |var|
+        if var.vendor_id == @vendor_id
+          sales_by_vendor << var
+        end
+      end
+      return sales_by_vendor
+    end
+
   end
 end
