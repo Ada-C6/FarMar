@@ -109,4 +109,10 @@ describe FarMar::Vendor do
 
   end
 
+  describe "self.find_by_name(name)" do
+    it "should return the Vendor instance that matches the passed name" do
+      FarMar::Vendor.find_by_name("Windler Inc").id.must_equal(FarMar::Vendor.find(12).id)
+    end
+  end
+
 end

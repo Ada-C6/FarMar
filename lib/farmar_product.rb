@@ -25,6 +25,15 @@ module FarMar
       end
     end
 
+    def self.find_by_name(name)
+      all_products = self.all
+      all_products.each do |product|
+        if product.name.upcase == name.upcase
+          return product
+        end
+      end
+    end
+
     def vendor
       FarMar::Vendor.find(@vendor_id)
     end
@@ -46,6 +55,12 @@ module FarMar
       end
       return vendor_products
     end
+
+    # def self.most_revenue(n)
+    #   all_products = self.all.sort_by do |product|
+    #     product.
+    #
+    # end
 
   end
 end

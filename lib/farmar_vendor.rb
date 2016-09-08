@@ -26,6 +26,15 @@ module FarMar
       end
     end
 
+    def self.find_by_name(name)
+      all_vendors = self.all
+      all_vendors.each do |vendor|
+        if vendor.name.upcase == name.upcase
+          return vendor
+        end
+      end
+    end
+
     def market
       FarMar::Market.find(@market_id)
     end
@@ -58,7 +67,11 @@ module FarMar
         sale.amount
       end
       revenue_total = revenue_array.reduce(:+)
-      return revenue_total
+      if revenue_total == nil
+        return 0
+      else
+        return revenue_total
+      end 
     end
 
     def self.by_market(market_id)
