@@ -101,12 +101,15 @@ describe FarMar::Vendor do
 
   describe "#revenue" do
     before(:each) do
-      @vendors = FarMar::Vendor.all
+      @vendors = FarMar::Vendor.new({"vendor_id" => 2})
     end
 
     it "should return a Fixnum" do
       @vendors.revenue.must_be_kind_of(Fixnum)
     end
 
+    it "should return a sum of vendor's sales" do
+      @vendors.revenue.must_equal(5727) # This is the amount in the actual CSV file for that vendor_id and its sales
+    end
   end
 end

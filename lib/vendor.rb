@@ -11,6 +11,7 @@ module FarMar
       @name = vendor_hash["name"]
       @employees = vendor_hash["employees"]
       @market_id = vendor_hash["market_id"]
+      @sales_by_vendor = []
     end
 
     def self.all
@@ -65,18 +66,22 @@ module FarMar
     end
 
     def sales
-      sales_by_vendor = []
       sales = FarMar::Sale.all
       sales.each do |var|
         if var.vendor_id == @vendor_id
-          sales_by_vendor << var
+          @sales_by_vendor << var
         end
       end
-      return sales_by_vendor
+      return @sales_by_vendor
     end
 
     def revenue
-      4
+      sales
+      revenue = 0
+      @sales_by_vendor.each do |i|
+        revenue += i.amount
+      end
+      return revenue
     end
 
   end
