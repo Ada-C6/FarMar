@@ -38,6 +38,7 @@ module FarMar
 					return market
 				end
 			end
+			return nil
 		end
 
 		def vendors

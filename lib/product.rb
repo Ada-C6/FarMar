@@ -29,6 +29,7 @@ module FarMar
 					return product
 				end
 			end
+			return nil
 		end
 
 		def vendor

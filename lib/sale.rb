@@ -16,7 +16,6 @@ module FarMar
 				info_hash = {}
 				info_hash[:id] = line[0].to_i
 				info_hash[:amount] = line[1].to_i
-				# this must be a Datetime - look into this before doing self.between(beginning_time, end_time)
 				info_hash[:purchase_time] = DateTime.parse(line[2])
 				info_hash[:vendor_id] = line[3].to_i
 				info_hash[:product_id] = line[4].to_i
@@ -34,6 +33,7 @@ module FarMar
 					return sale
 				end
 			end
+			return nil
 		end
 
 		def vendor
@@ -66,7 +66,10 @@ module FarMar
 				end
 			end
 
-			return sales_between
+			unless sales_between.length == 0
+				return sales_between
+			end
+			return nil
 		end
 	end
 end

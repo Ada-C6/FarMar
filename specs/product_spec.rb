@@ -1,11 +1,15 @@
 require_relative 'spec_helper'
 
 describe FarMar::Product do
+	before(:all) do
+		@product = FarMar::Product.find(5)
+	end
+
 	describe "#initialize" do
 		it "must create an instance of Product" do
 			test_hash = {id: 45, name: "kale", vendor_id: 32}
-			product = FarMar::Product.new(test_hash)
-			product.must_be_instance_of(FarMar::Product)
+			test_product = FarMar::Product.new(test_hash)
+			test_product.must_be_instance_of(FarMar::Product)
 		end
 	end
 
@@ -27,49 +31,47 @@ describe FarMar::Product do
 			end
 		end
 
+		it "must return nil if the id doesn't exist" do
+			FarMar::Product.find(50015).must_equal(nil)
+		end
+
 		it "must return an instance of Product" do
-			FarMar::Product.find(5).must_be_instance_of(FarMar::Product)
+			FarMar::Product.find(1).must_be_instance_of(FarMar::Product)
 		end
 
 		it "must return the right instance of Product" do
-			test_find = FarMar::Product.find(5)
-			test_find.name.must_equal("Green Apples")
+			@product.name.must_equal("Green Apples")
 		end
 	end
 
 	describe "#vendor" do
-		product = FarMar::Product.find(5)
-
 		it "must return an instance of Vendor" do
-			product.vendor.must_be_instance_of(FarMar::Vendor)
+			@product.vendor.must_be_instance_of(FarMar::Vendor)
 		end
 
 		it "must return Vendor matching Product instance's vendor_id" do
-			product.vendor.id.must_equal(product.vendor_id)
+			@product.vendor.id.must_equal(@product.vendor_id)
 		end
 	end
 
 	describe "#sales" do
-		product = FarMar::Product.find(5)
-
 		it "must return a collection of Sale instances" do
-			product.sales.first.must_be_instance_of(FarMar::Sale)
-			product.sales.last.must_be_instance_of(FarMar::Sale)
+			@product.sales.first.must_be_instance_of(FarMar::Sale)
+			@product.sales.last.must_be_instance_of(FarMar::Sale)
 		end
 
 		it "must return Sales with product_id matching Product id" do
-			product.sales.first.product_id.must_equal(product.id)
-			product.sales.last.product_id.must_equal(product.id)
+			@product.sales.first.product_id.must_equal(@product.id)
+			@product.sales.last.product_id.must_equal(@product.id)
 		end
 	end
 
 	describe "#number_of_sales" do
 
-		product = FarMar::Product.find(5)
 		product_2 = FarMar::Product.find(4)
 
 		it "must return the number of sales" do
-			product.number_of_sales.must_equal(2)
+			@product.number_of_sales.must_equal(2)
 			product_2.number_of_sales.must_equal(8)
 		end
 	end
@@ -84,6 +86,5 @@ describe FarMar::Product do
 			product_list.first.vendor_id.must_equal(5)
 			product_list.last.vendor_id.must_equal(5)
 		end
-
 	end
 end

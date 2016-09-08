@@ -1,6 +1,13 @@
 require_relative 'spec_helper'
 
 describe FarMar::Vendor do
+
+	before(:all) do
+		@vendor = FarMar::Vendor.find(5)
+		@sales_list = @vendor.sales
+		@vendor_list = FarMar::Vendor.by_market(5)
+	end
+
 	describe "#initialize" do
 		it "must create an instance of Vendor" do
 			test_hash = {
@@ -10,20 +17,18 @@ describe FarMar::Vendor do
 				market_id: 5
 			}
 
-			vendor = FarMar::Vendor.new(test_hash)
-			vendor.must_be_instance_of(FarMar::Vendor)
+			test_vendor = FarMar::Vendor.new(test_hash)
+			test_vendor.must_be_instance_of(FarMar::Vendor)
 		end
 	end
-
 
 	describe "self.all" do
 		it "must return a collection of Vendor instances" do
-			vendors = FarMar::Vendor.all
-			vendors.first.must_be_instance_of(FarMar::Vendor)
-			vendors.last.must_be_instance_of(FarMar::Vendor)
+			all_vendors = FarMar::Vendor.all
+			all_vendors.first.must_be_instance_of(FarMar::Vendor)
+			all_vendors.last.must_be_instance_of(FarMar::Vendor)
 		end
 	end
-
 
 	describe "self.find(id)" do
 		it "must take a Fixnum as an argument" do
@@ -34,13 +39,16 @@ describe FarMar::Vendor do
 			end
 		end
 
+		it "must return nil if the id doesn't exist" do
+			FarMar::Vendor.find(12345).must_equal(nil)
+		end
+
 		it "must return an instance of Vendor" do
 			FarMar::Vendor.find(5).must_be_instance_of(FarMar::Vendor)
 		end
 
 		it "must return the right instance of Vendor" do
-			test_find = FarMar::Vendor.find(5)
-			test_find.name.must_equal("Reynolds, Schmitt and Klocko")
+			@vendor.name.must_equal("Reynolds, Schmitt and Klocko")
 		end
 	end
 
@@ -71,15 +79,12 @@ describe FarMar::Vendor do
 	end
 
 	describe "#sales" do
-		vendor = FarMar::Vendor.find(5)
-		sales_list = vendor.sales
-
 		it "must return a collection of Sale instances" do
-			sales_list.first.must_be_instance_of(FarMar::Sale)
+			@sales_list.first.must_be_instance_of(FarMar::Sale)
 		end
 
 		it "must return Sales with matching Vendor id" do
-			sales_list.first.vendor_id.must_equal(vendor.id)
+			@sales_list.first.vendor_id.must_equal(@vendor.id)
 		end
 	end
 
@@ -90,19 +95,18 @@ describe FarMar::Vendor do
 		# the data gets updated with more sales? Then this
 		# test will break.
 		it "must return the total amount of sales" do
-			vendor.revenue.must_equal(61749)
+			@vendor.revenue.must_equal(61749)
 		end
 	end
 
 	describe "self.by_market(market_id)" do
-		vendor_list = FarMar::Vendor.by_market(5)
 		it "must return instances of Vendors" do
-			vendor_list.first.must_be_instance_of(FarMar::Vendor)
+			@vendor_list.first.must_be_instance_of(FarMar::Vendor)
 		end
 
 		it "returns Vendors w/ market_id matching the arg" do
-			vendor_list.first.market_id.must_equal(5)
-			vendor_list.last.market_id.must_equal(5)
+			@vendor_list.first.market_id.must_equal(5)
+			@vendor_list.last.market_id.must_equal(5)
 		end
 	end
 end

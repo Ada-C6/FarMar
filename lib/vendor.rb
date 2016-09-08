@@ -33,6 +33,7 @@ module FarMar
 					return vendor
 				end
 			end
+			return nil
 		end
 
 		def market

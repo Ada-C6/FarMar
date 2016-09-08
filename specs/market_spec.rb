@@ -1,6 +1,11 @@
 require_relative 'spec_helper'
 
 describe FarMar::Market do
+	before(:all) do
+		@market = FarMar::Market.find(5)
+		@vendor_list = @market.vendors
+	end
+
 	describe "#initialize" do
 		it "must create an instance of Market" do
 			test_hash = {
@@ -13,17 +18,17 @@ describe FarMar::Market do
 				zip: 98032
 			}
 
-			market = FarMar::Market.new(test_hash)
-			market.must_be_instance_of(FarMar::Market)
+			test_market = FarMar::Market.new(test_hash)
+			test_market.must_be_instance_of(FarMar::Market)
 		end
 	end
 
 	describe "self.all" do
-		markets = FarMar::Market.all
+		all_markets = FarMar::Market.all
 
 		it "must return a collection of Market instances" do
-			markets.first.must_be_instance_of(FarMar::Market)
-			markets.last.must_be_instance_of(FarMar::Market)
+			all_markets.first.must_be_instance_of(FarMar::Market)
+			all_markets.last.must_be_instance_of(FarMar::Market)
 		end
 	end
 
@@ -37,27 +42,28 @@ describe FarMar::Market do
 			end
 		end
 
+		it "must return nil if the id doesn't exist" do
+			invalid_id = FarMar::Market.find(5000)
+			invalid_id.must_equal(nil)
+		end
+
 		it "must return an instance of Market" do
-			FarMar::Market.find(5).must_be_instance_of(FarMar::Market)
+			@market.must_be_instance_of(FarMar::Market)
 		end
 
 		it "must return the right instance of Market" do
-			test_find = FarMar::Market.find(5)
-			test_find.name.must_equal("Quincy Farmers Market")
+			@market.name.must_equal("Quincy Farmers Market")
 		end
 	end
 
 	describe "#vendors" do
-		market = FarMar::Market.find(5)
-		vendors = market.vendors
-
 		it "must return a collection of Vendor instances" do
-			vendors.first.must_be_instance_of(FarMar::Vendor)
+			@vendor_list.first.must_be_instance_of(FarMar::Vendor)
 		end
 
 		it "must return Vendors matching Market id" do
-			vendors.first.market_id.must_equal(market.id)
-			vendors.last.market_id.must_equal(market.id)
+			@vendor_list.first.market_id.must_equal(@market.id)
+			@vendor_list.last.market_id.must_equal(@market.id)
 		end
 	end
 end
