@@ -40,5 +40,10 @@ describe FarMar::Product do
             FarMar::Product.by_vendor(vendor_id)[0].must_be_instance_of(FarMar::Product)
             FarMar::Product.by_vendor(vendor_id)[0].name.must_be_instance_of(String)
         end
+
+        it "will output products whose vendor id corresponds to the vendor id passed into the method" do
+            FarMar::Product.by_vendor(vendor_id).first.vendor_id.must_equal(vendor_id)
+            FarMar::Product.by_vendor(vendor_id).last.vendor_id.must_equal(vendor_id)
+        end
     end
 end

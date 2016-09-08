@@ -37,9 +37,14 @@ describe FarMar::Vendor do
             FarMar::Vendor.by_market(market_id).must_be_instance_of(Array)
         end
 
-        it "will contain an object as each element of the array" do
+        it "will contain a Vendor object as each element of the array" do
             FarMar::Vendor.by_market(market_id)[0].must_be_instance_of(FarMar::Vendor)
             FarMar::Vendor.by_market(market_id)[0].name.must_be_instance_of(String)
+        end
+
+        it "will output objects whose market id corresponds to the market id passed into the method" do
+            FarMar::Vendor.by_market(market_id).first.market_id.must_equal(market_id)
+            FarMar::Vendor.by_market(market_id).last.market_id.must_equal(market_id)
         end
     end
 end
