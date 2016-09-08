@@ -18,4 +18,5 @@ describe FarMar::Sale do
       FarMar::Sale.find(1).id.must_equal(1)
     end
  end
+
 end
