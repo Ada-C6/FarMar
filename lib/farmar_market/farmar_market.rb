@@ -44,5 +44,9 @@ module FarMar
       raise Exception("ID was not present")
     end
 
+    def vendors
+      return FarMar::Vendor.by_market(@market_id)
+    end
+
   end
 end

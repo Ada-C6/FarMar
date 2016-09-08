@@ -27,16 +27,11 @@ describe FarMar::Market do
       found_market.market_id.must_equal(6)
       found_market.market_name.must_equal(market.market_name)
     end
-
   end
 
-  # Explore structure of
-  # describe "#vendors" do
-  #   it "should find a specific Vendor by the vendor_id" do
-  #     FarMar::Market.all
-  #     FarMar::Vendor.all
-  #     found_vendor =
-  #   end
-  # end
-
+  describe "#vendors" do
+    it "should return a collection of FarMar::Vendor instances that are associated with the market_id field" do
+      market.vendors.length.must_equal(3)
+    end
+  end
 end
