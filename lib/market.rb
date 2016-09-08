@@ -5,7 +5,7 @@ module FarMar
     attr_reader :id, :name, :address, :city, :county, :state, :zip, :vendors
 
     def initialize(id, name, address, city, county, state, zip)
-      @id = id
+      @id = id.to_i
       @name = name
       @address = address
       @city = city
