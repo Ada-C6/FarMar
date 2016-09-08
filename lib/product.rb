@@ -26,5 +26,16 @@ module FarMar
       end
     end
 
+    def vendor #returns the object:Vendor instance that is associated with Product
+      all_vendors = FarMar::Vendor.all
+
+      all_vendors.each do |v|
+        if v.id == @vendor_id
+          return v
+        end
+      end
+    end
+
+
   end
 end
