@@ -12,7 +12,6 @@ module FarMar
       @sale_purchase_time = sale_hash[:sale_purchase_time]
       @vendor_id = sale_hash[:vendor_id]
       @product_id = sale_hash[:product_id]
-
     end
 
     def self.all
@@ -23,9 +22,7 @@ module FarMar
         sale_hash = {}
         sale_hash[:sale_id] = sale[0].to_i
         sale_hash[:sale_amount] = sale[1].to_i
-        # Will need to determine how to format time data into non-String; DateTime.parse is promising
-        #https://ruby-doc.org/stdlib-2.3.1/libdoc/date/rdoc/DateTime.html
-        sale_hash[:sale_purchase_time] = sale[2].to_s
+        sale_hash[:sale_purchase_time] = DateTime.parse(sale[2])
         sale_hash[:vendor_id] = sale[3].to_i
         sale_hash[:product_id] = sale[4].to_i
 
