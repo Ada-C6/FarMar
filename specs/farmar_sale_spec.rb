@@ -1,6 +1,7 @@
 require_relative 'spec_helper'
 
 describe FarMar::Sale do
+
   describe "#initialize" do
     sale = FarMar::Sale.new(9, 500, Time.now, 4, 100)
 
@@ -15,30 +16,38 @@ describe FarMar::Sale do
   end
 
   describe "self.all" do
+    before (:each) do
+      @all_sales = FarMar::Sale.all
+    end
+
     it "should return an array" do
-      FarMar::Sale.all.must_be_kind_of(Array)
+      @all_sales.must_be_kind_of(Array)
     end
 
     it "should return an array of FarMar::Sale instances" do
-      FarMar::Sale.all[8].must_be_instance_of(FarMar::Sale)
+      @all_sales[8].must_be_instance_of(FarMar::Sale)
     end
 
     it "should return a collection of FarMar::Sale instances created from the CSV file" do
-      FarMar::Sale.all[6].amount.must_equal(4095)
+      @all_sales[6].amount.must_equal(4095)
     end
   end
 
   describe "self.find(id)" do
+    before(:each) do
+      @sale_12 = FarMar::Sale.find(12)
+    end
+
     it "should return an instance of FarMar::Sale" do
-      FarMar::Sale.find(12).must_be_instance_of(FarMar::Sale)
+      @sale_12.must_be_instance_of(FarMar::Sale)
     end
 
     it "should return the instance of FarMar::Sale that matches the passed id" do
-      FarMar::Sale.find(12).id.must_equal(12)
+      @sale_12.id.must_equal(12)
     end
 
     it "should return the instance of FarMar::Sale that matches the passed id, check for amount" do
-      FarMar::Sale.find(127).amount.must_equal(5790)
+      @sale_12.amount.must_equal(5179)
     end
 
   end

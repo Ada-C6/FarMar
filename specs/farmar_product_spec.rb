@@ -15,30 +15,34 @@ describe FarMar::Product do
   end
 
   describe "self.all" do
+    all_products = FarMar::Product.all
+
     it "should return an array" do
-      FarMar::Product.all.must_be_kind_of(Array)
+      all_products.must_be_kind_of(Array)
     end
 
     it "should return an array of FarMar::Product instances" do
-      FarMar::Product.all[8].must_be_instance_of(FarMar::Product)
+      all_products[8].must_be_instance_of(FarMar::Product)
     end
 
     it "should return a collection of FarMar::Product instances created from the CSV file" do
-      FarMar::Product.all[6].name.must_equal("Quaint Beef")
+      all_products[6].name.must_equal("Quaint Beef")
     end
   end
 
   describe "self.find(id)" do
+    product_12 = FarMar::Product.find(12)
+
     it "should return an instance of FarMar::Product" do
-      FarMar::Product.find(12).must_be_instance_of(FarMar::Product)
+      product_12.must_be_instance_of(FarMar::Product)
     end
 
     it "should return the instance of FarMar::Product that matches the passed id" do
-      FarMar::Product.find(12).id.must_equal(12)
+      product_12.id.must_equal(12)
     end
 
     it "should return the instance of FarMar::Product that matches the passed id, check for name" do
-      FarMar::Product.find(127).name.must_equal("Helpful Fish")
+      product_12.name.must_equal("Gorgeous Fish")
     end
   end
 
@@ -84,12 +88,14 @@ describe FarMar::Product do
   end
 
   describe "self.by_vendor(vendor_id)" do
+    vendor_15_products = FarMar::Product.by_vendor(15)
+
     it "should return an array of Product instances" do
-      FarMar::Product.by_vendor(15)[1].must_be_instance_of(FarMar::Product)
+      vendor_15_products[1].must_be_instance_of(FarMar::Product)
     end
 
     it "should return the Product instances with vendor_id that matches the passed vendor_id" do
-      FarMar::Product.by_vendor(15)[1].vendor_id.must_equal(15)
+      vendor_15_products[1].vendor_id.must_equal(15)
     end
 
   end

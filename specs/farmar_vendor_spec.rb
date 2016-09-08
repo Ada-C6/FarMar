@@ -14,30 +14,34 @@ describe FarMar::Vendor do
   end
 
   describe "self.all" do
+    all_vendors = FarMar::Vendor.all
+
     it "should return an array" do
-      FarMar::Vendor.all.must_be_kind_of(Array)
+      all_vendors.must_be_kind_of(Array)
     end
 
     it "should return an array of FarMar::Vendor instances" do
-      FarMar::Vendor.all[8].must_be_instance_of(FarMar::Vendor)
+      all_vendors[8].must_be_instance_of(FarMar::Vendor)
     end
 
     it "should return a collection of FarMar::Vendor instances created from the CSV file" do
-      FarMar::Vendor.all[6].name.must_equal("Bechtelar Inc")
+      all_vendors[6].name.must_equal("Bechtelar Inc")
     end
   end
 
   describe "self.find(id)" do
+    vendor_12 = FarMar::Vendor.find(12)
+
     it "should return an instance of FarMar::Vendor" do
-      FarMar::Vendor.find(12).must_be_instance_of(FarMar::Vendor)
+      vendor_12.must_be_instance_of(FarMar::Vendor)
     end
 
     it "should return the instance of FarMar::Vendor that matches the passed id" do
-      FarMar::Vendor.find(12).id.must_equal(12)
+      vendor_12.id.must_equal(12)
     end
 
     it "should return the instance of FarMar::Vendor that matches the passed id, check for name" do
-      FarMar::Vendor.find(12).name.must_equal("Windler Inc")
+      vendor_12.name.must_equal("Windler Inc")
     end
 
   end
@@ -93,12 +97,14 @@ describe FarMar::Vendor do
   end
 
   describe "self.by_market(market_id)" do
+    vendor_14 = FarMar::Vendor.by_market(14)
+
     it "should return an array of vendors" do
-      FarMar::Vendor.by_market(14)[1].must_be_instance_of(FarMar::Vendor)
+      vendor_14[1].must_be_instance_of(FarMar::Vendor)
     end
 
     it "should return only vendors that match the passed market_id" do
-      FarMar::Vendor.by_market(14)[1].market_id.must_equal(14)
+      vendor_14[1].market_id.must_equal(14)
     end
 
   end
