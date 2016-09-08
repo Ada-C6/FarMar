@@ -53,5 +53,14 @@ module FarMar
       end
     end
 
+    def product
+      products = FarMar::Product.all
+      products.each do |var|
+        if var.product_id == @product_id # Need one instance of market_id (don't need @ sign)
+          return var
+        end
+      end
+    end
+
   end
 end

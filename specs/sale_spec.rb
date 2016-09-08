@@ -30,23 +30,36 @@ describe FarMar::Sale do
     it "should return a market based on sale_id input" do
       sales.sale_id.must_equal(2)
     end
+  end
 
-    describe "#vendor" do
-      before(:each) do
-        @sale = FarMar::Sale.new({"vendor_id" => 2})
-      end
+  describe "#vendor" do
+    before(:each) do
+      @sale = FarMar::Sale.new({"vendor_id" => 2})
+    end
 
-      # The thing to the left of the dot is what is being acted upon by the method
-      # to the right of the dot; in this case, passing in only one instance, as
-      # defined in before/end
-      it "should return an instance of Vendor" do
-        @sale.vendor.must_be_instance_of(FarMar::Vendor)
-      end
+    # The thing to the left of the dot is what is being acted upon by the method
+    # to the right of the dot; in this case, passing in only one instance, as
+    # defined in before/end
+    it "should return an instance of Vendor" do
+      @sale.vendor.must_be_instance_of(FarMar::Vendor)
+    end
 
-      it "should use the sale's vendor_id to return that sale's vendor" do
-        @sale.vendor.vendor_id.must_equal(2)
-      end
+    it "should use the sale's vendor_id to return that sale's vendor" do
+      @sale.vendor.vendor_id.must_equal(2)
+    end
+  end
 
+  describe "#product" do
+    before(:each) do
+      @sales = FarMar::Sale.new({"product_id" => 2})
+    end
+
+    it "should return an instance of Vendor" do
+      @sales.product.must_be_instance_of(FarMar::Product)
+    end
+
+    it "should use the sale's product_id to return that sale's product" do
+      @sales.product.product_id.must_equal(2)
     end
 
   end
