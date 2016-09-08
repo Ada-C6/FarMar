@@ -33,11 +33,27 @@ class Product
     return v[1]
   end
 
+  def sales
+    s = Sale.all
+    sale_instances = s.find_all { |n| n[1].product_id == @id }
+    return sale_instances
+  end
+
   def number_of_sales
     s = Sale.all
     sale_instances = s.find_all { |n| n[1].product_id == @id }
 
     return sale_instances.length
+  end
+
+  def self.by_vendor(vendor_id)
+    p = all.find_all { |n| n[1].vendor_id == vendor_id }
+
+    product_list = []
+    p.length.times do |i|
+      product_list << p[i][1]
+    end
+    return product_list
   end
 
 end

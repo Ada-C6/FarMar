@@ -40,9 +40,21 @@ describe Product do
     end
   end
 
+  describe "#sales" do
+    it "should return a collection of Sale instances that are associated with the Sale product_id field" do
+      prod.sales.length.must_equal(7)
+    end
+  end
+
   describe "#number_of_sales" do
     it "should return the number of times this product has been sold" do
       prod.number_of_sales.must_equal(7)
+    end
+  end
+
+  describe "by_vendor" do
+    it "should return all products with the given vendor id" do
+      Product.by_vendor(4).length.must_equal(3)
     end
   end
 
