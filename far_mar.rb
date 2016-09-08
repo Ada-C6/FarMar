@@ -9,6 +9,17 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
+##TEST #15... FarMar::Vendor.revenue
+# v = FarMar::Vendor.all.last
+# puts v.sales.to_s
+# print "Look at the above amounts and see if this sum looks accurate:"
+# puts v.revenue
+# puts ""
+# puts "Exactly correct. Awesome!"
+
+
+
+
 ##TEST #14... FarMar::Vendor.sales
 # v = FarMar::Vendor.all.last
 # puts v.sales.to_s

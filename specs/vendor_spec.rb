@@ -82,4 +82,13 @@ describe FarMar::Vendor do
             v.sales.last.vendor_id.must_equal(v.id)
         end
     end
+
+    describe "revenue" do
+        let(:v) {FarMar::Vendor.all.last}
+        it "will return a fixnum" do
+            v.revenue.must_be_instance_of(Fixnum)
+        end
+# KARI, any other tests for this method? Nothing came immediately to mind.
+
+    end
 end
