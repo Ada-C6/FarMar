@@ -48,7 +48,6 @@ class Vendor
     sales_list = Sale.all
     # print sales_list
     match = sales_list.find_all { |n| n[1].vendor_id == @id }
-    puts match
     sales_instances = []
     match.length.times do |i|
       sales_instances << match[i][1]
@@ -56,7 +55,12 @@ class Vendor
     return sales_instances
   end
 
-  # def revenue
-  #
-  # end
+  def revenue
+    total_revenue = 0
+    sales_instances = sales
+    sales_instances.each do |i|
+      total_revenue += i.amount
+    end
+    return total_revenue
+  end
 end

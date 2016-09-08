@@ -51,12 +51,12 @@ describe Vendor do
     end
   end
 
-  # describe "#revenue" do
-  #   it "should return the sum of all the vendor's sales (in cents)" do
-  #     a = Vendor.new(1,"Feil-Farrell",8,1)
-  #     b = a.sales
-  #     b.revenue.must_equal(38259)
-  #   end
-  # end
+  describe "#revenue" do
+    it "should return the sum of all the vendor's sales (in cents)" do
+      a = Vendor.new(1,"Feil-Farrell",8,1)
+      a.sales
+      a.revenue.must_equal(38259)
+    end
+  end
 
 end
