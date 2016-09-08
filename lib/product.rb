@@ -49,5 +49,14 @@ module FarMar
       return product_by_vendor
     end
 
+    def vendor
+      vendors = FarMar::Vendor.all
+      vendors.each do |var|
+        if var.vendor_id == @vendor_id # Need one instance of market_id (don't need @ sign)
+          return var
+        end
+      end
+    end
+
   end
 end
