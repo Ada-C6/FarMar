@@ -28,4 +28,9 @@ class Product
     return p[id]
   end
 
+  def vendor
+    v = Vendor.all.find { |n| n[1].id == @vendor_id}
+    return v[1]
+  end
+
 end

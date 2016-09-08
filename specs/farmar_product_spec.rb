@@ -31,5 +31,13 @@ describe Product do
     end
   end
 
+  describe "#vendor" do
+    it "should return the Vendor instance that is associated with the product vendor_id" do
+      p = Product.new(1,"Dry Beets",1).vendor
+      p.must_be_instance_of(Vendor)
+      p.name.must_equal("Feil-Farrell")
+    end
+  end
+
 
 end
