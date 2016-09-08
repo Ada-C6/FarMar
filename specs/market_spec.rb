@@ -3,9 +3,14 @@ require 'csv'
 
 describe FarMar::Market do
   describe "#initialize" do
+
+    #using before
+    before(:all) do
+      @market = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
+    end
+
     it "can initialize a new instance of Market" do
-      market = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
-      market.must_be_instance_of(FarMar::Market)
+      @market.must_be_instance_of(FarMar::Market)
     end
   end
 

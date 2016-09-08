@@ -3,8 +3,12 @@ require 'csv'
 
 describe FarMar::Product do
   describe "#initialize" do
+
+    #Example, use of the let. Note, this would be used better if we had it "..." do statements within each describe that need to be initialized in the same way.
+    
+    let(:product) { FarMar::Product.new("1","Dry Beets","1") }
+
     it "can initialize a new instance of Product" do
-      product = FarMar::Product.new("1","Dry Beets","1")
       product.must_be_instance_of(FarMar::Product)
     end
   end
@@ -55,49 +59,3 @@ describe FarMar::Product do
 
 
 end
-#
-# FOR self.by_vendor(vendor_id)
-# 15,Comfortable Pretzel,8
-# 16,Obedient Fish,8
-# 17,Defeated Apples,8
-# 18,Yellow Bread,8
-
-
-# 17,3442,2013-11-10 04:16:12 -0800,4,7
-# 21,8963,2013-11-10 12:26:30 -0800,4,7
-
-# describe "#market" do
-#   it "should return the FarMar::Market instance associated with vendor" do
-#     ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
-#     ven.market.name.must_equal("Dolgeville Farmer's Market")
-#   end
-# end
-#
-# describe "#products" do
-#   it "should return a collection of FarMar::Product instances associated by vendor_id" do
-#     ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
-#     vnames = []
-#     ven.products.each do |item|
-#       vnames.push(item.name)
-#     end
-#     vnames.must_equal(["Calm Carrots", "Fierce Beef", "Helpless Bread", "Yummy Bread", "Broken Beets"])
-#   end
-# end
-#
-# describe "#sales" do
-#   it "should return a collection of FarMar::Sale instances associated by vendor_id" do
-#     ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
-#     vsales = []
-#     ven.sales.each do |item|
-#       vsales.push(item.id)
-#     end
-#     vsales.must_equal(["53", "54", "55", "56", "57", "58", "59", "60"])
-#   end
-# end
-#
-# describe "#revenue" do
-#   it "should return the num of all the vendor sales (in cents)" do
-#     ven = FarMar::Vendor.new("10","Kertzmann LLC","11","3")
-#     ven.revenue.must_equal(32628)
-#   end
-# end

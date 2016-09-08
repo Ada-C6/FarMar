@@ -40,35 +40,8 @@ describe FarMar::Sale do
 
   describe "#self.between(beginning_time, end_time)" do
     it "should return a collection of sale items purchase between times" do
-      FarMar::Sale.between("2013-11-06 00:00:01 -0800", "2013-11-06 23:59:59 -0800").length.must_equal(35)
+      FarMar::Sale.between("2013-11-06 00:00:01 -0800", "2013-11-06 23:59:59 -0800").length.must_equal(1113)
     end
   end
 
-
 end
-#
-#
-# describe "#vendor" do
-#   it "should return the FarMar::Vendor instances associated by product" do
-#      prdct = FarMar::Product.new("7","Quaint Beef","4")
-#      prdct.vendor.name.must_equal("Bechtelar Inc")
-#   end
-# end
-#
-# describe "#sales" do
-#   it "should return a collection of FarMar::Sales assocated with the product" do
-#     prdct = FarMar::Product.new("7","Quaint Beef","4")
-#     sale_ids = []
-#     prdct.sales.each do |line|
-#       sale_ids.push(line.id)
-#     end
-#     sale_ids.must_equal(["17", "21"])
-#   end
-# end
-#
-# describe "#number_of_sales" do
-#   it "should return the number of times the product has been sold" do
-#     prdct = FarMar::Product.new("7","Quaint Beef","4")
-#     prdct.number_of_sales.must_equal(2)
-#   end
-# end
