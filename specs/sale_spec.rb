@@ -2,6 +2,7 @@ require_relative 'spec_helper'
 require 'csv'
 
 describe FarMar::Sale do
+
   describe "#initialize" do
     it "can initialize a new instance of Product" do
       product = FarMar::Sale.new("12001","8923.0","2013-11-12 02:03:31 -0800","2690","8192")
@@ -34,7 +35,12 @@ describe FarMar::Sale do
       saleinst = FarMar::Sale.new("9","9128","2013-11-13 01:48:15 -0800","3","4")
       saleinst.product.name.must_equal("Yummy Fruit")
 
+    end
+  end
 
+  describe "#self.between(beginning_time, end_time)" do
+    it "should return a collection of sale items purchase between times" do
+      FarMar::Sale.between("2013-11-06 00:00:01 -0800", "2013-11-06 23:59:59 -0800").length.must_equal(35)
     end
   end
 

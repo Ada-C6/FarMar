@@ -1,7 +1,3 @@
-# Won't technically be needed except if the file is being run by itself
-require_relative 'vendor'
-require 'csv'
-
 module FarMar
   class Market
     attr_accessor :id, :name, :address, :city, :country, :state, :zip

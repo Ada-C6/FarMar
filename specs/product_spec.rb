@@ -47,9 +47,22 @@ describe FarMar::Product do
     end
   end
 
+  describe "#self.by_vendor(vendor_id)" do
+    it "should return all products with given vendor_id" do
+      FarMar::Product.by_vendor(8).length.must_equal(4)
+    end
+  end
+
 
 end
 #
+# FOR self.by_vendor(vendor_id)
+# 15,Comfortable Pretzel,8
+# 16,Obedient Fish,8
+# 17,Defeated Apples,8
+# 18,Yellow Bread,8
+
+
 # 17,3442,2013-11-10 04:16:12 -0800,4,7
 # 21,8963,2013-11-10 12:26:30 -0800,4,7
 

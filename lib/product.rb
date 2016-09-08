@@ -1,5 +1,3 @@
-require_relative '../far_mar'
-
 module FarMar
   class Product
     attr_accessor :id, :name, :vendor_id
@@ -55,6 +53,16 @@ module FarMar
         end
       end
       return vnsls.length
+    end
+
+    def self.by_vendor(vendor_id)
+      propven  = []
+      FarMar::Product.all.each do |line|
+        if vendor_id == line.vendor_id.to_i
+          propven.push(line)
+        end
+      end
+      return propven
     end
 
   end

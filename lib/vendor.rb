@@ -1,5 +1,3 @@
-require_relative '../far_mar'
-
 module FarMar
   class Vendor
     attr_accessor :id, :name, :num_employees, :market_id
@@ -61,11 +59,21 @@ module FarMar
     def revenue
       rvn = 0
       FarMar::Sale.all.each do |line|
-        if "10" == line.vendor_id
+        if @id == line.vendor_id
           rvn += line.amount.to_i
         end
       end
       return rvn
+    end
+
+    def self.by_market(market_id)
+      venpmar = []
+      FarMar::Vendor.all.each do |line|
+        if market_id == line.market_id.to_i
+          venpmar.push(line)
+        end
+      end
+      return venpmar
     end
 
   end

@@ -59,4 +59,17 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#self.by_market(market_id)" do
+    it "should return all vendors with given market_id" do
+      FarMar::Vendor.by_market(104).length.must_equal(3)
+    end
+  end
+
 end
+
+
+#104,Boston City Hall Farmers Market,"100 Cambridge Street, City Hall Plaza",Boston,,Massachusetts,2129
+#
+# 545,Bergstrom Inc,4,104
+# 546,Cummings-Yost,11,104
+# 547,Parisian-Feil,7,104

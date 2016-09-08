@@ -49,5 +49,15 @@ module FarMar
       return category
     end
 
+    def self.between(beginning_time, end_time)
+      array_o_sales = []
+      FarMar::Sale.all.each do |line|
+        if beginning_time <= line.purchase_time && end_time >= line.purchase_time
+          array_o_sales.push(line)
+        end
+      end
+      return array_o_sales
+    end
+
   end
 end
