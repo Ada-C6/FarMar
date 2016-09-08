@@ -55,7 +55,10 @@ module FarMar
    end
 
    describe "self.by_vendor(vendor_id)" do
-     let 
+     it "should list all products by vendor id" do
+         all = FarMar::Product.by_vendor(5)
+         all.length.must_equal(3)
+     end
    end
 
 

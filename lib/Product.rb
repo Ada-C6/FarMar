@@ -55,7 +55,19 @@ module FarMar
       return product_sales.length
     end
 
-    
+    def self.by_vendor(a_vendor_id)
+    # this self method will look through all products
+    all_products = self.all
+    products_by_vendor = []
+    all_products.each do |product, product_values|
+      if product_values.vendor_id == a_vendor_id
+        products_by_vendor << product_values
+      end
+    end
+    return products_by_vendor
+    # then it will only pull out the products that share the vendor id passed in the method
+    end
+
 
   end #end class
 end #end module
