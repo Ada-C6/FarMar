@@ -28,26 +28,11 @@ module FarMar
     end
 
     def market #returns the object:Market that this vendor belongs to
-      market_id = @market_id #this instance's market_id
-
-      all_markets = FarMar::Market.all
-      all_markets.each do |m|
-        if m.id == market_id #find the market with this id
-          return m
-        end
-      end
+      FarMar::Market.find(@market_id)
     end
 
     def products #returns an array of object:Products that belong to this Vendor
-      ven_id = @id
-      vendor_products = []
-
-      FarMar::Product.all.each do |pro|
-        if pro.vendor_id == ven_id
-          vendor_products << pro
-        end
-      end
-      return vendor_products
+      FarMar::Product.by_vendor(@id)
     end
 
     def sales #returns a collection of object:Sales that are associated with this vendor
