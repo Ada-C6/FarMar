@@ -1,4 +1,4 @@
-require 'csv'
+# require 'csv'
 module FarMar
   class Product
 
@@ -12,7 +12,7 @@ module FarMar
 
     def self.all
       info = {}
-      CSV.read('../support/products.csv').each do |line|
+      CSV.read('support/products.csv').each do |line|
         id = line[0].to_i
         name = line[1]
         vendor_id = line[2].to_i
@@ -22,12 +22,11 @@ module FarMar
     end
 
     def self.find(id)
-      self.all.each do |key, value|
-        if key == id
-          return value
-        end
-      end
+      self.all[id]
     end
 
   end
 end
+
+
+# p FarMar::Product.find(1)
