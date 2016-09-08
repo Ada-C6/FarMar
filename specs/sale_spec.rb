@@ -4,8 +4,11 @@ require 'csv'
 describe FarMar::Sale do
 
   describe "#initialize" do
+
+    let(:product) { FarMar::Sale.new("12001","8923.0","2013-11-12 02:03:31 -0800","2690","8192") }
+
+
     it "can initialize a new instance of Product" do
-      product = FarMar::Sale.new("12001","8923.0","2013-11-12 02:03:31 -0800","2690","8192")
       product.must_be_instance_of(FarMar::Sale)
     end
   end

@@ -4,9 +4,13 @@ require 'csv'
 describe FarMar::Vendor do
 
   describe "#initialize" do
+
+    before(:all) do
+      @vendor = FarMar::Vendor.new("7","Bechtelar Inc","4","2")
+    end
+
     it "can initialize a new instance of Vendor" do
-      vendor = FarMar::Vendor.new("7","Bechtelar Inc","4","2")
-      vendor.must_be_instance_of(FarMar::Vendor)
+      @vendor.must_be_instance_of(FarMar::Vendor)
     end
   end
 
