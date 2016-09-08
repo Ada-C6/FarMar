@@ -34,4 +34,8 @@ class Sale
   def vendor
     Vendor.find(@vendor_id)
   end
+
+  def product
+    Product.find(@product_id)
+  end
 end

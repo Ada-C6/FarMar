@@ -42,12 +42,12 @@ describe Sale do
     end
   end
 
-  # describe "#product" do
-  #   it "should return the Product instance associated with the sale using the Sale product id" do
-  #     s.product.must_be_instance_of(Product)
-  #     s.product.length.must_equal(1)
-  #   end
-  # end
+  describe "#product" do
+    it "should return the Product instance associated with the sale using the Sale product id" do
+      s.product.must_be_instance_of(Product)
+      s.product.id.must_equal(1)
+    end
+  end
   #
   # describe "between" do
   #
