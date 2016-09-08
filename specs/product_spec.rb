@@ -26,4 +26,29 @@ describe FarMar::Product do
       FarMar::Product.by_vendor(5).length.must_equal(3)
     end
   end
+
+  #vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Productvendor_id field
+  describe "#vendor" do
+    it "should be true if the FarMar::Vendor instance associated with the FarMar::Product.vendor_id is correct" do
+      vendor_test = FarMar::Product.find(4)
+      # puts vendor_test.vendor
+      vendor_test.vendor.id.must_equal(3)
+    end
+  end
+
+  #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+  describe "#sales" do
+    it "should be true if the number of FarMar::Sale instances in the collection, associated with the FarMar::Sale.product_id field, is correct" do
+      sales_test = FarMar::Product.find(8)
+      sales_test.sales.length.must_equal(5)
+    end
+  end
+
+  # number_of_sales: returns the number of times this product has been sold.
+  describe "#number_of_sales" do
+    it "should return true if the number of times this product has been sold is correct." do
+      num_sales_test = FarMar::Product.find(4)
+      num_sales_test.number_of_sales.must_equal(8)
+    end
+  end
 end

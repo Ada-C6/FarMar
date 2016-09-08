@@ -34,18 +34,18 @@ module FarMar
     end
 
     # self.between(beginning_time, end_time): returns a collection ofFarMar::Sale objects where the purchase time is between the two timesgiven as arguments
-    # def self.between (start_time, end_time)
-    # all_sales = self.all
-    # sales_between = []
-    # # s_time = DateTime.strptime(start_time)
-    # # e_time = DateTime.strptime(end_time)
-    #
-    # all_sales.each do | sale_key, sale_values |
-    #   if (sale_values.purchase_time >= start_time) && (sale_values.purchase_time < end_time)
-    #     sales_between << sale_values
-    #   end
-    # end
-    # return sales_between
-    # end
+    def self.between (start_time, end_time)
+    all_sales = self.all
+    sales_between = []
+    s_time = DateTime.parse(start_time)
+    e_time = DateTime.parse(end_time)
+
+    all_sales.each do | sale_key, sale_values |
+      if (DateTime.parse(sale_values.purchase_time) >= s_time) && (DateTime.parse(sale_values.purchase_time) < e_time)
+        sales_between << sale_values
+      end
+    end
+    return sales_between
+    end
   end
 end

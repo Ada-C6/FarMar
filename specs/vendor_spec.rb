@@ -31,7 +31,7 @@ describe FarMar::Vendor do
   end
 
   describe "#products" do
-    it "should return a the correct number of FarMar::Product instances that are associated with the vendor instance" do
+    it "should return true if the number of FarMar::Product instances that are associated with the vendor instance is correct" do
       product_test = FarMar::Vendor.find(5)
       product_test.products.length.must_equal(3)
     end
@@ -50,8 +50,16 @@ describe FarMar::Vendor do
   #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
   describe "#sales" do
     it "should return true if a sample of the collection of FarMar::Sale instances associated with the correct vendor_id field given are the same" do
-      sales_test = FarMar::Vendor.find(5)
-      sales_test.sales.length.must_equal(9)
+      sales_test = FarMar::Vendor.find(1)
+      sales_test.sales.length.must_equal(7)
+    end
+  end
+
+  #revenue: returns the the sum of all of the vendor's sales (in cents)
+  describe "#revenue" do
+    it "should return true if the sum of all of the vendor's sales(in cents) is correct" do
+      revenue_test = FarMar::Vendor.find(4)
+      revenue_test.revenue.must_equal(26866)
     end
   end
 end

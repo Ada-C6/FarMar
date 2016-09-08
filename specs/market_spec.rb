@@ -26,7 +26,9 @@ describe FarMar::Market do
       market_test = FarMar::Market.find(2)
       market_test.vendors.length.must_equal(3)
     end
+  end
 
+  describe "#market" do
     it "should return true if the correct number of FarMar::Vendor instances that are associated with the market instance are returned by the indstance method" do
       market_test2 = FarMar::Market.find(1)
       market_test2.vendors.length.must_equal(6)
