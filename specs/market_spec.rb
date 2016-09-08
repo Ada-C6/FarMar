@@ -52,17 +52,16 @@ module FarMar
     end #self.find(id)
 
     describe "#vendors" do
-      before(:each) do
-        @market = Market.new(:id, :name, :address, :city, :county, :state, :zipcode)
-      end
       it "should request vendors associated with itself (its instance of Market)" do
-        #puts "VVVVVVV" # This puts fine
-        @market.vendors.each do |vendor_id, vendor|
-        #  puts "#{vendor.market_id} is this market id" #this is not putsing?!
-          vendor.market_id.must_equal(@market.id)
+        all_markets = Market.all
+        random_market_id = rand(1..500)
+        random_market = all_markets[random_market_id]
+        random_market.vendors(random_market_id).each do |vendor_id, vendor|
+          vendor.market_id.must_equal(random_market_id)
         end
-
       end
+
+
     end #vendors
 
   end #market

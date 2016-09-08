@@ -3,7 +3,7 @@ module FarMar
 
   describe Sale do
     describe "#initialize" do
-      let(:sale) { Sale.new(:id, :amount, :purchase_time, :vendor_id, :product_id)}
+      let(:sale) { Sale.new(:id, 10000, :purchase_time, :vendor_id, :product_id)}
       it "can create an instance of Sale" do
         sale.must_be_instance_of(Sale)
       end
@@ -17,14 +17,28 @@ module FarMar
     end
 
     describe "#self.all" do
-      # before(:each) do
-      #   Sale.new(:id, :amount, :purchase_time, :vendor_id, :product_id)
-      # end
+
       it "should return a hash" do
         Sale.all.must_be_instance_of(Hash)
       end
+      it "should return information about sales" do
+        # first sale in csv
+        Sale.all[1].id.must_equal(1) # The sale_id hash has a key value 1, it's not an array call
+        Sale.all[1].amount.must_equal(92.90)
+        Sale.all[1].purchase_time.must_equal("2013-11-07 04:34:56 -0800")
+        Sale.all[1].vendor_id.must_equal(1)
+        Sale.all[1].product_id.must_equal(1)
+        # last sale in csv
+        Sale.all[12001].id.must_equal(12001)
+        Sale.all[12001].amount.must_equal(89.23)
+        Sale.all[12001].purchase_time.must_equal("2013-11-12 02:03:31 -0800")
+        Sale.all[12001].vendor_id.must_equal(2690)
+        Sale.all[12001].product_id.must_equal(8192)
+      end
+      # When I lost trust in my program I added these two it"shoulds"
+      # -and they failed until I fixed my problem
+      # @todo figure out if they are needed or if it is overcoverage
 
-      # @todo this is weird and I need to think about it
       it "should be a collection of Sale objects" do
         Sale.all.each do |sale_id, sale|
           sale_id.must_equal(sale.id)
@@ -33,44 +47,18 @@ module FarMar
       end
       it "should totally find a random Sale and decide it's an instance of Sale" do
 
-        random_sale_id = rand(1..100) # 100 is an arbitrary low number
+        random_sale_id = rand(1..12001)
         Sale.all[random_sale_id].must_be_instance_of(Sale)
       end
     end
 
-
-
-    # describe Vendor do
-    #   describe "#self.all" do
-    #
-    #     it "should be a collection of Vendor objects" do
-    #       Vendor.all.each do |vendor_id, vendor|
-    #         vendor_id.must_equal(vendor.id)
-    #         vendor.must_be_instance_of(Vendor)
-    #       end
-    #     end
-    #     it "should return information about vendors" do
-    #       # first listed vendor
-    #       Vendor.all[1].id.must_equal(1)
-    #       Vendor.all[1].name.must_equal("Feil-Farrell")
-    #       Vendor.all[1].number_of_employees.must_equal(8)
-    #       Vendor.all[1].market_id.must_equal(1)
-    #
-    #       # last listed vendor
-    #       Vendor.all[2690].id.must_equal(2690)
-    #       Vendor.all[2690].name.must_equal("Mann-Lueilwitz")
-    #       Vendor.all[2690].number_of_employees.must_equal(4)
-    #       Vendor.all[2690].market_id.must_equal(500)
-    #     end
-    #   end #self.all
-    #   describe "#self.find(id)" do
-    #     it "should return an instance of a Vendor object of a certain id" do
-    #       random_vendor_id = rand(1..2690)
-    #       Vendor.find(random_vendor_id).must_be_instance_of(Vendor)
-    #       Vendor.find(random_vendor_id).id.must_equal(random_vendor_id)
-    #     end
-    #   end #self.find(id)
-
+    describe "#self.find(id)" do
+      it "should return an instance of a Sale of a certain id" do
+        random_sale_id = rand(1..12001)
+        Sale.find(random_sale_id).must_be_instance_of(Sale)
+        Sale.find(random_sale_id).id.must_equal(random_sale_id)
+      end
+    end
 
 
 

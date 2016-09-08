@@ -38,14 +38,14 @@ module FarMar
     end
 
 # #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
-  def sales
-    vendor_sales = {}
-    Sale.all.each do |sale_id, sale|
-      if sale.vendor_id == id
-        vendor_sales[sale_id] = sale
-      end
-    end
-  end
+  # def sales
+  #   vendor_sales = {}
+  #   Sale.all.each do |sale_id, sale|
+  #     if sale.vendor_id == id
+  #       vendor_sales[sale_id] = sale
+  #     end
+  #   end
+  # end
 
   end
 
