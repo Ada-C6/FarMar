@@ -14,7 +14,7 @@ class Sale
 
   def self.all
     sale = {}
-    CSV.read('../support/sales.csv').each do |line|
+    CSV.read('support/sales.csv').each do |line|
       id = line[0].to_i
       amount = line[1]
       purchase_time = line[2]

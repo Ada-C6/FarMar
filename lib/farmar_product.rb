@@ -11,7 +11,7 @@ class Product
 
   def self.all
     products = {}
-    CSV.read('../support/products.csv').each do |line|
+    CSV.read('support/products.csv').each do |line|
       id = line[0].to_i
       name = line[1]
       vendor_id = line[2].to_i

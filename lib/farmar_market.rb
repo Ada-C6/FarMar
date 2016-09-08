@@ -1,5 +1,4 @@
 require 'csv'
-require '../far_mar'
 
 class Market
 
@@ -16,7 +15,7 @@ class Market
 
   def self.all
     markets = {}
-    CSV.read('../support/markets.csv').each do |line|
+    CSV.read('support/markets.csv').each do |line|
       id = line[0].to_i
       name = line[1]
       address = line[2]

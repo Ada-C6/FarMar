@@ -1,5 +1,4 @@
 require 'csv'
-require '../far_mar'
 
 class Vendor
   attr_reader :id, :name, :employees, :market_id
@@ -13,7 +12,7 @@ class Vendor
 
   def self.all
     vendors = {}
-    CSV.read('../support/vendors.csv').each do |line|
+    CSV.read('support/vendors.csv').each do |line|
       id = line[0].to_i
       name = line[1]
       employees = line[2].to_i

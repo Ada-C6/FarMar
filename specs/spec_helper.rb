@@ -1,4 +1,4 @@
-require_relative'../far_mar'
+require_relative '../far_mar'
 
 require 'simplecov'
 SimpleCov.start

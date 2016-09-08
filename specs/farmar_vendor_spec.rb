@@ -41,5 +41,9 @@ describe Vendor do
       end
   end
 
+  describe "#sales" do
+    # it "should "
+  end
+
 
 end
