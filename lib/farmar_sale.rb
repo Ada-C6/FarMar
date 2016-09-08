@@ -44,6 +44,5 @@ class Sale
     end_time = DateTime.parse(end_time)
 
     Sale.all.find_all { |n| n[1].purchase_time.between?(beginning_time, end_time)}
-      # n[1].purchase_time is >= beginning_time || n[1].purchase_time is <= end_time}
   end
 end
