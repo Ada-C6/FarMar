@@ -111,9 +111,23 @@ module FarMar
         all_vendors = Vendor.all
         all_vendors[1].revenue.must_equal(38259)
       end
-
     end
 
+# self.by_market(market_id): returns all of the vendors with the given market_id
+# is this going to be just the method in another way??
+    describe "#self.by_market" do
+      it "should return all the vendor's with a given market_id" do
+        random_market_id = rand(1..500)
+        market_vendors = {}
+        Vendor.all.each do |vendor_id, vendor|
+          if vendor.market == random_market_id
+            market_vendors[vendor_id] = vendor # gives us a hash of test ids
+          end
+        end
+        Vendor.by_market(random_market_id).must_equal(market_vendors)
+      end
+
+    end
 
   end
 end

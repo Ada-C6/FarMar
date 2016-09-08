@@ -37,25 +37,32 @@ module FarMar
       return vendor_products
     end
 
-#sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
-  def sales
-    vendor_sales = {}
-    Sale.all.each do |sale_id, sale|
-      if sale.vendor_id == id
-        vendor_sales[sale_id] = sale
+    #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+    def sales
+      vendor_sales = {}
+      Sale.all.each do |sale_id, sale|
+        if sale.vendor_id == id
+          vendor_sales[sale_id] = sale
+        end
+      end #each
+      return vendor_sales
+    end #def
+
+    def revenue
+      revenue = 0
+      sales.each do |sale_id, sale|
+        revenue += (sale.amount * 100)
       end
-    end #each
-    return vendor_sales
-  end #def
-
-  def revenue
-    revenue = 0
-    sales.each do |sale_id, sale|
-       revenue += (sale.amount * 100)
+      return revenue
     end
-    return revenue
-  end
 
+    # self.by_market(market_id): returns all of the vendors with the given market_id
+    def self.by_market(market_id)
+      # market_vendors = self.all.map { |vendor_id, vendor|
+      #   vendor.market == market_id ? }
+      # @todo START HERE START HERE START HERE
+      return market_vendors
+    end
 
   end
 
