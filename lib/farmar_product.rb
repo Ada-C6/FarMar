@@ -40,4 +40,8 @@ attr_reader :id, :name, :vend_id
     end
   end
 
+  def number_of_sales
+    sales.count
+  end
+
 end
