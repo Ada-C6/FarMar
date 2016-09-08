@@ -28,4 +28,12 @@ describe FarMar::Market do
     expect(FarMar::Market.search("school").size).must_equal(3)
   end
 
+  it "Input a market id '2' returns and return the vendor who has highest revenue(prefered vendor) of that market" do
+    market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
+    expect( market.prefered_vendor.class ).must_equal(FarMar::Vendor)
+  end
+
+
+
+
 end

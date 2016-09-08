@@ -11,13 +11,21 @@ class FarMar::Sale
     @product_id = product_id
   end
 
-  # load sale infomation from sale csv file
-  # input: csv file name (optional)
-  # output: an array of class sale objects
-  def self.all
+  # idempotently load data
+  def self.load
+    if @sales != nil
+      # we have loaded this before, do not load again
+      return
+    end
+
     sale_csv_file = "/Users/mengyao/ADA_class/FarMar/support/sales.csv"
 
-    sales = []
+    @sales = []
+    # index the sales by various IDs
+    @sale_by_id = {}
+    @sales_by_product_id = {}
+    @sales_by_vendor_id = {}
+
     CSV.foreach(sale_csv_file) do |row|
       id = row[0].to_s
       amount = row[1].to_f
@@ -25,23 +33,44 @@ class FarMar::Sale
       vendor_id = row[3].to_s
       product_id = row[4].to_s
 
-      sales << FarMar::Sale.new(id, amount, purchase_time, vendor_id, product_id)
+      new_sale = FarMar::Sale.new(id, amount, purchase_time, vendor_id, product_id)
+      @sales << new_sale
+      # ensure that any new product_id key starts with a [] value
+      @sales_by_product_id[product_id] ||= []
+      @sales_by_product_id[product_id] << new_sale
+      @sale_by_id[id] = new_sale
+
+      @sales_by_vendor_id[vendor_id] ||= []
+      @sales_by_vendor_id[vendor_id] << new_sale
     end
-    return sales
+  end
+
+  # load sale infomation from sale csv file
+  # input: csv file name (optional)
+  # output: an array of class sale objects
+  def self.all
+    load
+    return @sales
   end
 
   # identify sale information by sale id
   # input: sale id (string)
   # output: an sale object that corresponds to the given sale id
   def self.find(id)
-    found_sale = nil
-    all.each do |sale|
-      if id == sale.id
-        found_sale = sale
-        break
-      end
-    end
-    return found_sale
+    load
+    return @sale_by_id[id]
+  end
+
+  # return array of Sale objects that is about the given product_id
+  def self.find_by_product_id(product_id)
+    load
+    return @sales_by_product_id[product_id] || []
+  end
+
+  # return array of Sale objects that is about the given vendor_id
+  def self.find_by_vendor_id(vendor_id)
+    load
+    return @sales_by_vendor_id[vendor_id] || []
   end
 
   # returns an array of FarMar::Sale objects where the purchase time is between the two times given as arguments
@@ -56,12 +85,12 @@ class FarMar::Sale
 
   # returns an array of FarMar::Vendor objects that is associated with Sale's vendor_id
   def vendor
-    return FarMar::Vendor.all.select { |vendor| vendor.id == @vendor_id }
+    return FarMar::Vendor.find(@vendor_id)
   end
 
   # returns an array of FarMar::Product objects that is associated with Sale's product_id
   def product
-    return FarMar::Product.all.select { |product| product.id == @product_id }
+    return FarMar::Product.find(@product_id)
   end
 
 

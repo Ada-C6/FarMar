@@ -15,8 +15,7 @@ describe FarMar::Vendor do
 
   it "Input a market id '3' returns all the corresponding Market objects with the same market id" do
     vendor = FarMar::Vendor.new("3", "Breitenberg Inc", "5", "1")
-    expect( vendor.market.class ).must_equal(Array)
-    expect( vendor.market[0].class ).must_equal(FarMar::Market)
+    expect( vendor.market.class ).must_equal(FarMar::Market)
   end
 
   it "Input a vendor id '3' returns all the corresponding Product objects with the same vendor id" do

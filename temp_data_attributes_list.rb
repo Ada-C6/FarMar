@@ -1,3 +1,6 @@
+# Data attributes info for design reference only
+# Not for execution
+
 class Market
      market_id
      market_name
@@ -15,7 +18,6 @@ class Vendor
     market_id
 end
 
-
 class Product
     product_id
     product_name
@@ -29,3 +31,9 @@ class Sale
     vendor_id
     product_id
 end
+
+# summary:
+# 1. practice enumerable method
+# 2. classic data modeling, each data is a data model(uml diagram)
+# 3. think about optimization, especially in sale file(significantly larger)
+# (load file/iterate over data the minimum time, store and indexing the data)

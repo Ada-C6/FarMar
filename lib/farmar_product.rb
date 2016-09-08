@@ -13,6 +13,10 @@ class FarMar::Product
   # input: csv file name (optional)
   # output: an array of class product objects
   def self.all
+    if @products != nil
+      return @products
+    end
+
     product_csv_file = "/Users/mengyao/ADA_class/FarMar/support/products.csv"
 
     products = []
@@ -23,7 +27,9 @@ class FarMar::Product
 
       products << FarMar::Product.new(id, name, vendor_id)
     end
-    return products
+
+    @products = products
+    return @products
   end
 
   # identify product information by product id
@@ -47,12 +53,12 @@ class FarMar::Product
 
   # returns an array of FarMar::Vendor objects that is associated with Product's vendor_id
   def vendor
-    return FarMar::Vendor.all.select { |vendor| vendor.id == @vendor_id }
+    return FarMar::Vendor.find(@vendor_id)
   end
 
   # return an array of FarMar::Sale objects that are associated with the product_id
   def sales
-    return FarMar::Sale.all.select { |sale| sale.product_id == @id }
+    return FarMar::Sale.find_by_product_id(@id)
   end
 
   # returns the number of times this product has been sold(fixnum)

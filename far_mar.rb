@@ -30,4 +30,7 @@ require_relative './lib/farmar_vendor'
 # puts market.products("2").size
 # => 3
 
-puts FarMar::Market.search("school").size
+# puts FarMar::Market.search("school").size
+
+ # market = FarMar::Market.new("2","Silverdale Farmers Market","98383","Silverdale","Kitsap","Washington","98383")
+ # puts market.prefered_vendor.inspect

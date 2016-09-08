@@ -10,11 +10,14 @@ class FarMar::Vendor
     @market_id = market_id
   end
 
-
   # load vendor infomation from vendor csv file
   # input: csv file name (optional)
   # output: an array of class vendor objects
   def self.all
+    if @vendors != nil
+      return @vendors
+    end
+
     vendor_csv_file = "/Users/mengyao/ADA_class/FarMar/support/vendors.csv"
 
     vendors = []
@@ -26,7 +29,8 @@ class FarMar::Vendor
 
       vendors << FarMar::Vendor.new(id, name, employees_num, market_id)
     end
-    return vendors
+    @vendors = vendors
+    return @vendors
   end
 
   # identify vendor information by vendor id
@@ -51,7 +55,7 @@ class FarMar::Vendor
   # find market information by market_id
   # output: an array of FarMar::Market objects that are associated with the market_id
   def market
-    return FarMar::Market.all.select { |market| market.id == @market_id }
+    return FarMar::Market.find(@market_id)
   end
 
   # return an array of FarMar::Vendor objects that are associated with the vendor_id
@@ -61,17 +65,14 @@ class FarMar::Vendor
 
   # return an array of FarMar::Sale objects that are associated with the vendor_id
   def sales
-    return FarMar::Sale.all.select { |sale| sale.vendor_id == @id }
+    return FarMar::Sale.find_by_vendor_id(@id)
   end
 
   # returns the sum of all of the vendor's sales in cents(a float)
   def revenue
       # returns an array of the vendor's sale amount
-    amounts = self.sales.map! {|sale| sale.amount}
+    amounts = self.sales.map {|sale| sale.amount}
     # add up the sale amount and return the sum
-    return amounts.inject {|sum, amount| sum + amount}
+    return amounts.inject(0.0) {|sum, amount| sum + amount}
   end
-
-
-
 end

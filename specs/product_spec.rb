@@ -20,8 +20,7 @@ describe FarMar::Product do
 
   it "Input a product id '1', returns all the corresponding Vendor objects with the same Product's vendor id" do
     product = FarMar::Product.new("1","Dry Beets","1")
-    expect( product.vendor.class ).must_equal(Array)
-    expect( product.vendor[0].class ).must_equal(FarMar::Vendor)
+    expect( product.vendor.class ).must_equal(FarMar::Vendor)
   end
 
   it "Input a product id '1' returns all the corresponding Sale objects with the same product id" do

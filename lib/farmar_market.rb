@@ -63,7 +63,6 @@ class FarMar::Market
       market_name.downcase.include?(term) || vendor_names.any?{ |vendor_name| vendor_name.downcase.include?(term) }
     end
   end
-  # RUNNING TIME of above method: 0m10.792s. TOO LONG. Need to optimize the loop and restructure.
 
   # return an array of FarMar::Vendor objects that are associated with the market by the market_id field
   def vendors
@@ -82,6 +81,14 @@ class FarMar::Market
       FarMar::Product.all.select { |product| product.vendor_id == vendor_id }
     end
   end
-  # very happy with the way of handling the above products method. Great satisfaction of accomplishment. XD
+
+  # returns the Vendor object with the highest revenue
+  def prefered_vendor
+    #return an array Vendor objects sorted by vendor revenue in accending order
+    revenues = FarMar::Vendor.all.sort_by { |vendor| vendor.revenue }
+    # return the vendor that has the highest revenue(the last element in the array)
+    return revenues.last
+  end
+
 
 end
