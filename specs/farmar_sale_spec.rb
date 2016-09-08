@@ -74,15 +74,18 @@ describe FarMar::Sale do
   end
 
   describe "self.between(beginning_time, end_time)" do
-    beginning_time = DateTime.new(2013, 11, 07)
-    end_time = DateTime.new(2013, 11, 12)
-    sale = FarMar::Sale.between(beginning_time, end_time)
+    beginning_time = DateTime.new(2013, 11, 07, 20, 25, 00, '-8')
+    end_time = DateTime.new(2013, 11, 07, 20, 26, 00, '-8')
+    sales = FarMar::Sale.between(beginning_time, end_time)
     it "should return an array of FarMar::Sale objects" do
-      sale[1].must_be_instance_of(FarMar::Sale)
+      sales[1].must_be_instance_of(FarMar::Sale)
     end
 
-    # it "should return an array of Sale objects that were sold between the two times given" do
-    #   sale.must_include(FarMar::Sale.find(39))
-    # end
+    it "should return an array of Sale objects that were sold between the two times given" do
+      sales_ids = sales.map do |sale|
+        sale.id
+      end
+      sales_ids.must_include(37)
+    end
   end
 end
