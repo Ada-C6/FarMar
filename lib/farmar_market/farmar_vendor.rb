@@ -51,8 +51,8 @@ module FarMar
         if product.vendor_id == @vendor_id
           associated_products.push(product)
         end
-        return associated_products
       end
+      return associated_products
     end
 
     def sales
@@ -64,8 +64,22 @@ module FarMar
         if sale.vendor_id == @vendor_id
           associated_sales.push(sale)
         end
-        return associated_sales
       end
+      return associated_sales
+    end
+
+    def revenue
+      all_sales =
+      FarMar::Sale.all
+      associated_sales = []
+
+      all_sales.each do |sale|
+        if sale.vendor_id == @vendor_id
+          associated_sales.push(sale.sale_amount)
+        end
+      end
+      return associated_sales.reduce(:+)
+
     end
   end
 end

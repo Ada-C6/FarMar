@@ -38,17 +38,24 @@ describe FarMar::Vendor do
       associated_market = FarMar::Market.find(vendor.vendor_id)
       associated_market.must_be_instance_of(FarMar::Market)
     end
+  end
 
-    describe "#products" do
-      it "should return a collection of FarMar::Product instances associated with a vendor_id" do
-        vendor.products.length.must_equal(1)
-      end
-    end
-
-    describe "#sales" do
-      it "should return a collection of FarMar::Sale instances associated with a vendor_id" do
-        vendor.sales.length.must_equal(1)
-      end
+  describe "#products" do
+    it "should return a collection of FarMar::Product instances associated with a vendor_id" do
+      vendor.products.length.must_equal(1)
     end
   end
+
+  describe "#sales" do
+    it "should return a collection of FarMar::Sale instances associated with a vendor_id" do
+      vendor.sales.length.must_equal(7)
+    end
+  end
+
+  describe "#revenue" do
+    it "should return the sum of all the vendor's sales (in cents)" do
+      vendor.revenue.must_equal(38259)
+    end
+  end
+
 end
