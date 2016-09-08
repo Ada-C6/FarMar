@@ -44,11 +44,18 @@ describe FarMar::Product do
 
 
   describe "#vendor" do
-    # considered with variable dataset in mind
+    # would need to change if dataset were to change
     it "should return the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field" do
       FarMar::Vendor.all
       found_vendor= FarMar::Vendor.find(1)
       product.vendor.must_equal(found_vendor.vendor_name)
+    end
+  end
+
+  describe "#sales" do
+    # would need to change if dataset were to change
+    it "should returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field" do
+      product.sales.length.must_equal(7)
     end
   end
 
