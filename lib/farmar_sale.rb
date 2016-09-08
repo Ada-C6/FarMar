@@ -30,9 +30,10 @@ module FarMar
       self.all.find do |sale|
         sale.id == num
       end
+    end
 
-
-
+    def vendor
+      FarMar::Vendor.find(@vendor_id)
     end
 
 

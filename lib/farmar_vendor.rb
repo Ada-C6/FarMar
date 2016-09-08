@@ -1,4 +1,4 @@
-require 'csv'
+# require 'csv'
 # require_relative 'farmar_market'
 
 module FarMar
@@ -39,18 +39,33 @@ module FarMar
       CSV.open('./support/vendors.csv', 'r').each do |line|
 
         if line[3].to_i == market_id
-        vendors << FarMar::Vendor.new(id:line[0],
+        vendors << FarMar::Vendor.new({id:line[0],
         name:line[1],
         employees:line[2],
-        market_id:line[3])
+        market_id:line[3]})
         end
-
       end
       return vendors
     end
 
     def products
       return FarMar::Product.by_vendor(@id)
+    end
+
+    def sales
+      sales = []
+      CSV.open('./support/sales.csv', 'r').each do |line|
+
+        if line[3].to_i == @id
+        sales << FarMar::Sale.new({id:line[0],
+        amount:line[1],
+        purchase_time:line[2],
+        vendor_id:line[3],
+        product_id:line[4]})
+        end
+      end
+      return sales
+
     end
 
   end

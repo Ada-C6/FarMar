@@ -55,9 +55,20 @@ describe "#products" do
   new_vendor = FarMar::Vendor.new({id:10})
   it "must return an array of Products" do
     new_vendor.products.must_be_instance_of Array
-    new_vendor.products[0].must_be_instance_of FarMar::Product
+    if new_vendor.products.length > 0
+      new_vendor.products[0].must_be_instance_of FarMar::Product
+    end
   end
+end
 
+describe "#sales" do
+  new_vendor = FarMar::Vendor.new({id:45})
+  it "must return an array of Sales" do
+    new_vendor.sales.must_be_instance_of Array
+    if new_vendor.sales.length > 0
+      new_vendor.sales[0].must_be_instance_of FarMar::Sale
+    end
+  end
 end
 
 end

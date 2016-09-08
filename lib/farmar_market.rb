@@ -1,5 +1,5 @@
-require 'csv'
-require_relative 'farmar_vendor'
+# require 'csv'
+# require_relative 'farmar_vendor'
 
 module FarMar
   class Market
@@ -35,14 +35,8 @@ module FarMar
     end
 
     def vendors
-
       return FarMar::Vendor.by_market(@id)
     end
 
   end
 end
-#
-# my_market = FarMar::Market.new(id:1)
-# puts my_market.id
-# print my_market.vendors
-# puts
