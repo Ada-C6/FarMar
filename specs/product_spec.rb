@@ -23,10 +23,22 @@ describe FarMar::Product do
             FarMar::Product.all[0].id.must_be_instance_of(Fixnum)
         end
     end
-    
+
     describe "self.find(id)" do
         it "will output an object" do
             FarMar::Product.find(FarMar::Product.all[0].id).must_be_instance_of(FarMar::Product)
+        end
+    end
+
+    describe "self.by_vendor(vendor_id)" do
+        let(:vendor_id) {FarMar::Vendor.all.last.id}
+        it "will output an array" do
+            FarMar::Product.by_vendor(vendor_id).must_be_instance_of(Array)
+        end
+
+        it "will contain an object as each element of the array" do
+            FarMar::Product.by_vendor(vendor_id)[0].must_be_instance_of(FarMar::Product)
+            FarMar::Product.by_vendor(vendor_id)[0].name.must_be_instance_of(String)
         end
     end
 end

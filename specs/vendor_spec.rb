@@ -42,14 +42,4 @@ describe FarMar::Vendor do
             FarMar::Vendor.by_market(market_id)[0].name.must_be_instance_of(String)
         end
     end
-    # describe "vendors" do
-    #     let(:m) {FarMar::Market.all.last}
-    #     it "will output an array" do
-    #         m.vendors.must_be_instance_of(Array)
-    #     end
-    #
-    #     it "will output vendor objects that correspond to the current market_id" do
-    #         m.vendors.first.market_id.must_equal(m.id)
-    #         m.vendors.last.market_id.must_equal(m.id)
-    #     end
 end

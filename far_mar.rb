@@ -9,12 +9,32 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
-##TEST #10... FarMar::Market.vendors
+##TEST #WAIT... FarMar::Market.vendors
 # m = FarMar::Market.all.last
 # print "I expect the two market id's below to be:"
 # puts m.vendors.first.market_id
 # puts m.vendors.last.market_id
 # puts "Did this work?"
+
+
+##TEST #10... FarMar::Product.by_vendor(vendor_id)
+# print "Here's the vendor I'm calling in the product method below:"
+# puts vendor_id = FarMar::Vendor.all.last.id
+#
+# product_tests = FarMar::Product.by_vendor(vendor_id)
+#
+# puts "Here are the product objects"
+# puts product_tests
+#
+# puts "Here's the confirmation that all of the vendor_id's in these objects (last line before the line break) match the vendor id noted above..."
+# product_tests.each do |item|
+#     puts item.id
+#     puts item.name
+#     puts item.vendor_id
+#     puts ""
+# end
+
+puts "Glorious!"
 
 
 
