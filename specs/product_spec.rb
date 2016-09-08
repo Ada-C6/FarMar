@@ -5,7 +5,7 @@ describe FarMar::Product do
   describe "#initialize" do
 
     #Example, use of the let. Note, this would be used better if we had it "..." do statements within each describe that need to be initialized in the same way.
-    
+
     let(:product) { FarMar::Product.new("1","Dry Beets","1") }
 
     it "can initialize a new instance of Product" do
@@ -57,5 +57,18 @@ describe FarMar::Product do
     end
   end
 
+  #OPTIONAL REQUIREMENTS: PART 1
+
+  # describe "self.revenue" do
+  #   it "should return the revenue of each product" do
+  #     FarMar::Product.revenue.length.must_equal(8193)
+  #   end
+  # end
+
+  # describe "self.most_revenue(n)" do
+  #   it "should return the top n product instances by total revenue" do
+  #     FarMar::Product.most_revenue(n).length.must_equal(8)
+  #   end
+  # end
 
 end

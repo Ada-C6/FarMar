@@ -69,4 +69,12 @@ describe FarMar::Vendor do
     end
   end
 
+  #OPTIONAL REQUIREMENTS: PART 1
+
+  # describe "self.most_revenue(n)" do
+  #   it "should return the top n vendor instances by total number of items sold" do
+  #     FarMar::Vendor.most_revenue(n).length.must_equal(6)
+  #   end
+  # end
+
 end

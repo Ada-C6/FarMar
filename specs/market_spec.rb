@@ -38,4 +38,11 @@ describe FarMar::Market do
     end
   end
 
+  describe "#prefered_vendor" do
+    it "should return the vendor with the highest revenue" do
+      market = FarMar::Market.new("3","Dolgeville Farmer's Market","(Parking Lot) Between Main St. and Helmer Ave","Dolgeville","Herkimer","New York","13329")
+      market.prefered_vendor.name.must_equal("Kertzann LCC")
+    end
+  end
+
 end

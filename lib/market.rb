@@ -39,5 +39,18 @@ module FarMar
       return vndrs
     end
 
+    def prefered_vendor
+      # Finding the vendors associated with each of the
+      vendor_id = []
+      FarMar::Market.vendors.each do |line|
+        # creating an array of vendor id's associated with a given vendor
+        vendor_id.push(line.id)
+        FarMar::Sale.each.do |line|
+ #IN PROGRESS!!!!
+
+        end
+      end
+    end
+
   end
 end
