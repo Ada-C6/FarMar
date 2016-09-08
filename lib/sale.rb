@@ -12,6 +12,7 @@ module FarMar
 
 # TO DO - figure out how to convert purchase_time to datetime data type
     def self.all
+      # IDEA make this an instance variable so you only have to make it run once
       sales = [] #array to store all of the hashes with sale info
       CSV.read("../FarMar/support/sales.csv").each do |line|
         sale = {id: line[0].to_i, amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3].to_i, product_id: line[4].to_i } #create a new hash for each sale to store specific info
