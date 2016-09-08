@@ -46,4 +46,18 @@ describe FarMar::Market do
 			test_find.name.must_equal("Quincy Farmers Market")
 		end
 	end
+
+	describe "#vendors" do
+		market = FarMar::Market.find(5)
+		vendors = market.vendors
+		
+		it "must return a collection of Vendor instances" do
+			vendors.first.must_be_instance_of(FarMar::Vendor)
+		end
+
+		it "must return Vendors which match the Market id" do
+			vendors.first.market_id.must_equal(market.id)
+			vendors.last.market_id.must_equal(market.id)
+		end
+	end
 end
