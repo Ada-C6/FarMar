@@ -4,15 +4,15 @@ module FarMar
     attr_accessor :id, :name, :num_of_employees, :market_id
 
     def initialize(id, name, num_of_employees, market_id)
-      @id = id
+      @id = id.to_i
       @name = name
       @num_of_employees = num_of_employees
-      @market_id = market_id
+      @market_id = market_id.to_i
     end
 
-    def self.all
+    def self.load_all
       info = {}
-      CSV.read('support/products.csv').each do |line|
+      CSV.read('support/vendors.csv').each do |line|
         id = line[0].to_i
         name = line[1]
         num_of_employees = line[2]
@@ -22,8 +22,30 @@ module FarMar
       return info
     end
 
+    def self.all
+      @@all_vendors ||= self.load_all
+      return @@all_vendors
+    end
+
     def self.find(id)
       return self.all[id]
+    end
+
+    def market
+      this_market = FarMar::Market.find(@market_id)
+      return this_market
+    end
+
+    def self.by_market(id)
+      all_vendors = self.all
+      vendors = []
+
+      all_vendors.each do |vendor, value|
+        if value.market_id == id
+          vendors << value
+        end
+      end
+      return vendors
     end
 
 
