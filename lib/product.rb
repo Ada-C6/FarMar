@@ -26,6 +26,12 @@ module FarMar
       end
     end
 
+    def self.by_vendor(vendor_id)
+      all.delete_if do |k, v|
+        v.vendor_id != vendor_id
+      end
+    end
+
     def vendor
       all_vendors = FarMar::Vendor.all
       return all_vendors[@id]

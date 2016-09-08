@@ -32,6 +32,17 @@ describe FarMar::Product do
     end
   end
 
+  describe "#self.by_vendor" do
+    it "should return a hash" do
+      FarMar::Product.by_vendor(1).must_be_kind_of Hash
+    end
+
+    it "should return a hash of one Product Instance object when given a vendor_id of 1" do
+      FarMar::Product.by_vendor(1).length.must_equal 1
+      FarMar::Product.by_vendor(1).values[0].must_be_instance_of FarMar::Product
+    end
+  end
+
   describe "#vendor" do
     it "should return an instance of Vendor" do
       @product.vendor.must_be_instance_of FarMar::Vendor
