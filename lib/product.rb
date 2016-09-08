@@ -9,7 +9,7 @@ module FarMar
       @vendor_id = vendor_id
     end
 
-    def self.all
+    def self.load_all
       info = {}
       CSV.read('support/products.csv').each do |line|
         id = line[0].to_i
@@ -19,6 +19,11 @@ module FarMar
         info[id] = self.new(id, name, vendor_id)
       end
       return info
+    end
+
+    def self.all
+      @@all_products ||= self.load_all
+      return @@all_products
     end
 
     def self.find(id)
