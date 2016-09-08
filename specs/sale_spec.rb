@@ -1,11 +1,13 @@
 require_relative 'spec_helper'
 
 describe FarMar::Sale do
-  sale = FarMar::Sale.new(1,200,"1200",1,1)
+  before (:each) do
+    @sale = FarMar::Sale.new(1,200,"12:00",1,1)
+  end
 
   describe "#initialize" do
     it "should create a new instance of Sale" do
-      sale.must_be_instance_of FarMar::Sale
+      @sale.must_be_instance_of FarMar::Sale
     end
   end
 
@@ -29,4 +31,20 @@ describe FarMar::Sale do
       proc { FarMar::Product.find(0) }.must_raise(ArgumentError)
     end
   end
+
+  describe "#vendor" do
+    it "should return an instance of vendor" do
+      @sale.vendor.must_be_instance_of FarMar::Vendor
+    end
+
+    it "should return only one instance, not a collection" do
+      @sale.vendor.wont_be_kind_of Hash, Array
+    end
+
+    it "should return a vendor_id of 1 with a sale_id of 1" do
+      @sale.vendor.id.must_equal 1
+    end
+  end
+
+
 end

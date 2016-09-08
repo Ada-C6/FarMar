@@ -29,6 +29,10 @@ module FarMar
         raise ArgumentError.new("We do not have a sale with that ID.")
       end
     end
-  end
 
+    def vendor
+      all_vendors = FarMar::Vendor.all
+      return all_vendors[@id]
+    end
+  end
 end
