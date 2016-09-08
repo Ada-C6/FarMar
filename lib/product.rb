@@ -27,15 +27,34 @@ module FarMar
     end
 
     def vendor #returns the object:Vendor instance that is associated with Product
-      all_vendors = FarMar::Vendor.all
-
-      all_vendors.each do |v|
-        if v.id == @vendor_id
-          return v
-        end
-      end
+      FarMar::Vendor.find(@vendor_id)
     end
 
+    def sales #returns an array of Sale objects that are accociated with this product
+      all_sales = FarMar::Sale.all
+      product_sales = []
 
+      all_sales.each do |s|
+        if s.product_id == @id
+          product_sales << s
+        end
+      end
+      return product_sales
+    end
+
+    def number_of_sales #returns the number of times this product has been sold
+      sales.length
+    end
+
+    def self.by_vendor(vendor_id) #returns all the products associated with the given vendor_id
+      vendor_products = []
+
+      FarMar::Product.all.each do |pro|
+        if pro.vendor_id == vendor_id
+          vendor_products << pro
+        end
+      end
+      return vendor_products
+    end
   end
 end
