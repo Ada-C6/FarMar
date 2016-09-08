@@ -4,7 +4,7 @@ require 'csv'
 module FarMar
   class Sale
 
-    attr_reader :sale_id, :sale_amount, :sale_purchase_time, :vendor_id, :product_id, :sale_state, :sale_zip
+    attr_reader :sale_id, :sale_amount, :sale_purchase_time, :vendor_id, :product_id
 
     def initialize(sale_hash)
       @sale_id = sale_hash[:sale_id]
