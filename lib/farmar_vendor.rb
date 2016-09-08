@@ -9,11 +9,6 @@ module FarMar
       @market_id = market_id
     end
 
-    # def market_by(vendor_id)
-    #   vendor = vendor_id
-    #   vendor.market_id
-    # end
-
     def self.all
       all_vendors = {}
       CSV.read('support/vendors.csv').each do | line |
@@ -48,6 +43,28 @@ module FarMar
 
     def products
       FarMar::Product.by_vendor(@id)
+    end
+
+    def sales
+      sales_by_vendor = []
+      all_sales = FarMar::Sale.all
+
+      all_sales.each do |sales_key, sale_value|
+        if sale_value.vendor_id == @id
+          sales_by_vendor << sale_value
+        end
+      end
+      return sales_by_vendor
+    end
+
+    def revenue
+      revenue_by_vendor = 0
+      sales_by_vendor = sales
+      sales_by_vendor.each do |sales_value|
+        revenue_by_vendor += sales_value.amount
+      end
+      return revenue_by_vendor
+
     end
   end
 end
