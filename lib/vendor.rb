@@ -10,31 +10,30 @@
 # self.by_market(market_id): returns all of the vendors with the given market_id
 require 'csv'
 
-module Far_Mar
+module FarMar
   class Vendor
     attr_accessor :market_id, :id, :name, :employees
-      def initialize
+      def initialize(market_id, id, name, employees)
         @market_id = market_id
         @id = id
         @name = name
         @employees = employees
-
       end
 
-      def mkt_vendors
-        mkt_vendors = { }
+      def self.all
+        vendors = { }
           CSV.read('../support/vendors.csv').each do |line|
-            mkt_vendors[line[3]] = line[0],line[1],line[2]
+            vendors[line[0]] = Vendor.new(line[3],line[0],line[1],line[2])
           end
+          return vendors
       end
 
-    def self.all_vendors
-      vendor_list = { }
-        CSV.read('../support/vendors.csv').each do |line|
-          vendor_list[line[0]] = Vendor.new(line[3],line[0],line[1],line[2])
-        end
-      return vendor_list
-    end
+
+      def self.find_vendors
+          return Vendor.all[id]
+      end
 
   end
 end
+puts FarMar::Vendor.all
+puts FarMar::Vendor.find("444")

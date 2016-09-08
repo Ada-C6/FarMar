@@ -1,5 +1,7 @@
 #need to access the csv 'markets', retrieve instances of market + create new instances
 require 'csv'
+require_relative 'vendor'
+
 module FarMar
 
   class Market
@@ -26,16 +28,24 @@ module FarMar
       return Market.all[id]
     end
 
-
-
+    #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
+    def self.vendors
+      newest = { }
+      m = Market.all[0]
+      n = FarMar::Vendor.all
+       if Market.all[0] == Vendor.all[0]
+         newest[m[0]] = Vendor.new(n[3],n[0],n[1],n[2])
+       end
+    end
   end
 end
 
+
 #if there's time, work on pushing new instances to markets.csv
-puts FarMar::Market.all
+#puts FarMar::Market.all
+puts FarMar::Market.vendors
 puts FarMar::Market.find("492")
 puts FarMar::Market.find("498")
 puts FarMar::Market.find("32")
-n = FarMar::Market.new("9999999","Natasha","737 Olive Way","Seattle","King","WA","98101")
-puts n.street
+#n = FarMar::Market.new("9999999","Natasha","737 Olive Way","Seattle","King","WA","98101")
 puts FarMar::Market.find("9999999")
