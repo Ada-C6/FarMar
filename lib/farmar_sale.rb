@@ -11,7 +11,7 @@ class FarMar::Sale
   def self.all
     sales = {}
     discount = []
-    CSV.open('support/markets.csv', 'r').each do |line|
+    CSV.open('support/sales.csv', 'r').each do |line|
       sales[line[0]] = line[1..4]
       id = line[0].to_i
       amount = line[1].to_i
