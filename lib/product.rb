@@ -28,6 +28,14 @@ class FarMar::Product
         end
     end
 
+    def vendor
+        FarMar::Vendor.all.each do |v_object|
+            if v_object.id == @vendor_id
+                return v_object
+            end
+        end
+    end
+
     def self.by_vendor(vendor_id)
         return self.all.select {|p_object| p_object.vendor_id == vendor_id}
     end

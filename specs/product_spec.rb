@@ -30,6 +30,17 @@ describe FarMar::Product do
         end
     end
 
+    describe "vendor" do
+        let(:p) {FarMar::Product.all.last}
+        it "will output a Vendor object" do
+            p.vendor.must_be_instance_of(FarMar::Vendor)
+        end
+
+        it "will output the object whose vendor id corresponds to the current product instance's vendor id" do
+            p.vendor.id.must_equal(p.vendor_id)
+        end
+    end
+
     describe "self.by_vendor(vendor_id)" do
         let(:vendor_id) {FarMar::Vendor.all.last.id}
         it "will output an array" do
