@@ -1,8 +1,8 @@
 # gems your project needs
-require 'csv'
+require './support/csv'
 
 # our namespace module
-module FarMar
+module FarMar;
 end
 
 # all of our data classes that live in the module
