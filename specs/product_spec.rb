@@ -20,10 +20,15 @@ describe "self.find(id)" do
 end
 describe "self.by_vendor(vendor_id)" do
   it "returns the vendors of a given vendor id" do
-  
+
     FarMar::Product.by_vendor(1).each do |x|
       x.vend_id.must_equal(1)
     end
+  end
+end
+describe "#sales" do
+  it "will return a collection of sales instances based on the product id" do
+    sam.sales.must_be_kind_of(Object)
   end
 end
 end
