@@ -28,8 +28,17 @@ module FarMar
     end
 
     def self.find(id)
-
       return self.all[id]
     end
+
+    def vendor #when you call vendor, it will pull up the vendor instance that matches the vendor id at the top
+      all_vendors = FarMar::Vendor.all
+      all_vendors.each do |vendor, vendor_values|
+        if vendor_values.id == @vendor_id
+          return vendor_values
+        end
+      end
+    end
+
   end
 end

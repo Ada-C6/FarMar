@@ -29,7 +29,17 @@ module FarMar
         sold_foots = Sale.find(20)
         sold_foots.id.must_equal(20)
       end
-
     end
+    describe "#vendor" do
+      let (:sale) {Sale.find(8)} #vendor id is 2
+      it "should return the instance of Vendor for the particular sale" do
+        sale.vendor.must_be_instance_of(Vendor)
+      end
+
+      it "should return the right vendor id" do
+        sale.vendor_id.must_equal(2)
+      end
+    end
+
   end #end sale
 end #end module
