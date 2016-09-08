@@ -49,6 +49,7 @@ describe FarMar::Product do
     new_product = FarMar::Product.new({vendor_id: 4})
     it "returns the vendor given by product's vendor id" do
       new_product.vendor.id.must_equal 4
+      new_product.vendor.must_be_instance_of FarMar::Vendor
 
     end
   end

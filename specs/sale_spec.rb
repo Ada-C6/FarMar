@@ -41,4 +41,13 @@ describe FarMar::Sale do
       FarMar::Sale.find(14).must_be_instance_of(FarMar::Sale)
     end
   end
+
+  describe "#vendor" do
+    new_sale = FarMar::Sale.new({vendor_id: 4})
+    it "returns the vendor given by sale's vendor id" do
+      new_sale.vendor.id.must_equal 4
+      new_sale.vendor.must_be_instance_of FarMar::Vendor
+
+    end
+  end
 end
