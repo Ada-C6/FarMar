@@ -41,5 +41,31 @@ module FarMar
       raise Exception("ID was not present")
     end
 
+    def vendor
+      associated_vendor = FarMar::Vendor.find(@vendor_id)
+      return associated_vendor.vendor_name
+    end
+
+    def product
+      associated_product = FarMar::Product.find(@product_id)
+      return associated_product.product_name
+    end
+
+    def self.between(beginning_time, end_time)
+      all_sales = FarMar::Sale.all
+      time_range_sales = []
+      beginning_time_parse = DateTime.parse(beginning_time)
+      end_time_parse = DateTime.parse(end_time)
+
+      all_sales.each do |sale|
+        # This condiitonal feels really convoluted; will see if refactoring is possible if time
+        if (sale.sale_purchase_time.hour == beginning_time_parse.hour && sale.sale_purchase_time.min ==  beginning_time_parse.min && sale.sale_purchase_time.sec >= beginning_time_parse.sec)
+          time_range_sales.push(sale)
+        elsif (sale.sale_purchase_time.hour == end_time_parse.hour && sale.sale_purchase_time.min ==  end_time_parse.min && sale.sale_purchase_time.sec <= end_time_parse.sec)
+          time_range_sales.push(sale)
+        end
+      end
+      return time_range_sales
+    end
   end
 end
