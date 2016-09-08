@@ -48,14 +48,41 @@ module FarMar
       return vendors
     end
 
+    def products
+      all_products = FarMar::Product.all
+      products = []
 
+      all_products.each do |product, value|
+        if value.vendor_id == @id
+          products << value
+        end
+      end
+      return products
+    end
 
+    def sales
+      all_sales = FarMar::Sale.all
+      sales = []
 
+      all_sales.each do |sale, value|
+        if value.vendor_id == @id
+          sales << value
+        end
+      end
+      return sales
+    end
 
+    def revenue
+      all_sales = FarMar::Sale.all
+      revenue = 0
 
-
-
-
+      all_sales.each do |sale, value|
+        if value.vendor_id == @id
+          revenue += value.amount
+        end
+      end
+      return revenue
+    end
 
 
   end
