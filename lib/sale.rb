@@ -38,4 +38,7 @@ attr_reader :id, :amount_in_cents, :purchase_time, :vendor_id, :product_id
     # if id > 500, returns entire array....fix later
   end
 
+  def vendor
+    Vendor.find(@vendor_id)
+  end
 end

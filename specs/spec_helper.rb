@@ -10,7 +10,8 @@ require "minitest/autorun"
 require "minitest/reporters"
 require 'minitest/pride'
 
-require_relative '../far_mar'
 
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+
+require_relative '../far_mar'

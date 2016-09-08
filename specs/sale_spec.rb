@@ -24,8 +24,17 @@ module FarMar
         Sale.find(55).id.must_equal(55)
       end
 
-      it "should return the amount in cents  that the passed parameter matches" do
+      it "should return true if the amount in cents matches the passed parameter" do
         Sale.find(277).amount_in_cents.must_equal(925)
+      end
+    end
+
+    describe "#vendor" do
+      it "should return true if the returned instance is of the same vendor id" do
+        s = Sale.find(2)
+        s.vendor do |i|
+          i.vendor_id.must_equal(4) ### LINE NOT COVERED
+        end
       end
     end
   end
