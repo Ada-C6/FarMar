@@ -74,10 +74,10 @@ module FarMar
       end
 
       it "the time of the sale at any index should be between the arguments(beg_time, end_time)" do
-        sales_between[0].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
-        sales_between[10].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
-        sales_between[50].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
-        sales_between[100].purchase_time.must_be_close_to(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))
+        (sales_between[0].purchase_time.between?(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))).must_equal(true)
+        (sales_between[10].purchase_time.between?(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))).must_equal(true)
+        (sales_between[50].purchase_time.between?(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))).must_equal(true)
+        (sales_between[100].purchase_time.between?(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))).must_equal(true)
       end
     end
   end
