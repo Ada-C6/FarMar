@@ -36,15 +36,7 @@ module FarMar
     end
 
     def sales #returns a collection of object:Sales that are associated with this vendor
-      ven_id = @id
-      vendor_sales = []
-
-      FarMar::Sale.all.each do |s|
-        if s.vendor_id == ven_id
-          vendor_sales << s
-        end
-      end
-      return vendor_sales
+      FarMar::Sale.all.select { |s| s.vendor_id == @id }
     end
 
     def revenue #returns the sum of all the vendor's sales
