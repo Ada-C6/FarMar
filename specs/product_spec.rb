@@ -1,3 +1,6 @@
+# ID - (Fixnum) uniquely identifies the product
+# Name - (String) the name of the product (not guaranteed unique)
+# Vendor_id - (Fixnum) a reference to which vendor sells this product
 require_relative 'spec_helper'
 module FarMar
 
@@ -6,9 +9,6 @@ module FarMar
         describe "#initialize" do
           let(:product) { Product.new(:id, :name, :vendor_id) }
 
-  # ID - (Fixnum) uniquely identifies the product
-  # Name - (String) the name of the product (not guaranteed unique)
-  # Vendor_id - (Fixnum) a reference to which vendor sells this product
 
           it "can create an instance of Product" do
             product.must_be_instance_of(Product)

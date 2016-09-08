@@ -19,15 +19,5 @@ module FarMar
       return products[id]
     end
 
-
-
-
-
-
-
-
-
   end
-
-
 end

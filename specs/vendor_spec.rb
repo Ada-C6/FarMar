@@ -21,12 +21,18 @@ module FarMar
       it "should return a hash" do
         Vendor.all.must_be_instance_of(Hash)
       end
+
       it "should be a collection of Vendor objects" do
         Vendor.all.each do |vendor_id, vendor|
           vendor_id.must_equal(vendor.id)
           vendor.must_be_instance_of(Vendor)
         end
       end
+      # @todo this worked in Sale
+      # it "should totally find a random Sale and decide it's an instance of Sale" do
+      #   random_sale_id = rand(1..100) # 100 is an arbitrary low number
+      #   Sale.all[random_sale_id].must_be_instance_of(Sale)
+      # end
       it "should return information about vendors" do
         # first listed vendor
         Vendor.all[1].id.must_equal(1)
@@ -62,15 +68,28 @@ module FarMar
       before(:each) do
         @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
       end
-      #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
-      it "should return a collection of Product instances associated to current vendor" do
+      it "should return a collection of Product instances associated to specific vendor" do
         @vendor.products.each do |product_id, product|
-        #  puts "#{vendor.market_id} is this market id" #this is not putsing?!
+          puts "#{vendor.market_id} is this market id" #this is not puts-ing?!
           product.vendor_id.must_equal(@vendor.id)
+        end
+      end
+    end
+
+    describe "#sales" do
+      before(:each) do
+        @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
+      end
+      it "should return a collection of Sale instances that are associated to a specific vendor" do
+        skip # @todo error here because I forgot to code .sale and .all for Sale class
+        @vendor.sales.each do |sale_id, sale|
+          sale.vendor_id.must_equal(@vendor.id)
         end
       end
 
     end
+
+
 
   end
 end
