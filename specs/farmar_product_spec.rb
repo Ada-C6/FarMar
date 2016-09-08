@@ -30,4 +30,12 @@ describe FarMar::Product do
       found_product.product_name.must_equal(product.product_name)
     end
   end
+
+  describe "self.by_vendor(vendor_id)" do
+    it "should return all of the products associated with a vendor_id" do
+      FarMar::Product.new({product_id: 1, product_name: "Dry Beets",vendor_id: 1})
+      FarMar::Product.by_vendor(1).length.must_equal(1)
+    end
+  end
+
 end

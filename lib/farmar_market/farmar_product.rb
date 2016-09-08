@@ -37,5 +37,18 @@ module FarMar
       raise Exception("ID was not present")
     end
 
+    def self.by_vendor(vendor_id)
+      all_products = all
+      associated_products = []
+
+      all_products.each do |product|
+
+        if product.vendor_id == vendor_id
+          associated_products.push(product)
+        end
+      end
+      return associated_products
+    end
+
   end
 end
