@@ -49,5 +49,9 @@ module FarMar
       FarMar::Sale.all.select {|sale| sale.product_id == @id}
     end
 
+    def number_of_sales
+      sales.length
+    end
+
   end
 end

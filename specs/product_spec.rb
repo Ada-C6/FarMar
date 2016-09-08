@@ -60,4 +60,12 @@ describe FarMar::Product do
       end
     end
   end
+
+  describe "#number_of_sales" do
+    product = FarMar::Product.new({id:1})
+    it "must return a Fixnum amount" do
+      product.number_of_sales.must_be_instance_of Fixnum
+      product.number_of_sales.must_equal 7
+    end
+  end
 end
