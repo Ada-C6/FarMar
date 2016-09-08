@@ -11,6 +11,7 @@ module FarMar
       @name = product_hash["name"]
       @vendor_id = product_hash["vendor_id"]
       @sales_by_product = []
+      @product_number = []
     end
 
     # Class method that reads from a CSV file to generate an array of product hashes
@@ -75,6 +76,19 @@ module FarMar
         end
       end
       return @sales_by_product
+    end
+
+    # Returns the number of times that a product, based on its product_id, has been sold
+    def number_of_sales
+      sales = FarMar::Sale.all
+      # In Sales, the product_id specifies what product has been sold, so iterate over
+      # sales array using product_id and use .count enumerable
+      sales.each do |var|
+        @product_number << var.product_id
+      end
+
+      sales_count = @product_number.count(@product_id)
+      return sales_count
     end
   end
 end

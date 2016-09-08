@@ -77,4 +77,18 @@ describe FarMar::Product do
       end
     end
   end
+
+  describe "#number_of_sales" do
+    before(:each) do
+      @products = FarMar::Product.new({"product_id" => 4})
+    end
+
+    it "should return a Fixnum" do
+      @products.number_of_sales.must_be_kind_of(Fixnum)
+    end
+
+    it "should return the number of times the product has been sold" do
+      @products.number_of_sales.must_equal(8) # This is how many product_id = 4 were sold
+    end
+  end
 end
