@@ -15,6 +15,7 @@ describe FarMar::Sale do
   end
   describe "self.find(id)" do
     it "should return the id that was passed through" do
+    
       FarMar::Sale.find(1).id.must_equal(1)
     end
  end
