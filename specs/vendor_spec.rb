@@ -97,7 +97,7 @@ describe FarMar::Vendor do
 			vendor_list.first.must_be_instance_of(FarMar::Vendor)
 		end
 
-		it "must return vendors whose market id matches the argument" do
+		it "returns Vendors w/ market_id matching the arg" do
 			vendor_list.first.market_id.must_equal(5)
 			vendor_list.last.market_id.must_equal(5)
 		end

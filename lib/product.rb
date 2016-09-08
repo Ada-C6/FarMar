@@ -29,8 +29,15 @@ module FarMar
 					return product
 				end
 			end
-
 		end
 
+		def vendor
+			all_vendors = FarMar::Vendor.all
+			all_vendors.each do |vendor|
+				if vendor.id == vendor_id
+					return vendor
+				end
+			end
+		end
 	end
 end

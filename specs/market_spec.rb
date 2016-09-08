@@ -50,12 +50,12 @@ describe FarMar::Market do
 	describe "#vendors" do
 		market = FarMar::Market.find(5)
 		vendors = market.vendors
-		
+
 		it "must return a collection of Vendor instances" do
 			vendors.first.must_be_instance_of(FarMar::Vendor)
 		end
 
-		it "must return Vendors which match the Market id" do
+		it "must return Vendors matching Market id" do
 			vendors.first.market_id.must_equal(market.id)
 			vendors.last.market_id.must_equal(market.id)
 		end
