@@ -49,11 +49,25 @@ module FarMar
     end
 
     def products
-      #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field. Seems to be related to the Product.by_vendor(id), which returns all the products with a given vendor_id.
+      #products: returns an array of FarMar::Product instances that are associated by the FarMar::Product vendor_id field. Seems to be related to the Product.by_vendor(id), which returns all the products with a given vendor_id.
       Product.by_vendor(@id)
     end
 
-    #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+    def sales
+      #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+      # for this vendor object, I should get the list of products associated with it, then call product.sales for each of those products, which should return a collection of sales (probably as a hash, keyed off of product_id).
+      sales_hash = {}
+
+      products.each do |product| #for each product do the following.
+        # it is possible for there to be no sales for a given product
+        unless product.sales == nil
+          sales_hash[product] = product.sales
+        end
+      end
+
+      return sales_hash
+    end
+
     #revenue: returns the the sum of all of the vendor's sales (in cents)
   end
 end

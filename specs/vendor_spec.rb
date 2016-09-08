@@ -94,19 +94,16 @@ module FarMar
         some_vendor.sales.must_be_instance_of(Hash)
       end
       it "should return a Hash where the keys are Products" do
-        skip
         some_vendor.sales.keys[0].must_be_instance_of(Product)
       end
       it "should return a Hash where the values are an array of Sales" do
-        skip
         some_vendor.sales.values[0].must_be_instance_of(Array)
       end
       it "elements within the value Arrays should be Sale objects" do
-        skip
+        #it is possible I'll have an empty array if there are no sales for a given product.
         some_vendor.sales.values[0][0].must_be_instance_of(Sale)
       end
       it "should return Sales where the vendor_id is the same as it's vendor_id" do
-        skip
         some_vendor.sales.values[0][0].vendor_id.must_equal(some_vendor.id)
       end
     end
