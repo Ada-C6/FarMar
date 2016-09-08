@@ -35,6 +35,11 @@ describe FarMar::Sale do
 		it "must return an instance of Sale" do
 			FarMar::Sale.find(5).must_be_instance_of(FarMar::Sale)
 		end
+
+		it "must return the right instance of Sale" do
+			test_find = FarMar::Sale.find(5)
+			test_find.amount.must_equal(4440)
+		end
 	end
 
 end

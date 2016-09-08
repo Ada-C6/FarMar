@@ -1,6 +1,6 @@
 module FarMar
 	class Product
-		attr_reader :id
+		attr_reader :id, :name, :vendor_id
 
 		def initialize(product_hash)
 			@id = product_hash[:id]

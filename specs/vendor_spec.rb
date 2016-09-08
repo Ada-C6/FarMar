@@ -38,6 +38,11 @@ describe FarMar::Vendor do
 		it "must return an instance of Vendor" do
 			FarMar::Vendor.find(5).must_be_instance_of(FarMar::Vendor)
 		end
+
+		it "must return the right instance of Vendor" do
+			test_find = FarMar::Vendor.find(5)
+			test_find.name.must_equal("Reynolds, Schmitt and Klocko")
+		end
 	end
 
 end

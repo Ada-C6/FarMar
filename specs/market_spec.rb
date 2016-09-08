@@ -40,5 +40,10 @@ describe FarMar::Market do
 		it "must return an instance of Market" do
 			FarMar::Market.find(5).must_be_instance_of(FarMar::Market)
 		end
+
+		it "must return the right instance of Market" do
+			test_find = FarMar::Market.find(5)
+			test_find.name.must_equal("Quincy Farmers Market")
+		end
 	end
 end
