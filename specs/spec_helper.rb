@@ -1,7 +1,9 @@
 require 'simplecov'
+require 'csv'
 
 SimpleCov.start
-require_relative '../Far_Mar'
+require_relative '../FarMar'
+#require_relative
 require 'minitest'
 require 'minitest/spec'
 require "minitest/autorun"
