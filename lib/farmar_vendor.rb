@@ -64,4 +64,15 @@ class Vendor
     puts "The total revenue is #{ total_revenue }"
     return total_revenue
   end
+
+  def self.by_market(market_id)
+    a = all.find_all { |n| n[1].market_id == market_id }
+    puts a
+
+    vendors_by_market = []
+    a.length.times do |i|
+      vendors_by_market << a[i][1]
+    end
+    return vendors_by_market
+  end
 end

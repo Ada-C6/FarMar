@@ -59,4 +59,13 @@ describe Vendor do
     end
   end
 
+  describe "by_market" do
+    it "should return all of the vendors with the given market_id" do
+      a = Vendor.by_market(1)
+      a.class.must_equal(Array)
+      a[0].class.must_equal(Vendor)
+      a.length.must_equal(6)
+    end
+  end
+
 end
