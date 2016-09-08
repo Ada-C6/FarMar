@@ -42,8 +42,21 @@ describe Vendor do
   end
 
   describe "#sales" do
-    # it "should "
+    it "should return a collection of Sale instances that are associated by vendor id" do
+      a = Vendor.new(1,"Feil-Farrell",8,1)
+      b = a.sales
+      b.class.must_equal(Array)
+      b[0].must_be_instance_of(Sale)
+      b.length.must_equal(7)
+    end
   end
 
+  # describe "#revenue" do
+  #   it "should return the sum of all the vendor's sales (in cents)" do
+  #     a = Vendor.new(1,"Feil-Farrell",8,1)
+  #     b = a.sales
+  #     b.revenue.must_equal(38259)
+  #   end
+  # end
 
 end

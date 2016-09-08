@@ -16,10 +16,10 @@ class Sale
     sale = {}
     CSV.read('support/sales.csv').each do |line|
       id = line[0].to_i
-      amount = line[1]
+      amount = line[1].to_i
       purchase_time = line[2]
-      vendor_id = line[3]
-      product_id = line[4]
+      vendor_id = line[3].to_i
+      product_id = line[4].to_i
 
       sale[id] = self.new(id, amount, purchase_time, vendor_id, product_id)
     end

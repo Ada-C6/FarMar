@@ -36,11 +36,27 @@ class Vendor
 
   def products
     product_list = Product.all
-    prods = product_list.find_all { |n| n[1].vendor_id == @id}
+    match = product_list.find_all { |n| n[1].vendor_id == @id }
     product_instances = []
-    prods.length.times do |i|
-      product_instances << prods[i][1]
+    match.length.times do |i|
+      product_instances << match[i][1]
     end
     return product_instances
   end
+
+  def sales
+    sales_list = Sale.all
+    # print sales_list
+    match = sales_list.find_all { |n| n[1].vendor_id == @id }
+    puts match
+    sales_instances = []
+    match.length.times do |i|
+      sales_instances << match[i][1]
+    end
+    return sales_instances
+  end
+
+  # def revenue
+  #
+  # end
 end
