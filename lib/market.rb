@@ -15,7 +15,7 @@ module FarMar
       @vendors = []
     end
 
-    def self.all
+    def self.load_all
       info = {}
       CSV.read('support/markets.csv').each do |line|
         id = line[0].to_i
@@ -28,6 +28,11 @@ module FarMar
         info[id] = self.new(id, name, address, city, county, state, zip)
       end
       return info
+    end
+
+    def self.all
+      @@all_markets ||= self.load_all
+      return @@all_markets
     end
 
     def self.find(id)
