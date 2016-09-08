@@ -45,4 +45,16 @@ describe FarMar::Vendor do
 		end
 	end
 
+	describe "#market" do
+		vendor = FarMar::Vendor.find(5)
+
+		it "must return a Market instance" do
+			vendor.market.must_be_instance_of(FarMar::Market)
+		end
+
+		it "must return the Market which matches the market_id of the Vendor" do
+			vendor.market.id.must_equal(vendor.market_id)
+		end
+	end
+
 end

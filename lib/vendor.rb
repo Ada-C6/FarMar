@@ -31,7 +31,11 @@ module FarMar
 					return vendor
 				end
 			end
+		end
 
+		def market
+			market = FarMar::Market.find(market_id)
+			return market
 		end
 	end
 end
