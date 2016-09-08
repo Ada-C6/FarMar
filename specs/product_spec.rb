@@ -3,12 +3,10 @@ require_relative '../lib/product'
 
 describe FarMar::Product do
   describe "#initialize" do
-
     it "can create a new instance of Product" do
       product_hash = FarMar::Product.new("product_hash")
       product_hash.must_be_instance_of(FarMar::Product)
     end
-
   end
 
   describe "self.all" do
@@ -17,7 +15,6 @@ describe FarMar::Product do
     it "should return an Array" do
       products.must_be_kind_of(Array)
     end
-
   end
 
   describe "self.find(input)" do
@@ -63,7 +60,21 @@ describe FarMar::Product do
     it "should use the product's vendor_id to return that product's vendor" do
       @products.vendor.vendor_id.must_equal(2)
     end
-
   end
 
+  describe "#sales" do
+    before(:each) do
+      @products = FarMar::Product.new({"vendor_id" => 2})
+    end
+
+    it "should return an Array" do
+      @products.sales.must_be_kind_of(Array)
+    end
+
+    it "should return an array of sales based on the product_id" do
+      @products.sales.each do |i|
+        i.product_id.must_equal(5)
+      end
+    end
+  end
 end
