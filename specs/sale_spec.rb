@@ -3,18 +3,14 @@ module FarMar
   describe "Sale" do
     describe "#initialize" do
       before(:all) do
-        sales_hash = {
-          id:  23,
-          amount: 200,
-          purchase_time: 112,
-          vendor_id: 1,
-          market_id: 12
-        }
-      @sale = Sale.new(sales_hash)
+        @sale = Sale.new(9, 9128, 2013-11-13,3,4)
       end
 
       it "should create an instance of a sale" do
         @sale.must_be_instance_of(Sale)
+      end
+      it "should have a vendor id" do
+        @sale.vendor_id.must_equal(3)
       end
     end
 
@@ -22,7 +18,7 @@ module FarMar
         let(:sales) { Sale.all }
 
       it "should create an array of instances of sales from the CSV file" do
-       Sale.all.must_be_kind_of(Array)
+       Sale.all.must_be_kind_of(Hash)
       end
     end #end self.all
 
