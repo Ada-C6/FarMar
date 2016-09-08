@@ -32,7 +32,7 @@ module FarMar
 
     def self.between(beginning_time, end_time)
       all.delete_if do |k, v|
-        v.purchase_time >= beginning_time && v.purchase_time <= end_time
+        v.purchase_time < beginning_time || v.purchase_time > end_time
       end
     end
 

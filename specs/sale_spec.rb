@@ -33,15 +33,20 @@ describe FarMar::Sale do
   end
 
   describe "#self.between" do
-
-    it "should return an array" do
+    it "should return a hash" do
       FarMar::Sale.between("2013-11-07 04:34:56 -0800","2013-11-10 02:44:56 -0800").must_be_kind_of Hash
     end
 
-    it "should return something of an instance of Sale" do
+    it "should return an instance of Sale" do
       between_test = FarMar::Sale.between("2013-11-07 04:34:56 -0800","2013-11-10 02:44:56 -0800")
 
       between_test.values.first.must_be_instance_of FarMar::Sale
+    end
+
+    it "should return a 911 sales for given time range" do
+      between_test2 = FarMar::Sale.between("2013-11-08 04:31:41 -0800","2013-11-08 16:36:03 -0800")
+
+      between_test2.length.must_equal 911
     end
   end
 
