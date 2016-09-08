@@ -66,4 +66,12 @@ describe "#sales" do
   end
 end
 
+describe "#revenue" do
+  vendor = FarMar::Vendor.new({id:4})
+  it "returns the amount of revenue from allsales in pennies, a Fixnum" do
+    vendor.revenue.must_be_instance_of Fixnum
+    vendor.revenue.must_equal 26866
+  end
+end
+
 end

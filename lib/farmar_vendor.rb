@@ -46,5 +46,9 @@ module FarMar
       FarMar::Sale.all.select {|sale| sale.vendor_id == @id}
     end
 
+    def revenue
+        sales.map{|sale| sale.amount}.reduce(:+)
+    end
+
   end
 end
