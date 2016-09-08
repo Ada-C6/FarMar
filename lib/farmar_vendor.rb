@@ -67,7 +67,6 @@ class Vendor
 
   def self.by_market(market_id)
     a = all.find_all { |n| n[1].market_id == market_id }
-    puts a
 
     vendors_by_market = []
     a.length.times do |i|
