@@ -27,7 +27,7 @@ describe "FarMar::Market" do
         end #
     end # self.find
 
-    describe "#vendors" do
+    describe "instance methods" do
         before(:each) do
             # Make a new market instance from a single line of markets.csv
             market_csv_length = CSV.read('support/markets.csv').length
@@ -47,14 +47,16 @@ describe "FarMar::Market" do
             @test_vendors = @test_market.vendors
         end # before(:each)
 
-        it "should return an array of FarMar::Vendor instances" do
-            @test_vendors.must_be_instance_of(Array)
-            @test_vendors[rand(0..@test_vendors.length-1)].must_be_instance_of(FarMar::Vendor)
-        end
+        describe "#vendors" do
+            it "should return an array of FarMar::Vendor instances" do
+                @test_vendors.must_be_instance_of(Array)
+                @test_vendors[rand(0..@test_vendors.length-1)].must_be_instance_of(FarMar::Vendor)
+            end
 
-        it "should return FarMar::Vendor instances with the correct market_id" do
-            @test_vendors[rand(0..@test_vendors.length-1)].market_id.must_equal(@test_market.market_id)
-        end
-    end # #vendors
+            it "should return FarMar::Vendor instances with the correct market_id" do
+                @test_vendors[rand(0..@test_vendors.length-1)].market_id.must_equal(@test_market.market_id)
+            end
+        end # #vendors
+    end # instance methods
 
 end # FarMar::Market
