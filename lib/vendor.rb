@@ -1,3 +1,5 @@
+require_relative 'sale'
+
 module FarMar
 	class Vendor
 		attr_reader :id, :name, :employees, :market_id
@@ -48,5 +50,26 @@ module FarMar
 			end
 			return product_list
 		end
+
+		def sales
+			sales_list = []
+			all_sales = FarMar::Sale.all
+			all_sales.each do |sale|
+				if sale.vendor_id == id
+					sales_list << sale
+				end
+			end
+			return sales_list
+		end
+
+		def revenue
+			sales_list = sales
+			total = 0
+			sales_list.each do |sale|
+				total += sale.amount
+			end
+			return total
+		end
+
 	end
 end

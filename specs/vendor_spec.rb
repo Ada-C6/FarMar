@@ -26,7 +26,6 @@ describe FarMar::Vendor do
 
 
 	describe "self.find(id)" do
-
 		it "must take a Fixnum as an argument" do
 			bad_args = ["2", "2.4", 2.4, "hat"]
 
@@ -69,6 +68,26 @@ describe FarMar::Vendor do
 			product_list.first.vendor_id.must_equal(vendor.id)
 			product_list.last.vendor_id.must_equal(vendor.id)
 		end
+	end
 
+	describe "#sales" do
+		vendor = FarMar::Vendor.find(5)
+		sales_list = vendor.sales
+
+		it "must return a collection of Sale instances" do
+			sales_list.first.must_be_instance_of(FarMar::Sale)
+		end
+
+		it "must return Sales with matching Vendor id" do
+			sales_list.first.vendor_id.must_equal(vendor.id)
+		end
+	end
+
+	describe "#revenue" do
+		vendor = FarMar::Vendor.find(5)
+
+		it "must return the total amount of sales" do
+			vendor.revenue.must_equal(61749)
+		end
 	end
 end
