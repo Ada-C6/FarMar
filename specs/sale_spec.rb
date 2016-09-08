@@ -48,9 +48,21 @@ module FarMar
         @sale_21.product_id.must_equal(7)
       end
     end
+
+    describe "#vendor" do
+      let (:new_sale) {Sale.new(13,3450,"2013-11-12 12:00:35 -0800",3,4)}
+      #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+      it "should return a vendor instance" do
+        # will this use the Vendor.find(id) method?
+        new_sale.vendor.must_be_instance_of(Vendor)
+      end
+      it "should be the correct vendor" do
+        # Same problem as other tests - it's a different instance of the object - same values, different object ID.
+        new_sale.vendor.name.must_equal("Breitenberg Inc")
+      end
+    end
   end
 end
 
-#vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
 #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
 # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
