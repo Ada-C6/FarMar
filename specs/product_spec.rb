@@ -34,5 +34,17 @@ module FarMar
       end
     end
 
+    describe "#vendor" do
+      let(:new_product) { Product.new({id: 213, name: "greens", vendor_id: 4}) }
+
+      it "should return a object:Vendor" do
+        new_product.vendor.must_be_instance_of(Vendor)
+      end
+
+      it "should return the correct Vendor" do
+        new_product.vendor.name.must_equal("Kris and Sons")
+      end
+    end
+
   end
 end
