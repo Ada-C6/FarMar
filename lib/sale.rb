@@ -1,6 +1,6 @@
 module FarMar
   class Sale
-    attr_reader :id, :amount, :vendor_id
+    attr_reader :id, :amount, :vendor_id, :product_id
 
     def initialize(sale_hash)
       @id = sale_hash[:id]
@@ -15,7 +15,7 @@ module FarMar
       # IDEA make this an instance variable so you only have to make it run once
       sales = [] #array to store all of the hashes with sale info
       CSV.read("../FarMar/support/sales.csv").each do |line|
-        sale = {id: line[0].to_i, amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3].to_i, product_id: line[4].to_i } #create a new hash for each sale to store specific info
+        sale = {id: line[0].to_i, amount: line[1].to_i, purchase_time: Time.parse(line[2]), vendor_id: line[3].to_i, product_id: line[4].to_i } #create a new hash for each sale to store specific info
 
         sales << self.new(sale) #creates a new instance with the hash info and puts it in the array to be returned
       end
@@ -30,5 +30,8 @@ module FarMar
       end
     end
 
+    def vendor #returns the Vendor instance that is associated with this sale
+      FarMar::Vendor.find(@vendor_id)
+    end
   end
 end
