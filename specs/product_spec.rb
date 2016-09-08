@@ -73,5 +73,12 @@ module FarMar
         carrot.sales[0].product_id.must_equal(carrot.product_id)
       end
     end
+    describe "#number_of_sales" do
+      # number_of_sales: returns the number of times this product has been sold.
+      # will call #sales to get the list of sales for the product, and should look at the length.
+      it "must return the number of sales for the product" do
+        carrot.number_of_sales.must_equal(5) #replace with the number.  
+      end
+    end
   end
 end

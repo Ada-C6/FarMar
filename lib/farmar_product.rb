@@ -49,6 +49,11 @@ module FarMar
       Sale.all.values.group_by {|sale| sale.product_id}[@product_id]
       #NOTE: Is it possible that a given product has NO sales? Seems like yes.
     end
+
+    def number_of_sales
+      #number_of_sales: returns the number of times this product has been sold.
+      sales.length
+    end
   end
 end
 
