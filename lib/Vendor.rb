@@ -31,7 +31,6 @@ module FarMar
 
     def market
     all_markets = FarMar::Market.all
-
     all_markets.each do |market, value|
       if  @market_id == value.id
          return value
@@ -40,8 +39,16 @@ module FarMar
     end
 
 
-    # def products :return a list of products associated with the vendor
-    # end
+    def products
+      all_products = FarMar::Product.all
+      vendors_products = []
+      all_products.each do |product, product_values|
+        if product_values.vendor_id == @id
+          vendors_products << product_values
+        end
+      end
+      return vendors_products
+    end
 
     def self.by_market(a_market_id)
       all_vendors = self.all #returns hash of all vendors
@@ -49,8 +56,6 @@ module FarMar
       vendors_list = []
       all_vendors.each do |vendor_key, vendor_value|
         if  vendor_value.market_id == a_market_id
-          puts vendor_value.market_id
-          puts vendor_value
           vendors_list << vendor_value
         end
       end

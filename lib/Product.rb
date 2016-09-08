@@ -5,9 +5,9 @@ module FarMar
     attr_reader :id, :name, :vendor_id
 
     def initialize(id, name, vendor_id)
-      @id = id
-      @name = name
-      @vendor_id = vendor_id
+      @id = id.to_i
+      @name = name.to_s
+      @vendor_id = vendor_id.to_i
 
     end
 

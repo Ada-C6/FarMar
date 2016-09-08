@@ -36,11 +36,18 @@ module FarMar
       end #is this a good test?
     end
 
+    describe "#products" do
+      it "should return all Product instances that shares the same vendor id" do
+          milk_vendor = FarMar::Vendor.find(1)
+          milk_vendor.products.must_be_kind_of(Array)
+          milk_vendor.products.length.must_equal(1)
+      end
+    end
+
     describe "self.by_market(id)" do
       it "should return a list of vendors related to the passed market_id" do
         all = FarMar::Vendor.by_market(1)
         all.length.must_equal(6)
-
       end #end test block
 
     end #end describe self.by_market
