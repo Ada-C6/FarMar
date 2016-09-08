@@ -107,5 +107,19 @@ module FarMar
         some_vendor.sales.values[0][0].vendor_id.must_equal(some_vendor.id)
       end
     end
+
+    describe "#revenue" do
+      #revenue: returns the the sum of all of the vendor's sales (in cents)
+      #probably uses the #sales method, grabs the amount associated with each sale, and then reduces (:+) them to a sum?
+      #sales returns a hash with key value pairs of product: [array of sales], so I'll want to iterate through each array of sales, grab the sale.amount, make a collection of those, and reduce them to the sum. Then for each product, I'll have a a total sale amount. (maybe use a map here), and I can then reduce again to get the total revenue.
+      it "should return a Fixnum" do
+        some_vendor.revenue.must_be_instance_of(Fixnum)
+      end
+
+      it "should return the total revenue from all the products for the vendor" do
+        #in cents
+        some_vendor.revenue.must_equal(4589)
+      end
+    end
   end
 end

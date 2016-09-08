@@ -68,6 +68,24 @@ module FarMar
       return sales_hash
     end
 
-    #revenue: returns the the sum of all of the vendor's sales (in cents)
+    def revenue
+      #revenue: returns the the sum of all of the vendor's sales (in cents)
+      #probably uses the #sales method, grabs the amount associated with each sale, and then reduces (:+) them to a sum?
+      #sales returns a hash with key value pairs of product: [array of sales], so I'll want to iterate through each array of sales, grab the sale.amount, make a collection of those, and reduce them to the sum. Then for each product, I'll have a a total sale amount. (maybe use a map here), and I can then reduce again to get the total revenue.
+      revenue_by_product = sales.map do |k, v|
+        #v is an array of sales
+        #want to get an array of sale.amounts for it.
+        amounts = []
+        v.each do |sale|
+          amounts << sale.amount
+        end
+
+        # taking the array of sale.amounts, I'm going to reduce to get revenue for this product. The result should be an array of revenues per product. (number of amounts in this array should equal the same number of products for the vendor where there have been a sale.)
+        # at some point in the future, I might want to keep the product as the key, but for right now I don't think I care.
+        amounts.reduce(:+)
+      end
+
+      revenue_by_product.reduce(:+)
+    end
   end
 end
