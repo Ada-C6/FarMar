@@ -30,6 +30,14 @@ class FarMar::Vendor
         end
     end
 
+    def market
+        FarMar::Market.all.each do |m_object|
+            if m_object.id == @market_id
+                return m_object
+            end
+        end
+    end
+
     def self.by_market(market_id)
         return self.all.select {|v_object| v_object.market_id == market_id}
     end
