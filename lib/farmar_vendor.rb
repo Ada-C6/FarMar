@@ -47,7 +47,7 @@ module FarMar
     end
 
     def revenue
-        sales.map{|sale| sale.amount}.reduce(:+)
+        sales.map(&:amount).reduce(:+)
     end
 
   end
