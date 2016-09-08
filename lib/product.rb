@@ -39,14 +39,7 @@ module FarMar
     end
 
     def self.by_vendor(vendor_id) #returns all the products associated with the given vendor_id
-      vendor_products = []
-
-      FarMar::Product.all.each do |pro|
-        if pro.vendor_id == vendor_id
-          vendor_products << pro
-        end
-      end
-      return vendor_products
+      FarMar::Product.all.select { |pro| pro.vendor_id == vendor_id }
     end
   end
 end
