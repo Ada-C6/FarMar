@@ -28,5 +28,15 @@ module FarMar
       return self.all[id]
     end
 
+    def vendor
+      all_vendors = FarMar::Vendor.all
+      all_vendors.each do |vendor_key, vendor_values|
+        if @vendor_id == vendor_values.id
+          return vendor_values
+        end
+      end
+
+    end
+
   end #end class
 end #end module
