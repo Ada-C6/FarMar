@@ -28,16 +28,26 @@ module FarMar
       end
     end
 
+    def self.string_to_date(time)
+      DateTime.parse(time)
+    end
+
     def self.between(beginning_time, end_time)
-      all_purchase_times = all.map do |k, v|
-        v.purchase_time
+      beginning_time = string_to_date(beginning_time)
+      end_time = string_to_date(end_time)
+      hash = {}
+
+      all.each do |k, v|
+        hash[v] = string_to_date(v.purchase_time)
       end
 
-      raise ArgumentError.new("These dates are beyond the date range in our database") if (beginning_time < all_purchase_times.min && end_time < all_purchase_times.min ) || (beginning_time > all_purchase_times.max && end_time > all_purchase_times.max)
+      raise ArgumentError.new("These dates are beyond the date range in our database") if (beginning_time < hash.values.min && end_time < hash.values.min ) || (beginning_time > hash.values.max && end_time > hash.values.max)
 
-      all.delete_if do |k, v|
-        v.purchase_time < beginning_time || v.purchase_time > end_time
+      hash.delete_if do |k, v|
+        v < beginning_time || v > end_time
       end
+
+      return hash.keys
     end
 
     def vendor
