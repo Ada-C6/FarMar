@@ -34,6 +34,10 @@ module FarMar
 
       return sales
     end
+    def self.find(id)
+      #this is going to call self.all, and then find the one with key of id
+      all[id]
+    end
   end
 end
 

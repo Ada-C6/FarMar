@@ -30,8 +30,24 @@ module FarMar
       end
 
     end
-    # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
-    
+
+    describe "self.find(id)" do
+      let(:sale_21) {Sale.find(21)}
+      # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+      it "should return a sale, given an id" do
+        sale_21.must_be_instance_of(Sale)
+      end
+
+      it "should return the correct vendor id given the sale id" do
+        skip
+        sale_21.vendor_id.must_equal(4)
+        # 21,8963,2013-11-10 12:26:30 -0800,4,7
+      end
+      it "should return the correct product id, given the sale id" do
+        skip
+        sale_21.product_id.must_equal(7)
+      end
+    end
   end
 end
 
