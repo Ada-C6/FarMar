@@ -37,5 +37,16 @@ module FarMar
         # 15,Comfortable Pretzel,8
       end
     end
+    describe "#vendor" do
+      #vendor: returns the FarMar::Vendor instance that is associated with this product using the FarMar::Product vendor_id field - this will work LIKE the vendor.market method.
+      # 41,Thundering Carrots,15
+      let(:carrot) {Product.new(41,"Thundering Carrots",15)}
+      it "should return the vendor that is associated with the vendor_id" do
+        carrot.vendor.id.must_equal(15)
+      end
+      it "should return a Vendor object" do
+        carrot.vendor.must_be_instance_of(Vendor)
+      end
+    end
   end
 end
