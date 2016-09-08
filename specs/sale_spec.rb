@@ -3,12 +3,10 @@ require_relative '../lib/sale'
 
 describe FarMar::Sale do
   describe "#initialize" do
-
     it "can create a new instance of Sale" do
       sale_hash = FarMar::Sale.new("sale_hash")
       sale_hash.must_be_instance_of(FarMar::Sale)
     end
-
   end
 
   describe "self.all" do
@@ -17,7 +15,6 @@ describe FarMar::Sale do
     it "should return an Array" do
       sales.must_be_kind_of(Array)
     end
-
   end
 
   describe "self.find(input)" do
@@ -60,6 +57,22 @@ describe FarMar::Sale do
 
     it "should use the sale's product_id to return that sale's product" do
       @sales.product.product_id.must_equal(2)
+    end
+  end
+
+  describe "self.between(beginning_time, end_time)" do
+    it "should return an array" do
+      sales = FarMar::Sale.all
+      sales.must_be_kind_of(Array)
+    end
+
+    it "should return the items whose sales time are between the input values" do
+      sales = FarMar::Sale.all
+      beginning_time = Time.new("2013-11-11 11:29:52 -0800")
+      end_time = Time.new("2013-11-13 04:14:40 -0800")
+      sales.each do |i|
+        i.between(beginning_time, end_time).must_include(Time.new("2013-11-12 12:00:35 -0800"))
+      end
     end
 
   end
