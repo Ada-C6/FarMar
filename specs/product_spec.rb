@@ -20,7 +20,7 @@ describe "self.find(id)" do
 end
 describe "self.by_vendor(vendor_id)" do
   it "returns the vendors of a given vendor id" do
-    puts "#{FarMar::Product.by_vendor(1)}"
+  
     FarMar::Product.by_vendor(1).each do |x|
       x.vend_id.must_equal(1)
     end
