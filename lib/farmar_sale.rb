@@ -7,7 +7,7 @@ class Sale
   def initialize(id, amount, purchase_time, vendor_id, product_id)
     @id = id
     @amount = amount
-    @purchase_time = DateTime.strptime(purchase_time, '%Y-%m-%d %H:%M:%S %z')
+    @purchase_time = DateTime.parse(purchase_time)
     @vendor_id = vendor_id
     @product_id = product_id
   end
@@ -37,5 +37,13 @@ class Sale
 
   def product
     Product.find(@product_id)
+  end
+
+  def self.between(beginning_time, end_time)
+    beginning_time = DateTime.parse(beginning_time)
+    end_time = DateTime.parse(end_time)
+
+    Sale.all.find_all { |n| n[1].purchase_time.between?(beginning_time, end_time)}
+      # n[1].purchase_time is >= beginning_time || n[1].purchase_time is <= end_time}
   end
 end

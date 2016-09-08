@@ -48,9 +48,11 @@ describe Sale do
       s.product.id.must_equal(1)
     end
   end
-  #
-  # describe "between" do
-  #
-  # end
+
+  describe "between" do
+    it "should return a collection of Sale objects where the purchase time is between the two times given as arguments" do
+      Sale.between('2013-11-13 01:48:00 -0800', '2013-11-13 01:50:59 -0800').length.must_equal(8)
+    end
+  end
 
 end
