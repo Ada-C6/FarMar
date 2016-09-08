@@ -86,6 +86,9 @@ describe FarMar::Vendor do
 	describe "#revenue" do
 		vendor = FarMar::Vendor.find(5)
 
+		# There should be a better test for this. What if
+		# the data gets updated with more sales? Then this
+		# test will break.
 		it "must return the total amount of sales" do
 			vendor.revenue.must_equal(61749)
 		end

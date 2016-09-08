@@ -48,4 +48,42 @@ describe FarMar::Product do
 			product.vendor.id.must_equal(product.vendor_id)
 		end
 	end
+
+	describe "#sales" do
+		product = FarMar::Product.find(5)
+
+		it "must return a collection of Sale instances" do
+			product.sales.first.must_be_instance_of(FarMar::Sale)
+			product.sales.last.must_be_instance_of(FarMar::Sale)
+		end
+
+		it "must return Sales with product_id matching Product id" do
+			product.sales.first.product_id.must_equal(product.id)
+			product.sales.last.product_id.must_equal(product.id)
+		end
+	end
+
+	describe "#number_of_sales" do
+
+		product = FarMar::Product.find(5)
+		product_2 = FarMar::Product.find(4)
+
+		it "must return the number of sales" do
+			product.number_of_sales.must_equal(2)
+			product_2.number_of_sales.must_equal(8)
+		end
+	end
+
+	describe "self.by_vendor(vendor_id)" do
+		product_list = FarMar::Product.by_vendor(5)
+		it "must return a collection of Product instances" do
+			product_list.first.must_be_instance_of(FarMar::Product)
+		end
+
+		it "returns Products w/ vendor_id matching the arg" do
+			product_list.first.vendor_id.must_equal(5)
+			product_list.last.vendor_id.must_equal(5)
+		end
+
+	end
 end

@@ -41,7 +41,7 @@ module FarMar
 		end
 
 		def products
-			FarMar::Product.all.select {|product| product.vendor_id == id}
+			FarMar::Product.by_vendor(id)
 		end
 
 		def sales
