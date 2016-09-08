@@ -32,7 +32,7 @@ describe "#sales" do
 end
 describe "#number_of_sales" do
   it "can return the number of times a product has been sold" do
-    sam.number_of_sales.must_equal(58)
+    sam.number_of_sales.must_equal(5)
   end
 end
 end
