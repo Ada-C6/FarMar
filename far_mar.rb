@@ -9,6 +9,16 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
+##TEST #10... FarMar::Market.vendors
+# m = FarMar::Market.all.last
+# print "I expect the two market id's below to be:"
+# puts m.vendors.first.market_id
+# puts m.vendors.last.market_id
+# puts "Did this work?"
+
+
+
+
 ##TEST #9... FarMar::Vendor.by_market(market_id)
 # print "Here's the market I'm calling in the vendor method below:"
 # puts market_id = FarMar::Market.all.last.id

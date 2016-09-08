@@ -37,7 +37,8 @@ class FarMar::Market
     end
 
     # def vendors
-    #     vendors_at_market = FarMar::Vendor.all.select {|v| v.FarMar::Vendor.market_id == @id}
+    #     vendors_this_market = []
+    #     # vendors_at_market = FarMar::Vendor.all.select {|v| v.FarMar::Vendor.market_id == @id}
     # end
 end
 
