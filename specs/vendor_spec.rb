@@ -8,7 +8,7 @@ module FarMar
         num_employees: 12,
         market_id: 1202
       }
-      let(:vendor) { Vendor.new(my_hash) }
+      let(:vendor) { Vendor.new(112, "ada farms", 12, 1202) }
       it "should create an instance of a vendor" do
         vendor.must_be_instance_of(Vendor)
       end

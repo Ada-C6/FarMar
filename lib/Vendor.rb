@@ -24,11 +24,12 @@ module FarMar
     end
 
     def self.find(id)
-      self.all.each do |vendor|
-        if vendor.id == id
-          return vendor
-        end
-      end
+      return self.all[id]
+      # self.all.each do |vendor|
+      #   if vendor.id == id
+      #     return vendor
+      #   end
+      # end
     end
 
 
