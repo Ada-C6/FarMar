@@ -30,4 +30,9 @@ describe "#sales" do
     sam.sales.must_be_kind_of(Object)
   end
 end
+describe "#number_of_sales" do
+  it "can return the number of times a product has been sold" do
+    sam.number_of_sales.must_equal(58)
+  end
+end
 end
