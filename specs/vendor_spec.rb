@@ -25,8 +25,6 @@ module FarMar
       end
     end #end self.find method
 
-    # describe "products"
-
     describe "#market" do
       let(:vendors) { Vendor.all }
       it "should return the market instance that the vendor is a part of, using the vendor's market id" do
@@ -37,11 +35,29 @@ module FarMar
     end
 
     describe "#products" do
+      let(:vendor) {Vendor.find(1)}
       it "should return all Product instances that shares the same vendor id" do
-          milk_vendor = FarMar::Vendor.find(1)
-          milk_vendor.products.must_be_kind_of(Array)
-          milk_vendor.products.length.must_equal(1)
+        vendor.products.must_be_kind_of(Array)
       end
+
+      it "should return the correct number of Product instances for one vendor" do
+        vendor.products.length.must_equal(1)
+      end
+    end
+
+    describe "#sales" do
+      let (:vendor) {  FarMar::Vendor.find(1)}
+      it "should return the sales instances made by one particular vendor" do
+        vendor.sales.length.must_equal(7)
+      end
+    end
+
+    describe "#revenue" do
+      let (:vendor) {FarMar::Vendor.find(3)}
+      it "should return the the correct amount" do
+      vendor.revenue.must_equal(40126)
+      #vendor 3 has 8 sales
+    end
     end
 
     describe "self.by_market(id)" do

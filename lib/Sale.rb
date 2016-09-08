@@ -6,11 +6,11 @@ module FarMar
     :market_id
 
     def initialize(id, amount, purchase_time, vendor_id, market_id)
-      @id = id
-      @amount = amount
+      @id = id.to_i
+      @amount = amount.to_i
       @purchase_time = purchase_time
-      @vendor_id = vendor_id
-      @market_id = market_id
+      @vendor_id = vendor_id.to_i
+      @market_id = market_id.to_i
 
     end
 

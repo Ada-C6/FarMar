@@ -8,8 +8,6 @@ module FarMar
       @name = name.to_s
       @num_employees = num_employees.to_i
       @market_id = market_id.to_i
-
-
     end
 
     def self.all
@@ -38,7 +36,6 @@ module FarMar
      end
     end
 
-
     def products
       all_products = FarMar::Product.all
       vendors_products = []
@@ -48,6 +45,30 @@ module FarMar
         end
       end
       return vendors_products
+    end
+
+    def sales
+      all_sales = FarMar::Sale.all
+      vendor_sales =[]
+      all_sales.each do |sale, sale_values|
+        if sale_values.vendor_id == @id
+          vendor_sales << sale_values
+        end
+      end
+      return vendor_sales
+    end
+
+    def revenue
+      vendor_sales = self.sales #returns an array of sales for vendor
+      total_revenue = 0
+      vendor_sales.each do |sale|
+        # puts sale
+        # puts sale.amount
+        total_revenue += sale.amount
+      end
+      return total_revenue
+      #first, revenue will sort through all sales
+      #for all sales that have a matching vendor id, we'll look at their revnue and add them
     end
 
     def self.by_market(a_market_id)
@@ -60,15 +81,9 @@ module FarMar
         end
       end
       return vendors_list
-
     end
+
+
 
   end #end class
 end #end module
-
-#Each vendor belongs to a market, the market_id field refers to the FarMar::Market ID field. Each vendor has many products for sell. The FarMar::Vendor data, in order in the CSV, consists of:
-#
-# ID - (Fixnum) uniquely identifies the vendor
-# Name - (String) the name of the vendor (not guaranteed unique)
-# No. of Employees - (Fixnum) How many employees the vendor has at the market
-# Market_id - (Fixnum) a reference to which market the vendor attends
