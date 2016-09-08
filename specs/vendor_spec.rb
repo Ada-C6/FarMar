@@ -56,12 +56,12 @@ module FarMar
       end
 
       it "should return an object: Product at any index of the array" do
-        #puts example_vendor.products
-        #puts example_vendor.products[0]
+        # puts example_vendor.products
+        # puts "SPACE"
+        # puts example_vendor.products[1]
 
         example_vendor.products[0].must_be_instance_of(Product)
         example_vendor.products[2].must_be_instance_of(Product)
-        #REVIEW should I do better at calling an index - for example, should I say .products[rand(0..length-1??)]
       end
 
       it "each object should have the correct vendor id" do #IS THIS A BETTER TEST?
