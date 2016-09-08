@@ -21,4 +21,9 @@ describe FarMar::Product do
     end
   end
 
+  describe "self.by_vendor(ven_id)" do
+    it "should return True if the correct number of vendors is returned for the given vendor_id" do
+      FarMar::Product.by_vendor(5).length.must_equal(3)
+    end
+  end
 end

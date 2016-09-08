@@ -37,11 +37,17 @@ module FarMar
           vendors_by_market << value
         end
       end
+      #returns all of the vendors with the given market_id
       return vendors_by_market
     end
 
+    #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor.market_id field
+    def market
+      FarMar::Market.find(@market_id)
+    end
 
-    #returns all of the vendors with the given market_id
-
+    def products
+      FarMar::Product.by_vendor(@id)
+    end
   end
 end

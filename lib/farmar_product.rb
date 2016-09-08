@@ -1,6 +1,6 @@
 module FarMar
   class Product
-    attr_reader :id
+    attr_reader :id, :name, :vendor_id
 
     def initialize(id, name, vendor_id)
       @id = id
@@ -20,5 +20,20 @@ module FarMar
       products = self.all
       return products[id]
     end
+
+    #self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+    def self.by_vendor(ven_id)
+      products = self.all
+      products_by_vendor = []
+
+      products.each do | product_key, value |
+        if value.vendor_id == ven_id
+          products_by_vendor << value
+        end
+      end
+      return products_by_vendor
+    end
+
+
   end
 end
