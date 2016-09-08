@@ -53,6 +53,12 @@ module FarMar
         @four[1].market_id.must_equal(4)
         @four[2].market_id.must_equal(4)
       end
+
+      # it "should raise and ArgumentError if there is no vendor with that market id" do
+      #   another_market = Market.new({id: 98765432})
+      #
+      #   another_market.vendors.must_raise(ArgumentError)
+      # end
     end
   end
 end
