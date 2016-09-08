@@ -1,5 +1,5 @@
 require 'csv'
-require 'date'
+# require 'date'
 
 module FarMar
   class Sale
@@ -44,6 +44,10 @@ module FarMar
     def vendor
       #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
       Vendor.find(@vendor_id)
+    end
+
+    def product
+      Product.find(@product_id)
     end
 
   end

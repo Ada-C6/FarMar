@@ -3,6 +3,7 @@ require_relative 'spec_helper'
 module FarMar
   describe Sale do
     let(:buy_a_thing) {Sale.new(1,100,"2013-11-07", 1, 1)}
+    let(:new_sale) {Sale.new(13,3450,"2013-11-12 12:00:35 -0800",3,4)}
     describe "#initialize" do
       it "should make a new instance of sale" do
         buy_a_thing.must_be_instance_of(Sale)
@@ -50,7 +51,6 @@ module FarMar
     end
 
     describe "#vendor" do
-      let (:new_sale) {Sale.new(13,3450,"2013-11-12 12:00:35 -0800",3,4)}
       #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
       it "should return a vendor instance" do
         # will this use the Vendor.find(id) method?
@@ -61,8 +61,20 @@ module FarMar
         new_sale.vendor.name.must_equal("Breitenberg Inc")
       end
     end
+
+    describe "#product" do
+      #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
+      it "should return a product instance" do
+        # use the Product.find(id) method?
+        new_sale.product.must_be_instance_of(Product)
+      end
+      it "should be the correct product" do
+        #check that the name or the product_id is correct.
+        new_sale.product.product_id.must_equal(4)
+      end
+
+    end
   end
 end
 
-#product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
 # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
