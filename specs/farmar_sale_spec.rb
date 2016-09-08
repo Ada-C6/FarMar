@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe FarMar::Sale do
-
+  # would need to change if dataset were to change
   # Will need to determine how to format time data into non-String
   #DateTime.parse is promising
   #https://ruby-doc.org/stdlib-2.3.1/libdoc/date/rdoc/DateTime.html
@@ -14,16 +14,19 @@ describe FarMar::Sale do
   end
 
   describe "all" do
+    # would need to change if dataset were to change
     it "should put all values of its CSV file into an array" do
       FarMar::Sale.all.length.must_equal(12798)
     end
   end
 
   describe "find(id)" do
+    # would need to change if dataset were to change
     it "should let the user know if the id is not present" do
       proc { FarMar::Sale.find(12002) }.must_raise("ID was not present")
     end
-
+    
+    # would need to change if dataset were to change
     it "should find a specific Sale by the sale_id" do
       FarMar::Sale.all
       found_sale = FarMar::Sale.find(1)
