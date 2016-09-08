@@ -48,6 +48,12 @@ class FarMar::Vendor
     sales.find_all do |x|
       x.vend_id == @vend_id
     end
-
+  end
+  def revenue
+    sale = []
+    sales.map! do |a|
+      sale << a.amount
+    end
+  sale.reduce(:+)
   end
 end
