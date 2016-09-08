@@ -60,6 +60,7 @@ describe FarMar::Product do
   end
 
   describe "#number_of_sales" do
+    # would need to change if dataset were to change
     it "should return the number of times this product has been sold" do
       product.number_of_sales.must_equal(7)
     end
