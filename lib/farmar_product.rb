@@ -30,7 +30,13 @@ module FarMar
     def self.find(id)
       # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
       specific_product = Product.all
-      return specific_product[id] 
+      return specific_product[id]
     end
   end
 end
+
+#vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+
+#sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+#number_of_sales: returns the number of times this product has been sold.
+# self.by_vendor(vendor_id): returns all of the products with the given vendor_id (will call this in the Vendor #products method. )

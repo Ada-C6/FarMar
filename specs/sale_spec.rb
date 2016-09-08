@@ -31,5 +31,10 @@ module FarMar
 
     end
     # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+    
   end
 end
+
+#vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+#product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
+# self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments

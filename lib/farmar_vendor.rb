@@ -45,10 +45,12 @@ module FarMar
     def self.by_market(market_id)
       # self.by_market(market_id): returns all of the vendors with the given market_id
       Vendor.all.values.group_by { |vendor| vendor.market_id }[market_id]
-      #I don't like this -- I have an instance variable @market_id for a vendor instance, and the argument market_id that is getting passed in.
+      #I don't like that these things are called the same thing -- I have an instance variable @market_id for a vendor instance, and the argument market_id that is getting passed in. Seems to be working though.
     end
 
-    #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+    #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field. Seems to be related to the Product.by_vendor(id), which returns all the products with a given vendor_id.
+
+    
     #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
     #revenue: returns the the sum of all of the vendor's sales (in cents)
   end
