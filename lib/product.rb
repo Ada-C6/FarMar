@@ -51,4 +51,8 @@ class Product
       instance.vendor_id == @vendor_id
     end
   end
+
+  def number_of_sales
+    sales.count
+  end
 end

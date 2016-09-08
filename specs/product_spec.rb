@@ -42,7 +42,7 @@ module FarMar
       it "returns true if the returned instance is of the same vendor id" do
         p = Product.find(2)
         p.vendor do |i|
-          i.vendor_id.must_equal(2)
+          i.vendor_id.must_equal(2) ### LINE NOT COVERED
         end
       end
     end
@@ -54,5 +54,11 @@ module FarMar
       end
     end
 
+    describe "#number_of_sales" do
+      it "returns the number of times this product has been sold" do
+        p = Product.find(1)
+        p.number_of_sales.must_equal(7)
+      end
+    end
   end
 end
