@@ -34,4 +34,10 @@ attr_reader :id, :name, :vend_id
     end
   end
 
+  def sales
+    FarMar::Sale.all.find_all do |i|
+      i.prod_id == @id
+    end
+  end
+
 end
