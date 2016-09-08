@@ -50,5 +50,10 @@ module FarMar
       return associated_products
     end
 
+    def vendor
+      associated_vendor = FarMar::Vendor.find(@vendor_id)
+      return associated_vendor.vendor_name
+    end
+
   end
 end
