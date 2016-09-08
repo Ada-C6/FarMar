@@ -1,6 +1,6 @@
 module FarMar
   class Market
-    attr_reader :id, :name
+    attr_reader :id, :name, :state
 
     def initialize(id, name, address, city, county, state, zip)
       @id = id.to_i
@@ -27,6 +27,23 @@ module FarMar
           return market
         end
       end
+    end
+
+    def self.find_by_name(name)
+      all_markets = self.all
+      all_markets.each do |market|
+        if market.name.upcase == name.upcase
+          return market
+        end
+      end
+    end
+
+    def self.find_all_by_state(state)
+      all_markets = self.all
+      state_markets = all_markets.select do |market|
+        market.state.upcase == state.upcase
+      end
+      return state_markets
     end
 
     def market

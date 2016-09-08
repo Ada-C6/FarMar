@@ -63,4 +63,20 @@ describe FarMar::Market do
     end
   end
 
+  describe "find_by_name(name)" do
+    it "should return the instance that matches the passed name" do
+      FarMar::Market.find_by_name("Coxsackie Farmers' Market").id.must_equal(FarMar::Market.find(12).id)
+    end
+
+  end
+
+  describe "find_all_by_state(state)" do
+    it "should return an array of instances that match the passed state" do
+      markets_wa = FarMar::Market.find_all_by_state("Washington")
+
+      markets_wa[rand(1..(markets_wa.length - 1))].state.upcase.must_equal("WASHINGTON")
+
+    end
+  end
+
 end
