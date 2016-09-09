@@ -80,5 +80,24 @@ describe FarMar::Sale do
 		it "must return all of the sales in that timeframe" do
 			sales_in_time.length.must_equal(39)
 		end
+
+		# THE TEST BELOW PASSES DESPITE ME DOING *NOTHING*
+		# When I run these tests in irb, they return nil
+		# The test also still passes when I change the test
+		# above to return 'nothing found' instead of nil
+		# if there are no sales in the time period.
+
+		# it "must raise an error if the arguments are not valid" do
+		# 	bad_args = [["April 5", "May 5"], ["5:00", "7:00"]]
+		# 	bad_args.each do |arg|
+		# 		proc { FarMar::Sale.between(arg[0], arg[1]).must_raise(ArgumentError) }
+		# 	end
+		# end
+
+		# Other issues:
+		# if a date with no timezone is passed in, it
+		# defaults to +00:00. I have no idea how to
+		# manipulate this and alter the timezone so
+		# that it is always 
 	end
 end

@@ -58,12 +58,9 @@ module FarMar
 			beginning_time = DateTime.parse(beginning_time)
 			end_time = DateTime.parse(end_time)
 			all_sales = FarMar::Sale.all
-			sales_between = []
 
-			all_sales.each do |sale|
-				if sale.purchase_time >= beginning_time && sale.purchase_time <= end_time
-					sales_between << sale
-				end
+			sales_between = all_sales.select do |sale|
+				sale.purchase_time >= beginning_time && sale.purchase_time <= end_time
 			end
 
 			unless sales_between.length == 0
