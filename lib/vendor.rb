@@ -51,7 +51,7 @@ module FarMar
     def revenue
       revenue = 0
       sales.each do |sale_id, sale|
-        revenue += (sale.amount * 100)
+        revenue += (sale.amount)
       end
       return revenue
     end

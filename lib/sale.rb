@@ -1,4 +1,3 @@
-# Remember: the datetime here loaded are not converted from string. Suggest require 'time' and Time.Parse(line[2])
 module FarMar
   class Sale
 
@@ -6,7 +5,7 @@ module FarMar
 
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id             = id
-      @amount         = amount / 100 # in dollars, never used!
+      @amount         = amount #in cents
       @purchase_time  = purchase_time
       @vendor_id      = vendor_id
       @product_id     = product_id
@@ -15,7 +14,7 @@ module FarMar
     def self.all
       sales = {}
       CSV.read('support/sales.csv').each do |line|
-        sale = self.new(line[0].to_i,line[1].to_f,line[2],line[3].to_i,line[4].to_i)
+        sale = self.new(line[0].to_i,line[1].to_f,DateTime.parse(line[2]),line[3].to_i,line[4].to_i)
         sales[sale.id] = sale
       end
       return sales # Never, ever, ever, ever, ever (!!) forget this one again.
@@ -48,8 +47,18 @@ module FarMar
       return sale_product
     end
 
-    #self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-
+    # Returns a collection of Sale objects where the purchase time is between the two times given as arguments
+    def self.between(beginning_time, end_time)
+      sales_within_times = {}
+      self.all.each do |sal_id, sal|
+        if beginning_time <= sal.purchase_time
+          if end_time >= sal.purchase_time
+            sales_within_times[sal_id] = sal
+          end
+        end
+      end
+      return sales_within_times
+    end
 
 
 

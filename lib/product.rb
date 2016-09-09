@@ -38,7 +38,7 @@ module FarMar
           product_sales[sale_id] = sale
         end
       end
-      return product_sales
+      return product_sales 
     end
 
     #Returns the number of times this product has been sold.
