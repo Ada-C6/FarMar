@@ -44,36 +44,38 @@ module FarMar
       end
     end
   end
-    describe "Products by vendor" do
+    describe "vendor" do
       ##16,Obedient Fish,8
 
-      it "8 should return all vendors of products" do
-        test_product = Product.all["8"]
-        test_product.by_vendor.must_include("16")
+      it "8 should return vendor with product id" do
+        test_product = Product.new("16", "Obedient Fish", "8")
+        test_product.vendor.name.must_equal("Shaky Honey")
       end
 
-    #     it "9 create simple vendor" do
-    #       test_vendor = Vendor.new("2","8","Stamm Inc","2")
-    #       test_vendor.products.must_include("16")
-    #     end
-    #   end
-    #
-    # describe "#find" do
-    #
-    #   it "10 should return market objects with all its vendors" do
-    #     id = "1"
-    #     Market.find(id).name.must_equal("People's Co-op Farmers Market")
-    #   end
-    #
-    #   it "11 should return a hash of Market(id)" do
-    #     Market.find("333").must_be_kind_of(FarMar::Market)
-    #   end
-    #
-    #   it "12 should raise error if the id is invalid" do
-    #     Market.find(891).must_be_nil
-    #   end
-    #
-    #   it "13 should return a hash of instances of Vendors associated with each market" do
-    #     Market.find("333").vendors.must_be_kind_of(Hash)
-     end
+      it " 9 produces appropriate simple vendor" do
+          test_product = Product.new("17","Defeated Apples","8")
+          test_product.vendor.name.must_equal("Shaky Honey")
+      end
+    end
+
+    describe "find" do
+
+      it "10 should return product objects with all its vendors" do
+        id = "15"
+        Product.find(id).name.must_equal("Comfortable Pretzel")
+      end
+
+      it "11 should return a hash of Product(id)" do
+        ##56,Nom nom Beef,19
+        Product.find("56").must_be_kind_of(FarMar::Product)
+       end
+
+      it "12 should raise error if the id is invalid" do
+        Product.find(891).must_be_nil
+      end
+
+      it "13 should return a hash of instances of Vendors associated with each market" do
+        Product.find("333").vendor.must_be_kind_of(FarMar::Product)
+      end
+    end
 end

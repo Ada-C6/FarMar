@@ -1,7 +1,4 @@
 module FarMar
-  #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
-  #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
-  #self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
 
   class Sales
     @@all_sales_by_vendor = nil
@@ -16,11 +13,13 @@ module FarMar
         @product_id = product_id
       end
 
-      ##find products by their own id's
-      def products
-        return Product.find(@product_id)
+      def vendor
+        return Vendor.find(@vendor_id)
       end
 
+      def product
+        return Product.find(@product_id)
+      end
       ##create instances of sales for each element in csv
       def self.all
         if @@all_sales == nil
@@ -34,8 +33,17 @@ module FarMar
       end
 
       def self.find(sales_id)
-          Sale.all[sales_id]
+          Sales.all[sales_id]
       end
+
+
+      def self.between(beginning_time, end_time)
+      #   saletime = { }
+      #     saletime = Sales.find (@datetime.DateTime.parse.last)...
+      #   #   if saletime[1] > beginning_time && saletime < end_time
+      #   #   sale = { }
+      end
+
 
       def self.by_product(product_id)
         if @@all_sales_for_each_product == nil
@@ -58,7 +66,7 @@ module FarMar
             if transactions[sales.vendor_id] == nil
               transactions[sales.vendor_id]  = { }
             end
-            #transactions[sales.vendor_id][sales_id] = vendor_id
+            transactions[sales.vendor_id][sales_id] = vendor_id
           end
           @@all_sales_by_vendor = transactions
         end

@@ -10,17 +10,22 @@ module FarMar
         @vendor_id = vendor_id
       end
 
-      #vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
-  #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
-  #number_of_sales: returns the number of times this product has been sold.
-  #self.by_vendor(vendor_id): returns all of the products with the given vendor_id
-
-        ##find vendors of product
-      def vendors
-        return Vendor.find(@vendor_id)
+      #return Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+      def vendor
+        return Product.find(@vendor_id)
       end
 
-        ##create all product instances from csv
+      #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+      def sales
+        return Sales.find(@product_id)
+      end
+      #number_of_sales: returns the number of times this product has been sold.
+      def number_of_sales
+        #first of product, last of sales
+      return Sales.by_product(@product_id)
+      end
+
+      ##create all product instances from csv
       def self.all
         if @@all_products == nil
           products = { }
@@ -37,7 +42,7 @@ module FarMar
           Product.all[product_id]
       end
 
-        ##find products of a vendor (all vendors by market << all products by vendor)
+        #self.by_vendor(vendor_id): returns all of the products with the given vendor_id
       def self.by_vendor(vendor_id)
         if @@all_products_by_vendor == nil
           products = { }
