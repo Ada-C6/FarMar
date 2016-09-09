@@ -18,7 +18,9 @@ describe "FarMar::Vendor" do
         end
 
         it "items in the hash should be FarMar::Vendor objects" do
-            @csv_vendors.values[rand(0..@csv_length-1)].must_be_instance_of(FarMar::Vendor)
+            @csv_vendors.values.each do |vendor|
+                vendor.must_be_instance_of(FarMar::Vendor)
+            end
         end
 
         it "length of the hash should match length of the CSV" do
@@ -54,13 +56,19 @@ describe "FarMar::Vendor" do
         it "should return an array of FarMar::Vendor instances" do
             by_market_vendors = FarMar::Vendor.by_market(rand(0..499)) #vendors.csv contains 500 markets
             by_market_vendors.must_be_instance_of(Array)
-            by_market_vendors[rand(0..by_market_vendors.length-1)].must_be_instance_of(FarMar::Vendor)
+
+            by_market_vendors.each do |vendor|
+                vendor.must_be_instance_of(FarMar::Vendor)
+            end
         end
 
         it "should return FarMar::Vendor instances with market_id matching the argument" do
             rand_id = rand(0..499)
             rand_vendors = FarMar::Vendor.by_market(rand_id)
-            rand_vendors[rand(0..rand_vendors.length-1)].market_id.must_equal(rand_id)
+
+            rand_vendors.each do |vendor|
+                vendor.market_id.must_equal(rand_id)
+            end
         end
     end # self.by_market
 
@@ -89,22 +97,31 @@ describe "FarMar::Vendor" do
             describe "#products" do
                 it "should return an array of FarMar::Product objects" do
                     @test_products.must_be_instance_of(Array)
-                    @test_products[rand(0..@test_products.length-1)].must_be_instance_of(FarMar::Product)
+                    @test_products.each do |product|
+                        product.must_be_instance_of(FarMar::Product)
+                    end
                 end
 
-                it "should return the FarMar::Product instances with the correct vendor_id" do
-                    @test_products[rand(0..@test_products.length-1)].vendor_id.must_equal(914)
+                it "should return FarMar::Product instances with the correct vendor_id" do
+                    @test_products.each do |product|
+                        product.vendor_id.must_equal(914)
+                    end
                 end
             end #products
 
             describe "#sales" do
                 it "should return an array of FarMar::Sale objects" do
                     @test_sales.must_be_instance_of(Array)
-                    @test_sales[rand(0..@test_sales.length-1)].must_be_instance_of(FarMar::Sale)
+
+                    @test_sales.each do |sale|
+                        sale.must_be_instance_of(FarMar::Sale)
+                    end
                 end
 
                 it "should return FarMar::Sale objects with the correct vendor_id" do
-                    @test_sales[rand(0..@test_sales.length-1)].vendor_id.must_equal(914)
+                    @test_sales.each do |sale|
+                        sale.vendor_id.must_equal(914)
+                    end
                 end
             end #sales
 

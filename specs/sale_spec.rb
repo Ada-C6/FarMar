@@ -75,7 +75,9 @@ describe "FarMar::Sale" do
             time_test_sales = FarMar::Sale.between(time_one, time_two)
 
             time_test_sales.must_be_instance_of(Array)
-            time_test_sales[rand(0..time_test_sales.length-1)].must_be_instance_of(FarMar::Sale)
+            time_test_sales.each do |sale|
+                sale.must_be_instance_of(FarMar::Sale)
+            end
         end
 
         it "should return an array of objects with purchase_times in the given range" do

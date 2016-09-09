@@ -54,15 +54,19 @@ describe "FarMar::Product" do
         it "should return an array of FarMar::Product instances" do
             by_vendor_product = FarMar::Product.by_vendor(rand(0..2689)) #products.csv contains 2690 vendors
             by_vendor_product.must_be_instance_of(Array)
+
             by_vendor_product.each do |product|
                 product.must_be_instance_of(FarMar::Product)
             end
         end
 
         it "should return FarMar::Product instances with vendor_id matching the argument" do
-            rand_id = rand(0..2690)
+            rand_id = rand(1..2690)
             rand_vendors = FarMar::Product.by_vendor(rand_id)
-            rand_vendors[rand(0..rand_vendors.length-1)].vendor_id.must_equal(rand_id)
+
+            rand_vendors.each do |product|
+                product.vendor_id.must_equal(rand_id)
+            end
         end
     end # self.by_vendor
 
@@ -90,6 +94,7 @@ describe "FarMar::Product" do
         describe "#sales" do
             it "should return an array of FarMar::Sale instances" do
                 @test_sales.must_be_instance_of(Array)
+
                 @test_sales.each do |sale|
                     sale.must_be_instance_of(FarMar::Sale)
                 end
