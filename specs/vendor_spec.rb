@@ -1,16 +1,17 @@
 require_relative 'spec_helper'
 
 describe FarMar::Vendor do
+    let(:v) {FarMar::Vendor.all.last}
     describe "#initialize" do
-        let(:v) {FarMar::Vendor.new({id: 1234, name: "Sweet Bumpas", number_employees: 2, market_id: 123})}
+        let(:v_manual) {FarMar::Vendor.new({id: 1234, name: "Sweet Bumpas", number_employees: 2, market_id: 123})}
         it "can create a new instance of Vendor" do
-            v.must_be_instance_of(FarMar::Vendor)
+            v_manual.must_be_instance_of(FarMar::Vendor)
         end
 
         it "can assign instance variables according to the input hash" do
-            v.id.must_equal(1234)
-            v.number_employees.must_be_instance_of(Fixnum)
-            v.name.must_be_instance_of(String)
+            v_manual.id.must_equal(1234)
+            v_manual.number_employees.must_be_instance_of(Fixnum)
+            v_manual.name.must_be_instance_of(String)
         end
     end
 
@@ -49,7 +50,6 @@ describe FarMar::Vendor do
     end
 
     describe "market" do
-        let(:v) {FarMar::Vendor.all.last}
         it "will output a Market object" do
             v.market.must_be_instance_of(FarMar::Market)
         end
@@ -60,7 +60,6 @@ describe FarMar::Vendor do
     end
 
     describe "products" do
-        let(:v) {FarMar::Vendor.all.last}
         it "will output an array" do
             v.products.must_be_instance_of(Array)
         end
@@ -72,7 +71,6 @@ describe FarMar::Vendor do
     end
 
     describe "sales" do
-        let(:v) {FarMar::Vendor.all.last}
         it "will output an array" do
             v.sales.must_be_instance_of(Array)
         end
@@ -84,11 +82,8 @@ describe FarMar::Vendor do
     end
 
     describe "revenue" do
-        let(:v) {FarMar::Vendor.all.last}
         it "will return a fixnum" do
             v.revenue.must_be_instance_of(Fixnum)
         end
-# KARI, any other tests for this method? Nothing came immediately to mind.
-
     end
 end

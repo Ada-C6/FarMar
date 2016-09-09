@@ -1,15 +1,16 @@
 require_relative 'spec_helper'
 
 describe FarMar::Product do
+    let(:p) {FarMar::Product.all.last}
     describe "#initialize" do
-        let (:p) {FarMar::Product.new({id: 2345, name: "Gluten Free Ice Cream Sandwich", vendor_id: 1234})}
+        let (:p_manual) {FarMar::Product.new({id: 2345, name: "Gluten Free Ice Cream Sandwich", vendor_id: 1234})}
         it "can create a new instance of Product" do
-            p.must_be_instance_of(FarMar::Product)
+            p_manual.must_be_instance_of(FarMar::Product)
         end
 
         it "can assign instance variables according to the input hash" do
-            p.name.must_equal("Gluten Free Ice Cream Sandwich")
-            p.vendor_id.must_be_instance_of(Fixnum)
+            p_manual.name.must_equal("Gluten Free Ice Cream Sandwich")
+            p_manual.vendor_id.must_be_instance_of(Fixnum)
         end
     end
 
@@ -31,7 +32,6 @@ describe FarMar::Product do
     end
 
     describe "vendor" do
-        let(:p) {FarMar::Product.all.last}
         it "will output a Vendor object" do
             p.vendor.must_be_instance_of(FarMar::Vendor)
         end
@@ -42,7 +42,6 @@ describe FarMar::Product do
     end
 
     describe "sales" do
-        let(:p) {FarMar::Product.all.last}
         it "will output an array" do
             p.sales.must_be_instance_of(Array)
         end
@@ -54,7 +53,6 @@ describe FarMar::Product do
     end
 
     describe "number_of_sales" do
-        let(:p) {FarMar::Product.all.last}
         it "will output a number" do
             p.number_of_sales.must_be_instance_of(Fixnum)
         end

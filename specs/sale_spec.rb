@@ -1,15 +1,16 @@
 require_relative 'spec_helper'
 
 describe FarMar::Sale do
+    let(:s) {FarMar::Sale.all.last}
     describe "#initialize" do
-        let (:s) {FarMar::Sale.new({id: 345678, amount: 500, purchase_time: "2013-11-12 12:00:35 -0800", vendor_id: 1234, product_id: 2345})}
+        let (:s_manual) {FarMar::Sale.new({id: 345678, amount: 500, purchase_time: "2013-11-12 12:00:35 -0800", vendor_id: 1234, product_id: 2345})}
         it "can create a new instance of Sale" do
-            s.must_be_instance_of(FarMar::Sale)
+            s_manual.must_be_instance_of(FarMar::Sale)
         end
 
         it "can assign instance variables according to the input hash" do
-            s.id.must_equal(345678)
-            s.product_id.must_be_instance_of(Fixnum)
+            s_manual.id.must_equal(345678)
+            s_manual.product_id.must_be_instance_of(Fixnum)
         end
     end
 
@@ -31,7 +32,6 @@ describe FarMar::Sale do
     end
 
     describe "vendor" do
-        let(:s) {FarMar::Sale.all.last}
         it "will output a Vendor object" do
             s.vendor.must_be_instance_of(FarMar::Vendor)
         end
@@ -42,7 +42,6 @@ describe FarMar::Sale do
     end
 
     describe "product" do
-        let(:s) {FarMar::Sale.all.last}
         it "will output a Product object" do
             s.product.must_be_instance_of(FarMar::Product)
         end
