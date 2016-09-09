@@ -72,12 +72,11 @@ class FarMar::Market
   def products(market_id)
     # give a market_id, return an array of its associated Vendor objects
     vendors = FarMar::Vendor.by_market(market_id)
-    # get an array of each vendor's vendor_id
-    vendor_ids = vendors.map {|vendor| vendor.id }
     # iterate over all vendor_ids. for each vendor_id, return Product objects that associated with this vendor_id.
-    return vendor_ids.map do |vendor_id|
-      FarMar::Product.all.select { |product| product.vendor_id == vendor_id }
-    end
+    return vendors.map do |vendor|
+      FarMar::Product.all.select { |product| product.vendor_id == vendor.id }
+    end.flatten
+    # last step return array of array, call method flatten over return result
   end
 
   # returns the Vendor object with the highest revenue among a group of vendors
@@ -91,18 +90,14 @@ class FarMar::Market
 
   # returns the Vendor object with the highest revenue for the given date
   def prefered_vendor(date)
-    # Assume the date will be given a string in "year-month-day" format
-    # The period of time on the given date
-    beginning_time = Date.parse(date).to_datetime.to_s
-    end_time = Date.parse(date).next.to_datetime.to_s
+    beginning_time, end_time = Utils.get_day_range(date)
     # return an array of Sale objects in the given date
     sales = FarMar::Sale.between(beginning_time, end_time)
     # return an array of Vendors associated with the Sale objects
-    vendors = sales.map{|sale| sale.vendor}
+    vendors = sales.map{|sale|sale.vendor}
     # return the prefered vendor associate with the Sale object on that date
     return self.prefered_vendor_direct(vendors)
   end
-    # OPTIMZE vendors = sales.map{|sale| sale.vendor}, it takes 0m9.898s to test.
 
   # returns the vendor with the lowest revenue
   def worst_vendor_direct(vendors)
@@ -115,10 +110,7 @@ class FarMar::Market
 
   #  returns the vendor with the lowest revenue on the given date
   def worst_vendor(date)
-    # Assume the date will be given a string in "year-month-day" format
-    # The period of time on the given date
-    beginning_time = Date.parse(date).to_datetime.to_s
-    end_time = Date.parse(date).next.to_datetime.to_s
+    beginning_time, end_time = Utils.get_day_range(date)
     # return an array of Sale objects in the given date
     sales = FarMar::Sale.between(beginning_time, end_time)
     # return an array of Vendors associated with the Sale objects
@@ -126,6 +118,5 @@ class FarMar::Market
     # return the prefered vendor associate with the Sale object on that date
     return self.worst_vendor_direct(vendors)
   end
-    # DRY the above two methods. They are repetitive of the prefered_vendor methods.
 
 end

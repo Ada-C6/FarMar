@@ -70,18 +70,13 @@ class FarMar::Vendor
 
   # returns the total revenue for that date across all vendors
   def self.revenue(date)
-    # Assume the date will be given a string in "year-month-day" format
-    # The period of time on the given date
-    beginning_time = Date.parse(date).to_datetime.to_s
-    end_time = Date.parse(date).next.to_datetime.to_s
+    beginning_time, end_time = Utils.get_day_range(date)
     # return an array of Sale objects in the given date
     sales = FarMar::Sale.between(beginning_time, end_time)
-    # return an array of Vendors associated with the Sale objects
-    amounts = sales.map{|sale| sale.amount}
+
     # add up the sale amount and return the sum
-    return amounts.inject(0.0) {|sum, amount| sum + amount}
+    return sales.inject(0.0) {|sum, sale| sum + sale.amount}
   end
-    #OPTIMZE the above method. Also create a method to get vendors that has transaction on that date
 
   # return an array of FarMar::Market objects that are associated with the market_id
   def market
@@ -99,11 +94,23 @@ class FarMar::Vendor
   end
 
   # returns the sum of all of the vendor's sales in cents(a float)
-  def revenue
-      # returns an array of the vendor's sale amount
-    amounts = self.sales.map {|sale| sale.amount}
+  def revenue_all_sales
     # add up the sale amount and return the sum
-    return amounts.inject(0.0) {|sum, amount| sum + amount}
+    return self.sales.inject(0.0) {|sum, sale| sum + sale.amount}
+  end
+
+  # returns the total revenue for that specific purchase date and Vendor object
+  def revenue(date = nil)
+    if date == nil
+      return revenue_all_sales
+    end
+    beginning_time, end_time = Utils.get_day_range(date)
+    # get an array of Sale objects in the given date
+    sales = FarMar::Sale.between(beginning_time, end_time)
+    # get an array of Sale objects by this vendor in the given date
+    sales = sales.select { |sale| sale.vendor_id == @id }
+    # add up the sale amount and return the sum
+    return sales.inject(0.0) {|sum, sale| sum + sale.amount}
   end
 
 end

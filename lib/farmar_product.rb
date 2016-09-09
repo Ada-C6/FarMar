@@ -51,6 +51,15 @@ class FarMar::Product
     return self.all.select {|product| product.vendor_id == vendor_id }
   end
 
+  # returns the top n product instances ranked by total revenue
+  def self.most_revenue(n)
+    # get an array of Product objects sorted by revenue in descending order
+    products_by_revenue = FarMar::Product.all.sort_by {|product| product.vendor.revenue}.reverse
+    # get the top n Vendor objecthighest revenue
+    return products_by_revenue.slice(0...n)
+
+  end
+
   # returns an array of FarMar::Vendor objects that is associated with Product's vendor_id
   def vendor
     return FarMar::Vendor.find(@vendor_id)

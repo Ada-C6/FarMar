@@ -30,7 +30,7 @@ class FarMar::Sale
     CSV.foreach(sale_csv_file) do |row|
       id = row[0].to_s
       amount = row[1].to_f
-      purchase_time =row[2].to_s
+      purchase_time = DateTime.parse(row[2])
       vendor_id = row[3].to_s
       product_id = row[4].to_s
 
@@ -76,9 +76,8 @@ class FarMar::Sale
   # Assume beginning_time and end_time are in String data type
   def self.between(beginning_time, end_time)
     FarMar::Sale.all.select do |sale|
-      # covert purchase_time from string to object
-      purchase_time_object = DateTime.parse(sale.purchase_time)
-      purchase_time_object >= DateTime.parse(beginning_time) && purchase_time_object <= DateTime.parse(end_time)
+      purchase_time_object = sale.purchase_time
+      purchase_time_object >= beginning_time && purchase_time_object <= end_time
     end
   end
 

@@ -39,4 +39,11 @@ describe FarMar::Product do
     product = FarMar::Product.new("1","Dry Beets","1")
     expect( product.number_of_sales ).must_equal(7)
   end
+
+  it "The top 3 Product object ranked by total revenue has 3 objects" do
+    expect( FarMar::Product.most_revenue(3).size ).must_equal(3)
+  end
+
+
+
 end

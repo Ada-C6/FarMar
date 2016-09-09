@@ -5,10 +5,12 @@ require 'csv'
 module FarMar; end
 
 # all of our data classes that live in the module
+require_relative './lib/utils'
 require_relative './lib/farmar_market'
 require_relative './lib/farmar_product'
 require_relative './lib/farmar_sale'
 require_relative './lib/farmar_vendor'
+
 # ...require all needed classes
 
 
@@ -51,5 +53,13 @@ require_relative './lib/farmar_vendor'
 
 # puts FarMar::Vendor.most_items(3).inspect
 
-puts FarMar::Vendor.revenue("2013-11-07")
-#=>8995506.0
+# puts FarMar::Vendor.revenue("2013-11-07")
+# #=>8995506.0
+
+# puts FarMar::Sale.find_by_vendor_id("3").inspect
+# vendor = FarMar::Vendor.new("3", "Breitenberg Inc", "5", "1")
+# puts vendor.revenue("2013-11-13")
+# # =>9128.0
+
+puts FarMar::Product.most_revenue(1).inspect
+#=>7895

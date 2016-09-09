@@ -55,5 +55,11 @@ describe FarMar::Vendor do
   end
   #=>8995506.0
 
+  it "returns the total revenue for that specific purchase date and vendor instance" do
+    vendor = FarMar::Vendor.new("3", "Breitenberg Inc", "5", "1")
+    expect( vendor.revenue("2013-11-13") ).must_equal(9128.0)
+  end
+  # =>9128.0
+
 
 end

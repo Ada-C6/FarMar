@@ -21,7 +21,7 @@ describe FarMar::Market do
 
   it "There are 3 Product objects associated with market id '2'" do
     market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
-    expect( market.products("2").size).must_equal(3)
+    expect( market.products("2").size).must_equal(9)
   end
 
   it "There are 3 Market objects that have 'school' in either in its market name or its vendor name" do
