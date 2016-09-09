@@ -3,20 +3,12 @@ require_relative 'spec_helper'
 
 describe FarMar::Sale do
 
-  # sale_info = {
-  #   id: 123,
-  #   amount: 88,
-  #   purchase_time: "12:50",
-  #   vendor_id: 123,
-  #   product_id: 123
-  # }
-
   p = FarMar::Sale.new(123, 88, "12:50", 123, 123)
 
   describe "#initialize" do
     it"should be an instance of Sale" do
-    p.must_be_instance_of(FarMar::Sale)
-  end
+      p.must_be_instance_of(FarMar::Sale)
+    end
   end
 
   describe "self.all" do
@@ -26,6 +18,7 @@ describe FarMar::Sale do
       s.amount.must_equal(9290)
     end
   end
+
   describe "self.find" do
     sale_find = FarMar::Sale.find(1)
     it "should be a kind of FarMar::Sale" do
@@ -37,20 +30,28 @@ describe FarMar::Sale do
   end
 
   describe "vendor" do
-    it "should vendor instances associated with the sale" do
+    it "should return vendor instances associated with the sale" do
       p.vendor_info.each do |line|
-      p.vendor.line.amount.must_equal(sales.amount)
+        p.vendor.line.amount.must_equal(sales.amount)
       end
+    end
+    it "should be a kind of an Array" do
+      p.vendor.must_be_instance_of(Array)
     end
   end
 
   describe "product" do
-    it "should product instances associated with the sale" do
+    it "should return product instances associated with the sale" do
       p.product_info.each do |line|
-      p.product.line.amount.must_equal(sales.amount)
+        p.product.line.amount.must_equal(sales.amount)
       end
     end
   end
 
-
+  describe "self.between"  do
+    it "should returns Sale purched btween two times given" do
+      q= FarMar::Sale.between(DateTime.parse("9290,2013-11-07 04:34:56"), DateTime.parse("9290,2013-12-07 06:34:56"))
+      q.length.must_equal(1)
+    end
+  end
 end

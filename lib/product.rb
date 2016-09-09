@@ -61,12 +61,20 @@ module FarMar
       return product_info
     end
 
+    def number_of_sales
+     total = 0
+     @sale_info.each do |line|
+        line
+        total += 1
+     end
+     return total
+    end
   end
 end
 
 
 # p = FarMar::Product.new(2, "name", 2)
 # p p.sales
+# p p.number_of_sales
 # p p.vendor
-
 # p FarMar::Product.by_vendor(4)

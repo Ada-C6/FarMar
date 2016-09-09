@@ -4,7 +4,7 @@
 module FarMar
   class Market
 
-    attr_reader :id, :name, :address, :city, :county, :state, :zip #,:vendor_info
+    attr_reader :id, :name, :address, :city, :county, :state, :zip
 
     def initialize (id, name, address, city, county, state, zip)
       @id = id
@@ -14,7 +14,6 @@ module FarMar
       @county = county
       @state = state
       @zip = zip
-      # @vendor_info = []
     end
 
     def self.all
@@ -28,7 +27,6 @@ module FarMar
         county = line[4]
         state = line[5]
         zip = line[6]
-
         info[id] = self.new(id, name, address, city, county, state, zip)
       end
       return info
@@ -38,32 +36,17 @@ module FarMar
       self.all[id]
     end
 
-    #use map
     def vendors
      vendor_info = FarMar::Vendor.by_market(@id)
-     return  vendor_info
+     return vendor_info
     end
-
   end
 end
 
 
-
-
-
-
-  #   CSV.read('support/accounts.csv').each do |line|
-  #     id = line[0].to_i
-  #     balance = line[1].to_i
-  #     open_date = line[2].to_i
-  #     #arrays of arrays
-  #     account_info<< self.new(id, balance, open_date)
-  #   end
-  #   return account_info
-
-  # c = FarMar.find(1)
-
+  # # c = FarMar.find(1)
+  #
   # c = FarMar::Market.new(3, "name", "address", "city", "county", "state", 8880)
   # p c.vendors
-
-  # p FarMar::Market.all
+  #
+  # # p FarMar::Market.all

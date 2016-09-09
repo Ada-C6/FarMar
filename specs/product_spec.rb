@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 # require_relative '../Product'
-
+# require_relative '../sale'
 
 describe FarMar::Product do
 
@@ -21,6 +21,7 @@ describe FarMar::Product do
       product_find.name.must_equal "Dry Beets"
     end
   end
+
   describe "vendor" do
     it "should return instances of Vendor that are associated with the product" do
       p.vendor_info.each do |line|
@@ -28,6 +29,7 @@ describe FarMar::Product do
       end
     end
   end
+
   describe "sales" do
     it "should return a collection of FarMar::Sale instances that are associated
     using the FarMar::Sale product_id  " do
@@ -45,21 +47,13 @@ describe FarMar::Product do
     end
   end
 
+  describe "number_of_sales" do
+    it "should return a Fixnum" do
+      p = FarMar::Product.new(2, "name", 2)
+      p.number_of_sales.must_be_kind_of(Fixnum)
+    end
+  end
 end
-
 # describe "self.by_vendor(vendor_id)" do
 #   it "should returns all of the products with the given vendor_id"
 #   FarMar::Product.by_vendor(1)
-#
-
-
-
-
-
-
-
-# Each product belongs to a vendor. The vendor_id field refers to the FarMar::Vendor ID field. The FarMar::Product data, in order in the CSV, consists of:
-#
-# ID - (Fixnum) uniquely identifies the product
-# Name - (String) the name of the product (not guaranteed unique)
-# Vendor_id - (Fixnum) a reference to which vendor sells this product

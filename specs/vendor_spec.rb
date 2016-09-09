@@ -1,16 +1,8 @@
 require_relative 'spec_helper'
-# require_relative '../vendor'
 
 describe FarMar::Vendor do
 
-  # vendor_info = {
-  #   id: 123,
-  #   name: "bibi",
-  #   no_of_employee: 88,
-  #   market_id: 888
-  # }
-
-  p = FarMar::Vendor.new(1, "bibi", 28, 8)
+  p = FarMar::Vendor.new(2, "bibi", 28, 8)
 
   describe "#initialize" do
     it "should be an instance of Vendor" do
@@ -30,12 +22,9 @@ describe FarMar::Vendor do
     end
   end
 
-
   describe "sales" do
-    it "should return sales amount given a vndor id" do
-      p.sale_info.each do |line|
-        p.sales.line.amount.must_equal(sales.amount)
-      end
+    it "should be a kind of array" do
+      p.sales.must_be_kind_of(Array)
     end
   end
 
@@ -48,9 +37,13 @@ describe FarMar::Vendor do
   end
 
   describe "products" do
-       it "should return an array" do
-       p.products.must_be_kind_of(Array)
-     end
+    it "should return an array" do
+      p.products.must_be_kind_of(Array)
+    end
+    it "should return an array" do
+      p = FarMar::Vendor.new(2, "bibi", 28, 8)
+      p.products.length.must_equal(2)
+    end
   end
 
   describe "self.by_vendor" do
@@ -61,11 +54,19 @@ describe FarMar::Vendor do
     end
   end
 
-
-
-  # describe
-
-  # let (:rererer) {Vendor.new(ereererr)}
-  # :ererer some vendor
-
+  describe "revenue" do
+    it "should return the sum of the total amount sold in as a Fixnum" do
+      p.revenue.must_be_kind_of(Fixnum)
+    end
+    it "should return the sum of the total amount sold " do
+      p = FarMar::Vendor.new(13, "bibi", 28, 8)
+      p.revenue.must_equal(2848)
+    end
+  end
 end
+
+
+# describe
+
+# let (:rererer) {Vendor.new(ereererr)}
+# :ererer some vendor
