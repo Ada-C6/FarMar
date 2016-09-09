@@ -43,4 +43,26 @@ describe FarMar::Market do
       end
     end
   end
+
+  describe "self.search(search_term)" do
+    before(:each) do
+      @markets = FarMar::Market.search("Evening")
+    end
+
+    it "should return an array" do
+      @markets.must_be_kind_of(Array)
+    end
+
+    it "should return the markets whose name includes the search term" do
+      @markets.to_s.must_include("Evening")
+    end
+  end
+
+  # # See market.rb - I couldn't figure out how to get this method to work
+  # describe "#products" do
+  #   it "should return an array of product instances" do
+  #     markets = FarMar::Market.new({})
+  #     markets.products.must_be_kind_of(Array)
+  #   end
+  # end
 end

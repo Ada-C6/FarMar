@@ -14,6 +14,7 @@ module FarMar
       @county = market_hash["county"]
       @state = market_hash["state"]
       @zip = market_hash["zip"]
+      @product_in_market = []
     end
 
     # Reads the CSV file to generate an array of market hashes
@@ -54,5 +55,35 @@ module FarMar
     def vendors
       return FarMar::Vendor.by_market(market_id)
     end
+
+    # Class method that returns an array of Market instances where the market name
+    # contains the search term
+    def self.search(search_term)
+      markets = self.all
+      matching_values = []
+      markets.each do |market|
+        if market.name.include?(search_term)
+          matching_values << market
+        end
+      end
+      return matching_values
+    end
+
+    # # Instance method that returns an array of products found in a particular market
+    # # I could not figure out how to do this, but I gave it my best shot!
+    # def products
+    #   # Use FarMar::Vendor #products to find products and vendors whose vendor_ids match.
+    #   # I'm not sure how to get around the fact that FarMar::Vendor #products
+    #   # references self.by_vendor(vendor_id), which requires an input value
+    #   products_by_vendor = FarMar::Vendor.new.products
+    #   # Iterate through those product/vendor combos to find the markets whose market_ids
+    #   # match those combinations
+    #   products_by_vendor.each do |var|
+    #     if var.market_id == @market_id # Need one instance of market_id (don't need @ sign)
+    #       @product_in_market << var
+    #     end
+    #   end
+    #   return @product_in_market
+    # end
   end
 end
