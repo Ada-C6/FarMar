@@ -20,38 +20,38 @@ require './lib/Vendor'
 puts "Done Loading library!"
 
 
-###### TESTING MARKET
-market_array = CSV.read('./support/markets.csv') # reads a line, and produces an array of an array of strings
+###### TESTING MARKET ############
+puts "Started loading data!\n\n\n"
+puts FarMar::Market.all.inspect # works as desired
+puts "Done loading data!"
+#for class method call syntax is Module::class.method(* put parameters here if needed) (don't include the self part)
 
-puts "We loaded #{market_array.length} Market arrays." 
+# if there is a parameter write the arugment here
 
-puts "This is the first Market array"
-print market_array[0]
-puts "\n\n"
-print market_array[0][1]
-puts "\n\n"
+# FarMar::Market.all # this will match one of the the market id numbers
+
+
+
 
 # add additional pieces for constructor
-nada_whole_fudz = FarMar::Market.new(market_array[0])
-puts "\n\n\n"
 
 #puts nada_whole_fudz.inspect
 #FarMar::Market.all
 
 
 ############ TESTING VENDOR 
-puts "Loading Vendor.rb data...\n.\n.\n." # puts logging
+# puts "Loading Vendor.rb data...\n.\n.\n." # puts logging
 
-vendor_array = CSV.read('./support/vendors.csv')
+# vendor_array = CSV.read('./support/vendors.csv')
 
-puts "We loaded #{vendor_array.length} Vendor arrays.\n\n"
+# puts "We loaded #{vendor_array.length} Vendor arrays.\n\n"
 
-puts
+# puts
 
-vendor_1 = FarMar::Vendor.new(vendor_row)
+# vendor_1 = FarMar::Vendor.new(vendor_row)
 
 
-puts vendor_1
+# puts vendor_1
 
 ############### TESTING SALE
 

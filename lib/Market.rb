@@ -1,35 +1,61 @@
 class FarMar::Market
 
-  attr_reader :market_id, :name, :city, :county, :state, :zip
+  attr_reader :id, :name, :city, :county, :state, :zip
 
-  def initialize(market_row) # could take an array
+  def initialize(id, name, address, city, county, state, zip) # could take an array
     #initialize is NOT a constructor see the iterwebs
-    @market_id = market_row[0]
-    @name = market_row[1]
-    @city = market_row[3]
-    @county = market_row[4]
-    @state = market_row[5]
-    @zip = market_row[6]
+    @id = id
+    @name = name
+    @address = address
+    @city = city
+    @county = county
+    @state = state
+    @zip = zip
     
   end 
 
-  def self.all
-    # need a constructor loops
-    market_hash = {}
-    CSV.foreach('./support/vendors.csv') do |row|
+  def self.all # works as desired [] repeat for each class
+    # [x] need a constructor loops
+    market_array = []
+
+    CSV.foreach('./support/markets.csv') do |line|
       # maybe I do need to build an hash (dict)
       # instance variables would be the key/ import csv data would be the value
-      market_hash.push(market_row)
-    end
+      id = line[0]
+      name = line[1]
+      address = line[2]
+      city = line[3]
+      county = line[4]
+      state = line[5]
+      zip = line[6]
 
-
+      market_array << FarMar::Market.new(id, name, address, city, county, state, zip)
+      # market_array is an array of market objects e.g [#<FarMar::Market:0x007ff14981dac0>]
+     end
+     return market_array
   end
 
+  # returns and instance of an object where
+  # the value of the id field in the CSV
+  # matches the passed parameter
+  def self.find(id)
+    CSV.foreach('.support/markets.csv') do |line|
+      if id == line[0]
+        return line
+      else
+        continue
+      end
+    end
+  end
 end
 
 # testing content moved to far_mar.rb
+# instance method must call on the INSTANCE
+# class methods call directly on the class
 
-
+# initialize during the instantiation of the instance variables
+# a market is a line
+# a row is column
 
 
 
