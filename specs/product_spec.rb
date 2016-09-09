@@ -34,10 +34,8 @@ module FarMar
       let(:products) { Product.find(4) } #the product with an id of 4 has 8 sales
       it "should return a collection of sales instances for the specific product" do
         #  puts products.sales
-        products.sales.must_be_instance_of(Array)
-        #need to find a partular prodcut
-        #return the sales related to that product
-      end
+        products.sales.must_be_instance_of(Hash)
+      end 
 
       it "should return the exact number of sales related to that product" do
         products.sales.length.must_equal(8)

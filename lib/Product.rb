@@ -34,18 +34,12 @@ module FarMar
       end
     end
 
-    def sales
-      #get all sales
-      #find and pull out the sales that share the same product id
+    def sales #using select method
       all_sales = FarMar::Sale.all
-      product_sales = []
-      all_sales.each do |sale_key, sale_values|
-        if @id == sale_values.product_id
-          product_sales << sale_key
-        end
+      all_sales.select do |sale_key, sale_values|
+        @id == sale_values.product_id
       end
-      return product_sales
-    end #end sales method
+    end
 
     def number_of_sales
       product_sales = self.sales
