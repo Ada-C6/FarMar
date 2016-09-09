@@ -71,4 +71,10 @@ describe FarMar::Market do
     end
   end
 
+  describe "#preferred_vendor" do
+    it "should return an instance of Vendor" do
+      @market.preferred_vendor.must_be_instance_of FarMar::Vendor
+    end
+  end
+
 end

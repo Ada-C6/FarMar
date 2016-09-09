@@ -53,13 +53,25 @@ module FarMar
     end
 
     def products
-      ary = vendors.map do |k, v|
+      prdts_ary = vendors.map do |k, v|
         v.products.map do |ke, va|
           va
         end
       end
-      
-      ary.flatten
+
+      prdts_ary.flatten
+    end
+
+    def preferred_vendor
+      all_revenues = vendors.map do |k, v|
+        v.revenue
+      end
+
+      max_value = all_revenues.max
+
+      vendors.keep_if do |k, v|
+        return v if v.revenue == max_value
+      end
     end
 
   end

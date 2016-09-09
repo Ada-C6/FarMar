@@ -13,7 +13,7 @@ module FarMar
   #
   ##### Testing instance methods
   market = FarMar::Market.new(1,"Test Market","123 Main St","King", "Seattle", "WA", "98125")
-  puts market.products
+  puts market.preferred_vendor
   #
   ##### Testing DateTime craziness
   # date = DateTime.parse("2013-11-08 04:31:41 -0800")
