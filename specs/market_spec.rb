@@ -11,7 +11,19 @@ module FarMar
       end
     end
 
-    describe ".all" do
+    describe ".read" do
+      it "should return an array" do
+        Market.read.must_be_kind_of(Array)
+      end
+
+      it "should return an object: Market at any index of the array" do
+        Market.read[0].must_be_instance_of(Market)
+        Market.read[10].must_be_instance_of(Market)
+        Market.read[20].must_be_instance_of(Market)
+      end
+    end
+
+    describe "self.all" do
       it "should return an array" do
         Market.all.must_be_kind_of(Array)
       end
@@ -75,6 +87,26 @@ module FarMar
         Market.ids[0].must_equal(Market.all[0].id)
         Market.ids[10].must_equal(Market.all[10].id)
         Market.ids[50].must_equal(Market.all[50].id)
+      end
+    end
+
+    describe "#products" do
+      before(:each) do #unnecessary because the tests dont change the values of this variable, but I wanted to try it out
+        @example_market =  Market.new({id: 4, name: "Allison's Market", address: "address", city: "city", county: "county", state: "state", zip: "zip"})
+      end
+
+      it "should return an array" do
+        @example_market.products.must_be_kind_of(Array)
+      end
+
+      it "should have an object:Product at any index of the array" do
+        @example_market.products[0].must_be_instance_of(Product)
+        @example_market.products[2].must_be_instance_of(Product)
+      end
+
+      it "all products should have the correct market id" do
+        @example_market.products[0].vendor_id.between?(13, 16).must_equal(true)
+        @example_market.products[3].vendor_id.between?(13, 16).must_equal(true)
       end
     end
   end

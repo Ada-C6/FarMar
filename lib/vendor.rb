@@ -9,7 +9,7 @@ module FarMar
       @market_id = vendor_hash[:market_id]
     end
 
-    def self.all #returns an array of objects:Vendors
+    def self.read #returns an array of objects:Vendors
       vendors = [] #array to store all of the hashes with vendor info
       CSV.read("../FarMar/support/vendors.csv").each do |line|
         vendor = {id: line[0].to_i, name: line[1], num_employees: line[2].to_i, market_id: line[3].to_i} #create a new hash for each vendor to store specific info
@@ -17,6 +17,11 @@ module FarMar
         vendors << self.new(vendor) #creates a new instance with the hash info and puts it in the array to be returned
       end
       vendors #returns this array
+    end
+
+    def self.all #what happens if the csv file is updated - this variable will not include new data
+      @@all_vendors ||= self.read
+      return @@all_vendors
     end
 
     def self.find(id) #returns the object:Vendor with arg. id

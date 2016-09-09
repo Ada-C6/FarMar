@@ -11,6 +11,20 @@ module FarMar
       end
     end
 
+    describe ".read" do
+      let(:read_products) { Product.read }
+
+      it "should return an array" do
+        read_products.must_be_kind_of(Array)
+      end
+
+      it "should return an object: Product at any index of the array" do
+        read_products[0].must_be_instance_of(Product)
+        read_products[10].must_be_instance_of(Product)
+        read_products[20].must_be_instance_of(Product)
+      end
+    end
+
     describe ".all" do
       let(:all_products) { Product.all }
 

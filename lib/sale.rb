@@ -10,7 +10,7 @@ module FarMar
       @product_id = sale_hash[:product_id]
     end
 
-    def self.all
+    def self.read
       # IDEA make this an instance variable so you only have to make it run once
       sales = [] #array to store all of the hashes with sale info
       CSV.read("../FarMar/support/sales.csv").each do |line|
@@ -19,6 +19,11 @@ module FarMar
         sales << self.new(sale) #creates a new instance with the hash info and puts it in the array to be returned
       end
       sales #returns this array
+    end
+
+    def self.all #what happens if the csv file is updated - this variable will not include new data
+      @@all_sales ||= self.read
+      return @@all_sales
     end
 
     def self.find(id)

@@ -14,7 +14,7 @@ module FarMar
 
     end
 
-    def self.all
+    def self.read
       markets = [] #array to store all of the hashes with market info
       CSV.read("../FarMar/support/markets.csv").each do |line|
         market = {
@@ -32,18 +32,17 @@ module FarMar
       markets #returns this array
     end
 
+    def self.all #what happens if the csv file is updated - this variable will not include new data
+      @@all_markets ||= self.read
+      return @@all_markets
+    end
+
     def self.find(id)
       if FarMar::Market.ids.include?(id)
         self.all.find { |m| m.id == id }
       else
         raise ArgumentError.new("There are no vendors with that id")
       end
-      # OLD CODE WITH .each LOOP
-      # self.all.each do |m|
-      #   if m.id == id
-      #     return m #returns the object whose id matches the argument
-      #   end
-      # end
     end
 
     def vendors #returns a collection of FarMar::Vendor instances that are associated with the market
@@ -58,5 +57,23 @@ module FarMar
       end
       return market_ids
     end
+
+    def products #returns an array of Products that are associated to the market via the Vendor class
+      all_products = []
+
+      this_markets_vendors = FarMar::Vendor.by_market(@id) #returns array of Vendors
+
+      this_markets_vendors.each do |v|
+        vendor_products = FarMar::Product.by_vendor(v.id) #returns array of Products
+        vendor_products.each do |pro|
+          all_products << pro
+        end
+      end
+      return all_products
+    end
+
+      #find all vendors associated with this market
+      #find all products associated with those vendors
+    #end
   end
 end

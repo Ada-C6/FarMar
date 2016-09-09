@@ -11,7 +11,19 @@ module FarMar
       end
     end
 
-    describe ".all" do
+    describe ".read" do
+      it "should return an array" do
+        Vendor.read.must_be_kind_of(Array)
+      end
+
+      it "should return an object: Vendor at any index of the array" do
+        Vendor.read[0].must_be_instance_of(Vendor)
+        Vendor.read[10].must_be_instance_of(Vendor)
+        Vendor.read[20].must_be_instance_of(Vendor)
+      end
+    end
+
+    describe "self.all" do
       it "should return an array" do
         Vendor.all.must_be_kind_of(Array)
       end

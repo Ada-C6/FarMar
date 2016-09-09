@@ -11,6 +11,21 @@ module FarMar
       end
     end
 
+    describe ".read" do
+      let(:read_sales) { Sale.read }
+
+      it "should return an array" do
+        #puts FarMar::Sale.read.length
+        read_sales.must_be_kind_of(Array)
+      end
+
+      it "should return an object: Sale at any index of the array" do
+        read_sales[0].must_be_instance_of(Sale)
+        read_sales[10].must_be_instance_of(Sale)
+        read_sales[20].must_be_instance_of(Sale)
+      end
+    end
+
     describe ".all" do
       let(:all_sales) { Sale.all }
 
