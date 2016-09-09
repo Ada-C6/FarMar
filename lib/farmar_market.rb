@@ -35,59 +35,45 @@ class Market
   end
 
   def vendors
-    vendor_list = Vendor.all
-    instances = vendor_list.find_all { |n| n[1].market_id == @id }
-
-    vendor_instances = []
-    instances.length.times do |i|
-      vendor_instances << instances[i][1]
-    end
-    return vendor_instances
+    vendor_list = Vendor.all.values
+    vendor_list.find_all { |n| n.market_id == @id }
   end
 
   def products
-    vendor_list = vendors # Vendors associated with market
-    all_products = Product.all
+    vendor_list = vendors # Vendors associated with Market instance
+    all_products = Product.all.values
 
     product_list = []
 
-    # find Products that match Vendor ID associated with Market
-    vendor_list.length.times do |i|
-      p = all_products.find_all { |n| n[1].vendor_id == vendor_list[i].id}
-
-      # add Product objects to product_list array
-      p.length.times do |j|
-        product_list << p[j][1]
-      end
+    vendor_list.each do |i|
+      product_list << all_products.find_all { |n| n.vendor_id == i.id }
     end
-    return product_list
+
+    return product_list.flatten
   end
 
   def self.search(search_term)
     matches = []
-    v = Vendor.all
-    m = Market.all
+    v = Vendor.all.values
+    m = Market.all.values
 
     # find and add matching vendor names
-    v_matches = v.find_all { |n| n[1].name.downcase.include?(search_term) }
-
-    v_matches.each do |i|
-      matches << i[1]
-    end
+    matches << v.find_all { |n| n.name.downcase.include?(search_term) }
 
     # find and add matching market names
-    m_matches = m.find_all { |n| n[1].name.downcase.include?(search_term)}
+    matches << m.find_all { |n| n.name.downcase.include?(search_term)}
 
-    m_matches.each do |i|
-      matches << i[1]
-    end
-    # matches << m_matches
-
-    return matches
+    return matches.flatten
   end
 
   def prefered_vendor
     vendors.max_by { |n| n.revenue }
   end
+
+  # def prefered_vendor(date)
+  #   date = DateTime.parse(date)
+  #   vendor_list =
+  #
+  # end
 
 end
