@@ -4,7 +4,7 @@ class FarMar::Sale
     def initialize(sale_hash)
         @id = sale_hash[:id]
         @amount = sale_hash[:amount]
-        @purchase_time = sale_hash[:purchase_time]
+        @purchase_time = DateTime.parse(sale_hash[:purchase_time])
         @vendor_id = sale_hash[:vendor_id]
         @product_id = sale_hash[:product_id]
     end
@@ -38,5 +38,9 @@ class FarMar::Sale
 
     def product
         return FarMar::Product.find(@product_id)
+    end
+
+    def self.between(beginning_time, end_time)
+        return self.all.select {|s_object| s_object.purchase_time > beginning_time && s_object.purchase_time < end_time}
     end
 end

@@ -51,4 +51,17 @@ describe FarMar::Sale do
             s.product.id.must_equal(s.product_id)
         end
     end
+
+    describe "self.between(beginning_time, end_time)" do
+        let(:sample_begin_time) {FarMar::Sale.all.first.purchase_time}
+        let(:sample_end_time) {FarMar::Sale.all.last.purchase_time}
+        it "will output an array" do
+            FarMar::Sale.between(sample_begin_time, sample_end_time).must_be_instance_of(Array)
+        end
+
+        it "will contain a Sale object as each element of the array" do
+            FarMar::Sale.between(sample_begin_time, sample_end_time).first.must_be_instance_of(FarMar::Sale)
+            FarMar::Sale.between(sample_begin_time, sample_end_time).last.must_be_instance_of(FarMar::Sale)
+        end
+    end
 end
