@@ -19,20 +19,24 @@ describe FarMar::Sale do
             FarMar::Sale.all.must_be_instance_of(Array)
         end
 
-        it "will contain an object as each element of the array" do
+        it "will contain a sale object as each element of the array" do
             FarMar::Sale.all[0].must_be_instance_of(FarMar::Sale)
             FarMar::Sale.all[0].id.must_be_instance_of(Fixnum)
         end
     end
 
     describe "self.find(id)" do
-        it "will output an object" do
+        it "will output a sale object" do
             FarMar::Sale.find(FarMar::Sale.all[0].id).must_be_instance_of(FarMar::Sale)
+        end
+
+        it "must take a valid argument" do
+            proc {FarMar::Sale.find(2000000000)}.must_raise(ArgumentError)
         end
     end
 
     describe "vendor" do
-        it "will output a Vendor object" do
+        it "will output a vendor object" do
             s.vendor.must_be_instance_of(FarMar::Vendor)
         end
 
@@ -42,7 +46,7 @@ describe FarMar::Sale do
     end
 
     describe "product" do
-        it "will output a Product object" do
+        it "will output a product object" do
             s.product.must_be_instance_of(FarMar::Product)
         end
 
@@ -58,7 +62,7 @@ describe FarMar::Sale do
             FarMar::Sale.between(sample_begin_time, sample_end_time).must_be_instance_of(Array)
         end
 
-        it "will contain a Sale object as each element of the array" do
+        it "will contain a sale object as each element of the array" do
             FarMar::Sale.between(sample_begin_time, sample_end_time).first.must_be_instance_of(FarMar::Sale)
             FarMar::Sale.between(sample_begin_time, sample_end_time).last.must_be_instance_of(FarMar::Sale)
         end

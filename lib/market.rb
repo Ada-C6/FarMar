@@ -28,11 +28,19 @@ class FarMar::Market
         markets_from_csv
     end
 
-    def self.find(id)
+    def self.ids
+        market_ids = []
         self.all.each do |m_object|
-            if m_object.id == id
-                return m_object
-            end
+            market_ids << m_object.id
+        end
+        return market_ids
+    end
+
+    def self.find(id)
+        if self.ids.include?(id)
+            self.all.find {|m_object| m_object.id == id}
+        else
+            raise ArgumentError.new("Oops, your number input is not a valid market id.")
         end
     end
 

@@ -10,19 +10,21 @@ require_relative './lib/sale'
 
 
 ##TEST #21... FarMar::Sale.self.between(beginning_time, end_time)
+sample_begin_time = "hello"
 # sample_begin_time = FarMar::Sale.all.first.purchase_time
+sample_end_time = "bye"
 # sample_end_time = FarMar::Sale.all.last.purchase_time
-# print "sample begin time in TDD: "
-# puts sample_begin_time
-# puts ""
-# print "sample end time in TDD: "
-# puts sample_end_time
-# puts "\n"
-# test = FarMar::Sale.between(sample_begin_time, sample_end_time)
-# test.each do |item|
-#     puts item.purchase_time
-# end
-#I checked the first 50 objects and all of them are within the sample beginning and end times... great!
+print "sample begin time in TDD: "
+puts sample_begin_time
+puts ""
+print "sample end time in TDD: "
+puts sample_end_time
+puts "\n"
+test = FarMar::Sale.between(sample_begin_time, sample_end_time)
+test.each do |item|
+    puts item.purchase_time
+end
+# I checked the first 50 objects and all of them are within the sample beginning and end times... great!
 
 # tests to confirm the formatting for FarMar::Sale.purchase_time is now in DateTime format...
 # s = FarMar::Sale.all.last

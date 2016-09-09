@@ -20,41 +20,28 @@ describe FarMar::Vendor do
             FarMar::Vendor.all.must_be_instance_of(Array)
         end
 
-        it "will contain an object as each element of the array" do
+        it "will contain a vendor object as each element of the array" do
             FarMar::Vendor.all[0].must_be_instance_of(FarMar::Vendor)
             FarMar::Vendor.all[0].id.must_be_instance_of(Fixnum)
         end
     end
 
     describe "self.find(id)" do
-        it "will output an object" do
+        it "will output a vendor object" do
             FarMar::Vendor.find(FarMar::Vendor.all[0].id).must_be_instance_of(FarMar::Vendor)
         end
-    end
 
-    describe "self.by_market(market_id)" do
-        let(:market_id) {FarMar::Market.all.last.id}
-        it "will output an array" do
-            FarMar::Vendor.by_market(market_id).must_be_instance_of(Array)
-        end
-
-        it "will contain a Vendor object as each element of the array" do
-            FarMar::Vendor.by_market(market_id)[0].must_be_instance_of(FarMar::Vendor)
-            FarMar::Vendor.by_market(market_id)[0].name.must_be_instance_of(String)
-        end
-
-        it "will output objects whose market id corresponds to the market id passed into the method" do
-            FarMar::Vendor.by_market(market_id).first.market_id.must_equal(market_id)
-            FarMar::Vendor.by_market(market_id).last.market_id.must_equal(market_id)
+        it "must take a valid argument" do
+            proc {FarMar::Vendor.find(2000000000)}.must_raise(ArgumentError)
         end
     end
 
     describe "market" do
-        it "will output a Market object" do
+        it "will output a market object" do
             v.market.must_be_instance_of(FarMar::Market)
         end
 
-        it "will output the object whose market id corresponds to the current vendor instance's market id" do
+        it "will output the market object whose market id corresponds to the current vendor instance's market id" do
             v.market.id.must_equal(v.market_id)
         end
     end
@@ -84,6 +71,27 @@ describe FarMar::Vendor do
     describe "revenue" do
         it "will return a fixnum" do
             v.revenue.must_be_instance_of(Fixnum)
+        end
+    end
+
+    describe "self.by_market(market_id)" do
+        let(:market_id) {FarMar::Market.all.last.id}
+        it "will output an array" do
+            FarMar::Vendor.by_market(market_id).must_be_instance_of(Array)
+        end
+
+        it "will contain a vendor object as each element of the array" do
+            FarMar::Vendor.by_market(market_id)[0].must_be_instance_of(FarMar::Vendor)
+            FarMar::Vendor.by_market(market_id)[0].name.must_be_instance_of(String)
+        end
+
+        it "will output vendor objects whose market id corresponds to the market id passed into the method" do
+            FarMar::Vendor.by_market(market_id).first.market_id.must_equal(market_id)
+            FarMar::Vendor.by_market(market_id).last.market_id.must_equal(market_id)
+        end
+
+        it "must take a valid argument" do
+            proc {FarMar::Vendor.by_market(2000000000)}.must_raise(ArgumentError)
         end
     end
 end

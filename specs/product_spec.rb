@@ -19,20 +19,24 @@ describe FarMar::Product do
             FarMar::Product.all.must_be_instance_of(Array)
         end
 
-        it "will contain an object as each element of the array" do
+        it "will contain a product object as each element of the array" do
             FarMar::Product.all[0].must_be_instance_of(FarMar::Product)
             FarMar::Product.all[0].id.must_be_instance_of(Fixnum)
         end
     end
 
     describe "self.find(id)" do
-        it "will output an object" do
+        it "will output a product object" do
             FarMar::Product.find(FarMar::Product.all[0].id).must_be_instance_of(FarMar::Product)
+        end
+
+        it "must take a valid argument" do
+            proc {FarMar::Product.find(2000000000)}.must_raise(ArgumentError)
         end
     end
 
     describe "vendor" do
-        it "will output a Vendor object" do
+        it "will output a vendor object" do
             p.vendor.must_be_instance_of(FarMar::Vendor)
         end
 
@@ -64,14 +68,18 @@ describe FarMar::Product do
             FarMar::Product.by_vendor(vendor_id).must_be_instance_of(Array)
         end
 
-        it "will contain an object as each element of the array" do
+        it "will contain a product object as each element of the array" do
             FarMar::Product.by_vendor(vendor_id)[0].must_be_instance_of(FarMar::Product)
             FarMar::Product.by_vendor(vendor_id)[0].name.must_be_instance_of(String)
         end
 
-        it "will output products whose vendor id corresponds to the vendor id passed into the method" do
+        it "will output product objects whose vendor id corresponds to the vendor id passed into the method" do
             FarMar::Product.by_vendor(vendor_id).first.vendor_id.must_equal(vendor_id)
             FarMar::Product.by_vendor(vendor_id).last.vendor_id.must_equal(vendor_id)
+        end
+
+        it "must take a valid argument" do
+            proc {FarMar::Product.by_vendor(2000000000)}.must_raise(ArgumentError)
         end
     end
 end

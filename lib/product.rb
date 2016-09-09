@@ -20,11 +20,19 @@ class FarMar::Product
         products_from_csv
     end
 
-    def self.find(id)
+    def self.ids
+        product_ids = []
         self.all.each do |p_object|
-            if p_object.id == id
-                return p_object
-            end
+            product_ids << p_object.id
+        end
+        return product_ids
+    end
+
+    def self.find(id)
+        if self.ids.include?(id)
+            self.all.find {|p_object| p_object.id == id}
+        else
+            raise ArgumentError.new("Oops, your number input is not a valid product id.")
         end
     end
 
@@ -41,6 +49,10 @@ class FarMar::Product
     end
 
     def self.by_vendor(vendor_id)
-        return self.all.select {|p_object| p_object.vendor_id == vendor_id}
+        if FarMar::Vendor.ids.include?(vendor_id)
+            return self.all.select {|p_object| p_object.vendor_id == vendor_id}
+        else
+            raise ArgumentError.new("Oops, your number input is not a valid vendor id.")
+        end
     end
 end

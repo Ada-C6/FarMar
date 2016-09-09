@@ -24,11 +24,19 @@ class FarMar::Sale
         sales_from_csv
     end
 
-    def self.find(id)
+    def self.ids
+        sale_ids = []
         self.all.each do |s_object|
-            if s_object.id == id
-                return s_object
-            end
+            sale_ids << s_object.id
+        end
+        return sale_ids
+    end
+
+    def self.find(id)
+        if self.ids.include?(id)
+            self.all.find {|s_object| s_object.id == id}
+        else
+            raise ArgumentError.new("Oops, your number input is not a valid sale id.")
         end
     end
 

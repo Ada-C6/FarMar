@@ -19,15 +19,19 @@ describe FarMar::Market do
             FarMar::Market.all.must_be_instance_of(Array)
         end
 
-        it "will contain an object as each element of the array" do
+        it "will contain a market object as each element of the array" do
             FarMar::Market.all[0].must_be_instance_of(FarMar::Market)
             FarMar::Market.all[0].id.must_be_instance_of(Fixnum)
         end
     end
 
     describe "self.find(id)" do
-        it "will output an object" do
+        it "will output a market object" do
             FarMar::Market.find(FarMar::Market.all[0].id).must_be_instance_of(FarMar::Market)
+        end
+
+        it "must take a valid argument" do
+            proc {FarMar::Market.find(2000000000)}.must_raise(ArgumentError)
         end
     end
 
