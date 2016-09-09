@@ -37,6 +37,14 @@ describe FarMar::Vendor do
     it "should return a FarMar::Vendor object" do
       FarMar::Vendor.find(300).must_be_kind_of(FarMar::Vendor)
     end
+
+    it "should return an instance whose id matches that of the id passed into the the parameter" do
+      FarMar::Vendor.find(46).id.must_equal(46)
+    end
+
+    it "should raise an error if id parameter is not a fixnum" do
+      proc { FarMar::Vendor.find("27") }.must_raise(ArgumentError)
+    end
   end
 
   describe "#market" do

@@ -43,9 +43,6 @@ module FarMar
     end
 
     def number_of_sales # returns the number of times this product has been sold
-      # get a collection of ALL sale instances
-      # iterate over them and find the ones with product ids that match the product id of the product instance the method is called on
-      # find the length of the array. That's the number of times a product has been sold
       a_products_sales = []
       all_sales = FarMar::Sale.all
       all_sales.each do |sale|
@@ -57,8 +54,6 @@ module FarMar
     end
 
     def self.by_vendor(vendor_id) # returns all of the products with the given vendor_id
-      #iterate over an array of all products
-      #if a products vendor_id matches the vendor_id passed in then shovel into a separate array
       vendor_products = []
       all_products = FarMar::Product.all
       all_products.map do |product|

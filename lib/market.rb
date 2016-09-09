@@ -22,6 +22,7 @@ module FarMar
   end
 
   def self.find(id)
+    raise ArgumentError.new("invalid input type") unless id.is_a? (Fixnum)
     object_array = FarMar::Market.all
     object_array.map do |market|
       if market.id.to_i == id

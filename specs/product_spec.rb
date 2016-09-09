@@ -58,10 +58,6 @@ describe FarMar::Product do
   end
 
   describe "self.find" do
-    # before (:each) do
-    #   @pretzel = FarMar::Product.new(15, "comfortable pretzel", 8)
-    # end
-
     it "should return a FarMar::Product instance" do
       FarMar::Product.find(15).must_be_kind_of(FarMar::Product)
     end

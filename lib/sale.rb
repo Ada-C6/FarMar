@@ -8,7 +8,6 @@ module FarMar
       @purchase_time = purchase_time
       @vendor_id = vendor_id
       @product_id = product_id
-
     end
 
     def self.all
@@ -39,10 +38,6 @@ module FarMar
     end
 
     def self.between(beginning_time, end_time) # returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-      # iterate over ALL sale objects and check to see:
-      # if purchase_time is > beginning_time && purchase_time < end_time
-      # then add that sale object to array that collects the sales that happen between the beginning_time and end_time
-      # return the collection sales whose purchase_time is between
       sales_within_time_period = []
       all_sales = FarMar::Sale.all
       all_sales.map do |sale|
@@ -52,17 +47,6 @@ module FarMar
       end
       return sales_within_time_period
     end
-
-
-
-
-
-
-
-
-
-
-
 
 
   end

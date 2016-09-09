@@ -78,6 +78,10 @@ describe FarMar::Market do
   end
 
   describe "self.find" do
+    it "should raise an error if id parameter is not a fixnum" do
+      proc { FarMar::Market.find("107") }.must_raise(ArgumentError)
+    end
+
     it "should return an object" do
       FarMar::Market.find(1).must_be_kind_of(FarMar::Market)
     end
