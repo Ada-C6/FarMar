@@ -39,11 +39,9 @@ module FarMar
     end
 
     describe "#vendor" do
-      it "returns true if the returned instance is of the same vendor id" do
+      it "should return an instance of Vendor" do
         p = Product.find(2)
-        p.vendor do |i|
-          i.vendor_id.must_equal(2) ### LINE NOT COVERED
-        end
+        p.vendor.must_be_instance_of(Vendor)
       end
     end
 
