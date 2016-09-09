@@ -61,8 +61,9 @@ module FarMar
 
       products.each do |product| #for each product do the following.
         # it is possible for there to be no sales for a given product
-        unless product.sales == nil
-          #product.sales will return nil for products that have no sales. 
+        # unless product.sales == nil
+        unless product.sales == []
+          #product.sales will return nil for products that have no sales.
           sales_hash[product] = product.sales
         end
       end

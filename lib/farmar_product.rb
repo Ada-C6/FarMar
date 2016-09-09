@@ -47,8 +47,9 @@ module FarMar
 
     def sales
       #sales: returns an array of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
-      Sale.all.values.group_by {|sale| sale.product_id}[@product_id]
-      #NOTE: It possible that a given product has NO sales. 
+      Sale.all.values.select {|sale| sale.product_id == @product_id}
+      # Sale.all.values.group_by {|sale| sale.product_id}[@product_id]
+      #NOTE: It possible that a given product has NO sales.
     end
 
     def number_of_sales
