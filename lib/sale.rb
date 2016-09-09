@@ -73,8 +73,9 @@ module FarMar
     def self.between(beginning_time, end_time)
       sales = self.all
       sold_objects = []
-      sales.each do
-        if (beginning_time <= sales.Time.new(purchase_time)) && (end_time >= sales.Time.new(purchase_time))
+      sales.each do |sale|
+        purchase_time = sale.purchase_time
+        if (beginning_time <= Time.new(purchase_time)) && (end_time >= Time.new(purchase_time))
           sold_objects << sale
         end
       end

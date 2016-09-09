@@ -1,3 +1,4 @@
+require 'time'
 require_relative 'spec_helper'
 require_relative '../lib/sale'
 
@@ -61,19 +62,31 @@ describe FarMar::Sale do
   end
 
   describe "self.between(beginning_time, end_time)" do
+    let(:matches) { FarMar::Sale.between(Time.new("2013-11-11 11:29:52 -0800"), Time.new("2013-11-13 04:14:40 -0800")) }
+
     it "should return an array" do
-      sales = FarMar::Sale.all
-      sales.must_be_kind_of(Array)
+      matches.must_be_kind_of(Array)
     end
 
-    it "should return the items whose sales time are between the input values" do
-      sales = FarMar::Sale.all
-      beginning_time = Time.new("2013-11-11 11:29:52 -0800")
-      end_time = Time.new("2013-11-13 04:14:40 -0800")
-      sales.each do |i|
-        i.between(beginning_time, end_time).must_include(Time.new("2013-11-12 12:00:35 -0800"))
+    # it "should return the items whose sales time are between the input values" do
+    #   sales = FarMar::Sale.all
+    #   beginning_time = Time.new("2013-11-11 11:29:52 -0800")
+    #   end_time = Time.new("2013-11-13 04:14:40 -0800")
+    #   sales.each do |i|
+    #     FarMar::Sale.between(beginning_time, end_time).must_include(Time.new("2013-11-12 12:00:35 -0800"))
+    #   end
+    # end
+
+
+    it "should return an Array of things between the dates from the CSV file" do
+      matches.each do |sale|
+        assert_operator Time.new(sale.purchase_time), :>=, Time.new("2013-11-11 11:29:52 -0800")
+        assert_operator Time.new(sale.purchase_time), :<=, Time.new("2013-11-13 04:14:40 -0800")
       end
     end
+
+
+
 
   end
 end
