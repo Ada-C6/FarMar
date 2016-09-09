@@ -46,16 +46,16 @@ describe "FarMar::Product" do
 
     describe "instance methods" do
         before(:all) do
-                # Make a new product instance from a single line of products.csv
-                test_product_info_hash = {
-                    product_id: 7818,
-                    name: "Purple Beets",
-                    vendor_id: 2566
-                }
-                @test_product = FarMar::Product.new(test_product_info_hash)
+            # Make a new product instance from a single line of products.csv
+            test_product_info_hash = {
+                product_id: 7818,
+                name: "Purple Beets",
+                vendor_id: 2566
+            }
+            @test_product = FarMar::Product.new(test_product_info_hash)
 
-                @test_vendor = @test_product.vendor
-                @test_sales = @test_product.sales
+            @test_vendor = @test_product.vendor
+            @test_sales = @test_product.sales
         end # before(:each)
 
         describe "#vendor" do
