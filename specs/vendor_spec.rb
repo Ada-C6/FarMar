@@ -2,7 +2,6 @@ require_relative 'spec_helper'
 module FarMar
   describe Vendor do
     describe "#initialize" do
-
       let(:vendor) { Vendor.new(112, "ada farms", 12, 1202) }
       it "should create an instance of a vendor" do
         vendor.must_be_instance_of(Vendor)
@@ -10,11 +9,10 @@ module FarMar
     end #end initialize
 
     describe "self.all" do
-        let(:vendors) { Vendor.all }
-        it "should create an array of instances of markets through the CSV file" do
-
-         Vendor.all.must_be_kind_of(Hash)
-        end
+      let(:vendors) { Vendor.all }
+      it "should create an array of instances of markets through the CSV file" do
+        Vendor.all.must_be_kind_of(Hash)
+      end
     end #end self.all
 
     describe "self.find(id)" do
@@ -30,7 +28,6 @@ module FarMar
       it "should return the market instance that the vendor is a part of, using the vendor's market id" do
         cat_vendor = FarMar::Vendor.find(2)
         cat_vendor.market.id.must_equal(1)
-
       end #is this a good test?
     end
 
@@ -55,9 +52,9 @@ module FarMar
     describe "#revenue" do
       let (:vendor) {FarMar::Vendor.find(3)}
       it "should return the the correct amount" do
-      vendor.revenue.must_equal(40126)
-      #vendor 3 has 8 sales
-    end
+        vendor.revenue.must_equal(40126)
+        #vendor 3 has 8 sales
+      end
     end
 
     describe "self.by_market(id)" do
@@ -65,9 +62,6 @@ module FarMar
         all = FarMar::Vendor.by_market(1)
         all.length.must_equal(6)
       end #end test block
-
     end #end describe self.by_market
-
   end #end vendor
-
 end #end module

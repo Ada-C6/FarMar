@@ -9,16 +9,17 @@ module FarMar
       it "should create an instance of a sale" do
         @sale.must_be_instance_of(Sale)
       end
+
       it "should have a vendor id" do
         @sale.vendor_id.must_equal(3)
       end
     end
 
     describe "self.all" do
-        let(:sales) { Sale.all }
+      let(:sales) { Sale.all }
 
       it "should create an array of instances of sales from the CSV file" do
-       Sale.all.must_be_kind_of(Hash)
+        Sale.all.must_be_kind_of(Hash)
       end
     end #end self.all
 
@@ -30,6 +31,7 @@ module FarMar
         sold_foots.id.must_equal(20)
       end
     end
+
     describe "#vendor" do
       let (:sale) {Sale.find(8)} #vendor id is 2
       it "should return the instance of Vendor for the particular sale" do
@@ -53,11 +55,10 @@ module FarMar
 
     describe "self.between(beginning_time, end_time)" do
       it "should return an array of products within the specified time range" do
-      beginning_time = DateTime.parse("2013-11-11 11:29:52 -0800")
-      end_time = DateTime.parse("2013-11-13 01:48:15 -0800")
-      Sale.between(beginning_time, end_time).must_be_kind_of(Array)
+        beginning_time = DateTime.parse("2013-11-11 11:29:52 -0800")
+        end_time = DateTime.parse("2013-11-13 01:48:15 -0800")
+        Sale.between(beginning_time, end_time).must_be_kind_of(Array)
+      end
     end
-    end
-
   end #end sale
 end #end module
