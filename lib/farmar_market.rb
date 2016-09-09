@@ -40,5 +40,12 @@ module FarMar
     def vendors
       FarMar::Vendor.by_market(@id)
     end
+    def products
+      products = []
+      vendors.each do |x|
+      products << FarMar::Product.by_vendor(x.vend_id)
+    end
+    products.flatten!
+    end
   end
 end
