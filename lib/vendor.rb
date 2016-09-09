@@ -98,5 +98,39 @@ module FarMar
       end
       return revenue
     end
+
+    # Class method that returns the top vendor instances ranked by total revenue
+    # I strongly suspect there is a much more elegant way to do this, but I ran
+    # out of time. I also only managed to return the top value, rather than the
+    # top n values.
+    def self.most_revenue
+      sales = FarMar::Sale.all
+      top_vendors = {}
+      # Create a hash with the vendor_id as a key and an array as the value,
+      # using sale.amount as each item of the array
+      sales.each do |sale|
+        unless top_vendors.has_key?(sale.vendor_id)
+          top_vendors.merge!(sale.vendor_id => [sale.amount])
+        # Push the amount into the value array
+        else
+          top_vendors[sale.vendor_id] << sale.amount
+        end
+      end
+      # This creates an array of arrays, with [0] in each one equal to vendor_id
+      # and [1] in each equal to the summed sale.amounts.
+      top_reduced = top_vendors.map do |key, val|
+        [key, val.reduce(:+)]
+      end
+      maximum = 0
+      vendor_id = nil
+      top_reduced.each do |i|
+        if i[1] > maximum
+          maximum = i[1]
+          vendor_id = i[0]
+        end
+      end
+      puts "Vendor ID #{ vendor_id } had the most revenue of #{ maximum } cents."
+      return maximum
+    end
   end
 end
