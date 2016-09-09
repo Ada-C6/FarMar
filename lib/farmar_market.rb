@@ -57,8 +57,13 @@ class Market
     v = Vendor.all.values
     m = Market.all.values
 
-    # find and add matching vendor names
-    matches << v.find_all { |n| n.name.downcase.include?(search_term) }
+    # find matching vendor names
+    vendors = []
+    vendors << v.find_all { |n| n.name.downcase.include?(search_term) }
+    # find and add associated market
+    vendors.flatten.each do |i|
+      matches << i.market
+    end
 
     # find and add matching market names
     matches << m.find_all { |n| n.name.downcase.include?(search_term)}
@@ -70,7 +75,7 @@ class Market
     vendors.max_by { |n| n.revenue }
   end
 
-  # IN PROGRESS: 
+  # IN PROGRESS:
   # def prefered_vendor(date)
   #   date = DateTime.parse(date)
   #   vendor_list = vendors
