@@ -41,5 +41,23 @@ module FarMar
       end
     end
 
+    describe "#product" do
+      let (:sale) {Sale.find(21)} #should return product with id of 7
+      it "should return the product instance asssociated with the particular sale" do
+        sale.product.must_be_instance_of(Product)
+      end
+      it "should return the right product id" do
+        sale.product_id.must_equal(7)
+      end
+    end
+
+    describe "self.between(beginning_time, end_time)" do
+      it "should return an array of products within the specified time range" do
+      beginning_time = DateTime.parse("2013-11-11 11:29:52 -0800")
+      end_time = DateTime.parse("2013-11-13 01:48:15 -0800")
+      Sale.between(beginning_time, end_time).must_be_kind_of(Array)
+    end
+    end
+
   end #end sale
 end #end module
