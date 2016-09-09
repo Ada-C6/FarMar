@@ -55,7 +55,6 @@ describe FarMar::Market do
   end
 
   describe "#vendors" do
-    # would need to change if dataset were to change
     it "should return a collection of FarMar::Vendor instances that are associated with the market_id field" do
       @market.vendors.wont_be_empty
     end
