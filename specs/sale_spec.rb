@@ -34,10 +34,6 @@ describe FarMar::Sale do
   end
 
   describe "self.all" do
-
-  end
-
-  describe "self.find" do
     it "should return an array" do
       FarMar::Sale.all.must_be_kind_of(Array)
     end
@@ -69,14 +65,53 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#vendor" do
+    before (:each) do
+      @incense_sale = FarMar::Sale.new(33, 8559, "2013-11-11 06:26:33 -0800", 7, 14)
+    end
 
+    it "should return a FarMar::Vendor instance" do
+      @incense_sale.vendor.must_be_kind_of(FarMar::Vendor)
+    end
 
+    it "should return a Vendor instance whose id matches the vendor_id of the sale the method was called on" do
+      @incense_sale.vendor.id.must_equal(@incense_sale.vendor_id)
+    end
+  end
 
+  describe "#product" do
+    before (:each) do
+      @incense_sale = FarMar::Sale.new(33, 8559, "2013-11-11 06:26:33 -0800", 7, 14)
+    end
 
+    it "should return a FarMar::Product instance" do
+      @incense_sale.product.must_be_kind_of(FarMar::Product)
+    end
 
+    it "should return a Product instance whose id matches the product_id of the sale the method was called on" do
+      @incense_sale.product.id.must_equal(@incense_sale.product_id)
+    end
+  end
 
+  describe "self.between" do
+    it "should return an array" do
+      FarMar::Sale.between(800, 1800).must_be_kind_of(Array)
+    end
 
+    it "should return a collection of FarMar::Sale objects" do
+      afternoon_sales = FarMar::Sale.between(1200, 1700)
+      afternoon_sales.each do |sale|
+        sale.must_be_instance_of(FarMar::Sale)
+      end
+    end
 
+    it "should be made up only of Sale objects whose purchase times are between the beginning_time and end_time arguments" do
+      morning_sales = FarMar::Sale.between(600,1200)
+      morning_sales.each do |sale|
+        sale.purchase_time.must_be(:>, 600 && :<, 1200)
+      end
+    end
+  end
 
 
 
