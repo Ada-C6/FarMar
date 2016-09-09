@@ -27,11 +27,8 @@ module FarMar
     end
 
     def self.find_by_name(name)
-      all_vendors = self.all
-      all_vendors.each do |vendor|
-        if vendor.name.upcase == name.upcase
-          return vendor
-        end
+      self.all.each do |vendor|
+        vendor.name.upcase == name.upcase
       end
     end
 
@@ -40,21 +37,15 @@ module FarMar
     end
 
     def products
-      all_products = FarMar::Product.all
-      vendor_products = []
-      all_products.each do |product|
-        if product.vendor_id == @id
-          vendor_products << product
-        end
+      FarMar::Product.all.select do |product|
+        product.vendor_id == @id
       end
-      return vendor_products
     end
 
     def sales
-      vendor_sales = FarMar::Sale.all.select do |sale|
+      FarMar::Sale.all.select do |sale|
         sale.vendor_id == @id
       end
-      return vendor_sales
     end
 
     def revenue(date = nil)
@@ -70,22 +61,29 @@ module FarMar
         vendor_sales = vendor_sales_by_date
       end
 
-      revenue_array = vendor_sales.map do |sale|
-        sale.amount
+      revenue = 0
+      vendor_sales.each do |sale|
+        revenue += sale.amount
       end
 
-      revenue_total = revenue_array.reduce(:+)
+      # revenue_total = revenue_array.reduce(:+)
 
-      if revenue_total == nil
+      if revenue == nil
         return 0
       else
-        return revenue_total
+        return revenue
       end
     end
 
+    # def self.most_revenue(n)
+    #   vendors_by_revenue = self.all.sort_by do |vendor|
+    #     vendor.revenue
+    #   end
+    #   return vendors_by_revenue[-n..-1]
+    # end
+
     def self.by_market(market_id)
-      all_vendors = self.all
-      all_vendors.select do |vendor|
+      self.all.select do |vendor|
         vendor.market_id == market_id
       end
     end

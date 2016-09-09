@@ -107,11 +107,11 @@ describe FarMar::Product do
   #   end
   # end
 
-  describe "self.find_by_name(name)" do
-    it "should return the Product instance that matches the passed name" do
-      FarMar::Product.find_by_name("gorgeous fish").id.must_equal(12)
-    end
-  end
+  # describe "self.find_by_name(name)" do
+  #   it "should return the Product instance that matches the passed name" do
+  #     FarMar::Product.find_by_name("gorgeous fish").id.must_equal(12)
+  #   end
+  # end
 
   # describe "self.find_all_by_keyword(word)" do
   #   it "should return an array of Product instances that contain the keyword in the product name" do

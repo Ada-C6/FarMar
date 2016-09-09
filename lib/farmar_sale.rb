@@ -1,5 +1,6 @@
 module FarMar
   class Sale
+
     attr_reader :id, :amount, :vendor_id, :product_id, :purchase_time
 
     def initialize(id, amount, purchase_time, vendor_id, product_id)
@@ -19,11 +20,8 @@ module FarMar
     end
 
     def self.find(id)
-      all_sales = self.all
-      all_sales.each do |sale|
-        if sale.id == id
-          return sale
-        end
+      self.all.find do |sale|
+        sale.id == id
       end
     end
 

@@ -17,22 +17,16 @@ module FarMar
     end
 
     def self.find(id)
-      all_products = self.all
-      all_products.each do |product|
-        if product.id == id
-          return product
-        end
+      self.all.find do |product|
+        product.id == id
       end
     end
 
-    def self.find_by_name(name)
-      all_products = self.all
-      all_products.each do |product|
-        if product.name.upcase == name.upcase
-          return product
-        end
-      end
-    end
+    # def self.find_by_name(name)
+    #   self.all.find do |product|
+    #     product.name.upcase == name.upcase
+    #   end
+    # end
 
     def vendor
       FarMar::Vendor.find(@vendor_id)

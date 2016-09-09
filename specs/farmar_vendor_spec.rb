@@ -115,11 +115,23 @@ describe FarMar::Vendor do
     end
 
   end
-
-  describe "self.find_by_name(name)" do
-    it "should return the Vendor instance that matches the passed name" do
-      FarMar::Vendor.find_by_name("Windler Inc").id.must_equal(FarMar::Vendor.find(12).id)
-    end
-  end
+  #
+  # describe "self.most_revenue(n)" do
+  #   top_5 = FarMar::Vendor.most_revenue(5)
+  #
+  #   it "should return an ordered collection of Vendor instances" do
+  #     top_5.first.id.must_equal(500)
+  #   end
+  #
+  #   it "should be ranked by total revenue" do
+  #     top_5.first.revenue.must_be(:>, top_5.last.revenue)
+  #   end
+  # end
+  #
+  # describe "self.find_by_name(name)" do
+  #   it "should return the Vendor instance that matches the passed name" do
+  #     FarMar::Vendor.find_by_name("Windler Inc").id.must_equal(FarMar::Vendor.find(12).id)
+  #   end
+  # end
 
 end
