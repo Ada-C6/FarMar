@@ -12,8 +12,8 @@ module FarMar
   # puts Market.search("and")
   #
   ##### Testing instance methods
-  # sale = Sale.new(1,200,"12:00",1,1)  #testing an instance method
-  # puts sale.
+  market = FarMar::Market.new(1,"Test Market","123 Main St","King", "Seattle", "WA", "98125")
+  puts market.products
   #
   ##### Testing DateTime craziness
   # date = DateTime.parse("2013-11-08 04:31:41 -0800")

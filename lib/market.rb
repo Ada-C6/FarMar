@@ -50,8 +50,16 @@ module FarMar
       all_vendors.delete_if do |k, v|
         v.market_id != @id
       end
+    end
 
-      return all_vendors
+    def products
+      ary = vendors.map do |k, v|
+        v.products.map do |ke, va|
+          va
+        end
+      end
+      
+      ary.flatten
     end
 
   end

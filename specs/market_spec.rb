@@ -60,4 +60,15 @@ describe FarMar::Market do
     end
 
   end
+
+  describe "#products" do
+    it "should return an array" do
+      @market.products.must_be_kind_of Array
+    end
+
+    it "should return an instance(s) of Product" do
+      @market.products.first.must_be_instance_of FarMar::Product
+    end
+  end
+
 end
