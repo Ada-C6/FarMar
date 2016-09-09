@@ -51,27 +51,36 @@ module FarMar
     end
 
     def sales
-      all_sales = FarMar::Sale.all
-      vendor_sales = []
-      all_sales.each do |sale|
-        if sale.vendor_id == @id
-          vendor_sales << sale
-        end
+      vendor_sales = FarMar::Sale.all.select do |sale|
+        sale.vendor_id == @id
       end
       return vendor_sales
     end
 
-    def revenue
+    def revenue(date = nil)
       vendor_sales = sales
+      if date != nil
+        beginning_time = DateTime.new(date.year, date.month, date.day, 0, 0, 0, '-8')
+        end_time = DateTime.new(date.year, date.month, date.day, 23, 59, 59, '-8')
+
+        vendor_sales_by_date = vendor_sales.select do |sale|
+          sale.purchase_time > beginning_time && sale.purchase_time < end_time
+        end
+
+        vendor_sales = vendor_sales_by_date
+      end
+
       revenue_array = vendor_sales.map do |sale|
         sale.amount
       end
+
       revenue_total = revenue_array.reduce(:+)
+
       if revenue_total == nil
         return 0
       else
         return revenue_total
-      end 
+      end
     end
 
     def self.by_market(market_id)

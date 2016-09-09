@@ -21,41 +21,29 @@ module FarMar
     end
 
     def self.find(id)
-      all_markets = self.all
-      all_markets.each do |market|
-        if market.id == id
-          return market
-        end
+      self.all.find do |market|
+        market.id == id
       end
     end
 
 
     def self.find_by_name(name)
-      all_markets = self.all
-      all_markets.each do |market|
-        if market.name.upcase == name.upcase
-          return market
-        end
+      self.all.find do |market|
+        market.name.upcase == name.upcase
       end
     end
 
-    def self.find_all_by_state(state)
-      all_markets = self.all
-      state_markets = all_markets.select do |market|
-        market.state.upcase == state.upcase
-      end
-      return state_markets
-    end
+    # def self.find_all_by_state(state)
+    #   state_markets = self.all.select do |market|
+    #     market.state.upcase == state.upcase
+    #   end
+    #   return state_markets
+    # end
 
     def vendors
-      market_vendors = []
-      all_vendors = FarMar::Vendor.all
-      all_vendors.each do |vendor|
-        if vendor.market_id == @id
-          market_vendors << vendor
-        end
+      FarMar::Vendor.all.select do |vendor|
+        vendor.market_id == @id
       end
-      return market_vendors
     end
 
     def self.search(search_term)
@@ -98,25 +86,26 @@ module FarMar
         preferred_vendor = vendors.max_by do |vendor|
           vendor.revenue
         end
-        return preferred_vendor
       else
-        beginning_time = DateTime.new(date.year, date.month, date.day, 0, 0, 0, '-8')
-        end_time = DateTime.new(date.year, date.month, date.day, 23, 59, 59, '-8')
-
-        sales = FarMar::Sale.between(beginning_time, end_time)
-
-        sales.preferred_vendor
+        preferred_vendor = vendors.max_by do |vendor|
+          vendor.revenue(date)
+        end
       end
+      return preferred_vendor
     end
 
-    # def preferred_vendor_by_date(date)
-    #   beginning_time = DateTime.new(date.year, date.month, date.day, 0, 0, 0, '-8')
-    #   end_time = DateTime.new(date.year, date.month, date.day, 23, 59, 59, '-8')
-    #
-    #   sales = FarMar::Sale.between(beginning_time, end_time)
-    #
-    #   sales.preferred_vendor
-    # end
+    def worst_vendor(date = nil)
+      if date == nil
+        preferred_vendor = vendors.min_by do |vendor|
+          vendor.revenue
+        end
+      else
+        preferred_vendor = vendors.min_by do |vendor|
+          vendor.revenue(date)
+        end
+      end
+      return preferred_vendor
+    end
 
   end
 end

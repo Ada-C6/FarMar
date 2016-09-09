@@ -86,7 +86,7 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "#revenue" do
+  describe "#revenue(date optional)" do
     it "should return an integer" do
       windler_vendor.revenue.must_be_kind_of(Fixnum)
     end
@@ -94,6 +94,13 @@ describe FarMar::Vendor do
     it "should return the sum of all the vendor's sales" do
       windler_vendor.revenue.must_equal(10969)
     end
+
+    it "should return the total revenue for the passed date and vendor instance" do
+      welch_vendor = FarMar::Vendor.find(515)
+      date = DateTime.new(2013, 11, 11, 0, 0, 0, '-8')
+      welch_vendor.revenue(date).must_equal(1851)
+    end
+
   end
 
   describe "self.by_market(market_id)" do

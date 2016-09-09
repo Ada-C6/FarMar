@@ -70,14 +70,14 @@ describe FarMar::Market do
 
   end
 
-  describe "find_all_by_state(state)" do
-    it "should return an array of instances that match the passed state" do
-      markets_wa = FarMar::Market.find_all_by_state("Washington")
-
-      markets_wa[rand(1..(markets_wa.length - 1))].state.upcase.must_equal("WASHINGTON")
-
-    end
-  end
+  # describe "find_all_by_state(state)" do
+  #   it "should return an array of instances that match the passed state" do
+  #     markets_wa = FarMar::Market.find_all_by_state("Washington")
+  #
+  #     markets_wa[rand(1..(markets_wa.length - 1))].state.upcase.must_equal("WASHINGTON")
+  #
+  #   end
+  # end
 
   describe "#products" do
     market_products = FarMar::Market.find(77).products
@@ -122,26 +122,39 @@ describe FarMar::Market do
 
   end
 
-  describe "#preferred_vendor" do
+  describe "#preferred_vendor(date optional)" do
     market_12 = FarMar::Market.find(12)
+    market_99 = FarMar::Market.find(99)
+    date = DateTime.new(2013, 11, 11, 0, 0, 0, '-8')
 
     it "should return a Vendor instance" do
       market_12.preferred_vendor.must_be_instance_of(FarMar::Vendor)
     end
 
-    it "should return the vendor with the highest revenue" do
+    it "should return the vendor with the highest overall revenue" do
       market_12.preferred_vendor.revenue.must_be(:>, FarMar::Vendor.find(53).revenue)
     end
 
+    it "should return the vendor with the highest revenue for that date if a date is passed" do
+      market_99.preferred_vendor(date).id.must_equal(516)
+    end
+
+    it "should return the vendor with the highest revenue for that date if a date is passed" do
+      market_99.preferred_vendor(date).revenue.must_be(:>, market_99.vendors[0].revenue)
+    end
   end
 
-  # describe "#preferred_vendor_by_date(date)" do
-  #   market_99 = FarMar::Market.find(99)
-  #   date = DateTime.new(2013, 11, 7, 0, 0, 0, '-8')
-  #
-  #   it "should return the vendor with the highest revenue for the given date" do
-  #     market_99.preferred_vendor_by_date(date)
-  #   end
-  # end
+  describe "#worst_vendor(optional date)" do
+    market_99 = FarMar::Market.find(99)
+    date = DateTime.new(2013, 11, 11, 0, 0, 0, '-8')
 
+    it "should return the vendor with the lowest revenue" do
+      market_99.worst_vendor.id.must_equal(517)
+    end
+
+    it "should return the vendor with the lowest revenue on a given date" do # multiple worst vendors?
+      market_99.worst_vendor(date).revenue.must_equal(0)
+    end
+
+  end
 end
