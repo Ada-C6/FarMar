@@ -1,68 +1,76 @@
 require_relative 'spec_helper'
 
 describe FarMar::Product do
-  # would need to change if dataset were to change
-  let(:product) { FarMar::Product.new( {product_id: 1, product_name: "Dry Beets",vendor_id: 1} ) }
+  before (:each) do
+    @all_products = FarMar::Product.all
+    product_hash = {}
+    product_csv_file = CSV.read("../FarMar/support/products.csv")
+    product_csv_file.each do |product|
+      product_hash[:product_id] = product[0].to_i
+      product_hash[:product_name] = product[1].to_s
+      product_hash[:vendor_id] = product[2].to_i
+    end
+    @product= FarMar::Product.new(product_hash)
+  end
 
   describe "#initialize" do
-    # considered with variable dataset in mind
     it "can create a new instance of Product" do
-      product.must_be_instance_of(FarMar::Product)
+      @product.must_be_instance_of(FarMar::Product)
     end
 
   end
 
   describe "all" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should put all values of its CSV file into an array" do
-      FarMar::Product.all.length.must_equal(8193)
+      @all_products.wont_be_empty
     end
   end
 
   describe "find(id)" do
-    # would need to change if dataset were to change
     it "should let the user know if the id is not present" do
-      proc { FarMar::Product.find(8194) }.must_raise("ID was not present")
+      test_hash = {}
+      test_hash[:product_id] = @all_products.length + 1
+      test_hash[:product_name] = "Test"
+      test_hash[:vendor_id] = 1
+
+      proc { FarMar::Product.find(product_id) }.must_raise("ID was not present")
     end
 
     # would need to change if dataset were to change
-    it "should find a specific Product by the market_id" do
-      FarMar::Product.all
-      found_product = FarMar::Product.find(1)
-      found_product.product_id.must_equal(1)
-      found_product.product_name.must_equal(product.product_name)
+    it "should find a specific Product by the product_id" do
+      found_product = FarMar::Product.find(@product.product_id)
+      found_product.product_id.must_equal(@product.product_id)
+      found_product.product_name.must_equal(@product.product_name)
     end
   end
 
   describe "self.by_vendor(vendor_id)" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return all of the products associated with a vendor_id" do
-      FarMar::Product.new({product_id: 1, product_name: "Dry Beets",vendor_id: 1})
-      FarMar::Product.by_vendor(1).length.must_equal(1)
+      FarMar::Product.by_vendor(@product.vendor_id).wont_be_empty
     end
   end
 
 
   describe "#vendor" do
-    # would need to change if dataset were to change
     it "should return the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field" do
-      FarMar::Vendor.all
-      found_vendor= FarMar::Vendor.find(1)
-      product.vendor.must_equal(found_vendor.vendor_name)
+      found_vendor= FarMar::Vendor.find(@product.vendor_id)
+      @product.vendor.must_equal(found_vendor.vendor_name)
     end
   end
 
   describe "#sales" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field" do
-      product.sales.length.must_equal(7)
+      @product.sales.wont_be_empty
     end
   end
 
   describe "#number_of_sales" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return the number of times this product has been sold" do
-      product.number_of_sales.must_equal(7)
+      @product.number_of_sales.must_be_instance_of(Fixnum)
     end
   end
 
