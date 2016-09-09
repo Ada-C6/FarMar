@@ -41,8 +41,7 @@ module FarMar
           return market
         end
       end
-      puts "ID was not present"
-      return "ID was not present"
+      raise Exception("ID not present")
     end
 
     def vendors
