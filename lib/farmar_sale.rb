@@ -39,12 +39,17 @@ class FarMar::Sale
   def product
     FarMar::Product.find(@prod_id)
   end
+
   def self.between(begin_time, end_time)
+    times = []
+    time = Time.now
     start = Chronic.parse(begin_time)
     fin = Chronic.parse(end_time)
-    all.drop_while do |i|
+    all.each do |i|
       time = Chronic.parse(i.purch_time)
-      time >= start && time <= fin
+      if start < time && time < fin
+        times << i
+      end
     end
   end
 end
