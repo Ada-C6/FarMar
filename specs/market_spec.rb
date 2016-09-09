@@ -44,6 +44,10 @@ describe FarMar::Market do
     it "should return a hash" do
       FarMar::Market.search("and").must_be_kind_of Hash
     end
+
+    it "should raise an error if the search word cannot be found" do
+      proc { FarMar::Market.search("sdlfjasdlkfj")}.must_raise ArgumentError
+    end
   end
 
   describe "#vendors" do

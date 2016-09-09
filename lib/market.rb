@@ -33,8 +33,14 @@ module FarMar
     end
 
     def self.search(search_term)
-      all.keep_if do |k, v|
+      search_results = all.keep_if do |k, v|
         v.name.downcase.include?(" " + search_term.downcase + " ")
+      end
+
+      if search_results.length > 1
+        return search_results
+      else
+        raise ArgumentError.new("There are no markets with \"#{search_term}\" in their name")
       end
     end
 

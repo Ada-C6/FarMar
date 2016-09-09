@@ -9,7 +9,7 @@ require_relative 'lib/sale.rb'
 
 module FarMar
   ##### Testing self methods
-  puts Market.search("and")
+  # puts Market.search("and")
   #
   ##### Testing instance methods
   # sale = Sale.new(1,200,"12:00",1,1)  #testing an instance method
