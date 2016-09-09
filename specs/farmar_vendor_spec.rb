@@ -1,77 +1,90 @@
 require_relative 'spec_helper'
 
 describe FarMar::Vendor do
-  # would need to change if dataset were to change
-  let(:vendor) { FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", num_employees: 8, market_id: 1}) }
+
+  before (:each) do
+    @all_vendors = FarMar::Vendor.all
+    vendor_hash = {}
+    vendor_csv_file = CSV.read("../FarMar/support/vendors.csv")
+    vendor_csv_file.each do |vendor|
+      vendor_hash[:vendor_id] = vendor[0].to_i
+      vendor_hash[:vendor_name] = vendor[1].to_s
+      vendor_hash[:num_employees] = vendor[2].to_i
+      vendor_hash[:market_id] = vendor[3].to_i
+    end
+    @vendor = FarMar::Vendor.new(vendor_hash)
+    @all_markets = FarMar::Market.all
+  end
 
   describe "#initialize" do
-    # considered with variable dataset in mind
     it "can create a new instance of Vendor" do
-      vendor.must_be_instance_of(FarMar::Vendor)
+      @vendor.must_be_instance_of(FarMar::Vendor)
     end
   end
 
   describe "all" do
-    # would need to change if dataset were to change
     it "should put all values of its CSV file into an array" do
-      FarMar::Vendor.all.length.must_equal(2690)
+      # if time after total refactoring, would like to see if there's additional things to check to make this more useful
+      FarMar::Vendor.all.wont_be_empty
     end
   end
 
   describe "find(id)" do
-    # would need to change if dataset were to change
     it "should let the user know if the id is not present" do
-      proc { FarMar::Vendor.find(2691) }.must_raise("ID was not present")
+      test_hash = {}
+      test_hash[:vendor_id] = @all_vendors.length + 1
+      test_hash[:vendor_name] = "Test"
+      test_hash[:num_employees] = 0
+      test_hash[:market_id] = 2
+
+      proc { FarMar::Vendor.find(vendor_id) }.must_raise("ID was not present")
     end
 
-    # would need to change if dataset were to change
-    it "should find a specific Market by the market_id" do
-      FarMar::Vendor.all
-      found_vendor = FarMar::Vendor.find(1)
-      found_vendor.vendor_id.must_equal(1)
-      found_vendor.vendor_name.must_equal(vendor.vendor_name)
+    it "should find a specific Vendor by the vendor_id" do
+      found_vendor = FarMar::Vendor.find(@vendor.vendor_id)
+      found_vendor.vendor_id.must_equal(@vendor.vendor_id)
+      found_vendor.vendor_name.must_equal(@vendor.vendor_name)
     end
   end
 
   describe "#market" do
-    # would need to change if dataset were to change
     it "should return the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field" do
-      vendor.market.must_equal("People\'s Co-op Farmers Market")
+      associated_market = FarMar::Market.find(@vendor.market_id)
+      @vendor.market.must_equal(associated_market.market_name)
     end
 
-    # considered with variable dataset in mind
     it "should be an instance of market" do
-      associated_market = FarMar::Market.find(vendor.vendor_id)
+      associated_market = FarMar::Market.find(@vendor.market_id)
       associated_market.must_be_instance_of(FarMar::Market)
     end
   end
 
   describe "#products" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return a collection of FarMar::Product instances associated with a vendor_id" do
-      vendor.products.length.must_equal(1)
+      @vendor.products.wont_be_empty
     end
   end
 
   describe "#sales" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return a collection of FarMar::Sale instances associated with a vendor_id" do
-      vendor.sales.length.must_equal(7)
+      @vendor.sales.wont_be_empty
     end
   end
 
   describe "#revenue" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return the sum of all the vendor's sales (in cents)" do
-      vendor.revenue.must_equal(38259)
+      @vendor.revenue.must_be_instance_of(Fixnum)
     end
   end
 
   describe "by_market(market_id)" do
-    # would need to change if dataset were to change
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return all of the vendors with a given market_id" do
       FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", num_employees: 8, market_id: 1})
-      FarMar::Vendor.by_market(1).length.must_equal(6)
+      FarMar::Vendor.by_market(@vendor.market_id).wont_be_empty
     end
   end
 
