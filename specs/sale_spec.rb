@@ -75,28 +75,33 @@ module FarMar
     end
 
     describe "self.between(begin,end)" do
-      let(:beginning_time) {DateTime.new()}
-      let(:end_time) {DateTime.new()}
+      let(:beginning_time) {DateTime.parse("2013-11-13 01:48:15 -0800")}
+      let(:end_time) {DateTime.parse("2013-11-13 01:49:37 -0800")}
       let(:some_sales) {Sale.between(beginning_time, end_time)}
       # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-      it "should return an array" do
+      it "should return an Hash" do
         #should return an array of sale objects
-        some_sales.must_be_instance_of(Array)
+        some_sales.must_be_instance_of(Hash)
+      end
+
+      it "should return a Hash where the keys are Sale IDs" do
+        some_sales.keys[0].must_be_instance_of(Fixnum)
+      end
+
+      it "should return the correct Sale ID as the key" do
+        some_sales[3].sale_id.must_equal(3)
       end
 
       it "should return an array of Sale objects" do
-        skip
-        some_sales[0].must_be_instance_of(Sale)
+        some_sales.values[0].must_be_instance_of(Sale)
       end
 
       it "should have Sales that are before end_time" do
-        skip
-        some_sales[0].purchase_time.must_be :<=, end_time
+        some_sales.values[0].purchase_time.must_be :<=, end_time
       end
 
       it "should have Sales that are after beginning_time" do
-        skip
-        some_sales[0].purchase_time.must_be :>=, beginning_time
+        some_sales.values[0].purchase_time.must_be :>=, beginning_time
       end
     end
   end

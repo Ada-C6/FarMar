@@ -50,5 +50,12 @@ module FarMar
       #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
       Product.find(@product_id)
     end
+
+    def self.between(beginning_time, end_time)
+      between_sales = Sale.all.select do |key, value|
+        value.purchase_time >= beginning_time && value.purchase_time <= end_time
+      end
+      between_sales
+    end
   end
 end
