@@ -83,7 +83,6 @@ describe FarMar::Vendor do
   describe "by_market(market_id)" do
     # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return all of the vendors with a given market_id" do
-      FarMar::Vendor.new({vendor_id: 1, vendor_name: "Feil-Farrell", num_employees: 8, market_id: 1})
       FarMar::Vendor.by_market(@vendor.market_id).wont_be_empty
     end
   end
