@@ -1,5 +1,5 @@
 class FarMar::Product
-attr_reader :id, :name, :vend_id
+  attr_reader :id, :name, :vend_id
   def initialize (id, name, vend_id)
     @id = id
     @name = name

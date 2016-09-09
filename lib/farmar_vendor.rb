@@ -54,6 +54,6 @@ class FarMar::Vendor
     sales.map! do |a|
       sale << a.amount
     end
-  sale.reduce(:+)
+    sale.reduce(:+)
   end
 end
