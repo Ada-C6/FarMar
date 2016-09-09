@@ -8,24 +8,40 @@ describe "FarMar::Vendor" do
     end # initialize
 
     describe "self.all" do
-        it "should return a hash of FarMar::Vendor objects with length matching CSV size" do
-            csv_vendors = FarMar::Vendor.all
-            expected_length = CSV.read('support/vendors.csv').size
-            csv_vendors.class.must_equal(Hash)
-            csv_vendors.values[rand(0..expected_length-1)].must_be_instance_of(FarMar::Vendor)
-            csv_vendors.length.must_equal(expected_length)
+        before(:all) do
+            @csv_vendors = FarMar::Vendor.all
+            @csv_length = CSV.read('support/vendors.csv').size
+        end
+
+        it "should return a hash" do
+            @csv_vendors.class.must_equal(Hash)
+        end
+
+        it "items in the hash should be FarMar::Vendor objects" do
+            @csv_vendors.values[rand(0..@csv_length-1)].must_be_instance_of(FarMar::Vendor)
+        end
+
+        it "length of the hash should match length of the CSV" do
+            @csv_vendors.length.must_equal(@csv_length)
         end
     end # self.all
 
     describe "self.find(id)" do
+        let(:found_vendor) { FarMar::Vendor.find(2468) }
+
         it "should raise an ArgumentError if not passed a Fixnum argument" do
             proc { FarMar::Vendor.find("cats") }.must_raise(ArgumentError)
         end
 
-        it "should return a FarMar::Vendor object with data that corresponds to the id argument passed in" do
-            found_vendor = FarMar::Vendor.find(2468)
+        it "should return a FarMar::Vendor object" do
             found_vendor.must_be_instance_of(FarMar::Vendor)
+        end #
+
+        it "should return a FarMar::Vendor object with vendor_id equal to the parameter passed in" do
             found_vendor.vendor_id.must_equal(2468)
+        end #
+
+        it "should return a FarMar::Vendor object with correct name" do
             found_vendor.name.must_equal("Tillman-Schowalter")
         end #
     end # self.find
@@ -36,13 +52,13 @@ describe "FarMar::Vendor" do
         end
 
         it "should return an array of FarMar::Vendor instances" do
-            by_market_vendors = FarMar::Vendor.by_market(rand(0..500)) #vendors.csv contains 500 markets
+            by_market_vendors = FarMar::Vendor.by_market(rand(0..499)) #vendors.csv contains 500 markets
             by_market_vendors.must_be_instance_of(Array)
             by_market_vendors[rand(0..by_market_vendors.length-1)].must_be_instance_of(FarMar::Vendor)
         end
 
         it "should return FarMar::Vendor instances with market_id matching the argument" do
-            rand_id = rand(0..500)
+            rand_id = rand(0..499)
             rand_vendors = FarMar::Vendor.by_market(rand_id)
             rand_vendors[rand(0..rand_vendors.length-1)].market_id.must_equal(rand_id)
         end
