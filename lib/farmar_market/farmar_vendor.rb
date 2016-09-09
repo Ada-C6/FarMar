@@ -54,7 +54,7 @@ module FarMar
 
       all_sales.each do |sale|
         if sale.vendor_id == @vendor_id
-          associated_sales.push(sale)
+          associated_sales.push(sale.sale_amount)
         end
       end
       return associated_sales
@@ -80,7 +80,7 @@ module FarMar
       all_vendors.each do |vendor|
 
         if vendor.market_id == market_id
-          associated_vendors.push(vendor)
+          associated_vendors.push(vendor.vendor_name)
         end
       end
       return associated_vendors
