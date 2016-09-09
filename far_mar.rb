@@ -9,14 +9,26 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
+##TEST #19... FarMar::Sale.vendor
+# s = FarMar::Sale.all.last
+# puts s.vendor
+# print "I expect the vendor id below to be:"
+# puts s.vendor_id
+# puts ""
+# puts s.vendor.id
+# puts "Awesome!"
+
+
+
+
 ##TEST #18... FarMar::Product.number_of_sales
-p = FarMar::Product.all.last
-puts p.sales.to_s
-puts ""
-print "I expect this number to correspond to the number of elements in the above array:"
-puts p.number_of_sales
-puts ""
-puts "Awesome!"
+# p = FarMar::Product.all.last
+# puts p.sales.to_s
+# puts ""
+# print "I expect this number to correspond to the number of elements in the above array:"
+# puts p.number_of_sales
+# puts ""
+# puts "Awesome!"
 
 
 

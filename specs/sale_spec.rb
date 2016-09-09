@@ -29,4 +29,15 @@ describe FarMar::Sale do
             FarMar::Sale.find(FarMar::Sale.all[0].id).must_be_instance_of(FarMar::Sale)
         end
     end
+
+    describe "vendor" do
+        let(:s) {FarMar::Sale.all.last}
+        it "will output a Vendor object" do
+            s.vendor.must_be_instance_of(FarMar::Vendor)
+        end
+
+        # it "will output the object whose vendor id corresponds to the current sale instance's vendor id" do
+        #     s.vendor.id.must_equal(s.vendor_id)
+        # end
+    end
 end
