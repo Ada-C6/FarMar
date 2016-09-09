@@ -98,6 +98,6 @@ describe FarMar::Sale do
 		# if a date with no timezone is passed in, it
 		# defaults to +00:00. I have no idea how to
 		# manipulate this and alter the timezone so
-		# that it is always 
+		# that it is always -0800.
 	end
 end
