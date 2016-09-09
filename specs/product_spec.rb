@@ -8,22 +8,42 @@ describe "FarMar::Product" do
     end # initialize
 
     describe "self.all" do
+        before(:all) do
+            @csv_products = FarMar::Product.all
+            @expected_length = CSV.read('support/products.csv').size
+        end
+
         it "should return a hash of FarMar::Product objects with length matching CSV size" do
-            csv_products = FarMar::Product.all
-            expected_length = CSV.read('support/products.csv').size
-            csv_products.class.must_equal(Hash)
-            csv_products.values[rand(0..expected_length-1)].must_be_instance_of(FarMar::Product)
-            csv_products.length.must_equal(expected_length)
+            @csv_products.class.must_equal(Hash)
+
+            @csv_products.values.each do |product|
+                product.must_be_instance_of(FarMar::Product)
+            end
+        end
+
+        it "should return a hash with length matching the CSV size" do
+            @csv_products.length.must_equal(@expected_length)
         end
     end # self.all
 
     describe "self.find(id)" do
-        it "should return a FarMar::Product object with data that corresponds to the id argument passed in" do
-            found_product = FarMar::Product.find(272)
+        let(:found_product) { FarMar::Product.find(272) }
+
+        it "should raise an ArgumentError if not passed a Fixnum argument" do
+            proc { FarMar::Product.find("cats") }.must_raise(ArgumentError)
+        end
+
+        it "should return a FarMar::Product object" do
             found_product.must_be_instance_of(FarMar::Product)
+        end
+
+        it "should return a FarMar::Product object with correct product_id" do
             found_product.product_id.must_equal(272)
+        end
+
+        it "should return a FarMar::Product object with correct name" do
             found_product.name.must_equal("Wide-eyed Fish")
-        end #
+        end
     end # self.find
 
     describe "self.by_vendor(vendor_id)" do
@@ -32,9 +52,11 @@ describe "FarMar::Product" do
         end
 
         it "should return an array of FarMar::Product instances" do
-            by_vendor_product = FarMar::Product.by_vendor(rand(0..2690)) #products.csv contains 2690 vendors
+            by_vendor_product = FarMar::Product.by_vendor(rand(0..2689)) #products.csv contains 2690 vendors
             by_vendor_product.must_be_instance_of(Array)
-            by_vendor_product[rand(0..by_vendor_product.length-1)].must_be_instance_of(FarMar::Product)
+            by_vendor_product.each do |product|
+                product.must_be_instance_of(FarMar::Product)
+            end
         end
 
         it "should return FarMar::Product instances with vendor_id matching the argument" do
@@ -68,11 +90,15 @@ describe "FarMar::Product" do
         describe "#sales" do
             it "should return an array of FarMar::Sale instances" do
                 @test_sales.must_be_instance_of(Array)
-                @test_sales[rand(0..@test_sales.length-1)].must_be_instance_of(FarMar::Sale)
+                @test_sales.each do |sale|
+                    sale.must_be_instance_of(FarMar::Sale)
+                end
             end
 
-            it "should return the FarMar::Sale instances with the correct product_id" do
-                @test_sales[rand(0..@test_sales.length-1)].product_id.must_equal(7818)
+            it "should return FarMar::Sale instances with the correct product_id" do
+                @test_sales.each do |product|
+                    product.product_id.must_equal(7818)
+                end
             end
         end #sales
 
