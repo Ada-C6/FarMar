@@ -32,6 +32,12 @@ module FarMar
       end
     end
 
+    def self.search(search_term)
+      all.keep_if do |k, v|
+        v.name.downcase.include?(" " + search_term.downcase + " ")
+      end
+    end
+
     def vendors
       all_vendors = FarMar::Vendor.all
 
@@ -41,6 +47,7 @@ module FarMar
 
       return all_vendors
     end
+
   end
 
 end

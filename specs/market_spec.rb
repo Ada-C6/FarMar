@@ -40,6 +40,12 @@ describe FarMar::Market do
 
   end
 
+  describe "#self.search" do
+    it "should return a hash" do
+      FarMar::Market.search("and").must_be_kind_of Hash
+    end
+  end
+
   describe "#vendors" do
     it "should return a hash of vendors" do
       @market.vendors.must_be_kind_of Hash
@@ -48,6 +54,6 @@ describe FarMar::Market do
     it "should return a hash of six objects for a market ID of 1" do
       @market.vendors.length.must_equal 6
     end
-    
+
   end
 end
