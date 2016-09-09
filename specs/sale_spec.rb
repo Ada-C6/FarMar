@@ -68,25 +68,15 @@ describe FarMar::Sale do
       matches.must_be_kind_of(Array)
     end
 
-    # it "should return the items whose sales time are between the input values" do
-    #   sales = FarMar::Sale.all
-    #   beginning_time = Time.new("2013-11-11 11:29:52 -0800")
-    #   end_time = Time.new("2013-11-13 04:14:40 -0800")
-    #   sales.each do |i|
-    #     FarMar::Sale.between(beginning_time, end_time).must_include(Time.new("2013-11-12 12:00:35 -0800"))
-    #   end
-    # end
-
-
+    # I assume there's a way to do this without assert_operator, but I couldn't figure out what
+    # it was, in regards to making sure it was greater_than_or_equal_to or less_than_or_equal_to.
+    # After copious googling, I resorted to texting my tech mentor for assistance, and this is
+    # what we came up with.
     it "should return an Array of things between the dates from the CSV file" do
       matches.each do |sale|
         assert_operator Time.new(sale.purchase_time), :>=, Time.new("2013-11-11 11:29:52 -0800")
         assert_operator Time.new(sale.purchase_time), :<=, Time.new("2013-11-13 04:14:40 -0800")
       end
     end
-
-
-
-
   end
 end
