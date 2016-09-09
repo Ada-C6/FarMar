@@ -29,22 +29,9 @@ module FarMar
 
     def self.find(id)
       return self.all[id]
-      # self.all.each do |market|
-      #   if market.id == @id
-      #     return market
-      #   end
-      # end
     end
 
     def vendors
-      # all_vendors = FarMar::Vendor.all
-      #
-      # all_vendors.each do |vendor, value|
-      #   if  @id == value.market_id
-      #      @vendors_at_market << value
-      #   end
-      #  end
-      #  return @vendors_at_market
       FarMar::Vendor.by_market(@id)
     end #end vendors method
   end

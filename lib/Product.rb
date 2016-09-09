@@ -52,7 +52,6 @@ module FarMar
 
     def self.by_vendor(a_vendor_id)
       all_products = self.all
-      # products_by_vendor = []
       all_products.select do |product, product_values|
         product_values.vendor_id == a_vendor_id
       end

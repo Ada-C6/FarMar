@@ -33,30 +33,26 @@ module FarMar
 
     def vendor
       all_vendors = FarMar::Vendor.all
-      all_vendors.each do |vendor, vendor_values|
-        if vendor_values.id == @vendor_id
+      all_vendors.select do |vendor, vendor_values|
+         vendor_values.id == @vendor_id
           return vendor_values
-        end
       end
     end
 
     def product
       all_products = FarMar::Product.all
-      all_products.each do |product, product_values|
-        if product_values.id == @product_id
-          return product_values   #  returns the the product instance from the sales id for product
-        end
+      all_products.select do |product, product_values|
+        product_values.id == @product_id
+        return product_values
       end
-
     end
 
     def self.between(beginning_time, end_time) #assuming beginning and end times are given in DateTime format
 
       between_times = []
-      self.all.each do |key, value|
-        if value.purchase_time >= beginning_time && value.purchase_time <= end_time
+      self.all.select do |key, value|
+        value.purchase_time >= beginning_time && value.purchase_time <= end_time
           between_times << value
-        end
       end
       return between_times
     end
