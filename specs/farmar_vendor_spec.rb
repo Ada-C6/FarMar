@@ -96,9 +96,15 @@ describe FarMar::Vendor do
     end
 
     it "should return the total revenue for the passed date and vendor instance" do
-      welch_vendor = FarMar::Vendor.find(515)
+      welch_vendor = FarMar::Vendor.find(516)
       date = DateTime.new(2013, 11, 11, 0, 0, 0, '-8')
-      welch_vendor.revenue(date).must_equal(1851)
+      welch_vendor.revenue(date).must_equal(17896)
+    end
+
+    it "should return 0 if no sales were made" do
+      ersner_vendor = FarMar::Vendor.find(517)
+      date = DateTime.new(2013, 11, 11, 0, 0, 0, '-8')
+      ersner_vendor.revenue(date).must_equal(0)
     end
 
   end

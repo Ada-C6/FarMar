@@ -26,11 +26,11 @@ module FarMar
       end
     end
 
-    def self.find_by_name(name)
-      self.all.each do |vendor|
-        vendor.name.upcase == name.upcase
-      end
-    end
+    # def self.find_by_name(name)
+    #   self.all.each do |vendor|
+    #     vendor.name.upcase == name.upcase
+    #   end
+    # end
 
     def market
       FarMar::Market.find(@market_id)
