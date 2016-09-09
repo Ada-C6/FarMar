@@ -8,14 +8,11 @@ module FarMar
       @id = id.to_i
       @name = name.to_s
       @vendor_id = vendor_id.to_i
-
     end
-
 
     def self.all
       products_hash = {}
       CSV.read("./support/products.csv").each do |line|
-
         id = line[0].to_i
         name = line[1]
         vendor_id = line[2].to_i
@@ -65,9 +62,6 @@ module FarMar
       end
     end
     return products_by_vendor
-    # then it will only pull out the products that share the vendor id passed in the method
     end
-
-
   end #end class
 end #end module

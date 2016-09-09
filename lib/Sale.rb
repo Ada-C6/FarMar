@@ -31,7 +31,7 @@ module FarMar
       return self.all[id]
     end
 
-    def vendor #when you call vendor, it will pull up the vendor instance that matches the vendor id at the top
+    def vendor
       all_vendors = FarMar::Vendor.all
       all_vendors.each do |vendor, vendor_values|
         if vendor_values.id == @vendor_id
@@ -44,19 +44,16 @@ module FarMar
       all_products = FarMar::Product.all
       all_products.each do |product, product_values|
         if product_values.id == @product_id
-          return product_values
+          return product_values   #  returns the the product instance from the sales id for product
         end
       end
-      #  returns the the product instance from the sales id for product
+
     end
 
-    def self.between(beginning_time, end_time)
+    def self.between(beginning_time, end_time) #assuming beginning and end times are given in DateTime format
 
       between_times = []
-
-
       self.all.each do |key, value|
-
         if value.purchase_time >= beginning_time && value.purchase_time <= end_time
           between_times << value
         end

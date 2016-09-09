@@ -62,18 +62,14 @@ module FarMar
       vendor_sales = self.sales #returns an array of sales for vendor
       total_revenue = 0
       vendor_sales.each do |sale|
-        # puts sale
-        # puts sale.amount
         total_revenue += sale.amount
       end
       return total_revenue
-      #first, revenue will sort through all sales
-      #for all sales that have a matching vendor id, we'll look at their revnue and add them
+
     end
 
     def self.by_market(a_market_id)
       all_vendors = self.all #returns hash of all vendors
-      #returns a list of vendors associated with the market id
       vendors_list = []
       all_vendors.each do |vendor_key, vendor_value|
         if  vendor_value.market_id == a_market_id
@@ -82,8 +78,5 @@ module FarMar
       end
       return vendors_list
     end
-
-
-
   end #end class
 end #end module
