@@ -19,10 +19,10 @@ module FarMar
     end
 
     def self.find(id)
-      self.all.each do |pro|
-        if pro.id == id
-          return pro #returns the object whose id matches the argument
-        end
+      if FarMar::Product.ids.include?(id)
+        self.all.find { |pro| pro.id == id }
+      else
+        raise ArgumentError.new("There are no products with that id")
       end
     end
 
@@ -39,7 +39,20 @@ module FarMar
     end
 
     def self.by_vendor(vendor_id) #returns all the products associated with the given vendor_id
-      FarMar::Product.all.select { |pro| pro.vendor_id == vendor_id }
+      if FarMar::Vendor.ids.include?(vendor_id)
+        self.all.select { |pro| pro.vendor_id == vendor_id }
+      else
+        raise ArgumentError.new("There are no vendors with that id")
+      end
+    end
+
+    def self.ids
+      product_ids = []
+
+      self.all.each do |pro|
+        product_ids << pro.id
+      end
+      return product_ids
     end
   end
 end

@@ -30,12 +30,17 @@ module FarMar
         scots.must_be_instance_of(Market)
         scots.name.must_equal("Scottdale Farmers Market")
       end
+
+      it "should raise argument error when given an invalid id" do
+        proc { Market.find(987654321) }.must_raise(ArgumentError)
+      end
     end
 
     describe "#vendors" do
       before(:each) do #unnecessary because the tests dont change the values of this variable, but I wanted to try it out
         @example_market =  Market.new({id: 4, name: "Allison's Market", address: "address", city: "city", county: "county", state: "state", zip: "zip"})
         @four = @example_market.vendors
+        @another_market = Market.new({id: 987654321987654321, name: "Dustin's Market"})
       end
 
       it "returns an array" do
@@ -53,12 +58,24 @@ module FarMar
         @four[1].market_id.must_equal(4)
         @four[2].market_id.must_equal(4)
       end
+    end
 
-      # it "should raise and ArgumentError if there is no vendor with that market id" do
-      #   another_market = Market.new({id: 98765432})
-      #
-      #   another_market.vendors.must_raise(ArgumentError)
-      # end
+    describe "self.ids" do
+      it "should return an array" do
+        Market.ids.must_be_kind_of(Array)
+      end
+
+      it "should have a fixnum at any index of the array" do
+        Market.ids[0].must_be_kind_of(Fixnum)
+        Market.ids[10].must_be_kind_of(Fixnum)
+        Market.ids[50].must_be_kind_of(Fixnum)
+      end
+
+      it "should have id numbers at the correct index of the array" do
+        Market.ids[0].must_equal(Market.all[0].id)
+        Market.ids[10].must_equal(Market.all[10].id)
+        Market.ids[50].must_equal(Market.all[50].id)
+      end
     end
   end
 end

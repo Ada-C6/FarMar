@@ -30,6 +30,10 @@ module FarMar
         led.must_be_instance_of(Vendor)
         led.name.must_equal("Ledner Group")
       end
+
+      it "should raise argument error when given an invalid id" do
+        proc { Vendor.find(987654321) }.must_raise(ArgumentError)
+      end
     end
 
     describe "#market" do
@@ -99,6 +103,7 @@ module FarMar
 
     describe "self.by_market(market_id)" do
       let(:vendors_by_market) { Vendor.by_market(4) }
+      let(:example_market) { Market.new({id: 987654321987654321})}
 
       it "should return an array" do
         vendors_by_market.must_be_kind_of(Array)
@@ -113,6 +118,28 @@ module FarMar
         vendors_by_market[0].id.must_equal(13)
         vendors_by_market[2].id.must_equal(15)
         vendors_by_market[3].id.must_equal(16)
+      end
+
+      it "should raise and ArgumentError if there is no vendor with that market id" do
+        proc{ Vendor.by_market(example_market.id) }.must_raise(ArgumentError)
+      end
+    end
+
+    describe "self.ids" do
+      it "should return an array" do
+        Vendor.ids.must_be_kind_of(Array)
+      end
+
+      it "should have a fixnum at any index of the array" do
+        Vendor.ids[0].must_be_kind_of(Fixnum)
+        Vendor.ids[10].must_be_kind_of(Fixnum)
+        Vendor.ids[50].must_be_kind_of(Fixnum)
+      end
+
+      it "should have id numbers at the correct index of the array" do
+        Vendor.ids[0].must_equal(Vendor.all[0].id)
+        Vendor.ids[10].must_equal(Vendor.all[10].id)
+        Vendor.ids[50].must_equal(Vendor.all[50].id)
       end
     end
   end

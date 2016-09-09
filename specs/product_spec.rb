@@ -32,6 +32,10 @@ module FarMar
         tp.must_be_instance_of(Product)
         tp.name.must_equal("Tall Pretzel")
       end
+
+      it "should raise argument error when given an invalid id" do
+        proc { Product.find(987654321) }.must_raise(ArgumentError)
+      end
     end
 
     describe "#vendor" do
@@ -86,10 +90,6 @@ module FarMar
       end
 
       it "should return an object: Product at any index of the array" do
-        puts example_vendor.products
-        puts "SPACE"
-        puts example_vendor.products[1]
-
         FarMar::Product.by_vendor(example_vendor.id)[0].must_be_instance_of(Product)
         FarMar::Product.by_vendor(example_vendor.id)[2].must_be_instance_of(Product)
       end
@@ -97,6 +97,10 @@ module FarMar
       it "each object returned should be associated with the correct vendor_id by checking the name" do #IS THIS A BETTER TEST?
         FarMar::Product.by_vendor(example_vendor.id)[0].name.must_equal("Shaky Honey")
         FarMar::Product.by_vendor(example_vendor.id)[2].name.must_equal("Black Apples")
+      end
+
+      it "should raise an argument error if invalid vendor id is supplied" do
+        proc { FarMar::Product.by_vendor(98765432) }.must_raise(ArgumentError)
       end
     end
   end

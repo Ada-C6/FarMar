@@ -20,11 +20,18 @@ module FarMar
     end
 
     def self.find(id) #returns the object:Vendor with arg. id
-      self.all.each do |v|
-        if v.id == id
-          return v #returns the object whose id matches the argument
-        end
+      if FarMar::Vendor.ids.include?(id)
+        self.all.find { |v| v.id == id }
+      else
+        raise ArgumentError.new("There are no vendors with that id")
       end
+
+      #OLD CODE WITH .each LOOP
+      # self.all.each do |v|
+      #   if v.id == id
+      #     return v #returns the object whose id matches the argument
+      #   end
+      # end
     end
 
     def market #returns the object:Market that this vendor belongs to
@@ -48,14 +55,23 @@ module FarMar
     end
 
     def self.by_market(market_id) #returns an array of the vendors with the given market_id
-      #vendors_by_market =
-      self.all.select { |v| v.market_id == market_id }
+      # self.all.select { |v| v.market_id == market_id }
 
-      # if vendors_by_market.length != 4
-      #   raise ArgumentError.new("There are no vendors associated with this market")
-      # else
-      #   return vendors_by_market
-      # end
+      if FarMar::Market.ids.include?(market_id)
+        self.all.select { |v| v.market_id == market_id }
+      else
+        raise ArgumentError.new("There are no vendors associated with this market")
+      end
     end
+
+    def self.ids
+      vendor_ids = []
+
+      self.all.each do |v|
+        vendor_ids << v.id
+      end
+      return vendor_ids
+    end
+
   end
 end

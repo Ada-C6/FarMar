@@ -33,16 +33,30 @@ module FarMar
     end
 
     def self.find(id)
-      self.all.each do |m|
-        if m.id == id
-          return m #returns the object whose id matches the argument
-        end
+      if FarMar::Market.ids.include?(id)
+        self.all.find { |m| m.id == id }
+      else
+        raise ArgumentError.new("There are no vendors with that id")
       end
+      # OLD CODE WITH .each LOOP
+      # self.all.each do |m|
+      #   if m.id == id
+      #     return m #returns the object whose id matches the argument
+      #   end
+      # end
     end
 
     def vendors #returns a collection of FarMar::Vendor instances that are associated with the market
-      FarMar::Vendor.by_market(@id)
+      FarMar::Vendor.by_market(@id) #has clause for ArgError in method
     end
 
+    def self.ids
+      market_ids = []
+
+      self.all.each do |m|
+        market_ids << m.id
+      end
+      return market_ids
+    end
   end
 end

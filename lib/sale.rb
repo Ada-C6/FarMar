@@ -22,10 +22,10 @@ module FarMar
     end
 
     def self.find(id)
-      self.all.each do |s|
-        if s.id == id
-          return s #returns the object whose id matches the argument
-        end
+      if FarMar::Sale.ids.include?(id)
+        self.all.find { |s| s.id == id }
+      else
+        raise ArgumentError.new("There are no sales with that id")
       end
     end
 
@@ -39,14 +39,15 @@ module FarMar
 
     def self.between(beginning_time, end_time)
       self.all.select { |s| beginning_time <= s.purchase_time && s.purchase_time <= end_time }
-      # sales_between = []
-      #
-      # self.all.each do |s|
-      #   if s.purchase_time >= beginning_time && s.purchase_time <= end_time
-      #     sales_between << s
-      #   end
-      # end
-      # return sales_between
+    end
+
+    def self.ids
+      sale_ids = []
+
+      self.all.each do |s|
+        sale_ids << s.id
+      end
+      return sale_ids
     end
   end
 end

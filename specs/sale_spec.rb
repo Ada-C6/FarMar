@@ -33,6 +33,10 @@ module FarMar
         tp.must_be_instance_of(Sale)
         tp.amount.must_equal(51)
       end
+
+      it "should raise argument error when given an invalid id" do
+        proc { Sale.find(987654321) }.must_raise(ArgumentError)
+      end
     end
 
     describe "#vendor" do
@@ -78,6 +82,24 @@ module FarMar
         (sales_between[10].purchase_time.between?(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))).must_equal(true)
         (sales_between[50].purchase_time.between?(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))).must_equal(true)
         (sales_between[100].purchase_time.between?(DateTime.parse("2013-11-10 05:19:05 -0800"), DateTime.parse("2013-11-13 01:48:15 -0800"))).must_equal(true)
+      end
+    end
+
+    describe "self.ids" do
+      it "should return an array" do
+        Sale.ids.must_be_kind_of(Array)
+      end
+
+      it "should have a fixnum at any index of the array" do
+        Sale.ids[0].must_be_kind_of(Fixnum)
+        Sale.ids[10].must_be_kind_of(Fixnum)
+        Sale.ids[50].must_be_kind_of(Fixnum)
+      end
+
+      it "should have id numbers at the correct index of the array" do
+        Sale.ids[0].must_equal(Sale.all[0].id)
+        Sale.ids[10].must_equal(Sale.all[10].id)
+        Sale.ids[50].must_equal(Sale.all[50].id)
       end
     end
   end
