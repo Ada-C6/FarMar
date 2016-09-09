@@ -30,7 +30,8 @@ puts "Done Loading library!"
 
 # FarMar::Market.all # this will match one of the the market id numbers
 
-puts FarMar::Market.find('4')
+puts "This is the Market object that matches the id #{FarMar::Market.find('4')}"
+puts "This is what the Market object that matches the id #{FarMar::Market.find('4').inspect}"
 
 
 # add additional pieces for constructor
@@ -40,7 +41,7 @@ puts FarMar::Market.find('4')
 
 
 ############ TESTING VENDOR 
-puts "Loading Vendor.rb data...\n.\n.\n." # puts logging
+puts "Loading Vendor.rb data\n.\n.\n." # puts logging
 
 # vendor_array = CSV.read('./support/vendors.csv')
 
@@ -52,8 +53,9 @@ puts "Loading Vendor.rb data...\n.\n.\n." # puts logging
 
 
 # puts vendor_1
-puts FarMar::Vendor.all
-#puts FarMar::Market.find('4')
+#puts FarMar::Vendor.all
+puts "This is the Vendor object that matches the vendor id #{FarMar::Vendor.find('4')}"
+puts "This is what the Vendor object that matches the vendor id #{FarMar::Vendor.find('4').inspect} class."
 
 ############### TESTING SALE
 

@@ -26,6 +26,19 @@ class FarMar::Vendor
     end
     return vendor_array
   end
+
+  def self.find(id)
+
+    found_vendor = nil
+
+    all.each do |vendor|
+      if vendor.id == id
+        found_vendor = vendor
+        break
+      end
+    end
+    return found_vendor
+  end
 end
 
 

@@ -15,7 +15,7 @@ class FarMar::Market
   end 
 
   def self.all # works as desired [] repeat for each class
-    # [x] need a constructor loops
+    
     market_array = []
 
     CSV.foreach('./support/markets.csv') do |line|
@@ -40,6 +40,7 @@ class FarMar::Market
   def self.find(id) # this parameter takes string
       # find the market object with the id
       found_market = nil # because there is no string
+      
       all.each do |market|
         if market.id == id
           found_market = market
