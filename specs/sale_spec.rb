@@ -3,7 +3,7 @@ require_relative 'spec_helper'
 describe FarMar::Sale do
 
   describe "#initialize" do
-    sales = FarMar::Sale.new(324, 12.12, 1230, 23, 5)
+    let(:sales) {FarMar::Sale.new(324, 12.12, 1230, 23, 5)}
 
     it "should create an instance of Sale" do
         sales.must_be_instance_of(FarMar::Sale)
@@ -11,7 +11,7 @@ describe FarMar::Sale do
   end
 
   describe "self.all" do
-    fruit = FarMar::Sale.all
+    let(:fruit) {FarMar::Sale.all}
 
     it "should return a collection of instances in a hash" do
         fruit.must_be_instance_of(Hash)
@@ -19,23 +19,26 @@ describe FarMar::Sale do
   end
 
   describe "self.find(id)" do
+    let(:fruit) {FarMar::Sale.find(2)}
+
     it "should return an instance of the object matching the id passed" do
-      fruit = FarMar::Sale.find(2)
       fruit.id.must_equal(2)
     end
   end
 
   describe "#vendor" do
+    let(:fruit) {FarMar::Sale.find(7)}
+
     it "should return the vendor associated with that sale" do
-      fruit = FarMar::Sale.find(7)
       fruit_vendor = FarMar::Vendor.find(1)
       fruit.vendor.must_equal(fruit_vendor)
     end
   end
 
   describe "#products" do
+    let(:fruit) {FarMar::Sale.find(7)}
+    
     it "should return the product associated with that sale" do
-      fruit = FarMar::Sale.find(7)
       fruit_product = FarMar::Product.find(1)
       fruit.product.must_equal(fruit_product)
     end
