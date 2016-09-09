@@ -24,8 +24,7 @@ class Vendor
   end
 
   def self.find(id)
-    v = Vendor.all
-    return v[id]
+    return all[id]
   end
 
   def market
@@ -33,41 +32,34 @@ class Vendor
   end
 
   def products
-    product_list = Product.all
-    match = product_list.find_all { |n| n[1].vendor_id == @id }
+    product_list = Product.all.values
     product_instances = []
-    match.length.times do |i|
-      product_instances << match[i][1]
-    end
-    return product_instances
+    product_instances << product_list.find_all { |n| n.vendor_id == @id }
+
+    return product_instances.flatten
   end
 
   def sales
-    sales_list = Sale.all
-    match = sales_list.find_all { |n| n[1].vendor_id == @id }
+    sales_list = Sale.all.values
     sales_instances = []
-    match.length.times do |i|
-      sales_instances << match[i][1]
-    end
-    return sales_instances
+    sales_instances << sales_list.find_all { |n| n.vendor_id == @id }
+
+    return sales_instances.flatten
   end
 
   def revenue
     total_revenue = 0
-    sales_instances = sales
-    sales_instances.each do |i|
+    sales.each do |i|
       total_revenue += i.amount
     end
+    
     return total_revenue
   end
 
   def self.by_market(market_id)
-    a = all.find_all { |n| n[1].market_id == market_id }
-
     vendors_by_market = []
-    a.length.times do |i|
-      vendors_by_market << a[i][1]
-    end
-    return vendors_by_market
+    vendors_by_market << all.values.find_all { |n| n.market_id == market_id }
+
+    return vendors_by_market.flatten
   end
 end
