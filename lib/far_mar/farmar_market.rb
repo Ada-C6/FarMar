@@ -33,7 +33,7 @@ class FarMar::Market < Finder
     return markets
   end
 
-  
+  # =========inherite .find(id) from Finder class===========
   # return an Market object that corresponds to the given market id
   # def self.find(id)
   #   found_market = nil
@@ -45,7 +45,8 @@ class FarMar::Market < Finder
   #   end
   #   return found_market
   # end
-
+  #============================================================
+  
   # return an array of FarMar::Market objects where the market name or vendor name contain the search_term
   def self.search(search_term)
     term = search_term.downcase
@@ -87,6 +88,12 @@ class FarMar::Market < Finder
     # get the vendor that has the highest revenue(the last element in the array)
     return vendors_by_revenue.last
   end
+
+  # ====================about MIXIN:=========================
+  # I access Utils here directly and call get_day_range method.
+  # I can use mixin, put "extend" on top and outside the Market class.
+  # I did not do it that way as here we do not want to expose the method to this class. But I got the concept.
+  # =========================================================
 
   # return the Vendor object with the highest revenue for the given date
   def prefered_vendor(date)

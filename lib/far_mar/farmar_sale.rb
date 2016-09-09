@@ -53,10 +53,13 @@ class FarMar::Sale < Finder
     return @sales
   end
 
+  #================Why I did not make find method inherite from Find======
   # Since I optimized the Sale class by a different structure, I would not
   # inherite it from the Finder class. I will leave this refactor in the future
   # if I have time.
-  # return an Sale object that corresponds to the given sale id
+  #=======================================================================
+  
+  # return an Sale object that corresponds to the given sale id.
   def self.find(id)
     load
     return @sale_by_id[id]

@@ -32,6 +32,7 @@ class FarMar::Product < Finder
     return @products
   end
 
+  # =========inherite .find(id) from Finder class===========
   # # return an product object that corresponds to the given product id
   # def self.find(id)
   #   found_product = nil
@@ -43,6 +44,7 @@ class FarMar::Product < Finder
   #   end
   #   return found_product
   # end
+  #============================================================
 
   # returns all of the FarMar::Product objects with the given vendor_id
   def self.by_vendor(vendor_id)
