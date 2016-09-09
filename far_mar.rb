@@ -1,5 +1,7 @@
 # gems your project needs
 require 'csv'
+require 'date'
+require 'time'
 
 # our namespace module
 module FarMar
