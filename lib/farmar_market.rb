@@ -45,4 +45,22 @@ class Market
     return vendor_instances
   end
 
+  def products
+    vendor_list = vendors # Vendors associated with market
+    all_products = Product.all
+
+    product_list = []
+
+    # find Products that match Vendor ID associated with Market
+    vendor_list.length.times do |i|
+      p = all_products.find_all { |n| n[1].vendor_id == vendor_list[i].id}
+
+      # add Product objects to product_list array
+      p.length.times do |j|
+        product_list << p[j][1]
+      end
+    end
+    return product_list
+  end
+
 end

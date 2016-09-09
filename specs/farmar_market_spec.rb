@@ -1,6 +1,7 @@
 require_relative 'spec_helper'
 
 describe Market do
+  let (:m) { Market.new(500, "name", "address", "city", "county", "state", "zip") }
 
   describe "#initialize" do
     it "should create an instance of Market" do
@@ -31,8 +32,14 @@ describe Market do
 
   describe "#vendors" do
     it "should return a collection of FarMar::Vendor instances that are associated with the market" do
-      m = Market.new(500, "name", "address", "city", "county", "state", "zip")
+      # m = Market.new(500, "name", "address", "city", "county", "state", "zip")
       m.vendors.length.must_equal(10)
+    end
+  end
+
+  describe "#products" do
+    it "should return a collection of Product instances that are associated to the market through the Vendor class" do
+
     end
   end
 
