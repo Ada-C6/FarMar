@@ -57,13 +57,13 @@ describe FarMar::Product do
     end
   end
 
-  #OPTIONAL REQUIREMENTS: PART 1
+  #OPTIONAL REQUIREMENTS: PART 1 - My attempts that just created errors
 
-  # describe "self.revenue" do
-  #   it "should return the revenue of each product" do
-  #     FarMar::Product.revenue.length.must_equal(8193)
-  #   end
-  # end
+  describe "self.revenue" do
+    it "should return the revenue of each product" do
+      FarMar::Product.revenue[3].must_equal(8193)
+    end
+  end
 
   # describe "self.most_revenue(n)" do
   #   it "should return the top n product instances by total revenue" do

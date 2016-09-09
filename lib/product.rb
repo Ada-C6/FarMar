@@ -64,9 +64,43 @@ module FarMar
       end
       return propven
     end
-    #
+
+    # The run time of the loop below is very very long. So I am working (below) to create a faster loop.
     # def self.revenue
     #   p_revenue = {}
+    #   FarMar::Product.all.each do |p_element|
+    #     count = 0
+    #     FarMar::Sale.all.each do |element|
+    #       if element.product_id == p_element.id
+    #         count += element.amount.to_i
+    #       end
+    #     end
+    #   end
+    #   p_revenue[p_element.id] = count
+    # end
+
+    # This loop is much faster because there are no nested loops. The loops are sequential. AND IT WORKS AND GOES REALLY FAST!!!!
+    def self.revenue
+      calculating = {}
+      calculated = {}
+      FarMar::Sale.all.each do |element|
+        calculating[element.product_id] = []
+      end
+      FarMar::Sale.all.each do |element|
+        calculating[element.product_id] << element.amount.to_i
+      end
+      calculating.each do |k,v|
+        calculated[k] = v.reduce(:+)
+      end
+      puts calculating
+      puts
+      puts calculated
+      return calculated
+    end
+
+
+    ## COME BACK HERE!!!
+    #
     #
     #   # Setting eachvalue in the key to 0 so that the revenues can be added to the values.
     #   FarMar::Product.all.each do |line|

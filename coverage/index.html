@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-08T16:49:18-07:00">2016-09-08T16:49:18-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-09-09T14:44:42-07:00">2016-09-09T14:44:42-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         4084.85
+         4516.82
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>8</b> files in total.
-    <b>260</b> relevant lines. 
-    <span class="green"><b>260</b> lines covered</span> and
+    <b>276</b> relevant lines. 
+    <span class="green"><b>276</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -73,11 +73,11 @@
       <tr>
         <td class="strong"><a href="#26e4b5c8d769de4d682d93ccaa52784cc08fbe1c" class="src_link" title="lib/product.rb">lib/product.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>101</td>
-        <td>41</td>
-        <td>41</td>
+        <td>144</td>
+        <td>54</td>
+        <td>54</td>
         <td>0</td>
-        <td>5820.9</td>
+        <td>4993.5</td>
       </tr>
       
       <tr>
@@ -87,7 +87,7 @@
         <td>41</td>
         <td>41</td>
         <td>0</td>
-        <td>16423.0</td>
+        <td>20169.0</td>
       </tr>
       
       <tr>
@@ -104,8 +104,8 @@
         <td class="strong"><a href="#ba164691e6a2764ee62486a107842242596bd1ab" class="src_link" title="specs/product_spec.rb">specs/product_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
         <td>74</td>
-        <td>32</td>
-        <td>32</td>
+        <td>35</td>
+        <td>35</td>
         <td>0</td>
         <td>1.1</td>
       </tr>
@@ -553,8 +553,8 @@
     <h3>lib/product.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>41</b> relevant lines. 
-      <span class="green"><b>41</b> lines covered</span> and
+      <b>54</b> relevant lines. 
+      <span class="green"><b>54</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -961,79 +961,79 @@
         <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
           
           
-          <code class="ruby">    # def self.revenue</code>
+          <code class="ruby">    # The run time of the loop below is very very long. So I am working (below) to create a faster loop.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="69">
           
           
-          <code class="ruby">    #   p_revenue = {}</code>
+          <code class="ruby">    # def self.revenue</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="70">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    #   p_revenue = {}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="71">
           
           
-          <code class="ruby">    #   # Setting eachvalue in the key to 0 so that the revenues can be added to the values.</code>
+          <code class="ruby">    #   FarMar::Product.all.each do |p_element|</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="72">
           
           
-          <code class="ruby">    #   FarMar::Product.all.each do |line|</code>
+          <code class="ruby">    #     count = 0</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
           
           
-          <code class="ruby">    #     p_revenue[line.vendor_id] = 0</code>
+          <code class="ruby">    #     FarMar::Sale.all.each do |element|</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="74">
           
           
-          <code class="ruby">    #   end</code>
+          <code class="ruby">    #       if element.product_id == p_element.id</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="75">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    #         count += element.amount.to_i</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="76">
           
           
-          <code class="ruby">    #   FarMar::Sale.all.each do |line|</code>
+          <code class="ruby">    #       end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="77">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    #     end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="78">
           
           
-          <code class="ruby">    #</code>
+          <code class="ruby">    #   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="79">
           
           
-          <code class="ruby">    #   end</code>
+          <code class="ruby">    #   p_revenue[p_element.id] = count</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="80">
@@ -1051,118 +1051,376 @@
         <li class="never" data-hits="" data-linenumber="82">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    # This loop is much faster because there are no nested loops. The loops are sequential.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="83">
+        <li class="covered" data-hits="1" data-linenumber="83">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    # def self.most_revenue(n)</code>
+          <code class="ruby">    def self.revenue</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="84">
+        <li class="covered" data-hits="1" data-linenumber="84">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    #   FarMar::Sale.all.each do |line|</code>
+          <code class="ruby">      calculating = {}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="85">
+        <li class="covered" data-hits="1" data-linenumber="85">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    #</code>
+          <code class="ruby">      calculated = {}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    #   end</code>
+          <code class="ruby">      FarMar::Sale.all.each do |element|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="covered" data-hits="12798" data-linenumber="87">
+          <span class="hits">12798</span>
           
-          
-          <code class="ruby">    # end</code>
+          <code class="ruby">        calculating[element.product_id] = []</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="89">
+        <li class="covered" data-hits="1" data-linenumber="89">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      FarMar::Sale.all.each do |element|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="covered" data-hits="12798" data-linenumber="90">
+          <span class="hits">12798</span>
           
-          
-          <code class="ruby">end</code>
+          <code class="ruby">        calculating[element.product_id] &lt;&lt; element.amount.to_i</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="91">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="92">
+        <li class="covered" data-hits="1" data-linenumber="92">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">#</code>
+          <code class="ruby">      calculating.each do |k,v|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="93">
+        <li class="covered" data-hits="5385" data-linenumber="93">
+          <span class="hits">5385</span>
           
-          
-          <code class="ruby"># def revenue</code>
+          <code class="ruby">        calculated[k] = v.reduce(:+)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby">#   rvn = 0</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
           
           
-          <code class="ruby">#   FarMar::Sale.all.each do |line|</code>
+          <code class="ruby">      #   if calculating.has_key?(element.id) == false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
           
           
-          <code class="ruby">#     if @id == line.vendor_id</code>
+          <code class="ruby">      #     calculating[element.id] = Array.new</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="97">
           
           
-          <code class="ruby">#       rvn += line.amount.to_i</code>
+          <code class="ruby">      #     calculating[element.id] &lt;&lt; element.amount.to_i</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="98">
           
           
-          <code class="ruby">#     end</code>
+          <code class="ruby">      #     puts calculating</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="99">
           
           
-          <code class="ruby">#   end</code>
+          <code class="ruby">      #   else</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="100">
           
           
-          <code class="ruby">#   return rvn</code>
+          <code class="ruby">      #     calculating[element.id] &lt;&lt; element.amount.to_i</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="101">
+          
+          
+          <code class="ruby">      #   end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="102">
+          
+          
+          <code class="ruby">      # end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby">      # # calculating.each do |k,v|</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="104">
+          
+          
+          <code class="ruby">      # #   v = v.reduce(:+)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="105">
+          
+          
+          <code class="ruby">      # #   calculating[k] = v</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="106">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts calculating</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="107">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="108">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts calculated</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="109">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      return calculated</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="110">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="111">
+          
+          
+          <code class="ruby">    ## COME BACK HERE!!!</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="112">
+          
+          
+          <code class="ruby">    #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="113">
+          
+          
+          <code class="ruby">    #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="114">
+          
+          
+          <code class="ruby">    #   # Setting eachvalue in the key to 0 so that the revenues can be added to the values.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="115">
+          
+          
+          <code class="ruby">    #   FarMar::Product.all.each do |line|</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="116">
+          
+          
+          <code class="ruby">    #     p_revenue[line.vendor_id] = 0</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="117">
+          
+          
+          <code class="ruby">    #   end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="118">
+          
+          
+          <code class="ruby">    #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby">    #   FarMar::Sale.all.each do |line|</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="120">
+          
+          
+          <code class="ruby">    #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="121">
+          
+          
+          <code class="ruby">    #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">    #   end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">    # end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="124">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="125">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby">    # def self.most_revenue(n)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby">    #   FarMar::Sale.all.each do |line|</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby">    #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
+          <code class="ruby">    #   end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby">    # end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="131">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="132">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="133">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="134">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="135">
+          
+          
+          <code class="ruby">#</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="136">
+          
+          
+          <code class="ruby"># def revenue</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby">#   rvn = 0</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="138">
+          
+          
+          <code class="ruby">#   FarMar::Sale.all.each do |line|</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="139">
+          
+          
+          <code class="ruby">#     if @id == line.vendor_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="140">
+          
+          
+          <code class="ruby">#       rvn += line.amount.to_i</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="141">
+          
+          
+          <code class="ruby">#     end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="142">
+          
+          
+          <code class="ruby">#   end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="143">
+          
+          
+          <code class="ruby">#   return rvn</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="144">
           
           
           <code class="ruby"># end</code>
@@ -1216,32 +1474,32 @@
           <code class="ruby">    def initialize(id, amount, purchase_time, vendor_id, product_id)</code>
         </li>
       
-        <li class="covered" data-hits="102387" data-linenumber="6">
-          <span class="hits">102387</span>
+        <li class="covered" data-hits="127983" data-linenumber="6">
+          <span class="hits">127983</span>
           
           <code class="ruby">      @id = id</code>
         </li>
       
-        <li class="covered" data-hits="102387" data-linenumber="7">
-          <span class="hits">102387</span>
+        <li class="covered" data-hits="127983" data-linenumber="7">
+          <span class="hits">127983</span>
           
           <code class="ruby">      @amount = amount</code>
         </li>
       
-        <li class="covered" data-hits="102387" data-linenumber="8">
-          <span class="hits">102387</span>
+        <li class="covered" data-hits="127983" data-linenumber="8">
+          <span class="hits">127983</span>
           
           <code class="ruby">      @purchase_time = purchase_time</code>
         </li>
       
-        <li class="covered" data-hits="102387" data-linenumber="9">
-          <span class="hits">102387</span>
+        <li class="covered" data-hits="127983" data-linenumber="9">
+          <span class="hits">127983</span>
           
           <code class="ruby">      @vendor_id = vendor_id</code>
         </li>
       
-        <li class="covered" data-hits="102387" data-linenumber="10">
-          <span class="hits">102387</span>
+        <li class="covered" data-hits="127983" data-linenumber="10">
+          <span class="hits">127983</span>
           
           <code class="ruby">      @product_id = product_id</code>
         </li>
@@ -1270,20 +1528,20 @@
           <code class="ruby">    def self.all</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="15">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="10" data-linenumber="15">
+          <span class="hits">10</span>
           
           <code class="ruby">      sls = []</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="16">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="10" data-linenumber="16">
+          <span class="hits">10</span>
           
           <code class="ruby">      CSV.read(&#39;/Users/madeleinejohnson/Ada/project-forks/FarMar/support/sales.csv&#39;,&#39;r&#39;). each do |line|</code>
         </li>
       
-        <li class="covered" data-hits="102384" data-linenumber="17">
-          <span class="hits">102384</span>
+        <li class="covered" data-hits="127980" data-linenumber="17">
+          <span class="hits">127980</span>
           
           <code class="ruby">        sls &lt;&lt; FarMar::Sale.new(line[0], line[1], line[2], line[3], line[4])</code>
         </li>
@@ -1294,8 +1552,8 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="19">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="10" data-linenumber="19">
+          <span class="hits">10</span>
           
           <code class="ruby">      return sls</code>
         </li>
@@ -2155,8 +2413,8 @@
     <h3>specs/product_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>32</b> relevant lines. 
-      <span class="green"><b>32</b> lines covered</span> and
+      <b>35</b> relevant lines. 
+      <span class="green"><b>35</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2521,7 +2779,7 @@
         <li class="never" data-hits="" data-linenumber="60">
           
           
-          <code class="ruby">  #OPTIONAL REQUIREMENTS: PART 1</code>
+          <code class="ruby">  #OPTIONAL REQUIREMENTS: PART 1 - My attempts that just created errors</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="61">
@@ -2530,34 +2788,34 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="covered" data-hits="1" data-linenumber="62">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # describe &quot;self.revenue&quot; do</code>
+          <code class="ruby">  describe &quot;self.revenue&quot; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="covered" data-hits="1" data-linenumber="63">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #   it &quot;should return the revenue of each product&quot; do</code>
+          <code class="ruby">    it &quot;should return the revenue of each product&quot; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="64">
+        <li class="covered" data-hits="1" data-linenumber="64">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  #     FarMar::Product.revenue.length.must_equal(8193)</code>
+          <code class="ruby">      FarMar::Product.revenue[3].must_equal(8193)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="65">
           
           
-          <code class="ruby">  #   end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="66">
           
           
-          <code class="ruby">  # end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="67">
