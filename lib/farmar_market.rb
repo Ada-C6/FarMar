@@ -84,14 +84,15 @@ class FarMar::Market
   def prefered_vendor_direct(vendors)
     # vendors => FarMar::Vendor.all can put this in method call
     #return an array Vendor objects sorted by vendor revenue in accending order
-    revenues =  vendors.sort_by { |vendor| vendor.revenue }
+    vendors_by_revenue =  vendors.sort_by { |vendor| vendor.revenue }
     # return the vendor that has the highest revenue(the last element in the array)
-    return revenues.last
+    return vendors_by_revenue.last
   end
 
   # returns the Vendor object with the highest revenue for the given date
   def prefered_vendor(date)
     # Assume the date will be given a string in "year-month-day" format
+    # The period of time on the given date
     beginning_time = Date.parse(date).to_datetime.to_s
     end_time = Date.parse(date).next.to_datetime.to_s
     # return an array of Sale objects in the given date
@@ -103,16 +104,19 @@ class FarMar::Market
   end
     # OPTIMZE vendors = sales.map{|sale| sale.vendor}, it takes 0m9.898s to test.
 
+  # returns the vendor with the lowest revenue
   def worst_vendor_direct(vendors)
     # vendors => FarMar::Vendor.all can put this in method call
     #return an array Vendor objects sorted by vendor revenue in accending order
-    revenues =  vendors.sort_by { |vendor| vendor.revenue }
+    vendors_by_revenue =  vendors.sort_by { |vendor| vendor.revenue }
     # return the vendor that has the lowest revenue(the last element in the array)
-    return revenues.first
+    return vendors_by_revenue.first
   end
 
+  #  returns the vendor with the lowest revenue on the given date
   def worst_vendor(date)
     # Assume the date will be given a string in "year-month-day" format
+    # The period of time on the given date
     beginning_time = Date.parse(date).to_datetime.to_s
     end_time = Date.parse(date).next.to_datetime.to_s
     # return an array of Sale objects in the given date

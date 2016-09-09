@@ -44,7 +44,6 @@ describe FarMar::Market do
   end
  #=> <FarMar::Vendor:0x007ff54c1d1480 @id="1160", @name="Maggio, Spencer and Bergstrom", @employees_num="9", @market_id="213">
 
-
   it "Input a date '2013-11-07' returns and return Vendor who has highest revenue(prefered vendor) of that date. The vendor id is: 1470" do
     market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
     expect( market.worst_vendor("2013-11-07").id ).must_equal("1470")

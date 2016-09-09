@@ -52,13 +52,43 @@ class FarMar::Vendor
     return self.all.select {|vendor| vendor.market_id == market_id }
   end
 
-  # find market information by market_id
-  # output: an array of FarMar::Market objects that are associated with the market_id
+  # returns an array of the top n Vendor objects ranked by total revenue
+  def self.most_revenue(n)
+    # get an array of vendors sorted by revenue in descending order
+    vendors_by_revenue = FarMar::Vendor.all.sort_by {|vendor| vendor.revenue}.reverse
+    # get the top n Vendor objecthighest revenue
+    return vendors_by_revenue.slice(0...n)
+  end
+
+  # returns the top n vendor instances ranked by total number of items sold
+  def self.most_items(n)
+    # get an array of vendors sorted by number of item sold in descending order
+    vendors_by_revenue = FarMar::Vendor.all.sort_by {|vendor| FarMar::Sale.find_by_vendor_id(vendor.id).size}.reverse
+    # get the top n Vendor objecthighest revenue
+    return vendors_by_revenue.slice(0...n)
+  end
+
+  # returns the total revenue for that date across all vendors
+  def self.revenue(date)
+    # Assume the date will be given a string in "year-month-day" format
+    # The period of time on the given date
+    beginning_time = Date.parse(date).to_datetime.to_s
+    end_time = Date.parse(date).next.to_datetime.to_s
+    # return an array of Sale objects in the given date
+    sales = FarMar::Sale.between(beginning_time, end_time)
+    # return an array of Vendors associated with the Sale objects
+    amounts = sales.map{|sale| sale.amount}
+    # add up the sale amount and return the sum
+    return amounts.inject(0.0) {|sum, amount| sum + amount}
+  end
+    #OPTIMZE the above method. Also create a method to get vendors that has transaction on that date
+
+  # return an array of FarMar::Market objects that are associated with the market_id
   def market
     return FarMar::Market.find(@market_id)
   end
 
-  # return an array of FarMar::Vendor objects that are associated with the vendor_id
+  # return an array of FarMar::Product objects that are associated with the vendor_id
   def products
     return FarMar::Product.all.select { |product| product.vendor_id == @id }
   end
@@ -75,4 +105,5 @@ class FarMar::Vendor
     # add up the sale amount and return the sum
     return amounts.inject(0.0) {|sum, amount| sum + amount}
   end
+
 end

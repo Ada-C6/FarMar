@@ -40,4 +40,20 @@ describe FarMar::Vendor do
     expect( FarMar::Vendor.by_market("1")[0].class ).must_equal(FarMar::Vendor)
   end
 
+  it "Request top 3 Vendors with highest revenue returns 3 Vendor objects" do
+    expect( FarMar::Vendor.most_revenue(3).size ).must_equal(3)
+  end
+  # should have better test for this one.
+
+  it "Request top 3 Vendors with highest items sold number returns 3 Vendor objects" do
+    expect( FarMar::Vendor.most_revenue(3).size ).must_equal(3)
+  end
+  # should have better test for this one.
+
+  it "The total revenue for '2013-11-07' across all vendors is 8995506.0 cents " do
+    expect( FarMar::Vendor.revenue("2013-11-07") ).must_equal(8995506.0)
+  end
+  #=>8995506.0
+
+
 end

@@ -39,10 +39,17 @@ require_relative './lib/farmar_vendor'
  # puts market.prefered_vendor("2013-11-07").inspect
  # => #<FarMar::Vendor:0x007fc3d92ed390 @id="2590", @name="Swaniawski-Schmeler", @employees_num="11", @market_id="482">
 
- market = FarMar::Market.new("2","Silverdale Farmers Market","98383","Silverdale","Kitsap","Washington","98383")
- puts market.worst_vendor_direct(FarMar::Vendor.all).inspect
- #=> <FarMar::Vendor:0x007ff54c1d1480 @id="1160", @name="Maggio, Spencer and Bergstrom", @employees_num="9", @market_id="213">
+#  market = FarMar::Market.new("2","Silverdale Farmers Market","98383","Silverdale","Kitsap","Washington","98383")
+#  puts market.worst_vendor_direct(FarMar::Vendor.all).inspect
+#  #=> <FarMar::Vendor:0x007ff54c1d1480 @id="1160", @name="Maggio, Spencer and Bergstrom", @employees_num="9", @market_id="213">
+#
+#  market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
+#  puts market.worst_vendor("2013-11-07").inspect
+# #=> <FarMar::Vendor:0x007ff54d80f2d8 @id="1470", @name="Quitzon LLC", @employees_num="8", @market_id="271">
 
- market = FarMar::Market.new("2", "Silverdale Farmers Market", "98383", "Silverdale", "Kitsap", "Washington", "98383")
- puts market.worst_vendor("2013-11-07").inspect
-#=> <FarMar::Vendor:0x007ff54d80f2d8 @id="1470", @name="Quitzon LLC", @employees_num="8", @market_id="271">
+# puts FarMar::Vendor.most_revenue(3).inspect
+
+# puts FarMar::Vendor.most_items(3).inspect
+
+puts FarMar::Vendor.revenue("2013-11-07")
+#=>8995506.0
