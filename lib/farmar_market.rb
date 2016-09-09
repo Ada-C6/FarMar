@@ -52,6 +52,13 @@ module FarMar
       # The Vaules of the Vendor.all hash is an array of Vendors, so want to group those on their market_id.
       # Then, want only the vendors that correspond to the market instance's id.
     end
+
+    def prefered_vendor
+      #prefered_vendor: returns the vendor with the highest revenue
+      # I'm going to start with an array of all vendors for the MARKET.  (market.vendors), then I want to calculate the revenue for each vendor, and store it with the corresponding vendor (hash, where revenue is the key, value is an array of vendors with that revenue, in case there are more than one). then, call .max on the keys of the hash, get the key, call the value. Or I can just use max_by. 
+      vendors.max_by { |vendor| vendor.revenue }
+
+    end
   end
 end
 

@@ -3,6 +3,7 @@ require_relative 'spec_helper' #get all the stuff we need for testing.
 module FarMar
   describe Market do
     let(:market_test) {Market.new(1, "name", "address", "city", "county", "ST", 98017)}
+    let(:coop_market) {Market.new(1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon",97202)}
     describe "#initialize" do
       it "should make a new instance of market" do
         # this just tests the basic "I can make a new instance of this class."
@@ -43,7 +44,6 @@ module FarMar
       end
     end
     describe "#vendors" do
-      let(:coop_market) {Market.new(1,"People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon",97202)}
       it "should return an array" do
         coop_market.vendors.must_be_instance_of(Array)
         # I'm going to make it an array of Vendors.
@@ -54,9 +54,22 @@ module FarMar
       end
       it "the vendor returned, should have a market_id that matches the market" do
         # Checking that the objects returned have the same id as the market instance I'm working with.
-        # NOTE: It's not ACTUALLY the same object (same data, different object id), since I have created coop_market here. I wonder if I should check for the same object. I'm not sure how. 
+        # NOTE: It's not ACTUALLY the same object (same data, different object id), since I have created coop_market here. I wonder if I should check for the same object. I'm not sure how.
         # This will check using the market method in Vendor.
         coop_market.vendors[0].market_id.must_be_same_as(coop_market.id)
+      end
+    end
+    describe "#prefered_vendor" do
+
+      #prefered_vendor: returns the vendor with the highest revenue
+      # I'm going to start with an array of all vendors for the MARKET.  (market.vendors), then I want to calculate the revenue for each vendor, and store it with the corresponding vendor (hash, where revenue is the key, value is an array of vendors with that revenue, in case there are more than one). then, call .max on the keys of the hash, get the key, call the value.
+      it "should return a Vendor" do
+        coop_market.prefered_vendor.must_be_instance_of(Vendor)
+      end
+      it "should return the vendor with highest revenue" do
+        #not sure how to check this
+        skip
+
       end
     end
   end
