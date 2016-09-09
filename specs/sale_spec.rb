@@ -94,25 +94,28 @@ describe FarMar::Sale do
   end
 
   describe "self.between" do
+    right_now = DateTime.now
+    past_datetime = DateTime.parse("2013-11-10T22:35:57-08:00")
+
     it "should return an array" do
-      FarMar::Sale.between(800, 1800).must_be_kind_of(Array)
+      FarMar::Sale.between(past_datetime, right_now).must_be_kind_of(Array)
     end
 
     it "should return a collection of FarMar::Sale objects" do
-      afternoon_sales = FarMar::Sale.between(1200, 1700)
+      afternoon_sales = FarMar::Sale.between(past_datetime, right_now)
       afternoon_sales.each do |sale|
         sale.must_be_instance_of(FarMar::Sale)
       end
     end
 
     it "should be made up only of Sale objects whose purchase times are between the beginning_time and end_time arguments" do
-      morning_sales = FarMar::Sale.between(600,1200)
+      morning_sales = FarMar::Sale.between(past_datetime, right_now)
       morning_sales.each do |sale|
-        sale.purchase_time.must_be(:>, 600 && :<, 1200)
+        sale.purchase_time.must_be(:>, past_datetime)
+        sale.purchase_time.must_be(:<, right_now)
       end
     end
+
   end
-
-
 
 end
