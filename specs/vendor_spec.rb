@@ -21,34 +21,26 @@ module FarMar
       it "should return a hash" do
         Vendor.all.must_be_instance_of(Hash)
       end
-
-      # This test not in Market or the rest
-      # Weird must think about this
-      it "should be a collection of Vendor objects" do
-        Vendor.all.each do |vendor_id, vendor|
-          vendor_id.must_equal(vendor.id)
-          vendor.must_be_instance_of(Vendor)
-        end
-      end
-      # @todo this worked in Sale, and then it didn't
-      # it "should totally find a random Sale and decide it's an instance of Sale" do
-      #   random_sale_id = rand(1..100) # 100 is an arbitrary low number
-      #   Sale.all[random_sale_id].must_be_instance_of(Sale)
-      # end
       it "should return information about vendors" do
         # first listed vendor
         Vendor.all[1].id.must_equal(1)
         Vendor.all[1].name.must_equal("Feil-Farrell")
         Vendor.all[1].number_of_employees.must_equal(8)
         Vendor.all[1].market_id.must_equal(1)
-
         # last listed vendor
         Vendor.all[2690].id.must_equal(2690)
         Vendor.all[2690].name.must_equal("Mann-Lueilwitz")
         Vendor.all[2690].number_of_employees.must_equal(4)
         Vendor.all[2690].market_id.must_equal(500)
       end
+      it "should be a collection of Vendor objects" do
+        Vendor.all.each do |vendor_id, vendor|
+          vendor_id.must_equal(vendor.id)
+          vendor.must_be_instance_of(Vendor)
+        end
+      end
     end #self.all
+
     describe "#self.find(id)" do
       it "should return an instance of a Vendor object of a certain id" do
         random_vendor_id = rand(1..2690)
@@ -67,7 +59,6 @@ module FarMar
     end
 
     describe "#products" do
-
       it "should return a collection of Product instances associated to specific vendor" do
         all_vendors = Vendor.all
         random_vendor_id = rand(1..2690)
@@ -89,19 +80,15 @@ module FarMar
       end
     end
 
+    # Here is the specific vendor revenue for vendor 1: 38259 cents
     describe "#revenue" do
-      # Here is the specific vendor revenue for vendor 1: 38259
       it "returns the sum of all of the vendor's sales (in cents)" do
         all_vendors = Vendor.all
-        all_vendors[1].revenue.must_equal(38259) # [1] does not indicate array, instead hash key 1
+        all_vendors[1].revenue.must_equal(38259) # [1] does not indicate array loc, instead hash key: 1
       end
     end
 
-    # self.by_market(market_id): returns all of the vendors with the given market_id
-    # is this going to be just the method in another way??
     describe "#self.by_market" do
-      # actually my self.code is untestable because I have no way to inject a test file
-      # @todo test something else
       it "should return instances of Vendor" do
         random_market_id = rand(1..500)
         Vendor.by_market(random_market_id).each do |vendor_id, vendor|

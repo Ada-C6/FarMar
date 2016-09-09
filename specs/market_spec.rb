@@ -42,6 +42,13 @@ module FarMar
         Market.all[500].state.must_equal("New York")
         Market.all[500].zipcode.must_equal("10467")
       end
+
+      it "should be a collection of Market objects" do
+        Market.all.each do |market_id, market|
+          market_id.must_equal(market.id) # shows it's pairing up correctly
+          market.must_be_instance_of(Market) # shows the value objects are market instances
+        end
+      end
     end #self.all
     describe "#self.find(id)" do
       it "should return an instance of a Market object of a certain id" do
@@ -61,9 +68,6 @@ module FarMar
         end
       end
     end #vendors
-
-
-
 
   end #market
 

@@ -1,6 +1,3 @@
-# ID - (Fixnum) uniquely identifies the product
-# Name - (String) the name of the product (not guaranteed unique)
-# Vendor_id - (Fixnum) a reference to which vendor sells this product
 require_relative 'spec_helper'
 module FarMar
 
@@ -25,7 +22,7 @@ module FarMar
       it "should return a hash" do
         Product.all.must_be_instance_of(Hash)
       end
-      it "should return information about markets" do
+      it "should return information about products" do
         # first listed product
         Product.all[1].id.must_equal(1)
         Product.all[1].name.must_equal("Dry Beets")
@@ -34,6 +31,13 @@ module FarMar
         Product.all[8193].id.must_equal(8193)
         Product.all[8193].name.must_equal("Cruel Beef")
         Product.all[8193].vendor_id.must_equal(2690)
+      end
+
+      it "should be a collection of Product objects" do
+        Product.all.each do |product_id, product|
+          product_id.must_equal(product.id)
+          product.must_be_instance_of(Product)
+        end
       end
     end #self.all
     describe "#self.find(id)" do

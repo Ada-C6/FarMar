@@ -13,6 +13,7 @@ module FarMar
       @zipcode    = zipcode
     end
 
+    # Returns a collection of instances, representing all of the objects described in the CSV
     def self.all
       markets = {}
       CSV.read('support/markets.csv').each do |line|
@@ -22,19 +23,26 @@ module FarMar
       end
       return markets
     end
+
+    # Returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
     def self.find(id)
       markets = self.all
       return markets[id]
     end
 
+    #Returns a collection of Vendor instances, associated with the market by the market_id field.
     def vendors
-      market_vendors = {}
-      Vendor.all.each do |vendor_id, vendor|
-        if vendor.market_id == id # id is attr_reader id, no need for argument
-          market_vendors[vendor_id] = vendor
-        end
-      end #each
+      market_vendors = Vendor.all.select { |vendor_id, vendor|
+        vendor.market_id == id } # id is attr_reader id, no need for argument
       return market_vendors
+      # Refactoring from:
+      # market_vendors = {}
+      # Vendor.all.each do |vendor_id, vendor|
+      #   if vendor.market_id == id # id is attr_reader id, no need for argument
+      #     market_vendors[vendor_id] = vendor
+      #   end
+      # end #each
+      # return market_vendors
     end
 
   end #class

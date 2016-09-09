@@ -11,20 +11,23 @@ module FarMar
       @product_id     = product_id
     end
 
+    # Returns a collection of instances, representing all of the objects described in the CSV
     def self.all
       sales = {}
       CSV.read('support/sales.csv').each do |line|
-        sale = self.new(line[0].to_i,line[1].to_f,DateTime.parse(line[2]),line[3].to_i,line[4].to_i)
+        sale = self.new(line[0].to_i,line[1].to_i,DateTime.parse(line[2]),line[3].to_i,line[4].to_i)
         sales[sale.id] = sale
       end
       return sales # Never, ever, ever, ever, ever (!!) forget this one again.
     end
 
+    # Returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
     def self.find(id)
       vendors = self.all
       return vendors[id]
     end
 
+    # Returns the Vendor instance, associated with this sale, using the Sale vendor_id field
     def vendor
       sale_vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
       Vendor.all.each do |ven_id, ven|
@@ -35,7 +38,7 @@ module FarMar
       return sale_vendor
     end
 
-#Returns the Product instance, associated with this sale using the Sale product_id field
+    #Returns the Product instance, associated with this sale using the Sale product_id field
     def product
       sale_product = Product.new(:id, :name, :vendor_id)
       Product.all.each do |pro_id, pro|
@@ -59,8 +62,6 @@ module FarMar
       end
       return sales_within_times
     end
-
-
 
   end #class
 end #module

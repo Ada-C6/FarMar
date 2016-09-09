@@ -23,7 +23,7 @@ module FarMar
       end
       it "should return information about sales" do
         # first sale in csv
-        Sale.all[1].id.must_equal(1) # The sale_id hash has a key value 1, it's not an array call
+        Sale.all[1].id.must_equal(1) # The sale_id hash has a key: 1, it's not an array call
         Sale.all[1].amount.must_equal(9290)
         Sale.all[1].purchase_time.must_equal(DateTime.parse("2013-11-07 04:34:56 -0800"))
         Sale.all[1].vendor_id.must_equal(1)
@@ -57,7 +57,7 @@ module FarMar
     end
 
     describe "#vendor" do
-      let(:sale_instance) { Sale.new(96,2289,"2013-11-10 17:23:48 -0800",19,57)}
+      let(:sale_instance) { Sale.new(96,2289,DateTime.parse("2013-11-10 17:23:48 -0800"),19,57)}
       it "should return an instance of Vendor" do
         sale_instance.vendor.must_be_instance_of(Vendor)
       end
@@ -67,7 +67,7 @@ module FarMar
     end
 
     describe "#product" do
-      let(:sale_instance) { Sale.new(96,2289,"2013-11-10 17:23:48 -0800",19,57)}
+      let(:sale_instance) { Sale.new(96,2289,DateTime.parse("2013-11-10 17:23:48 -0800"),19,57)}
       it "should return an instance of Product" do
         sale_instance.product.must_be_instance_of(Product)
       end
@@ -76,24 +76,21 @@ module FarMar
       end
     end
 
+    # using a known timestamp: "2013-11-11 03:37:15 -0800"
     describe "#self.between(beginning_time, end_time)" do
       before(:each) do
         beginning_time = DateTime.parse("2013-11-11 03:36:15 -0800")
         end_time = DateTime.parse("2013-11-11 03:38:15 -0800")
         @sales = Sale.between(beginning_time, end_time)
       end
-
       it "should return a hash" do
         @sales.must_be_instance_of(Hash)
       end
-
       it "should find sales objects within the test timeframe" do
         @sales.length.must_be(:>,0)
       end
     end
 
-
   end
-
 
 end
