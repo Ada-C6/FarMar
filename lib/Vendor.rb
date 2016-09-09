@@ -8,7 +8,7 @@ class FarMar::Vendor
     @vendor_name = vendor_name
     @employee_count = employee_count
     @market_id = market_id
-    # should not have to enter market_id here
+    #WRONG! # should not have to enter market_id here
 
   end
 

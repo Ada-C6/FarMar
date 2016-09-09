@@ -19,8 +19,10 @@ require './lib/Vendor'
 
 puts "Done Loading library!"
 
-
-###### TESTING MARKET ############
+###################################
+######  TESTING MARKET ############
+###################################
+puts "\n\n\nTime to test the Market class methods!\n\n"
 # puts "Started loading data!\n\n\n"
 # puts FarMar::Market.all.inspect # works as desired
 # puts "Done loading data!"
@@ -39,9 +41,11 @@ puts "This is what the Market object that matches the id #{FarMar::Market.find('
 #puts nada_whole_fudz.inspect
 #FarMar::Market.all
 
+#############################################
+############  TESTING VENDOR  ###############
+#############################################
 
-############ TESTING VENDOR 
-puts "Loading Vendor.rb data\n.\n.\n." # puts logging
+puts "\n\n\nTime to test the Vendor class methods!\n\n" # puts logging
 
 # vendor_array = CSV.read('./support/vendors.csv')
 
@@ -57,11 +61,21 @@ puts "Loading Vendor.rb data\n.\n.\n." # puts logging
 puts "This is the Vendor object that matches the vendor id #{FarMar::Vendor.find('4')}"
 puts "This is what the Vendor object that matches the vendor id #{FarMar::Vendor.find('4').inspect} class."
 
-############### TESTING SALE
+################################################
+############### TESTING SALE  ##################
+################################################
 
+puts "\n\n\nTime to test the Sale class methods!\n\n"
+puts "This is the Sale object that matches the sale id #{FarMar::Sale.find('4')}"
+puts "This is what the Sale object that matches the sale id #{FarMar::Sale.find('4').inspect} class."
 
+################################################
+############### TESTING PRODUCT ################
+################################################
 
-############### TESTING 
+puts "\n\n\nTime to test the Product class methods!\n\n"
+puts "This is the Product object that matches the Product id #{FarMar::Product.find('4')}"
+puts "This is what the Product object that matches the PRODUCTb id #{FarMar::Product.find('4').inspect} class."
 
 
 
