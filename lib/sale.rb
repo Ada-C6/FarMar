@@ -19,7 +19,7 @@ module FarMar
 				info_hash[:purchase_time] = DateTime.parse(line[2])
 				info_hash[:vendor_id] = line[3].to_i
 				info_hash[:product_id] = line[4].to_i
-				sale = FarMar::Sale.new(info_hash)
+				FarMar::Sale.new(info_hash)
 				sales << sale
 			end
 			return sales

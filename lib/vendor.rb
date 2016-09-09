@@ -1,5 +1,3 @@
-require_relative 'sale'
-
 module FarMar
 	class Vendor
 		attr_reader :id, :name, :employees, :market_id
@@ -19,7 +17,7 @@ module FarMar
 				info_hash[:name] = line[1]
 				info_hash[:employees] = line[2].to_i
 				info_hash[:market_id] = line[3].to_i
-				vendor = FarMar::Vendor.new(info_hash)
+				FarMar::Vendor.new(info_hash)
 				vendors << vendor
 			end
 			return vendors

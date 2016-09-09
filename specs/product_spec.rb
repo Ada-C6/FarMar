@@ -36,11 +36,11 @@ describe FarMar::Product do
 		end
 
 		it "must return an instance of Product" do
-			FarMar::Product.find(1).must_be_instance_of(FarMar::Product)
+			@product.must_be_instance_of(FarMar::Product)
 		end
 
 		it "must return the right instance of Product" do
-			@product.name.must_equal("Green Apples")
+			@product.id.must_equal(5)
 		end
 	end
 

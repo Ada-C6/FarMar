@@ -26,7 +26,6 @@ module FarMar
 				market = FarMar::Market.new(info_hash)
 				markets << market
 			end
-
 			return markets
 		end
 

@@ -52,7 +52,7 @@ describe FarMar::Market do
 		end
 
 		it "must return the right instance of Market" do
-			@market.name.must_equal("Quincy Farmers Market")
+			@market.id.must_equal(5)
 		end
 	end
 

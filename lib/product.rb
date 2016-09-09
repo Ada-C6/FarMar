@@ -15,7 +15,7 @@ module FarMar
 				info_hash[:id] = line[0].to_i
 				info_hash[:name] = line[1]
 				info_hash[:vendor_id] = line[2].to_i
-				product = FarMar::Product.new(info_hash)
+				FarMar::Product.new(info_hash)
 				products << product
 			end
 			return products
