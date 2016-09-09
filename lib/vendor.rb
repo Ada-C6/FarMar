@@ -1,11 +1,11 @@
 # require 'csv'
 # # require_relative 'market'
-# # require_relative 'product'
+# require_relative 'product'
 # # require_relative 'sale'
 module FarMar
   class Vendor
 
-    attr_reader :id, :name, :no_of_employee, :market_id, :market_info, :product_info, :sale_info
+    attr_reader :id, :name, :no_of_employee, :market_id, :market_info, :sale_info
 
     def initialize (id, name, no_of_employee, market_id)
       @id = id
@@ -13,7 +13,7 @@ module FarMar
       @no_of_employee = no_of_employee
       @market_id = market_id
       @market_info = []
-      @product_info = []
+      # @product_info = []
       @sale_info = []
     end
 
@@ -46,6 +46,12 @@ module FarMar
       return @market_info
     end
 
+
+    def products
+      product_info = FarMar::Product.by_vendor(@id)
+      return product_info
+    end
+
     # def products
     #   product = FarMar::Product.all
     #   product.each do |key, line|
@@ -55,14 +61,6 @@ module FarMar
     #   end
     #   return @product_info
     # end
-
-
-
-
-
-
-
-
 
     def sales
       sale = FarMar::Sale.all
@@ -90,8 +88,8 @@ end
 
 # p FarMar::Vendor.by_market(2)
 # p = FarMar::Vendor.new(2, "name", 123, 1)
-# # p p.market
-# # # p p.products
+# # # p p.market
+# p p.products
 # p p.sales
 
 # p FarMar::Vendor.all

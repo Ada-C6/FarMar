@@ -61,16 +61,6 @@ module FarMar
       return product_info
     end
 
-    # def products
-    #   product = FarMar::Product.all
-    #   product.each do |key, line|
-    #     if @id == line.vendor_id
-    #       @product_info << line
-    #     end
-    #   end
-    #   return @product_info
-    # end
-
   end
 end
 

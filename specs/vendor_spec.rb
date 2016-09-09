@@ -31,24 +31,41 @@ describe FarMar::Vendor do
   end
 
 
-describe "sales" do
-  it "should return sales amount given a vndor id" do
-    p.sale_info.each do |line|
-      p.sales.line.amount.must_equal(sales.amount)
+  describe "sales" do
+    it "should return sales amount given a vndor id" do
+      p.sale_info.each do |line|
+        p.sales.line.amount.must_equal(sales.amount)
+      end
     end
   end
-end
 
-describe "self.by_market" do
-  it "should return the vendors given the vendor information" do
-    FarMar::Vendor.by_market(1).each do |line|
-      line.market_id.must_equal(1)
+  describe "self.by_market" do
+    it "should return the vendors given the vendor information" do
+      FarMar::Vendor.by_market(1).each do |line|
+        line.market_id.must_equal(1)
+      end
     end
   end
-end
-# describe
 
-# let (:rererer) {Vendor.new(ereererr)}
-# :ererer some vendor
+  describe "products" do
+       it "should return an array" do
+       p.products.must_be_kind_of(Array)
+     end
+  end
+
+  describe "self.by_vendor" do
+    it "should return the products given the vendor information" do
+      FarMar::Product.by_vendor(1).each do |line|
+        line.vendor_id.must_equal(1)
+      end
+    end
+  end
+
+
+
+  # describe
+
+  # let (:rererer) {Vendor.new(ereererr)}
+  # :ererer some vendor
 
 end
