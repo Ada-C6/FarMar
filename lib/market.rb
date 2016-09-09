@@ -43,5 +43,35 @@ module FarMar
       FarMar::Vendor.by_market(@id)
     end
 
+    def products
+      mkt_vendors = FarMar::Vendor.by_market(@id)
+      all_products = []
+      mkt_vendors.each do |val, vendor|
+        vendor.products.each do |product|
+          all_products << product
+        end
+      end
+      return all_products
+    end
+
+    def self.search(search_term)
+      mkts = []
+
+      all_markets = FarMar::Market.all
+      all_markets.each do |val, market|
+        if market.name.downcase.include?(search_term)
+          mkts << market
+        end
+      end
+      
+      all_vendors = FarMar::Vendor.all
+      all_vendors.each do |val, vendor|
+        if vendor.name.downcase.include?(search_term)
+          mkt << vendor.market
+        end
+      end
+      return mkts
+    end
+
   end
 end

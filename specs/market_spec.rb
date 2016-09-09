@@ -25,7 +25,7 @@ describe FarMar::Market do
 
   describe "self.find(id)" do
     let(:west_seattle) {FarMar::Market.find(2)}
-    
+
     it "should return an instance of the object matching the id passed" do
       west_seattle.id.must_equal(2)
     end
@@ -36,6 +36,22 @@ describe FarMar::Market do
 
     it "should return all vendor instances associated with the market's id" do
       west_seattle.vendors.length.must_equal(2)
+    end
+  end
+
+  describe "#products" do
+    let(:west_seattle) {FarMar::Market.find(5)}
+
+    it "should return a collection of products associated with that market" do
+      west_seattle.products.length.must_equal(5)
+    end
+  end
+
+  describe "self.search(search_term)" do
+
+    it "should return all market instances with a name that matches the argument" do
+      school = FarMar::Market.search("school")
+      school.length.must_equal(3)
     end
   end
 end
