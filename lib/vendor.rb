@@ -1,6 +1,6 @@
 module FarMar
   class Vendor
-    attr_reader :id, :name, :num_of_employees, :market_id
+    attr_reader :id, :name, :num_of_employees, :market_id, :revenue_from_sales
 
     def initialize(id, name, num_of_employees, market_id)
       @id = id
@@ -45,11 +45,36 @@ module FarMar
       FarMar::Product.by_vendor(@id)
     end
 
+    #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+    # def sales
+    #   @sales_by_vendor = {}
+    #
+    #   products.each do | product |
+    #     if product.sales && product.sales.any?
+    #       @sales_by_vendor[product.id] = product.sales
+    #     end
+    #   end
+    #   return @sales_by_vendor
+    # end
+    #
+    # def revenue
+    #   sales
+    #   revenue_by_product = @sales_by_vendor.map do |k, v|
+    #     all_sales = []
+    #     v.each do | sale |
+    #        all_sales << sale.amount
+    #     end
+    #     all_sales.reduce(:+)
+    #   end
+    #   @revenue_from_sales = revenue_by_product.reduce(:+)
+    #   return @revenue_from_sales
+    # end
+
+    
     def sales
       sales_by_vendor = []
-      all_sales = FarMar::Sale.all
-
-      all_sales.each do |sales_key, sale_value|
+      @all_sales ||= FarMar::Sale.all
+      @all_sales.each do | sales_key, sale_value |
         if sale_value.vendor_id == @id
           sales_by_vendor << sale_value
         end
@@ -58,13 +83,27 @@ module FarMar
     end
 
     def revenue
-      revenue_by_vendor = 0
-      sales_by_vendor = sales
-      sales_by_vendor.each do |sales_value|
-        revenue_by_vendor += sales_value.amount
+      @revenue_from_sales = 0
+      @sales_by_vendor ||= sales
+      @sales_by_vendor.each do | sales_value |
+        @revenue_from_sales += sales_value.amount
       end
-      return revenue_by_vendor
+      return @revenue_from_sales
+    end
 
+    # should return the top n vendor instances ranked by total revenue
+    def self.most_revenue(n)
+      all_vendors = self.all
+      all_vendors.each do | key, value |
+        value.revenue
+      end
+
+      puts "---------"
+      highest = all_vendors.sort_by { | value | value.revenue_from_sales }
+      puts highest
+
+      # highest.reverse
+      # return highest.take(n)
     end
   end
 end

@@ -16,14 +16,18 @@ describe FarMar::Product do
   end
 
   describe "self.find(id)" do
-    it "should return an instance of the object where the value of the id field in the CSV matches the passedparameter" do
+    it "should return an instance of the object where the value of the id field in the CSV matches the passed parameter" do
       FarMar::Product.find(1).id.must_equal(1)
     end
   end
 
   describe "self.by_vendor(ven_id)" do
-    it "should return True if the correct number of vendors is returned for the given vendor_id" do
+    it "should return True if the correct number of products is returned for the given vendor_id" do
       FarMar::Product.by_vendor(5).length.must_equal(3)
+    end
+
+    it "should return a correct product id that is part of the collection returned for the given vendor_id" do
+      FarMar::Product.by_vendor(5)[0].id.must_equal(8)
     end
   end
 
@@ -38,9 +42,13 @@ describe FarMar::Product do
 
   #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
   describe "#sales" do
+    let(:sales_test) {FarMar::Product.find(8)}
     it "should be true if the number of FarMar::Sale instances in the collection, associated with the FarMar::Sale.product_id field, is correct" do
-      sales_test = FarMar::Product.find(8)
       sales_test.sales.length.must_equal(5)
+    end
+
+    it "should return a correct sale id that is part of the collection returned for the given product_id" do
+      sales_test.sales[0].id.must_equal(23)
     end
   end
 

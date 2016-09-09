@@ -31,9 +31,13 @@ describe FarMar::Vendor do
   end
 
   describe "#products" do
+    let(:product_test) {FarMar::Vendor.find(5)}
     it "should return true if the number of FarMar::Product instances that are associated with the vendor instance is correct" do
-      product_test = FarMar::Vendor.find(5)
       product_test.products.length.must_equal(3)
+    end
+
+    it "should return true if the correct FarMar::Product id from the collection of instances that are associated with the vendor instance is correct" do
+      product_test.products[0].id.must_equal(8)
     end
   end
 
@@ -45,13 +49,24 @@ describe FarMar::Vendor do
     it "should return True if the correct number of vendors is returned for the given market_id" do
       FarMar::Vendor.by_market(2).length.must_equal(3)
     end
+
+    it "should return true if the correct vendor id from the collection of instances that are associated with the market id is correct" do
+      FarMar::Vendor.by_market(2)[0].id.must_equal(7)
+    end
+
   end
 
   #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
   describe "#sales" do
     it "should return true if a sample of the collection of FarMar::Sale instances associated with the correct vendor_id field given are the same" do
       sales_test = FarMar::Vendor.find(1)
+      # puts sales_test.id
+      # puts sales_test.sales
+      # sales_test.sales.length.must_equal(1)
+      # sales_test.sales[1].length.must_equal(7)
       sales_test.sales.length.must_equal(7)
+
+
     end
   end
 
@@ -62,4 +77,10 @@ describe FarMar::Vendor do
       revenue_test.revenue.must_equal(26866)
     end
   end
+
+  # describe "self.most_revenue(n)" do
+  #   it "should return the top n vendor instances ranked by total revenue" do
+  #     FarMar::Vendor.most_revenue(1).length.must_equal(1)
+  #   end
+  # end
 end

@@ -48,6 +48,7 @@ module FarMar
         if sale_value.product_id == @id
           sales_by_product_id << sale_value
         end
+
       end
       return sales_by_product_id
     end

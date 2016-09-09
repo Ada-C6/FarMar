@@ -16,20 +16,23 @@ describe FarMar::Market do
   end
 
   describe "self.find(id)" do
-    it "should return an instance of the object where the value of the id field in the CSV matches the passedparameter" do
+    it "should return an instance of the object where the value of the id field in the CSV matches the passed parameter" do
       FarMar::Market.find(1).id.must_equal(1)
     end
   end
 
   describe "#vendors" do
     let(:market_test) {FarMar::Market.find(2)}
-    it "should return a the correct number of FarMar::Vendor instances that are associated with the market instance" do
+    it "should return the correct number of FarMar::Vendor instances that are associated with the market instance" do
       # market_test = FarMar::Market.find(2)
       market_test.vendors.length.must_equal(3)
     end
-  end
 
-  describe "#market" do
+    it "should return the correct id of the stated FarMar::Vendor instance that is associated with the market instance" do
+      # market_test = FarMar::Market.find(2)
+      market_test.vendors[0].id.must_equal(7)
+    end
+
     it "should return true if the correct number of FarMar::Vendor instances that are associated with the market instance are returned by the indstance method" do
       market_test2 = FarMar::Market.find(1)
       market_test2.vendors.length.must_equal(6)
@@ -38,9 +41,14 @@ describe FarMar::Market do
 
   # products returns a collection of FarMar::Product instances that are associated to the market through theFarMar::Vendor class.
   describe "#products" do
+    let(:product_test) {FarMar::Market.find(2)}
     it "should returns a collection of FarMar::Product instances that are associated to the market through theFarMar::Vendor class" do
-      product_test = FarMar::Market.find(2)
       product_test.products.length.must_equal(9)
+    end
+
+    it "should returns a the correct id of one item in the collection of FarMar::Product instances that are associated to the market through theFarMar::Vendor class" do
+      puts product_test.products[0].id
+      product_test.products[0].id.must_equal(14)
     end
   end
 
