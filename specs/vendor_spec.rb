@@ -33,8 +33,8 @@ describe FarMar::Market do
 
   describe "#market" do
     it "should return the market instance associated with this vendor" do
-      zulaf_market = FarMar::Market.find(1)
-      zulauf.market.must_equal(zulaf_market)
+      zulauf_market = FarMar::Market.find(1)
+      zulauf.market.must_equal(zulauf_market)
     end
   end
 
@@ -53,7 +53,7 @@ describe FarMar::Market do
   end
 
   describe "#revenue" do
-    
+
     it "should return the sum of all sales for that vendor" do
       zulauf.revenue.must_equal(2977.0)
     end

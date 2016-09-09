@@ -37,14 +37,8 @@ module FarMar
 
     def sales
       all_sales = FarMar::Sale.all
-      sales = []
 
-      all_sales.each do |var, sale|
-        if sale.product_id == @id
-          sales << sale
-        end
-      end
-      return sales
+      all_sales.select {|var, sale| sale.product_id == @id}
     end
 
     def number_of_sales
@@ -61,14 +55,8 @@ module FarMar
 
     def self.by_vendor(this_vendor_id)
       all_products = FarMar::Product.all
-      products = []
 
-      all_products.each do |var, product|
-        if product.vendor_id == this_vendor_id
-          products << product
-        end
-      end
-      return products
+      all_products.select {|var, product| product.vendor_id == this_vendor_id}
     end
   end
 end
