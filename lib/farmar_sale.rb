@@ -40,9 +40,11 @@ class Sale
   end
 
   def self.between(beginning_time, end_time)
-    beginning_time = DateTime.parse(beginning_time)
-    end_time = DateTime.parse(end_time)
+    if beginning_time.class != Date
+      beginning_time = DateTime.parse(beginning_time)
+      end_time = DateTime.parse(end_time)
+    end
 
-    Sale.all.find_all { |n| n[1].purchase_time.between?(beginning_time, end_time)}
+    Sale.all.values.find_all { |n| n.purchase_time.between?(beginning_time, end_time)}
   end
 end

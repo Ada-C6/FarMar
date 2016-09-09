@@ -70,10 +70,24 @@ class Market
     vendors.max_by { |n| n.revenue }
   end
 
+  # IN PROGRESS: 
   # def prefered_vendor(date)
   #   date = DateTime.parse(date)
-  #   vendor_list =
+  #   vendor_list = vendors
   #
+  #   beginning_time = date.to_date
+  #   end_time = beginning_time + 1
+  #
+  #   sales = Sale.between(beginning_time, end_time)
+  #
+  #   market_sales = []
+  #
+  #   sales.each do |i|
+  #     if vendor_list.include?(i.vendor_id)
+  #       market_sales << i
+  #     end
+  #   end
+  #   return market_sales.max_by { |n| n.revenue }
   # end
 
 end

@@ -58,7 +58,7 @@ describe Market do
 
   # describe "#prefered_vendor(date)" do
   #   it "should return the vendor with the highest revenue for the given date" do
-  #
+  #     m.prefered_vendor(2013-11-11).class.must_equal(Vendor)
   #   end
   # end
 
