@@ -40,7 +40,7 @@ puts FarMar::Market.find('4')
 
 
 ############ TESTING VENDOR 
-# puts "Loading Vendor.rb data...\n.\n.\n." # puts logging
+puts "Loading Vendor.rb data...\n.\n.\n." # puts logging
 
 # vendor_array = CSV.read('./support/vendors.csv')
 
@@ -52,6 +52,8 @@ puts FarMar::Market.find('4')
 
 
 # puts vendor_1
+puts FarMar::Vendor.all
+#puts FarMar::Market.find('4')
 
 ############### TESTING SALE
 
