@@ -19,30 +19,31 @@ describe "FarMar::Market" do
     end # self.all
 
     describe "self.find(id)" do
+        it "should raise an ArgumentError if not passed a Fixnum argument" do
+            proc { FarMar::Market.find("cats") }.must_raise(ArgumentError)
+        end
+
         it "should return a FarMar::Market object with data that corresponds to the id argument passed in" do
             found_market = FarMar::Market.find(126)
             found_market.must_be_instance_of(FarMar::Market)
             found_market.market_id.must_equal(126)
             found_market.zip.must_equal("65536")
-        end #
+        end
     end # self.find
 
     describe "instance methods" do
-        before(:each) do
-            # Make a new market instance from a single line of markets.csv
-            market_csv_length = CSV.read('support/markets.csv').length
-            test_market_array = CSV.read('support/markets.csv')[rand(0..market_csv_length-1)]
+        before(:all) do
             test_market_info_hash = {
-                market_id: test_market_array[0].to_i,
-                name: test_market_array[1],
-                address: test_market_array[2],
-                city: test_market_array[3],
-                county: test_market_array[4],
-                state: test_market_array[5],
-                zip: test_market_array[6]
+                market_id: 480,
+                name: "Prescott Farmers Market",
+                address: "1100 E. Sheldon Street",
+                city: "Prescott",
+                county: "Yavapai",
+                state: "Arizona",
+                zip: "86301"
             }
-            @test_market = FarMar::Market.new(test_market_info_hash)
 
+            @test_market = FarMar::Market.new(test_market_info_hash)
             # assign result of #vendors method on test_market to a variable for use below
             @test_vendors = @test_market.vendors
         end # before(:each)
@@ -54,7 +55,7 @@ describe "FarMar::Market" do
             end
 
             it "should return FarMar::Vendor instances with the correct market_id" do
-                @test_vendors[rand(0..@test_vendors.length-1)].market_id.must_equal(@test_market.market_id)
+                @test_vendors[rand(0..@test_vendors.length-1)].market_id.must_equal(480)
             end
         end # #vendors
     end # instance methods
