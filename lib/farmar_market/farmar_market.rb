@@ -41,12 +41,12 @@ module FarMar
           return market
         end
       end
-      raise Exception("ID was not present")
+      puts "ID was not present"
+      return "ID was not present"
     end
 
     def vendors
       return FarMar::Vendor.by_market(@market_id)
     end
-
   end
 end
