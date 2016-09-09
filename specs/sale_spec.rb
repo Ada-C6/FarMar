@@ -24,10 +24,12 @@ module FarMar
     end #end self.all
 
     describe "self.find(id)" do
-      let(:sales) { Sale.find(20) }
+      let(:sold_foots) { Sale.find(20) }
+      it "should return an instance of Sale" do
+        sold_foots.must_be_instance_of(Sale)
+      end
 
-      it "should return instance of a sale by its sale id" do
-        sold_foots = Sale.find(20)
+      it "should returns the instance of a sale with the right sale id" do
         sold_foots.id.must_equal(20)
       end
     end
