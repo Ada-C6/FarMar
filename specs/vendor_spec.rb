@@ -48,4 +48,22 @@ describe "FarMar::Vendor" do
         end
     end # self.by_market
 
+    describe "instance methods" do
+        describe "#market" do
+
+        end #market
+
+        describe "#products" do
+
+        end #products
+
+        describe "#sales" do
+
+        end #salse
+
+        describe "#revenue" do
+
+        end #revenue
+
+    end # instance methods before(:each)
 end # FarMar::Vendor
