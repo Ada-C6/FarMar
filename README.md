@@ -84,21 +84,21 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 ### Baseline
 #### Project Setup
 1. You'll be working as an individual on this project.
-1. Fork the Ada-C6 repo to your Github account.
-1. Clone your fork to your projects directory, and `cd` into the cloned repo.
-1. Create a _gemset_ for your project
+1. Fork the Ada-C6 repo to your Github account. DONE
+1. Clone your fork to your projects directory, and `cd` into the cloned repo. DONE
+1. Create a _gemset_ for your project IGNORE
   1. `$ echo 2.3.0 > .ruby-version`
   1. `$ echo farmar > .ruby-gemset`
   1. `$ cd .`
-1. Install necessary gems via Terminal:
+1. Install necessary gems via Terminal: DONE
   - `$ gem install minitest-reporters`
   - `$ gem install simplecov`
 
 #### Baseline Requirements
-- Create a class for each of the data types listed above. Each class should be a part of the `FarMar` module.
-- You should be able to create instances of these classes that know about their associated data file.
-- Create your `far_mar.rb` file which will bring together all classes created in the previous step.
-- Complete the boilerplate necessary for testing. You should be able to `$ rake` from the project root to run your specs. Have at least one spec to verify this setup before submitting your baseline.
+- Create a class for each of the data types listed above. Each class should be a part of the `FarMar` module. DONE
+- You should be able to create instances of these classes that know about their associated data file. DONE (specific CSV to be read in)
+- Create your `far_mar.rb` file which will bring together all classes created in the previous step. DONE
+- Complete the boilerplate necessary for testing. You should be able to `$ rake` from the project root to run your specs. Have at least one spec to verify this setup before submitting your baseline. DONE
 - **Once you have completed your baseline, you must submit a pull-request and get it approved by an instructor.**
 
 ## Primary Requirements
@@ -154,4 +154,4 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 
 #### Try some inheritance or some composition
 - __Inheritance:__ Create a new _class_ that defines the shared/duplicated methods (i.e., `find`, `all`). Update your data classes to _inherit_ this _class_ .
-- __Composition with a Mixin:__ Create a new _module_ that defines the duplicated methods (i.e., `find`, `all`). Update your data classes to _mixin_ this _module_. 
+- __Composition with a Mixin:__ Create a new _module_ that defines the duplicated methods (i.e., `find`, `all`). Update your data classes to _mixin_ this _module_.
