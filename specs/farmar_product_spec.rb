@@ -1,3 +1,5 @@
+# Talked to TA Friday afternoon re: spec tests not so helpful--could have included sub data (such as a custom csv file just for testing purposes) to create spec tests to target certain numbers of data (such as all expected items in a collection making it into the collection.)
+
 require_relative 'spec_helper'
 
 describe FarMar::Product do
