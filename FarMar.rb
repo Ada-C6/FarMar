@@ -1,5 +1,5 @@
 # gems your project needs
-require './support/csv'
+require 'csv'
 
 # our namespace module
 module FarMar;
