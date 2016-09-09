@@ -2,7 +2,7 @@
 # require_relative '../far_mar'
 require 'date'
 
-class FarMar::Market
+class FarMar::Market < Finder
   attr_reader :id, :name
   def initialize(id, name, address, city, county, state, zip)
      @id = id
@@ -33,20 +33,20 @@ class FarMar::Market
     return markets
   end
 
+  
   # return an Market object that corresponds to the given market id
-  def self.find(id)
-    found_market = nil
-    all.each do |market|
-      if id == market.id
-        found_market = market
-        break
-      end
-    end
-    return found_market
-  end
+  # def self.find(id)
+  #   found_market = nil
+  #   all.each do |market|
+  #     if market.id == id
+  #       found_market = market
+  #       break
+  #     end
+  #   end
+  #   return found_market
+  # end
 
-
-  # returns an array of FarMar::Market objects where the market name or vendor name contain the search_term
+  # return an array of FarMar::Market objects where the market name or vendor name contain the search_term
   def self.search(search_term)
     term = search_term.downcase
     # return an array of Market objects found with the matched market name or vendor name
@@ -67,10 +67,10 @@ class FarMar::Market
     return FarMar::Vendor.all.select { |vendor| @id == vendor.market_id }
   end
 
-  # returns an array of FarMar::Product objects that are associated to the market through the FarMar::Vendor class.
+  # return an array of FarMar::Product objects that are associated to the market through the FarMar::Vendor class.
   # In another word, input a market_id and return the Product objects that associated with that market_id.
   def products(market_id)
-    # give a market_id, return an array of its associated Vendor objects
+    # return an array of its associated Vendor objects
     vendors = FarMar::Vendor.by_market(market_id)
     # iterate over all vendor_ids. for each vendor_id, return Product objects that associated with this vendor_id.
     return vendors.map do |vendor|
@@ -79,43 +79,43 @@ class FarMar::Market
     # last step return array of array, call method flatten over return result
   end
 
-  # returns the Vendor object with the highest revenue among a group of vendors
+  # return the Vendor object with the highest revenue among a group of vendors
   def prefered_vendor_direct(vendors)
     # vendors => FarMar::Vendor.all can put this in method call
-    #return an array Vendor objects sorted by vendor revenue in accending order
+    # get an array Vendor objects sorted by vendor revenue in accending order
     vendors_by_revenue =  vendors.sort_by { |vendor| vendor.revenue }
-    # return the vendor that has the highest revenue(the last element in the array)
+    # get the vendor that has the highest revenue(the last element in the array)
     return vendors_by_revenue.last
   end
 
-  # returns the Vendor object with the highest revenue for the given date
+  # return the Vendor object with the highest revenue for the given date
   def prefered_vendor(date)
     beginning_time, end_time = Utils.get_day_range(date)
-    # return an array of Sale objects in the given date
+    # get an array of Sale objects in the given date
     sales = FarMar::Sale.between(beginning_time, end_time)
-    # return an array of Vendors associated with the Sale objects
+    # get an array of Vendors associated with the Sale objects
     vendors = sales.map{|sale|sale.vendor}
-    # return the prefered vendor associate with the Sale object on that date
+    # get the prefered vendor associate with the Sale object on that date
     return self.prefered_vendor_direct(vendors)
   end
 
-  # returns the vendor with the lowest revenue
+  # returnsthe vendor with the lowest revenue
   def worst_vendor_direct(vendors)
     # vendors => FarMar::Vendor.all can put this in method call
-    #return an array Vendor objects sorted by vendor revenue in accending order
+    # get an array Vendor objects sorted by vendor revenue in accending order
     vendors_by_revenue =  vendors.sort_by { |vendor| vendor.revenue }
-    # return the vendor that has the lowest revenue(the last element in the array)
+    # get the vendor that has the lowest revenue(the last element in the array)
     return vendors_by_revenue.first
   end
 
-  #  returns the vendor with the lowest revenue on the given date
+  # return the vendor with the lowest revenue on the given date
   def worst_vendor(date)
     beginning_time, end_time = Utils.get_day_range(date)
-    # return an array of Sale objects in the given date
+    # get an array of Sale objects in the given date
     sales = FarMar::Sale.between(beginning_time, end_time)
-    # return an array of Vendors associated with the Sale objects
+    # get an array of Vendors associated with the Sale objects
     vendors = sales.map{|sale| sale.vendor}
-    # return the prefered vendor associate with the Sale object on that date
+    # get the prefered vendor associate with the Sale object on that date
     return self.worst_vendor_direct(vendors)
   end
 

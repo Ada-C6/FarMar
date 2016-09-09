@@ -2,7 +2,7 @@
 # require_relative '../far_mar'
 require 'date'
 
-class FarMar::Sale
+class FarMar::Sale < Finder
   attr_reader :id, :vendor_id, :amount, :product_id, :purchase_time
   def initialize(id, amount, purchase_time, vendor_id, product_id)
     @id = id
@@ -53,7 +53,9 @@ class FarMar::Sale
     return @sales
   end
 
-
+  # Since I optimized the Sale class by a different structure, I would not
+  # inherite it from the Finder class. I will leave this refactor in the future
+  # if I have time.
   # return an Sale object that corresponds to the given sale id
   def self.find(id)
     load

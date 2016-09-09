@@ -1,11 +1,11 @@
 # lib/farmar_product.rb
 # require_relative '../far_mar'
 
-class FarMar::Product
+class FarMar::Product < Finder
   attr_reader :id, :vendor_id
   def initialize(id, name, vendor_id)
     @id = id
-    @name =name
+    @name = name
     @vendor_id = vendor_id
   end
 
@@ -32,19 +32,17 @@ class FarMar::Product
     return @products
   end
 
-  # identify product information by product id
-  # input: product id (string)
-  # output: an product object that corresponds to the given product id
-  def self.find(id)
-    found_product = nil
-    all.each do |product|
-      if id == product.id
-        found_product = product
-        break
-      end
-    end
-    return found_product
-  end
+  # # return an product object that corresponds to the given product id
+  # def self.find(id)
+  #   found_product = nil
+  #   all.each do |product|
+  #     if id == product.id
+  #       found_product = product
+  #       break
+  #     end
+  #   end
+  #   return found_product
+  # end
 
   # returns all of the FarMar::Product objects with the given vendor_id
   def self.by_vendor(vendor_id)

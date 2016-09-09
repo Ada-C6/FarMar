@@ -1,7 +1,7 @@
 # lib/farmar_vendor.rb
 # require_relative '../far_mar'
 
-class FarMar::Vendor
+class FarMar::Vendor < Finder
   attr_reader :id, :market_id, :name
   def initialize(id, name, employees_num, market_id)
     @id = id
@@ -11,8 +11,7 @@ class FarMar::Vendor
   end
 
   # load vendor infomation from vendor csv file
-  # input: csv file name (optional)
-  # output: an array of class vendor objects
+  # return an array of class vendor objects
   def self.all
     if @vendors != nil
       return @vendors
@@ -34,25 +33,24 @@ class FarMar::Vendor
   end
 
   # identify vendor information by vendor id
-  # input: vendor id (string)
-  # output: an vendor object that corresponds to the given vendor id
-  def self.find(id)
-    found_vendor = nil
-    all.each do |vendor|
-      if id == vendor.id
-        found_vendor = vendor
-        break
-      end
-    end
-    return found_vendor
-  end
+  # return an vendor object that corresponds to the given vendor id
+  # def self.find(id)
+  #   found_vendor = nil
+  #   all.each do |vendor|
+  #     if id == vendor.id
+  #       found_vendor = vendor
+  #       break
+  #     end
+  #   end
+  #   return found_vendor
+  # end
 
-  # returns all of the FarMar::Vendor objects with the given market_id
+  # return all of the FarMar::Vendor objects with the given market_id
   def self.by_market(market_id)
     return self.all.select {|vendor| vendor.market_id == market_id }
   end
 
-  # returns an array of the top n Vendor objects ranked by total revenue
+  # return an array of the top n Vendor objects ranked by total revenue
   def self.most_revenue(n)
     # get an array of vendors sorted by revenue in descending order
     vendors_by_revenue = FarMar::Vendor.all.sort_by {|vendor| vendor.revenue}.reverse

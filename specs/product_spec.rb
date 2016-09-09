@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
-require_relative '../far_mar'
-require_relative '../lib/farmar_product'#file name(as same as class name)
+require_relative '../lib/far_mar'
+# require_relative '../lib/farmar_product'#file name(as same as class name)
 
 describe FarMar::Product do
 
