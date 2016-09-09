@@ -36,6 +36,13 @@ class FarMar::Sale
         return self.all[sale_id]
     end # self.find
 
+    # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
+    def self.between(beginning_time, end_time)
+        return self.all.values.select do |sale|
+            sale.purchase_time.to_time > beginning_time && sale.purchase_time.to_time < end_time
+        end
+    end #self.between(beginning_time, end_time)
+
     #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
     def vendor
         return FarMar::Vendor.find(@vendor_id)
@@ -45,4 +52,5 @@ class FarMar::Sale
     def product
         return FarMar::Product.find(@product_id)
     end #product
+
 end # FarMar::Sale

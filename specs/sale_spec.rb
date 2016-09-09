@@ -1,3 +1,4 @@
+# require 'awesome_print'
 require_relative 'spec_helper'
 
 describe "FarMar::Sale" do
@@ -42,6 +43,43 @@ describe "FarMar::Sale" do
             found_sale.purchase_time.must_be_instance_of(DateTime)
         end #
     end # self.find
+
+    describe "self.between(beginning_time, end_time)" do
+        # method to generate a random time within the sales.csv time ranges
+        def random_time(from = DateTime.parse("2013-11-06 08:35:40 -0800").to_time, to = DateTime.parse("2013-11-13 08:35:16 -0800").to_time)
+            Time.at(from + rand * (to.to_f - from.to_f))
+        end #random_time
+
+        # method to return two random times with the later time as second variable
+        def two_times
+            time_a = random_time
+            time_b = random_time
+            if time_a <= time_b
+                return time_a, time_b
+            else
+                return time_b, time_a
+            end
+        end #two_times
+
+        it "should return an array of FarMar::Sale objects" do
+            times = two_times
+            time_test_sales = FarMar::Sale.between(times[0], times[1])
+            time_test_sales.must_be_instance_of(Array)
+            time_test_sales[rand(0..time_test_sales.length-1)].must_be_instance_of(FarMar::Sale)
+        end
+
+        it "should return an array of objects with purchase_times in the given range" do
+            test_begin_time = DateTime.parse("2013-11-07 06:40:47 -0800").to_time
+            test_end_time = DateTime.parse("2013-11-07 13:07:38 -0800").to_time
+
+            purchase_time_test = FarMar::Sale.between(test_begin_time, test_end_time)
+            # ap purchase_time_test #@todo - remove/debug
+            purchase_time_test.each do |sale|
+                (sale.purchase_time.to_time >= test_begin_time).must_equal(true)
+                (sale.purchase_time.to_time <= test_end_time).must_equal(true)
+            end
+        end
+    end #self.between(beginning_time, end_time)
 
     describe "instance methods" do
         before(:all) do
