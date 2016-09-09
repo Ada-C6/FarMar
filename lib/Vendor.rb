@@ -1,4 +1,4 @@
- require 'CSV'
+require 'CSV'
 module FarMar
   class Vendor
     attr_reader :id, :name, :num_employees, :market_id
@@ -17,7 +17,7 @@ module FarMar
         name = line[1]
         num_employees = line[2].to_i
         market_id = line[3].to_i
-       vendors_hash[id] = self.new(id, name, num_employees, market_id)
+        vendors_hash[id] = self.new(id, name, num_employees, market_id)
       end
       return vendors_hash
     end
@@ -26,14 +26,12 @@ module FarMar
       return self.all[id]
     end
 
-
     def market
-    all_markets = FarMar::Market.all
-    all_markets.each do |market, value|
-      if  @market_id == value.id
-         return value
+      all_markets = FarMar::Market.all
+      all_markets.select do |market, value|
+        @market_id == value.id
+        return value
       end
-     end
     end
 
     def products
