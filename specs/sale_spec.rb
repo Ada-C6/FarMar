@@ -31,10 +31,15 @@ describe FarMar::Sale do
  end
 describe "self.between(begin_time, end_time)" do
   it "will return FarMar:Sale instances" do
-    FarMar::Sale.between("2013-11-11 11:29:52 -0800", "2013-11-12 14:38:29 -0800").must_be_kind_of(Array)
+  FarMar::Sale.between("2013-11-11 11:29:52 -0800", "2013-11-11 12:00:00 -0800").must_be_kind_of(Object)
   end
   it "will not include dates outside of the range" do
-    FarMar::Sale.between("2013-11-11 11:29:52 -0800", "2013-11-12 14:38:29 -0800").wont_include("2013-11-13 01:48:15 -0800")
+    FarMar::Sale.between("2013-11-11 11:29:52 -0800", "2013-11-11 12:00:00 -0800")
+    sam.purch_time.wont_include("2013-11-13 01:48:15 -0800")
+  end
+  it "will not include dates outside of the range" do
+    FarMar::Sale.between("2013-11-11 11:29:52 -0800", "2013-11-11 12:00:00 -0800")
+    sam.purch_time.wont_include("2013-11-07 04:34:56 -0800")
   end
 end
 end
