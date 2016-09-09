@@ -30,27 +30,17 @@ module FarMar
     end
   end
 
-  def vendors
-    market_vendors_array = []
-    vendor_array = FarMar::Vendor.all #the id matches the market instance's id and the market_id of the vendors
-    puts vendor_array.length
-    vendor_array.map do |vendor|
-      if vendor.market_id == @id.to_s
-        market_vendors_array << vendor
-      end
-    end
-    return market_vendors_array
+  def vendors #returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field
+    FarMar::Vendor.by_market(@id)
+    # market_vendors_array = []
+    # vendor_array = FarMar::Vendor.all #the id matches the market instance's id and the market_id of the vendors
+    # vendor_array.map do |vendor|
+    #   if vendor.market_id == @id.to_s
+    #     market_vendors_array << vendor
+    #   end
+    # end
+    # return market_vendors_array
   end
-
-
-
-
-
-
-
-
-
-
 
   end
 end
