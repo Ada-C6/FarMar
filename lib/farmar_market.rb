@@ -1,6 +1,3 @@
-require 'csv'
-require_relative 'farmar_vendor'
-
 module FarMar
     class Market
         attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -36,14 +33,11 @@ module FarMar
             return nil
         end
 
+        #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
         def vendors
-            # retrieve the entire vendor list
             vendor_list = FarMar::Vendor.all
-            # group vendors by market id
-            vendor_by_market_id = vendor_list.group_by{|i| i.market_id}
-            # retrieve the collection of vendors that have the same market id with the instance variable's market value
-            current_market_id = @id
-            vendor_by_market_id[current_market_id]
+            vendor_by_market_id = vendor_list.select {|item| item.market_id == @id }
+            return vendor_by_market_id
         end
     end
 end

@@ -1,18 +1,17 @@
 require_relative 'spec_helper'
-require_relative '../lib/farmar_market'
 
 describe FarMar::Market do
+    let(:my_market) { FarMar::Market.new(123, 'KellyMarket', '11000 NE 10th Street', 'Bellevue', 'King County', 'WA', 98004) }
+
     describe "#initialize" do
         it "should return the correct values of instance variables that were established after initializing" do
-            # (id, name, address, city, county, state, zip)
-            a = FarMar::Market.new(123, 'KellyMarket', '9th NE 6 Drive', 'Sammmamish', 'King County', 'WA', 98074)
-            a.id.must_equal(123)
-            a.name.must_equal('KellyMarket')
-            a.address.must_equal('9th NE 6 Drive')
-            a.city.must_equal('Sammmamish')
-            a.county.must_equal('King County')
-            a.state.must_equal('WA')
-            a.zip.must_equal(98074)
+            my_market.id.must_equal(123)
+            my_market.name.must_equal('KellyMarket')
+            my_market.address.must_equal('11000 NE 10th Street')
+            my_market.city.must_equal('Bellevue')
+            my_market.county.must_equal('King County')
+            my_market.state.must_equal('WA')
+            my_market.zip.must_equal(98004)
         end
     end
 
@@ -32,10 +31,7 @@ describe FarMar::Market do
 
     describe "#vendors" do
         it "should return a collection of FarMar::Vendor instances that are associated with the market by the market_id field " do
-            kelly_market = FarMar::Market.new(141, 'KellyMarket', '9th NE 6 Drive', 'Sammmamish', 'King County', 'WA', 98074)
-            vendors = kelly_market.vendors
-            vendors.length.must_equal(9)
+            my_market.vendors.length.must_equal(6)
         end
     end
-    #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
 end
