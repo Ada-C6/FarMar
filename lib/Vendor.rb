@@ -58,14 +58,12 @@ module FarMar
       return vendor_sales
     end
 
-    def revenue
+    def revenue #trying reduce
       vendor_sales = self.sales #returns an array of sales for vendor
-      total_revenue = 0
-      vendor_sales.each do |sale|
-        total_revenue += sale.amount
+      # in parentheses, total_revenue = 0
+      vendor_sales.inject(0) do |total_revenue, sale|
+        total_revenue + sale.amount
       end
-      return total_revenue
-
     end
 
     def self.by_market(a_market_id)
