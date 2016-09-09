@@ -6,6 +6,8 @@ module FarMar
       @name = name
       @vendor_id = vendor_id
     end
+
+
     def self.all
       products = {}
       CSV.read('support/products.csv').each do |line|

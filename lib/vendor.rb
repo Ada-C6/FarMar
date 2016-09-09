@@ -57,10 +57,9 @@ module FarMar
     end
 
     # self.by_market(market_id): returns all of the vendors with the given market_id
-    def self.by_market(market_id)
-      # market_vendors = self.all.map { |vendor_id, vendor|
-      #   vendor.market == market_id ? }
-      # @todo START HERE START HERE START HERE
+    def self.by_market(market_id) # nifty select method! returns only those that are true
+      market_vendors = self.all.select { |vendor_id, vendor|
+        vendor.market == market_id }
       return market_vendors
     end
 

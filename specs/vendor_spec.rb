@@ -58,18 +58,16 @@ module FarMar
     end #self.find(id)
 
     describe "#market" do
-        before(:each) do
-          @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
-        end
-        it "should reutrn the Market instance that it is associated to" do
-          @vendor.market.must_equal(@vendor.market_id)
-        end
+      before(:each) do
+        @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
       end
+      it "should reutrn the Market instance that it is associated to" do
+        @vendor.market.must_equal(@vendor.market_id)
+      end
+    end
 
     describe "#products" do
-      # before(:each) do
-      #   @vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
-      # end
+
       it "should return a collection of Product instances associated to specific vendor" do
         all_vendors = Vendor.all
         random_vendor_id = rand(1..2690)
@@ -77,10 +75,6 @@ module FarMar
         random_vendor.products.each do |product_id, product|
           product.vendor_id.must_equal(random_vendor_id)
         end
-        # @vendor.products.each do |product_id, product|
-        #   puts "#{vendor.market_id} is this market id" #this is not puts-ing?!
-        #   product.vendor_id.must_equal(@vendor.id)
-        # end
       end
     end
 
@@ -96,38 +90,24 @@ module FarMar
     end
 
     describe "#revenue" do
-      # Here it seems to use the same code for the test and the method.
-      it "returns the sum of all of the vendor's sales (in cents)" do
-        random_vendor_id = rand(1..2690)
-        random_vendor = Vendor.all[random_vendor_id]
-        vendor_revenue = 0
-        random_vendor.sales.each do |sale_id, sale|
-          vendor_revenue += (sale.amount * 100) # back to cents
-        end
-        random_vendor.revenue.must_equal(vendor_revenue)
-      end
       # Here is the specific vendor revenue for vendor 1: 38259
       it "returns the sum of all of the vendor's sales (in cents)" do
         all_vendors = Vendor.all
-        all_vendors[1].revenue.must_equal(38259)
+        all_vendors[1].revenue.must_equal(38259) # [1] does not indicate array, instead hash key 1
       end
     end
 
-# self.by_market(market_id): returns all of the vendors with the given market_id
-# is this going to be just the method in another way??
+    # self.by_market(market_id): returns all of the vendors with the given market_id
+    # is this going to be just the method in another way??
     describe "#self.by_market" do
-      it "should return all the vendor's with a given market_id" do
+      # actually my self.code is untestable because I have no way to inject a test file
+      # @todo test something else
+      it "should return instances of Vendor" do
         random_market_id = rand(1..500)
-        market_vendors = {}
-        Vendor.all.each do |vendor_id, vendor|
-          if vendor.market == random_market_id
-            market_vendors[vendor_id] = vendor # gives us a hash of test ids
-          end
+        Vendor.by_market(random_market_id).each do |vendor_id, vendor|
+          vendor.must_be_instance_of(Vendor)
         end
-        Vendor.by_market(random_market_id).must_equal(market_vendors)
       end
-
     end
-
   end
 end
