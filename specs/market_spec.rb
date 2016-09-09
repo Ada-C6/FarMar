@@ -35,7 +35,15 @@ describe FarMar::Market do
     end
     it "should be an instance of vendor" do
       vendor = cap_hill.vendors
+
       vendor[0].must_be_instance_of(FarMar::Vendor)
+    end
+  end
+  describe "#products" do
+    it "should return a collection of FarMar:: Product instances" do
+      cap_hill.products.each do |x|
+        x.must_be_instance_of(FarMar::Product)
+      end
     end
   end
 
