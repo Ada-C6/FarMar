@@ -29,8 +29,6 @@ describe "FarMar::Sale" do
 
         it "should parse the purchase_time string into a DateTime object" do
             @random_sale.purchase_time.must_be_instance_of(DateTime)
-
-            # p @random_sale # @todo - remove/debug
         end
     end # self.all
 

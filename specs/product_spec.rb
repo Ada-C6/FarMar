@@ -12,7 +12,7 @@ describe "FarMar::Product" do
             csv_products = FarMar::Product.all
             expected_length = CSV.read('support/products.csv').size
             csv_products.class.must_equal(Hash)
-            csv_products.values[rand(0..expected_length)].must_be_instance_of(FarMar::Product)
+            csv_products.values[rand(0..expected_length-1)].must_be_instance_of(FarMar::Product)
             csv_products.length.must_equal(expected_length)
         end
     end # self.all
