@@ -49,21 +49,55 @@ describe "FarMar::Vendor" do
     end # self.by_market
 
     describe "instance methods" do
-        describe "#market" do
+        before(:all) do
+            test_vendor_info_hash = {
+                vendor_id: 914,
+                name: "Wyman-Stamm",
+                employees: 4,
+                market_id: 170
+            }
 
-        end #market
+            @test_vendor = FarMar::Vendor.new(test_vendor_info_hash)
+            @test_products = @test_vendor.products
+            @test_sales = @test_vendor.sales
+            @test_revenue = @test_vendor.revenue
+        end
 
-        describe "#products" do
+            describe "#market" do
+                it "should return a FarMar::Market object with the correct market_id" do
+                    @test_vendor.market.must_be_instance_of(FarMar::Market)
+                    @test_vendor.market.market_id.must_equal(170)
+                end
+            end #market
 
-        end #products
+            describe "#products" do
+                it "should return an array of FarMar::Product objects" do
+                    @test_products.must_be_instance_of(Array)
+                    @test_products[rand(0..@test_products.length-1)].must_be_instance_of(FarMar::Product)
+                end
 
-        describe "#sales" do
+                it "should return the FarMar::Product instances with the correct vendor_id" do
+                    @test_products[rand(0..@test_products.length-1)].vendor_id.must_equal(914)
+                end
+            end #products
 
-        end #salse
+            describe "#sales" do
+                it "should return an array of FarMar::Sale objects" do
+                    @test_sales.must_be_instance_of(Array)
+                    @test_sales[rand(0..@test_sales.length-1)].must_be_instance_of(FarMar::Sale)
+                end
 
-        describe "#revenue" do
+                it "should return FarMar::Sale objects with the correct vendor_id" do
+                    @test_sales[rand(0..@test_sales.length-1)].vendor_id.must_equal(914)
+                end
+            end #sales
 
-        end #revenue
+            describe "#revenue" do
+                it "should return a Fixnum of the correct revenue" do
+                    @test_revenue.must_be_instance_of(Fixnum)
+                    @test_revenue.must_equal(46229)
+                end
+            end #revenue
 
     end # instance methods before(:each)
 end # FarMar::Vendor
