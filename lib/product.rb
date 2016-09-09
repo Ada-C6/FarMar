@@ -46,12 +46,14 @@ class Product
     Vendor.find(@vendor_id)
   end
 
+##########   NEEDS WORK ########### ??????
   def sales
     Sale.all.find_all do |instance|
       instance.vendor_id == @vendor_id
     end
   end
 
+##########   NEEDS WORK ########### ?????
   def number_of_sales
     sales.count
   end

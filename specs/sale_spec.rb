@@ -29,6 +29,7 @@ module FarMar
       end
     end
 
+##########   NEEDS WORK ###########
     describe "#vendor" do
       it "should return true if the returned instance is of the same vendor id" do
         s = Sale.find(2)
@@ -38,9 +39,11 @@ module FarMar
       end
     end
 
+
+##########   NEEDS WORK ###########
     describe "#product" do
       it "should return true if theProduct instance associated with this sale matches the Sale product_id field" do
-        ###PUT SOMETHING HERE 
+        ###PUT SOMETHING HERE
       end
     end
   end
