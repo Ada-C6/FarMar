@@ -18,6 +18,10 @@ module FarMar
 
     describe "self.find(id)" do
       let(:foots) { Product.find(12) }
+      it "should raise an error if a number is not passed" do
+        proc { Product.find('A') }.must_raise(ArgumentError)
+      end
+
       it "should return instance of a product by its product id" do
         foots.id.must_equal(12)
       end
@@ -35,7 +39,7 @@ module FarMar
       it "should return a collection of sales instances for the specific product" do
         #  puts products.sales
         products.sales.must_be_instance_of(Hash)
-      end 
+      end
 
       it "should return the exact number of sales related to that product" do
         products.sales.length.must_equal(8)
