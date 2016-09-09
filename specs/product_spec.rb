@@ -57,18 +57,18 @@ describe FarMar::Product do
     end
   end
 
-  #OPTIONAL REQUIREMENTS: PART 1 - My attempts that just created errors
+  #OPTIONAL REQUIREMENTS: PART 1 - My attempts created many errors. However, once i got it to run efficiently, I can now use this same formate to scaffold all other optional requirements, part I.
 
   describe "self.revenue" do
     it "should return the revenue of each product" do
-      FarMar::Product.revenue[3].must_equal(8193)
+      FarMar::Product.revenue["2"].must_equal(5727)
     end
   end
 
-  # describe "self.most_revenue(n)" do
-  #   it "should return the top n product instances by total revenue" do
-  #     FarMar::Product.most_revenue(n).length.must_equal(8)
-  #   end
-  # end
+  describe "self.most_revenue(n)" do
+    it "should return the top n product instances" do
+      FarMar::Product.most_revenue(2).must_equal(["7848", "7928"])
+    end
+  end
 
 end

@@ -92,44 +92,25 @@ module FarMar
       calculating.each do |k,v|
         calculated[k] = v.reduce(:+)
       end
-      puts calculating
-      puts
-      puts calculated
+      # puts calculating
+      # puts
+      # puts calculated
       return calculated
     end
 
-
-    ## COME BACK HERE!!!
-    #
-    #
-    #   # Setting eachvalue in the key to 0 so that the revenues can be added to the values.
-    #   FarMar::Product.all.each do |line|
-    #     p_revenue[line.vendor_id] = 0
-    #   end
-    #
-    #   FarMar::Sale.all.each do |line|
-    #
-    #
-    #   end
-    # end
-
-
-    # def self.most_revenue(n)
-    #   FarMar::Sale.all.each do |line|
-    #
-    #   end
-    # end
-
+    # Right now, the highest values are being sorted with the product id being displayed. I tried to set it so that the instances were the keys, however this proved to be much more challenging than expeced. All other optional requirements, part 1, would follow a similar scaffolding to the spec and code provided here. 
+    def self.most_revenue(n)
+      sorted = FarMar::Product.revenue.sort_by { |k,v| v }.reverse
+      # puts keys into a map - and then from here, you can select the keys in the top n positions
+      keys = sorted.map {|k,v| k }
+      highest = []
+      i = 0
+      n.times do
+        highest << keys[i]
+        i += 1
+      end
+      puts highest
+      return highest
+    end
   end
 end
-
-#
-# def revenue
-#   rvn = 0
-#   FarMar::Sale.all.each do |line|
-#     if @id == line.vendor_id
-#       rvn += line.amount.to_i
-#     end
-#   end
-#   return rvn
-# end
