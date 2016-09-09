@@ -102,12 +102,7 @@ describe FarMar::Market do
         vendor.market_id.to_i.must_equal(1)
       end
     end
-
   end
-
-
-
-
 
 
 

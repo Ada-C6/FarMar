@@ -54,17 +54,94 @@ describe FarMar::Vendor do
   end
 
   describe "#products" do
-    # it "should return an array" do
-    #
-    # end
-    #
-    # it "should return an array made up of FarMar::Product instances" do
-    #
-    # end
-    #
-    # it "should have only FarMar::Product instances whose vendor id matches the vendor the method is called on" do
+    before (:each) do
+      @windler = FarMar::Vendor.new(12, "Windler Inc", 4, 3)
+    end
+
+    it "should return an array" do
+      @windler.products.must_be_kind_of(Array)
+    end
+
+    it "should return an array made up of FarMar::Product instances" do
+      products_list = @windler.products
+      products_list.each do |product|
+        product.must_be_instance_of(FarMar::Product)
+      end
+    end
+
+    it "should have only FarMar::Product instances whose vendor id matches the vendor the method is called on" do
+      products_list = @windler.products
+      products_list.each do |product|
+        product.vendor_id.must_equal(@windler.id)
+      end
+    end
+  end
+
+  describe "#sales" do
+    before (:each) do
+      @bread_vendor = FarMar::Vendor.new(6, "Zulauf and Sons", 8, 1)
+    end
+
+    it "should return an array" do
+      @bread_vendor.sales.must_be_kind_of(Array)
+    end
+
+    it "should return a collection of FarMar::Sale instances" do
+      a_vendors_sales_list = @bread_vendor.sales
+      a_vendors_sales_list.each do |sale|
+        sale.must_be_instance_of(FarMar::Sale)
+      end
+    end
+
+    # it "should return a collection of Sale instances whose vendor_ids match the id of the vendor the method is called on" do
     #
     # end
   end
+
+  describe "#revenue" do
+    before (:each) do
+      @bread_vendor = FarMar::Vendor.new(6, "Zulauf and Sons", 8, 1)
+    end
+
+    it "should return a number" do
+      @bread_vendor.revenue.must_be_kind_of(Fixnum || Float)
+    end
+
+    # it "should return a number equal to the sum of a vendor's sales" do
+    #   a_vendors_sales_list = @bread_vendor.sales
+    #   a_vendors_sales_list.each do |vendor_sale|
+    #     amounts_array
+    #
+    # end
+  end
+
+  describe "self.by_market" do
+    it "should return an array" do
+      FarMar::Vendor.by_market(20).must_be_kind_of(Array)
+    end
+
+    it "should return an array of FarMar::Vendor instances" do
+      a_markets_vendors = FarMar::Vendor.by_market(25)
+      a_markets_vendors.each do |vendor|
+        vendor.must_be_instance_of(FarMar::Vendor)
+      end
+    end
+
+    it "should return an array of vendors whose market ids match the market id passed in" do
+      a_markets_vendors = FarMar::Vendor.by_market(35)
+      a_markets_vendors.each do |vendor|
+        vendor.market_id.must_equal(35)
+      end
+    end
+  end
+
+
+
+
+
+
+
+
+
 
 end

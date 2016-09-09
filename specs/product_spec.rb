@@ -75,5 +75,28 @@ describe FarMar::Product do
     end
   end
 
+  describe "self.by_vendor" do
+    it "should return an array" do
+      FarMar::Product.by_vendor(20).must_be_kind_of(Array)
+    end
+
+    it "should return a collection of FarMar::Product instances" do
+      a_vendors_products = FarMar::Product.by_vendor(25)
+      a_vendors_products.each do |product|
+        product.must_be_instance_of(FarMar::Product)
+      end
+    end
+
+    it "should return an array of products whose vendor ids match the vendor id passed in" do
+      a_vendors_products = FarMar::Product.by_vendor(20)
+      a_vendors_products.each do |product|
+        produce.vendor_id.must_equal(20)
+      end
+    end
+
+  end
+
+
+
 
 end
