@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe FarMar::Product do
-  let(:sam) {FarMar::Product.new(58, "Jane", 1)}
+  let(:sam) {FarMar::Product.new(58, "Jane", 19)}
   describe "#initialize" do
     it "can create a new instance of Product" do
       sam.must_be_instance_of(FarMar::Product)
@@ -25,8 +25,8 @@ describe FarMar::Product do
   describe "self.by_vendor(vendor_id)" do
     it "returns the vendors of a given vendor id" do
 
-      FarMar::Product.by_vendor(1).each do |x|
-        x.vend_id.must_equal(1)
+      FarMar::Product.by_vendor(19).each do |x|
+        x.vend_id.must_equal(19)
       end
     end
   end
