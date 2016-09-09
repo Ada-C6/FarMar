@@ -29,11 +29,7 @@ class FarMar::Product
     end
 
     def vendor
-        FarMar::Vendor.all.each do |v_object|
-            if v_object.id == @vendor_id
-                return v_object
-            end
-        end
+        return FarMar::Vendor.find(@vendor_id)
     end
 
     def sales
