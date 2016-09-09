@@ -33,6 +33,8 @@ class FarMar::Sale
     end # self.all
 
     def self.find(sale_id)
+        raise ArgumentError, "Expected a Fixnum sale_id" if sale_id.class != Fixnum
+
         return self.all[sale_id]
     end # self.find
 

@@ -11,15 +11,16 @@ describe "FarMar::Sale" do
     describe "self.all" do
         before(:all) do
             @csv_sales = FarMar::Sale.all
-
             # select a random value from csv_sales hash. range 0..12002 because csv contains 12002 unique sale IDs
             @random_sale = @csv_sales.values[rand(0..12001)]
         end
 
-        it "should return a hash of FarMar::Sale objects (ideally with length matching CSV size)" do
+        it "should return a hash of FarMar::Sale objects" do
             @csv_sales.class.must_equal(Hash)
             @random_sale.must_be_instance_of(FarMar::Sale)
+        end
 
+        it "should return a hash with length matching CSV size)" do
             # csv contains 12002 unique sale IDs
             @csv_sales.length.must_equal(12002)
         end
@@ -30,11 +31,24 @@ describe "FarMar::Sale" do
     end # self.all
 
     describe "self.find(id)" do
-        it "should return a FarMar::Sale object with data that corresponds to the id argument passed in" do
-            found_sale = FarMar::Sale.find(10837)
+        let(:found_sale) { FarMar::Sale.find(10837) }
+
+        it "should raise an ArgumentError if not passed a Fixnum argument" do
+            proc { FarMar::Sale.find("cats") }.must_raise(ArgumentError)
+        end
+
+        it "should return a FarMar::Sale object" do
             found_sale.must_be_instance_of(FarMar::Sale)
+        end #
+
+        it "should return a FarMar::Sale object with correct sale_id" do
             found_sale.sale_id.must_equal(10837)
+        end #
+
+        it "should return a FarMar::Sale object with correct amount" do
             found_sale.amount.must_equal(6040)
+        end #
+        it "should return a FarMar::Sale object with correct purchase_time" do
             found_sale.purchase_time.must_be_instance_of(DateTime)
         end #
     end # self.find
@@ -57,8 +71,9 @@ describe "FarMar::Sale" do
         end #two_times
 
         it "should return an array of FarMar::Sale objects" do
-            times = two_times
-            time_test_sales = FarMar::Sale.between(times[0], times[1])
+            time_one, time_two = two_times
+            time_test_sales = FarMar::Sale.between(time_one, time_two)
+
             time_test_sales.must_be_instance_of(Array)
             time_test_sales[rand(0..time_test_sales.length-1)].must_be_instance_of(FarMar::Sale)
         end
@@ -68,7 +83,7 @@ describe "FarMar::Sale" do
             test_end_time = DateTime.parse("2013-11-07 13:07:38 -0800").to_time
 
             purchase_time_test = FarMar::Sale.between(test_begin_time, test_end_time)
-            # ap purchase_time_test #@todo - remove/debug
+
             purchase_time_test.each do |sale|
                 (sale.purchase_time.to_time >= test_begin_time).must_equal(true)
                 (sale.purchase_time.to_time <= test_end_time).must_equal(true)
