@@ -35,4 +35,8 @@ class FarMar::Sale
     def vendor
         return FarMar::Vendor.find(@vendor_id)
     end
+
+    def product
+        return FarMar::Product.find(@product_id)
+    end
 end

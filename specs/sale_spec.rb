@@ -36,8 +36,19 @@ describe FarMar::Sale do
             s.vendor.must_be_instance_of(FarMar::Vendor)
         end
 
-        # it "will output the object whose vendor id corresponds to the current sale instance's vendor id" do
-        #     s.vendor.id.must_equal(s.vendor_id)
-        # end
+        it "will output the object whose vendor id corresponds to the current sale instance's vendor id" do
+            s.vendor.id.must_equal(s.vendor_id)
+        end
+    end
+
+    describe "product" do
+        let(:s) {FarMar::Sale.all.last}
+        it "will output a Product object" do
+            s.product.must_be_instance_of(FarMar::Product)
+        end
+
+        it "will output the object whose product id corresponds to the current sale instance's product id" do
+            s.product.id.must_equal(s.product_id)
+        end
     end
 end
