@@ -75,6 +75,57 @@ describe FarMar::Product do
     end
   end
 
+  describe "#vendor" do
+    before (:each) do
+      @kale = FarMar::Product.new(14, "curly kale", 8)
+    end
+
+    it "should return a FarMar::Vendor instance" do
+      @kale.vendor.must_be_kind_of(FarMar::Vendor)
+    end
+
+    it "should return a Vendor instance whose id matches the vendor_id of the product the method was called on" do
+      @kale.vendor.id.must_equal(@kale.vendor_id)
+    end
+  end
+
+  describe "#sales" do
+    before (:each) do
+      @collards = FarMar::Product.new(13, "collard greens", 50)
+    end
+
+    it "should return an array" do
+      @collards.sales.must_be_kind_of(Array)
+    end
+
+    it "should return a collection of FarMar::Sale objects" do
+      collard_sales = @collards.sales
+
+
+      collard_sales.each do |sale|
+        sale.must_be_instance_of(FarMar::Sale)
+      end
+    end
+
+    it "should return a collection of Sale objects who product_ids match the id of the Product the method is called on" do
+      collard_sales = @collards.sales
+      collard_sales.each do |sale|
+        sale.product_id.must_equal(@collards.id)
+      end
+    end
+
+  end
+
+  describe "#number_of_sales" do
+    before (:each) do
+        @tomato = FarMar::Product.new(7, "tomato", 47)
+    end
+
+    it "should return a number" do
+      @tomato.number_of_sales.must_be_kind_of(Fixnum)
+    end
+  end
+
   describe "self.by_vendor" do
     it "should return an array" do
       FarMar::Product.by_vendor(20).must_be_kind_of(Array)
@@ -95,8 +146,5 @@ describe FarMar::Product do
     end
 
   end
-
-
-
 
 end
