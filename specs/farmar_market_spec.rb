@@ -39,7 +39,14 @@ describe Market do
 
   describe "#products" do
     it "should return a collection of Product instances that are associated to the market through the Vendor class" do
+      m.products.length.must_equal(34)
+    end
+  end
 
+  describe "search" do
+    it "should returna collection of Market instances where the market or vendor name contain the search item" do
+      # Market.search('school').length.must_equal(3)
+      Market.search('collins').length.must_equal(12 + 2) # 12 vendors and 2 markets
     end
   end
 

@@ -63,4 +63,28 @@ class Market
     return product_list
   end
 
+  def self.search(search_term)
+    matches = []
+    v = Vendor.all
+    m = Market.all
+
+    # find and add matching vendor names
+    v_matches = v.find_all { |n| n[1].name.downcase.include?(search_term) }
+
+    v_matches.each do |i|
+      matches << i[1]
+    end
+
+    # find and add matching market names
+    m_matches = m.find_all { |n| n[1].name.downcase.include?(search_term)}
+
+    m_matches.each do |i|
+      matches << i[1]
+    end
+    # matches << m_matches
+
+    return matches
+
+  end
+
 end
