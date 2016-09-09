@@ -60,8 +60,29 @@ module FarMar
       end
     end
 
+    #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+    describe "#vendor" do
+      let(:sale_instance) { Sale.new(96,2289,"2013-11-10 17:23:48 -0800",19,57)}
+      it "should return an instance of Vendor" do
+        sale_instance.vendor.must_be_instance_of(Vendor)
+      end
+      it "should be associated with vendor_id" do
+        sale_instance.vendor.id.must_equal(sale_instance.vendor_id)
+      end
+    end
 
+#product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
+    describe "#product" do
+      let(:sale_instance) { Sale.new(96,2289,"2013-11-10 17:23:48 -0800",19,57)}
+      it "should return an instance of Product" do
+        sale_instance.product.must_be_instance_of(Product)
+      end
+      it "should be associated by the sale using the product_id field" do
+        sale_instance.product.id.must_equal(sale_instance.product_id)
+      end
+    end
 
+    #self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
 
 
   end

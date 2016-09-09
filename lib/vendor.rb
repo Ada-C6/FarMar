@@ -37,7 +37,7 @@ module FarMar
       return vendor_products
     end
 
-    #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+    #Returns a collection of Sale instances, associated by the vendor_id field.
     def sales
       vendor_sales = {}
       Sale.all.each do |sale_id, sale|
@@ -56,11 +56,11 @@ module FarMar
       return revenue
     end
 
-    # self.by_market(market_id): returns all of the vendors with the given market_id
+    # Returns all of the vendors with the given market_id
     def self.by_market(market_id) # nifty select method! returns only those that are true
       market_vendors = self.all.select { |vendor_id, vendor|
         vendor.market == market_id }
-      return market_vendors
+      return market_vendors # it is an array of hash
     end
 
   end

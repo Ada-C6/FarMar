@@ -2,10 +2,10 @@
 In this assignment we will be creating an application to look up farmers markets and their related vendors, products, and sales. We will use __CSV__ files as our _database_.
 
   Project Data  
-    [Markets](#markets)  
-    [Vendors](#vendors)  
-    [Products](#products)  
-    [Sales](#sales)  
+     * [Markets](#markets)  
+     * [Vendors](#vendors)  
+     * [Products](#products)  
+     * [Sales](#sales)  
   [Baseline](#baseline)      
   [Primary](#primary)  
 

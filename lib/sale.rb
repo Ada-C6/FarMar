@@ -1,9 +1,4 @@
 # Remember: the datetime here loaded are not converted from string. Suggest require 'time' and Time.Parse(line[2])
-# ID - (Fixnum) uniquely identifies the sale
-# Amount - (Fixnum) the amount of the transaction, in cents (i.e., 150 would be $1.50)
-# Purchase_time - (Datetime) when the sale was completed
-# Vendor_id - (Fixnum) a reference to which vendor completed the sale
-# Product_id - (Fixnum) a reference to which product was sold
 module FarMar
   class Sale
 
@@ -11,7 +6,7 @@ module FarMar
 
     def initialize(id, amount, purchase_time, vendor_id, product_id)
       @id             = id
-      @amount         = amount / 100 # in dollars
+      @amount         = amount / 100 # in dollars, never used!
       @purchase_time  = purchase_time
       @vendor_id      = vendor_id
       @product_id     = product_id
@@ -31,8 +26,29 @@ module FarMar
       return vendors[id]
     end
 
+    def vendor
+      sale_vendor = Vendor.new(:id, :name, :number_of_employees, :market_id)
+      Vendor.all.each do |ven_id, ven|
+        if ven_id == vendor_id
+          sale_vendor = ven
+        end
+      end
+      return sale_vendor
+    end
 
+#Returns the Product instance, associated with this sale using the Sale product_id field
+    def product
+      sale_product = Product.new(:id, :name, :vendor_id)
+      Product.all.each do |pro_id, pro|
+        if pro_id == product_id
+          sale_product = pro
+          break
+        end
+      end
+      return sale_product
+    end
 
+    #self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
 
 
 
