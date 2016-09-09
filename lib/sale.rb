@@ -35,11 +35,13 @@ module FarMar
     def self.between(beginning_time, end_time)
       beginning_time = string_to_date(beginning_time)
       end_time = string_to_date(end_time)
-      hash = {}
 
+      hash = {}
       all.each do |k, v|
         hash[v] = string_to_date(v.purchase_time)
       end
+
+      raise ArgumentError.new("You must give a beginning time that is earlier than an end time") if beginning_time > end_time
 
       raise ArgumentError.new("These dates are beyond the date range in our database") if (beginning_time < hash.values.min && end_time < hash.values.min ) || (beginning_time > hash.values.max && end_time > hash.values.max)
 
