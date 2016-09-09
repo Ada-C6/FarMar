@@ -20,6 +20,11 @@ describe FarMar::Market do
       this_market = FarMar::Market.find(20)
       this_market.name.must_equal("Scottdale Farmers Market")
     end
+
+    # it "returns that market id does not exist if argument's market id does not match any existing market ids" do
+    #
+    # end
+
   end
 
   describe "#vendors" do

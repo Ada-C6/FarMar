@@ -13,7 +13,7 @@ module FarMar
     def self.all
       list_of_sales = []
       CSV.read("/Users/YNaka/Ada/project_forks/FarMar/support/sales.csv", "r").each do |line|
-        list_of_sales << self.new(line[0].to_i, line[1].to_i, line[2], line[3].to_i, line[4].to_i)
+        list_of_sales << self.new(line[0].to_i, line[1].to_i, DateTime.parse(line[2]), line[3].to_i, line[4].to_i)
       end
       list_of_sales
     end
@@ -25,6 +25,19 @@ module FarMar
         end
       end
       return "That does not match any existing sale IDs"
+    end
+
+
+    def self.between(begin_time, end_time)
+      begin_time = DateTime.parse(begin_time)
+      end_time = DateTime.parse(end_time)
+      sales_between_these_times = []
+      Sale.all.each do |s|
+        if (s.purchase_time >= begin_time && s.purchase_time <= end_time)
+          sales_between_these_times << s
+        end
+      end
+      return sales_between_these_times
     end
 
     def vendor
