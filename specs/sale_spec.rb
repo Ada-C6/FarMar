@@ -36,7 +36,21 @@ describe FarMar::Sale do
     end
   end
 
+  describe "vendor" do
+    it "should vendor instances associated with the sale" do
+      p.vendor_info.each do |line|
+      p.vendor.line.amount.must_equal(sales.amount)
+      end
+    end
+  end
 
+  describe "product" do
+    it "should product instances associated with the sale" do
+      p.product_info.each do |line|
+      p.product.line.amount.must_equal(sales.amount)
+      end
+    end
+  end
 
 
 end

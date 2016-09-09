@@ -10,7 +10,7 @@ describe FarMar::Vendor do
   #   market_id: 888
   # }
 
-  p = FarMar::Vendor.new(1, "bibi", 88, 888)
+  p = FarMar::Vendor.new(1, "bibi", 28, 8)
 
   describe "#initialize" do
     it "should be an instance of Vendor" do
@@ -25,36 +25,30 @@ describe FarMar::Vendor do
   end
 
   describe "market" do
-
     it "should be a kind of Array" do
       p.market.must_be_kind_of(Array)
     end
-
-    # it "should return market name that is associated with " do
-    #   p.market_info.each do |line|
-    #     p.market.line.name.must_equal("People's Co-op Farmers Market")
-    #   end
-    # end
   end
 
-  describe "sales" do
-    it "should return sales amount given a vndor id" do
-      p.sale_info.each do |line|
-        p.sales.line.amount.must_equal(9290)
-      end
+
+describe "sales" do
+  it "should return sales amount given a vndor id" do
+    p.sale_info.each do |line|
+      p.sales.line.amount.must_equal(sales.amount)
     end
   end
+end
 
-  describe "self.by_market" do
-    it "should return the vendors given the vendor information" do
-      FarMar::Vendor.by_market(1).each do |line|
-        line.market_id.must_equal(1)
-      end
+describe "self.by_market" do
+  it "should return the vendors given the vendor information" do
+    FarMar::Vendor.by_market(1).each do |line|
+      line.market_id.must_equal(1)
     end
   end
-  # describe
+end
+# describe
 
-  # let (:rererer) {Vendor.new(ereererr)}
-  # :ererer some vendor
+# let (:rererer) {Vendor.new(ereererr)}
+# :ererer some vendor
 
 end

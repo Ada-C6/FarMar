@@ -19,7 +19,8 @@ module FarMar
 
     def self.all
       info = {}
-      CSV.read('support/markets.csv').each do |line|
+      # CSV.read('../support/markets.csv').each do |line|
+        CSV.read('support/markets.csv').each do |line|
         id = line[0].to_i
         name = line[1]
         address = line[2]
@@ -35,14 +36,14 @@ module FarMar
 
     def self.find(id)
       self.all[id]
-
     end
-
 
     #use map
     def vendors
-      return FarMar::Vendor.by_market(@id)
+     vendor_info = FarMar::Vendor.by_market(@id)
+     return  vendor_info
     end
+
   end
 end
 

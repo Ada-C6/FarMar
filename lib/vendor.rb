@@ -1,7 +1,7 @@
 # require 'csv'
-# require_relative 'market'
-# require_relative 'product'
-# require_relative 'sale'
+# # require_relative 'market'
+# # require_relative 'product'
+# # require_relative 'sale'
 module FarMar
   class Vendor
 
@@ -19,7 +19,8 @@ module FarMar
 
     def self.all
       info = {}
-      CSV.read('support/vendors.csv').each do |line|
+      # CSV.read('../support/vendors.csv').each do |line|
+        CSV.read('support/vendors.csv').each do |line|
         id = line[0].to_i
         name = line[1]
         no_of_employee = line[2].to_i
@@ -38,7 +39,7 @@ module FarMar
     def market
       markets = FarMar::Market.all
       markets.each do |key, line|
-        if @id == line.id
+        if @market_id == line.id
           @market_info << line
         end
       end
@@ -54,6 +55,14 @@ module FarMar
     #   end
     #   return @product_info
     # end
+
+
+
+
+
+
+
+
 
     def sales
       sale = FarMar::Sale.all
@@ -80,9 +89,9 @@ module FarMar
 end
 
 # p FarMar::Vendor.by_market(2)
-# p = FarMar::Vendor.new(5, "name", 123, 2)
-# p p.market
-# # p p.products
+# p = FarMar::Vendor.new(2, "name", 123, 1)
+# # p p.market
+# # # p p.products
 # p p.sales
 
-# p FarMar::Vendor.find(2)
+# p FarMar::Vendor.all

@@ -11,12 +11,12 @@ describe FarMar::Market do
   #   city: 123,
   #   product_id: 123
   # }
+  p = FarMar::Market.new(1, "name", "address", "city", "county", "state", 98102)
 
   # (id, name, address, city, county, state, zip)
 
   describe "initialize" do
     it "should be an instance of Market" do
-      p = FarMar::Market.new(123, "name", "address", "city", "county", "state", 98102)
 
       p.must_be_instance_of(FarMar::Market)
 
@@ -42,12 +42,13 @@ describe FarMar::Market do
   end
   # it should return a Hash.
 
-  # describe "#vendors " do
-  #   market_id = FarMar::Market.new(3, "name", "address", "city", "county", "state", 98102)
-  #   it "returns a collection of FarMar::Vendor instances associated
-  #   with the market by the market_id field "
-  #   market_id.vendors.length.must_equal(3)
-  # end
+  describe "#vendors " do
+    # market_id = FarMar::Market.new(3, "name", "address", "city", "county", "state", 98102)
+    it "returns a collection of FarMar::Vendor instances associated
+    with the market by the market_id field " do
+    p.vendors.must_be_kind_of(Array)
+  end
+end
 end
 
 # vendor.  length shlul be ...
