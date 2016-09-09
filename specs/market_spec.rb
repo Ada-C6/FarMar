@@ -9,24 +9,40 @@ describe "FarMar::Market" do
     end # initialize
 
     describe "self.all" do
+        before(:all) do
+            @csv_markets = FarMar::Market.all
+            @expected_length = CSV.read('support/markets.csv').size
+        end
+
         it "should return a hash of FarMar::Market objects with length matching CSV size" do
-            csv_markets = FarMar::Market.all
-            expected_length = CSV.read('support/markets.csv').size
-            csv_markets.class.must_equal(Hash)
-            csv_markets.values[rand(0..expected_length-1)].must_be_instance_of(FarMar::Market)
-            csv_markets.length.must_equal(expected_length)
+            @csv_markets.class.must_equal(Hash)
+
+            @csv_markets.values.each do |market|
+                market.must_be_instance_of(FarMar::Market)
+            end
+        end
+
+        it "should return a hash with length matching the CSV size" do
+            @csv_markets.length.must_equal(@expected_length)
         end
     end # self.all
 
     describe "self.find(id)" do
+        let(:found_market) { FarMar::Market.find(126) }
+
         it "should raise an ArgumentError if not passed a Fixnum argument" do
             proc { FarMar::Market.find("cats") }.must_raise(ArgumentError)
         end
 
-        it "should return a FarMar::Market object with data that corresponds to the id argument passed in" do
-            found_market = FarMar::Market.find(126)
+        it "should return a FarMar::Market object" do
             found_market.must_be_instance_of(FarMar::Market)
+        end
+
+        it "should return a FarMar::Market object with correct market_id" do
             found_market.market_id.must_equal(126)
+        end
+
+        it "should return a FarMar::Market object with correct zip" do
             found_market.zip.must_equal("65536")
         end
     end # self.find
@@ -51,11 +67,15 @@ describe "FarMar::Market" do
         describe "#vendors" do
             it "should return an array of FarMar::Vendor instances" do
                 @test_vendors.must_be_instance_of(Array)
-                @test_vendors[rand(0..@test_vendors.length-1)].must_be_instance_of(FarMar::Vendor)
+                @test_vendors.each do |vendor|
+                    vendor.must_be_instance_of(FarMar::Vendor)
+                end
             end
 
             it "should return FarMar::Vendor instances with the correct market_id" do
-                @test_vendors[rand(0..@test_vendors.length-1)].market_id.must_equal(480)
+                @test_vendors.each do |vendor|
+                    vendor.market_id.must_equal(480)
+                end
             end
         end # #vendors
     end # instance methods
