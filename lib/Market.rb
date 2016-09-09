@@ -35,17 +35,18 @@ class FarMar::Market
      return market_array
   end
 
-  # returns and instance of an object where
-  # the value of the id field in the CSV
-  # matches the passed parameter
-  def self.find(id)
-    CSV.foreach('.support/markets.csv') do |line|
-      if id == line[0]
-        return line
-      else
-        continue
+  # returns an the market object associated with the Market id
+
+  def self.find(id) # this parameter takes string
+      # find the market object with the id
+      found_market = nil # because there is no string
+      all.each do |market|
+        if market.id == id
+          found_market = market
+          break
+        end
       end
-    end
+      return found_market
   end
 end
 

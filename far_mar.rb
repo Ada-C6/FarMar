@@ -21,16 +21,16 @@ puts "Done Loading library!"
 
 
 ###### TESTING MARKET ############
-puts "Started loading data!\n\n\n"
-puts FarMar::Market.all.inspect # works as desired
-puts "Done loading data!"
+# puts "Started loading data!\n\n\n"
+# puts FarMar::Market.all.inspect # works as desired
+# puts "Done loading data!"
 #for class method call syntax is Module::class.method(* put parameters here if needed) (don't include the self part)
 
 # if there is a parameter write the arugment here
 
 # FarMar::Market.all # this will match one of the the market id numbers
 
-
+puts FarMar::Market.find('4')
 
 
 # add additional pieces for constructor
