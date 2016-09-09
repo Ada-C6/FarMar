@@ -40,7 +40,7 @@ module FarMar
 
     def self.by_vendor(vendor_id)
       # self.by_vendor(vendor_id): returns all of the products with the given vendor_id (will call this in the Vendor #products method. )
-      all.values.group_by { |product| product.vendor_id }[vendor_id]
+      all.values.select { |product| product.vendor_id == vendor_id }
       #I don't like that these things are called the same thing -- I have an instance variable @vendor_id for a product instance, and the argument vendor_id that is getting passed in. Seems to be working though.
       #TODO: rather than using group_by and getting all the product groups by vendor_id, and then throwing away all the groups except the one I care about, research using "filter".
     end

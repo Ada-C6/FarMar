@@ -44,9 +44,9 @@ module FarMar
 
     def self.by_market(market_id)
       # self.by_market(market_id): returns all of the vendors with the given market_id
-      Vendor.all.values.group_by { |vendor| vendor.market_id }[market_id]
+      Vendor.all.values.select { |vendor| vendor.market_id == market_id }
+
       #I don't like that these things are called the same thing -- I have an instance variable @market_id for a vendor instance, and the argument market_id that is getting passed in. Seems to be working though.
-      #TODO: rather than using group_by and getting all the vendor groups by market_id, and then throwing away all the groups except the one I care about, research using "filter".
     end
 
     def products
