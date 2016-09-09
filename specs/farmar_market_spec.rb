@@ -42,7 +42,9 @@ describe FarMar::Market do
       test_hash[:market_state] = "Testington"
       test_hash[:market_zip] = 88888
 
-      proc { FarMar::Vendor.find(market_id) }.must_raise("ID was not present")
+      test_market = FarMar::Market.new(test_hash)
+
+      proc { FarMar::Market.find(test_market.market_id) }.must_raise("ID was not present")
     end
 
     it "should find a specific Market by the market_id" do

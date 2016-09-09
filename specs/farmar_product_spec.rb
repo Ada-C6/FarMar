@@ -34,7 +34,9 @@ describe FarMar::Product do
       test_hash[:product_name] = "Test"
       test_hash[:vendor_id] = 1
 
-      proc { FarMar::Product.find(product_id) }.must_raise("ID was not present")
+      test_product = FarMar::Product.new(test_hash)
+
+      proc { FarMar::Product.find(test_product.product_id) }.must_raise("ID was not present")
     end
 
     # would need to change if dataset were to change

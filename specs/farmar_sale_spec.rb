@@ -37,7 +37,9 @@ describe FarMar::Sale do
       test_hash[:vendor_id] = 0
       test_hash[:product_id] = 0
 
-      proc { FarMar::Sale.find(sale_id) }.must_raise("ID was not present")
+      test_sale = FarMar::Sale.new(test_hash)
+
+      proc { FarMar::Sale.find( test_sale.sale_id) }.must_raise("ID was not present")
     end
 
     it "should find a specific Sale by the sale_id" do

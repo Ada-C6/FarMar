@@ -37,7 +37,9 @@ describe FarMar::Vendor do
       test_hash[:num_employees] = 0
       test_hash[:market_id] = 2
 
-      proc { FarMar::Vendor.find(vendor_id) }.must_raise("ID was not present")
+      test_vendor = FarMar::Vendor.new(test_hash)
+
+      proc { FarMar::Vendor.find(test_vendor.vendor_id) }.must_raise("ID was not present")
     end
 
     it "should find a specific Vendor by the vendor_id" do
