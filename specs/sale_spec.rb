@@ -72,9 +72,32 @@ module FarMar
         #check that the name or the product_id is correct.
         new_sale.product.product_id.must_equal(4)
       end
+    end
 
+    describe "self.between(begin,end)" do
+      let(:beginning_time) {DateTime.new()}
+      let(:end_time) {DateTime.new()}
+      let(:some_sales) {Sale.between(beginning_time, end_time)}
+      # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
+      it "should return an array" do
+        #should return an array of sale objects
+        some_sales.must_be_instance_of(Array)
+      end
+
+      it "should return an array of Sale objects" do
+        skip
+        some_sales[0].must_be_instance_of(Sale)
+      end
+
+      it "should have Sales that are before end_time" do
+        skip
+        some_sales[0].purchase_time.must_be :<=, end_time
+      end
+
+      it "should have Sales that are after beginning_time" do
+        skip
+        some_sales[0].purchase_time.must_be :>=, beginning_time
+      end
     end
   end
 end
-
-# self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
