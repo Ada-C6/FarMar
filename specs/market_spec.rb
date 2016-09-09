@@ -22,8 +22,9 @@ describe FarMar::Market do
   end
 
   describe "#vendors" do
+    let(:market_test) {FarMar::Market.find(2)}
     it "should return a the correct number of FarMar::Vendor instances that are associated with the market instance" do
-      market_test = FarMar::Market.find(2)
+      # market_test = FarMar::Market.find(2)
       market_test.vendors.length.must_equal(3)
     end
   end
@@ -34,4 +35,19 @@ describe FarMar::Market do
       market_test2.vendors.length.must_equal(6)
     end
   end
+
+  # products returns a collection of FarMar::Product instances that are associated to the market through theFarMar::Vendor class.
+  describe "#products" do
+    it "should returns a collection of FarMar::Product instances that are associated to the market through theFarMar::Vendor class" do
+      product_test = FarMar::Market.find(2)
+      product_test.products.length.must_equal(9)
+    end
+  end
+
+  # self.search(search_term) returns a collection of FarMar::Market instances where the market name or vendor name contain the search_term. For example FarMar::Market.search('school') would return 3 results, one being the market with id 75 (Fox School Farmers FarMar::Market).
+  # describe "self.search(search_term)" do
+  #   it "should returna collection of FarMar::Market instances where the market name or vendor name contain the search_term." do
+  #
+  #   end
+  # end
 end
