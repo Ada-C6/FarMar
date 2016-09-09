@@ -48,7 +48,6 @@ describe FarMar::Market do
     end
 
     it "should find a specific Market by the market_id" do
-      FarMar::Market.all
       found_market = FarMar::Market.find(@market.market_id)
       found_market.market_id.must_equal(@market.market_id)
       found_market.market_name.must_equal(@market.market_name)
