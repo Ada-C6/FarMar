@@ -1,5 +1,7 @@
 # lib/farmar_market.rb
 require 'csv'
+require 'date'
+require 'time'
 
 class Sale
 attr_reader :id, :amount_in_cents, :purchase_time, :vendor_id, :product_id
@@ -35,7 +37,6 @@ attr_reader :id, :amount_in_cents, :purchase_time, :vendor_id, :product_id
         return sale
       end
     end
-    # if id > 500, returns entire array....fix later
   end
 
   def vendor
@@ -44,5 +45,19 @@ attr_reader :id, :amount_in_cents, :purchase_time, :vendor_id, :product_id
 
   def product
     Product.find(@product_id)
+  end
+
+  def self.between(beginning_time, end_time)
+
+    d1 = DateTime.parse(beginning_time)
+    d2 = DateTime.parse(end_time)
+    all_times = []
+    all.each do |sale|
+      q = DateTime.parse(sale.purchase_time)
+      if q >= d1 && q <= d2
+        all_times << sale
+      end
+    end
+    return all_times
   end
 end

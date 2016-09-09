@@ -43,6 +43,12 @@ module FarMar
         s.product.must_be_instance_of(Product)
       end
     end
-    
+
+    describe "between(beginning_time, end_time)" do
+      it "should return correct amount of objects" do
+        s = Sale.between("2013-11-13 04:45:00 -0800", "2013-11-24 5:00:01 -0800")
+        s.count.must_equal(314)
+      end
+    end
   end
 end
