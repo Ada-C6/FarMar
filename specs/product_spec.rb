@@ -23,20 +23,16 @@ describe FarMar::Product do
   end
 
   describe "vendor" do
-    it "should return instances of Vendor that are associated with the product" do
-      p.vendor_info.each do |line|
-        p.vendor.line.name.must_equal(FarMar:Vendor.name)
-      end
+    it "should be a kind of Array" do
+        p.vendor.must_be_kind_of(Array)
     end
   end
 
   describe "sales" do
     it "should return a collection of FarMar::Sale instances that are associated
-    using the FarMar::Sale product_id  " do
-      p.sale_info.each do |line|
-        p.sales.line.product_id.must_equal(FarMar.Product.id)
+    using the FarMar::Sale product_id" do
+        p.sales.length.must_equal(1)
       end
-    end
   end
 
   describe "self.by_vendor" do
