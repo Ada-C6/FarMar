@@ -84,7 +84,20 @@ class Market
     # matches << m_matches
 
     return matches
+  end
 
+  def prefered_vendor
+    v = Vendor.all.values
+    revenues = []
+
+    v.each do |i|
+      revenues << i.revenue
+    end
+
+    max_revenue = revenues.max
+    max_vendor = revenues.index(max_revenue)
+
+    return max_vendor
   end
 
 end

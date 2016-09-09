@@ -58,7 +58,6 @@ class Vendor
     sales_instances.each do |i|
       total_revenue += i.amount
     end
-    puts "The total revenue is #{ total_revenue }"
     return total_revenue
   end
 

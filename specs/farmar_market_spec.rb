@@ -50,4 +50,10 @@ describe Market do
     end
   end
 
+  describe "#prefered_vendor" do
+    it "should return the vendor with the highest revenue" do
+      Market.prefered_vendor.class.must_equal(Vendor)
+    end
+  end
+
 end
