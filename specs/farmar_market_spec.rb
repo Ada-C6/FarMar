@@ -25,6 +25,7 @@ describe FarMar::Market do
   end
 
   describe "all" do
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should put all values of its CSV file into an array" do
       @all_markets.wont_be_empty
     end
@@ -55,6 +56,7 @@ describe FarMar::Market do
   end
 
   describe "#vendors" do
+    # if time after total refactoring, would like to see if there's additional things to check to make this more useful
     it "should return a collection of FarMar::Vendor instances that are associated with the market_id field" do
       @market.vendors.wont_be_empty
     end
