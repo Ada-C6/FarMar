@@ -14,7 +14,7 @@ module FarMar
     def self.all
       sale_array = []
       CSV.read("/Users/yasminor/ada/Week_5/FarMar/support/sales.csv").each_with_index do |line, i|
-        sale_array[i] = self.new(line[0].to_i, line[1], line[2].to_i, line[3].to_i, line[4].to_i)
+        sale_array[i] = self.new(line[0].to_i, line[1].to_i, DateTime.parse(line[2]), line[3].to_i, line[4].to_i)
       end
       return sale_array
     end
@@ -39,8 +39,30 @@ module FarMar
     end
 
     def self.between(beginning_time, end_time) # returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-      
+      # iterate over ALL sale objects and check to see:
+      # if purchase_time is > beginning_time && purchase_time < end_time
+      # then add that sale object to array that collects the sales that happen between the beginning_time and end_time
+      # return the collection sales whose purchase_time is between
+      sales_within_time_period = []
+      all_sales = FarMar::Sale.all
+      all_sales.map do |sale|
+        if sale.purchase_time > beginning_time && sale.purchase_time < end_time
+          sales_within_time_period << sale
+        end
+      end
+      return sales_within_time_period
     end
+
+
+
+
+
+
+
+
+
+
+
 
 
   end
