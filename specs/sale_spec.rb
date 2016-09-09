@@ -20,4 +20,18 @@ describe FarMar::Sale do
       this_sale.amount.must_equal(8375)
     end
   end
+
+  describe "#vendor" do
+    it "returns the instance of Vendor associated with that instance of Sale" do
+      s = FarMar::Sale.find(250)
+      s.vendor.id.must_equal(52)
+    end
+  end
+
+  describe "#product" do
+    it "returns the instance of Product associated with that instance of Sale" do
+      this_sale = FarMar::Sale.find(121)
+      this_sale.product.id.must_equal(70)
+    end
+  end
 end

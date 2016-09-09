@@ -24,7 +24,23 @@ module FarMar
           return s
         end
       end
-      return "That does not match an existing sale IDs"
+      return "That does not match any existing sale IDs"
+    end
+
+    def vendor
+      FarMar::Vendor.all.each do |v|
+        if @vendor_id == v.id
+          return v
+        end
+      end
+    end
+
+    def product
+      FarMar::Product.all.each do |p|
+        if @product_id == p.id
+          return p
+        end
+      end
     end
   end
 end
