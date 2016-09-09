@@ -33,8 +33,8 @@ module FarMar
 
     def sales # returns a collection of Sale instances that are associated with a Product instance
       product_sales_array = []
-      product_sales_array = FarMar::Sale.all
-      product_sales_array.map do |sale|
+      all_sales = FarMar::Sale.all
+      all_sales.map do |sale|
         if sale.product_id == @id
           product_sales_array << sale
         end
