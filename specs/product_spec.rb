@@ -87,12 +87,4 @@ describe FarMar::Product do
 			product_list.last.vendor_id.must_equal(5)
 		end
 	end
-
-	describe "self.most_revenue(n)" do
-		it "must return a collection with n length" do
-			FarMar::Product.most_revenue(5).length.must_equal(5)
-		end
-
-
-	end
 end
