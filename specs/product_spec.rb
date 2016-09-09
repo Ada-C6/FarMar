@@ -21,4 +21,11 @@ describe FarMar::Product do
     end
   end
 
+  describe "#vendor" do
+    it "returns the instance of Vendor associated with that instance of Product" do
+      this_product = FarMar::Product.find(250)
+      this_product.vendor.id.must_be_same_as(FarMar::Vendor.find(78).id)
+    end
+  end
+
 end

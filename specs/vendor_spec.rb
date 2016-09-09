@@ -21,4 +21,18 @@ describe FarMar::Vendor do
       this_vendor.name.must_equal("Mills and Sons")
     end
   end
+
+  describe "#market" do
+    it "returns the instance of Market associated with that instance of Vendor" do
+      vendor = FarMar::Vendor.find(5)
+      vendor.market.id.must_be_same_as(FarMar::Market.find(1).id)
+    end
+  end
+
+  describe "#products" do
+    it "returns all instances of Product associated with that instance of Vendor" do
+      vendor1 = FarMar::Vendor.find(100)
+      vendor1.products.must_equal(["Combative Carrots", "Fair Fruit", "Cool Fish", "Bad Pretzel", "Hurt Burrito"])
+    end
+  end
 end

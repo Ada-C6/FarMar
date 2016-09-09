@@ -30,5 +30,15 @@ module FarMar
       return "That is not an existing market ID"
     end
 
+    def vendors
+      this_markets_vendors = []
+      FarMar::Vendor.all.each do |v|
+        if @id == v.market_id
+           this_markets_vendors << v.name
+        end
+      end
+      return this_markets_vendors
+    end
+
   end
 end

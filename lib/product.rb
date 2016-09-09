@@ -25,5 +25,13 @@ module FarMar
       return "That is not an existing product ID"
     end
 
+    def vendor
+      FarMar::Vendor.all.each do |v|
+        if @vendor_id == v.id
+          return v
+        end
+      end
+    end
+
   end
 end

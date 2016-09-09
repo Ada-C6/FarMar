@@ -21,4 +21,11 @@ describe FarMar::Market do
       this_market.name.must_equal("Scottdale Farmers Market")
     end
   end
+
+  describe "#vendors" do
+    it "returns collection of vendors associated with that instance of Market" do
+      market1 = FarMar::Market.find(3)
+      market1.vendors.must_equal(["Kertzmann LLC", "Donnelly-Quigley", "Windler Inc"])
+    end
+  end
 end
