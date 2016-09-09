@@ -33,9 +33,11 @@ module FarMar
         end
       end
 
+
         it "6 should return a hash of objects" do
           Market.all.must_be_kind_of(Hash)
         end
+
         it "7 should return all objects of self" do
           Market.all.length.must_equal 500
         end

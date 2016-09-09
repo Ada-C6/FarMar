@@ -3,17 +3,17 @@ module FarMar
   class Vendor
     @@all_vendors_by_market = nil
     @@all_vendors = nil
-    attr_accessor :vendor_id, :name, :employees, :market_id,
-      def initialize(vendor_id, name, employees, market_id)
+    attr_accessor :market_id, :vendor_id, :name, :employees
+      def initialize(market_id, vendor_id, name, employees)
+        @market_id = market_id
         @vendor_id = vendor_id
         @name = name
         @employees = employees
-        @market_id = market_id
       end
 
       ##returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
       def products
-        return Products.by_vendor(@vendor_id)
+        return Product.by_vendor(@vendor_id)
       end
 
       #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
@@ -23,8 +23,9 @@ module FarMar
 
       #revenue: returns the the sum of all of the vendor's sales (in cents)
       def revenue
-        ##or, just sales.sum "sum"
-        return Sales.by_vendor(@vendor_id)
+        revenue = { }
+        revenue = Sales.by_vendor(@vendor_id)
+        ##add for.each method to total all transaction_total(s) in hash[1]
       end
 
       def market
@@ -32,11 +33,10 @@ module FarMar
       end
 
       def self.all
-        ##change order back
         if @@all_vendors == nil
           vendors = { }
             CSV.read('./support/vendors.csv').each do |line|
-              vendors[line[0]] = Vendor.new(line[0],line[1],line[2],line[3])
+              vendors[line[0]] = Vendor.new(line[3],line[0],line[1],line[2])
             end
             @@all_vendors = vendors
         end

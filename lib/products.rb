@@ -1,6 +1,6 @@
 module FarMar
 
-  class Products
+  class Product
     @@all_products_by_vendor = nil
     @@all_products = nil
     attr_accessor :product_id, :name, :vendor_id
@@ -25,7 +25,7 @@ module FarMar
         if @@all_products == nil
           products = { }
             CSV.read('./support/products.csv').each do |line|
-              products[line[0]] = Products.new(line[0], line[1], line [2])
+              products[line[0]] = Product.new(line[0], line[1], line [2])
             end
             @@all_products = products
         end
@@ -34,14 +34,14 @@ module FarMar
 
         ##find product by its own id
       def self.find(product_id)
-          Products.all[product_id]
+          Product.all[product_id]
       end
 
         ##find products of a vendor (all vendors by market << all products by vendor)
       def self.by_vendor(vendor_id)
         if @@all_products_by_vendor == nil
           products = { }
-          Products.all.each do |product_id, current_product|
+          Product.all.each do |product_id, current_product|
             if products[current_product.product_id] == nil
               products[current_product.product_id]  = { }
             end

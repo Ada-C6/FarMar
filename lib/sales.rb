@@ -4,6 +4,7 @@ module FarMar
   #self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
 
   class Sales
+    @@all_sales_by_vendor = nil
     @@all_sales_for_each_product = nil
     @@all_sales = nil
     attr_accessor :sales_id, :transaction_total, :datetime, :vendor_id, :product_id
@@ -43,11 +44,25 @@ module FarMar
             if sale[sales.product_id] == nil
               sale[sales.product_id]  = { }
             end
-            sale[sales.product_id][sales_id] = vendor ##sales_id or sales.sales_id?
+            sale[sales.product_id][sales_id] = vendor_id
           end
           @@all_sales_for_each_product = sale
         end
         return @@all_sales_for_each_product[product_id]
+      end
+
+      def self.by_vendor(vendor_id)
+        if @@all_sales_by_vendor == nil
+          transactions = { }
+          Sales.all.each do |sales_id, sales|
+            if transactions[sales.vendor_id] == nil
+              transactions[sales.vendor_id]  = { }
+            end
+            #transactions[sales.vendor_id][sales_id] = vendor_id
+          end
+          @@all_sales_by_vendor = transactions
+        end
+        return @@all_sales_by_vendor[vendor_id]
       end
   end
 end

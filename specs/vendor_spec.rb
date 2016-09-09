@@ -43,43 +43,47 @@ module FarMar
           vendor_id = ["1", "444", "10", "476", "343", "11"].sample
           Vendor.all.must_include(vendor_id)
         end
+      end
 
-    #
-    #     it "8 should return all objects of self" do
-    #       Vendor
-    #     end
-    #   end
-    end
     describe "Vendor #products" do
 
         it "8 should return all products by vendor_id" do
           test_vendor = Vendor.all["11"]
           test_vendor.products.must_include("29")
         end
-      end
-
-      describe "Vendor creation" do
 
           it "9 create simple vendor" do
-            test_vendor = Vendor.new("8","11","Feil-Farrell","1")
-            test_vendor.products.must_include("1")
+            test_vendor = Vendor.new("2","8","Stamm Inc","2")
+            test_vendor.products.must_include("16")
           end
         end
 
-      #   it "9 should return object with self id" do
-      #     id = "1"
-      #     Market.find(id).name.must_equal("People's Co-op Farmers Market")
-      #   end
-      #   it "10 should return a hash of Market(id)" do
-      #     Market.find("333").must_be_kind_of(FarMar::Market)
-      #   end
-      #   it "11 should raise error if the id is invalid" do
-      #   Market.find(891).must_be_nil
-      #   end
+      describe "#find" do
+
+        it "10 should return market objects with all its vendors" do
+          id = "1"
+          Market.find(id).name.must_equal("People's Co-op Farmers Market")
+        end
+
+        it "11 should return a hash of Market(id)" do
+          Market.find("333").must_be_kind_of(FarMar::Market)
+        end
+
+        it "12 should raise error if the id is invalid" do
+          Market.find(891).must_be_nil
+        end
+
+        it "13 should return a hash of instances of Vendors associated with each market" do
+          Market.find("333").vendors.must_be_kind_of(Hash)
+        end
+    end
+
+      # describe "#sales"  do
       #
-      #   describe "12 Vendor" do
-      #
-      #   it "13 should return a hash of instances of Vendors associated with each market" do
-      #     Market.find("333").vendors.must_be_kind_of(Hash)
+      #     it "14 should return sales by vendor" do
+      #       test_vendor = Vendor.new("9","Quigley, Breitenberg and Schuster","2","2")
+      #       test_vendor.sales.must_include("49")#3697,2013-11-11 18:43:56 -0800,9,20
+      #     end
+      #   end
 end
 end
