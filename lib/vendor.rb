@@ -70,7 +70,7 @@ module FarMar
     #   return @revenue_from_sales
     # end
 
-    
+
     def sales
       sales_by_vendor = []
       @all_sales ||= FarMar::Sale.all
@@ -91,19 +91,19 @@ module FarMar
       return @revenue_from_sales
     end
 
-    # should return the top n vendor instances ranked by total revenue
-    def self.most_revenue(n)
-      all_vendors = self.all
-      all_vendors.each do | key, value |
-        value.revenue
-      end
-
-      puts "---------"
-      highest = all_vendors.sort_by { | value | value.revenue_from_sales }
-      puts highest
-
-      # highest.reverse
-      # return highest.take(n)
-    end
+    # # should return the top n vendor instances ranked by total revenue
+    # def self.most_revenue(n)
+    #   all_vendors = self.all
+    #   all_vendors.each do | key, value |
+    #     value.revenue
+    #   end
+    #
+    #   puts "---------"
+    #   highest = all_vendors.sort_by { | value | value.revenue_from_sales }
+    #   puts highest
+    #
+    #   # highest.reverse
+    #   # return highest.take(n)
+    # end
   end
 end
