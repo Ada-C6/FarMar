@@ -9,6 +9,18 @@ require_relative './lib/product'
 require_relative './lib/sale'
 
 
+##TEST #18... FarMar::Product.number_of_sales
+p = FarMar::Product.all.last
+puts p.sales.to_s
+puts ""
+print "I expect this number to correspond to the number of elements in the above array:"
+puts p.number_of_sales
+puts ""
+puts "Awesome!"
+
+
+
+
 ##TEST #17... FarMar::Product.sales
 # p = FarMar::Product.all.last
 # puts p.sales.to_s

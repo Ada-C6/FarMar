@@ -53,6 +53,13 @@ describe FarMar::Product do
         end
     end
 
+    describe "number_of_sales" do
+        let(:p) {FarMar::Product.all.last}
+        it "will output a number" do
+            p.number_of_sales.must_be_instance_of(Fixnum)
+        end
+    end
+
     describe "self.by_vendor(vendor_id)" do
         let(:vendor_id) {FarMar::Vendor.all.last.id}
         it "will output an array" do
