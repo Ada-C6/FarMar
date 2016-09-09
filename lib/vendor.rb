@@ -26,6 +26,16 @@ module FarMar
       return "That is not an existing vendor ID"
     end
 
+    def self.by_market(market_id)
+      vendors_at_this_market = []
+      Vendor.all.each do |v|
+        if market_id == v.market_id
+          vendors_at_this_market << v.name
+        end
+      end
+      return vendors_at_this_market
+    end
+
     def market
       FarMar::Market.all.each do |m|
         if @market_id == m.id
@@ -45,13 +55,20 @@ module FarMar
     end
 
     def sales
-      this_vendors_sales = []
+      @this_vendors_sales = []
       FarMar::Sale.all.each do |s|
         if @id == s.vendor_id
-          this_vendors_sales << s.amount
+          @this_vendors_sales << s.amount
         end
       end
-      return this_vendors_sales
+      return @this_vendors_sales
+    end
+
+    def revenue
+      sales
+      r = @this_vendors_sales.reduce(:+).to_f
+      r = r/100
+      return "This vendor's total revenue is $#{r} "
     end
   end
 end
