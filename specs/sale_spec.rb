@@ -10,6 +10,7 @@ module FarMar
         sale.must_be_instance_of(Sale)
       end
     end
+
     describe "all" do
       it "should return an Array" do
         Sale.all.must_be_kind_of(Array)
@@ -29,22 +30,19 @@ module FarMar
       end
     end
 
-##########   NEEDS WORK ###########
     describe "#vendor" do
-      it "should return true if the returned instance is of the same vendor id" do
+      it "should return true if it's an instance of Vendor" do
         s = Sale.find(2)
-        s.vendor do |i|
-          i.vendor_id.must_equal(4) ### LINE NOT COVERED
-        end
+        s.vendor.must_be_instance_of(Vendor)
       end
     end
 
-
-##########   NEEDS WORK ###########
     describe "#product" do
-      it "should return true if theProduct instance associated with this sale matches the Sale product_id field" do
-        ###PUT SOMETHING HERE
+      it "should return true if it's an instance of Product" do
+        s = Sale.find(4)
+        s.product.must_be_instance_of(Product)
       end
     end
+    
   end
 end
