@@ -31,11 +31,7 @@ class FarMar::Vendor
     end
 
     def market
-        FarMar::Market.all.each do |m_object|
-            if m_object.id == @market_id
-                return m_object
-            end
-        end
+        return FarMar::Market.find(@market_id)
     end
 
     def products
