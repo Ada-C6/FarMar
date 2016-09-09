@@ -41,4 +41,8 @@ attr_reader :id, :amount_in_cents, :purchase_time, :vendor_id, :product_id
   def vendor
     Vendor.find(@vendor_id)
   end
+
+  def product
+    Product.find(@product_id)
+  end
 end

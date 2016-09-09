@@ -37,5 +37,11 @@ module FarMar
         end
       end
     end
+
+    describe "#product" do
+      it "should return true if theProduct instance associated with this sale matches the Sale product_id field" do
+        ###PUT SOMETHING HERE 
+      end
+    end
   end
 end
