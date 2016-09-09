@@ -43,4 +43,40 @@ describe "FarMar::Sale" do
         end #
     end # self.find
 
+    describe "instance methods" do
+        before(:all) do
+            test_sale_info_hash = {
+                sale_id: 9901,
+                amount: 8097,
+                purchase_time: DateTime.parse("2013-11-06 22:23:32 -0800"),
+                vendor_id: 2231,
+                product_id: 6785
+            }
+
+            @test_sale = FarMar::Sale.new(test_sale_info_hash)
+            @test_vendor = @test_sale.vendor
+            @test_product = @test_sale.product
+        end
+
+        describe "#vendor" do
+            it "should return a FarMar::Vendor instance" do
+                @test_vendor.must_be_instance_of(FarMar::Vendor)
+            end
+
+            it "should return the correct FarMar::Vendor with matching vendor_id" do
+                @test_vendor.vendor_id.must_equal(2231)
+            end
+        end #vendor
+
+        describe "#product" do
+            it "should return a FarMar::Product instance" do
+                @test_product.must_be_instance_of(FarMar::Product)
+            end
+
+            it "should return the correct FarMar::Product with matching product_id" do
+                @test_product.product_id.must_equal(6785)
+            end
+        end #product
+
+    end # instance methods
 end # FarMar::Sale
