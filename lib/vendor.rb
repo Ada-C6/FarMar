@@ -41,7 +41,7 @@ class FarMar::Vendor < FarMar::ReadingFile
 
 #returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
   def market
-    return array_of_instances(FarMar::Market.all, "market_id", market_id)
+    return array_of_instances(FarMar::Market.all, "market_id", market_id).first
   end
 
 #returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.

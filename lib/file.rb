@@ -5,9 +5,7 @@
 require 'csv'
 require_relative '../far_mar'
 
-
 class FarMar::ReadingFile
-
 
 #returns a collection of the file
   def self.import_all_file(filename)

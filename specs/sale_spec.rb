@@ -33,13 +33,13 @@ describe 'Testing FarMar sale.rb' do
   end
 
   it "Test to see if product.rb returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field - vendor method" do
-    expect(sale1.vendor[0].name).must_equal("Breitenberg Inc")
-    expect(sale2.vendor[0].name).must_equal("Veum, Dickinson and Conroy")
+    expect(sale1.vendor.name).must_equal("Breitenberg Inc")
+    expect(sale2.vendor.name).must_equal("Veum, Dickinson and Conroy")
   end
 
   it "Test to see if product.rb returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field - product method" do
-    expect(sale1.product[0].name).must_equal("Yummy Fruit")
-    expect(sale2.product[0].name).must_equal("Amused Beets")
+    expect(sale1.product.name).must_equal("Yummy Fruit")
+    expect(sale2.product.name).must_equal("Amused Beets")
   end
 
   it "Test to see if product.rb returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments - self.between method" do

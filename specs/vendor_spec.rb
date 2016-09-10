@@ -28,8 +28,8 @@ describe 'Testing FarMar vendor.rb' do
   end
 
   it "Test to see if vendor.rb returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field - market method" do
-    expect(vendor1.market[0].name).must_equal("People's Co-op Farmers Market")
-    expect(vendor2.market[0].name).must_equal("Dolgeville Farmer's Market")
+    expect(vendor1.market.name).must_equal("People's Co-op Farmers Market")
+    expect(vendor2.market.name).must_equal("Dolgeville Farmer's Market")
   end
 
   it "Test to see if vendor.rb returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field. - products method" do

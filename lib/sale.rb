@@ -42,12 +42,12 @@ class FarMar::Sale < FarMar::ReadingFile
 
 #returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
   def vendor
-    return array_of_instances(FarMar::Vendor.all, "vendor_id", vendor_id)
+    return array_of_instances(FarMar::Vendor.all, "vendor_id", vendor_id).first
   end
 
 #returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
   def product
-    return array_of_instances(FarMar::Product.all, "product_id", product_id)
+    return array_of_instances(FarMar::Product.all, "product_id", product_id).first
   end
 
 #returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
@@ -60,8 +60,6 @@ class FarMar::Sale < FarMar::ReadingFile
       end
     end
 
-    ap return_array[0].sale_id
-    ap return_array[1].sale_id
     return return_array
   end
 end

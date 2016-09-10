@@ -33,6 +33,36 @@ class FarMar::Product < FarMar::ReadingFile
     return self.new(find_instance(FILENAME, prod_id))
   end
 
+#returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+  def vendor
+    return array_of_instances(FarMar::Vendor.all, "vendor_id", vendor_id).first
+  end
+
+# returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+  def sales
+    return array_of_instances(FarMar::Sale.all, "product_id", product_id)
+  end
+
+# returns the number of times this product has been sold.
+  def number_of_sales
+    product_array = array_of_instances(FarMar::Sale.all, "product_id", product_id)
+
+    return product_array.length
+  end
+
+# returns all of the products with the given vendor_id
+  def self.by_vendor(ven_id)
+    return_array = []
+
+    FarMar::Product.all.each do |product|
+      if product.vendor_id == ven_id.to_s
+        return_array << product
+      end
+    end
+
+    return return_array
+  end
+
 #returns the top n product instances ranked by total revenue
   def self.most_revenue(n)
     return_array = []
@@ -67,3 +97,4 @@ end
 ############### TESTING ###############
 # puts FarMar::Product.most_revenue(2)[0].name
 # puts FarMar::Product.most_revenue(2)[1].name
+# puts FarMar::Product.by_vendor(2)
