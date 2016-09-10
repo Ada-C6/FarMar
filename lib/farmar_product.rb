@@ -50,7 +50,7 @@ module FarMar
         #self.by_vendor(vendor_id): returns all of the products with the given vendor_id
         def self.by_vendor(vendor_id)
             products_by_current_vendor = []
-            self.all.select { |item| products_by_current_vendor << item.name if item.vendor_id == vendor_id}
+            self.all.each { |item| products_by_current_vendor << item.name if item.vendor_id == vendor_id}
             len = products_by_current_vendor.length
             puts "There are #{len} products sold by the given Vendor ID #{vendor_id}"
             return products_by_current_vendor
