@@ -11,18 +11,19 @@ module FarMar
       end
 
       #return Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+      ##this is really confusing.
       def vendor
-        return Product.find(@vendor_id)
+        return Vendor.find(@vendor_id)
       end
 
       #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
       def sales
-        return Sales.find(@product_id)
+        return Sales.by_product(@product_id)
       end
       #number_of_sales: returns the number of times this product has been sold.
+      #first of product, last of sales
       def number_of_sales
-        #first of product, last of sales
-      return Sales.by_product(@product_id)
+        return Sales.by_product(@product_id).size
       end
 
       ##create all product instances from csv

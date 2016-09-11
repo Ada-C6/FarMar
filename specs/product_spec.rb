@@ -47,16 +47,19 @@ module FarMar
     describe "vendor" do
       ##16,Obedient Fish,8
 
-      it "8 should return vendor with product id" do
+      it "8 should return vendor name" do
         test_product = Product.new("16", "Obedient Fish", "8")
-        test_product.vendor.name.must_equal("Shaky Honey")
+        test_product.vendor.name.must_equal("Stamm Inc")
       end
 
-      it " 9 produces appropriate simple vendor" do
-          test_product = Product.new("17","Defeated Apples","8")
-          test_product.vendor.name.must_equal("Shaky Honey")
+      it " 9 produces appropriate vendor by id" do
+
+          test_product = Product.new("18","Yellow Bread","8")
+          test_product.vendor_id.must_equal("8")
+        end
       end
-    end
+
+
 
     describe "find" do
 
@@ -75,7 +78,7 @@ module FarMar
       end
 
       it "13 should return a hash of instances of Vendors associated with each market" do
-        Product.find("333").vendor.must_be_kind_of(FarMar::Product)
+        Product.find("333").vendor.must_be_kind_of(FarMar::Vendor)
       end
     end
 end

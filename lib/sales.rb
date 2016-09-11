@@ -7,8 +7,8 @@ module FarMar
     attr_accessor :sales_id, :transaction_total, :datetime, :vendor_id, :product_id
       def initialize(sales_id, transaction_total, datetime, vendor_id, product_id)
         @sales_id = sales_id
-        @transaction_total = transaction_total
-        @datetime = datetime
+        @transaction_total = transaction_total.to_i
+        @datetime = DateTime.parse(datetime)
         @vendor_id = vendor_id
         @product_id = product_id
       end
@@ -20,6 +20,7 @@ module FarMar
       def product
         return Product.find(@product_id)
       end
+
       ##create instances of sales for each element in csv
       def self.all
         if @@all_sales == nil
@@ -33,15 +34,19 @@ module FarMar
       end
 
       def self.find(sales_id)
-          Sales.all[sales_id]
+          return Sales.all[sales_id]
       end
 
-
       def self.between(beginning_time, end_time)
-      #   saletime = { }
-      #     saletime = Sales.find (@datetime.DateTime.parse.last)...
-      #   #   if saletime[1] > beginning_time && saletime < end_time
-      #   #   sale = { }
+        b = DateTime.parse(beginning_time)
+        e = DateTime.parse(end_time)
+        sales = { }
+        Sales.all.each do | sales_id, sale |
+        if b < sale.datetime && e > sale.date_time
+          sales[line[0]] = Sales.new(line[0],line[1],line[2],line[3],line[4])
+        end
+        return sales
+        end
       end
 
 

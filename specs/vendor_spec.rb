@@ -52,7 +52,7 @@ module FarMar
           test_vendor.products.must_include("29")
         end
 
-          it "9 create simple vendor" do
+          it "9 find vendor" do
             test_vendor = Vendor.new("2","8","Stamm Inc","2")
             test_vendor.products.must_include("16")
           end

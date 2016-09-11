@@ -22,10 +22,13 @@ module FarMar
       end
 
       #revenue: returns the the sum of all of the vendor's sales (in cents)
+      ##add for.each method to total all transaction_total(s) in hash
       def revenue
-        revenue = { }
-        revenue = Sales.by_vendor(@vendor_id)
-        ##add for.each method to total all transaction_total(s) in hash[1]
+        total = 0
+        Sales.by_vendor(@vendor_id).each do | sale_id, sale |
+          total += sale.transaction_total
+        end
+          return total
       end
 
       def market
