@@ -36,7 +36,7 @@ class FarMar::Market
      return market_array
   end
 
-  # returns an the market object associated with the Market id
+  # returns an the market object or nil associated with the Market id
 
   def self.find(id) # this parameter takes string
       # find the market object with the id

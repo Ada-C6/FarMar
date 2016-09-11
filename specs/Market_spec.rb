@@ -3,9 +3,9 @@ require_relative '../far_mar.rb'
 
 
 # copied shamelessy and without remorse from Scrabble
-# 
+
 describe "Testing market" do
-  
+  # test for the self.all method
   it "creates a new instance of Market" do
 
     id = 4
@@ -34,6 +34,28 @@ describe "Testing market" do
     new_market_array[0].must_be_kind_of FarMar::Market
 
   end
+
+  it "Tests that the object number == the CSV array length" do
+    # returns an array of an array of strings
+    new_market_array = FarMar::Market.all
+    csv_array_array = CSV.read('./support/markets.csv')
+    csv_array_array.length.must_equal new_market_array.length
+  end
+
+  # testing the self.find methods
+
+  it "Tests that the id parameter returns a matching market id" do
+    new_market = FarMar::Market.find('474')
+    new_market.must_be_kind_of FarMar::Market
+    new_market.id.must_equal '474'
+  end
+
+  it "Tests that the method returns nil if no match for market id found" do
+    new_market = FarMar::Market.find('501')
+    new_market.must_equal nil
+
+  end
+
 
 
 
