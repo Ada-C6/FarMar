@@ -12,6 +12,9 @@ class FarMar::Sale  # can only chain one to another
     @product_id = product_id
 
   end
+  # these can be re-used with a base class and 
+  # a method to read in the files
+  # it's called inheritance
 
   def self.all
 

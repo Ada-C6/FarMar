@@ -1,8 +1,8 @@
 class FarMar::Market
 
-  attr_reader :id, :name, :city, :county, :state, :zip
+  attr_reader :id, :name, :address, :city, :county, :state, :zip_code
 
-  def initialize(id, name, address, city, county, state, zip) # could take an array
+  def initialize(id, name, address, city, county, state, zip_code) # could take an array
     #initialize is NOT a constructor see the iterwebs
     @id = id
     @name = name
@@ -10,10 +10,11 @@ class FarMar::Market
     @city = city
     @county = county
     @state = state
-    @zip = zip
+    @zip_code = zip_code
     
   end 
 
+  # returns an array of market objects e.g [#<FarMar::Market:0x007ff14981dac0>]
   def self.all # works as desired [] repeat for each class
     
     market_array = []
@@ -27,9 +28,9 @@ class FarMar::Market
       city = line[3]
       county = line[4]
       state = line[5]
-      zip = line[6]
+      zip_code = line[6]
 
-      market_array << FarMar::Market.new(id, name, address, city, county, state, zip)
+      market_array << FarMar::Market.new(id, name, address, city, county, state, zip_code)
       # market_array is an array of market objects e.g [#<FarMar::Market:0x007ff14981dac0>]
      end
      return market_array
@@ -84,5 +85,4 @@ end
 
 
 
-puts "Done loading Market.rb"
 
