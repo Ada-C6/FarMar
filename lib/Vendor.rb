@@ -11,7 +11,7 @@ class FarMar::Vendor
     #WRONG! # should not have to enter market_id here
 
   end
-
+  # returns an array of Vendors
   def self.all
 
     vendor_array = []

@@ -36,7 +36,7 @@ class FarMar::Market
      return market_array
   end
 
-  # returns an the market object or nil associated with the Market id
+  # returns the market object or nil associated with the Market id
 
   def self.find(id) # this parameter takes string
       # find the market object with the id
@@ -49,6 +49,18 @@ class FarMar::Market
         end
       end
       return found_market
+  end
+
+  def self.vendors(market_id) #111 for the test case
+
+    found_vendor = []
+
+    FarMar::Vendor.all.each do |vendor|
+      if vendor.market_id == market_id
+         found_vendor.push(vendor)
+      end   
+    end
+    return found_vendor
   end
 end
 
