@@ -3,6 +3,7 @@ require 'csv'
 
 module FarMar
   class Sale
+    @@all_sales = nil
     attr_reader :sale_id, :amount, :vendor_id, :product_id, :purchase_time
     def initialize(sale_id, amount, purchase_time, vendor_id, product_id)
       # sale_id, amount, purchase_time, vendor_id, product_id)
@@ -20,19 +21,22 @@ module FarMar
 
     def self.all
       # self.all: returns a collection of instances, representing all of the objects described in the CSV
-      sales = {}
+      if @@all_sales == nil
 
-      CSV.read("support/sales.csv").each do |line|
-        sale_id, amount, purchase_time, vendor_id, product_id = line # parallel assignment!
-        sale_id = sale_id.to_i # need sale_id to be a fixnum
-        amount = amount.to_i # want amount to be a fixnum also
-        vendor_id = vendor_id.to_i # want vendor_id to be a fixnum
-        product_id = product_id.to_i # want product_id also to be a fixnum
+        @@all_sales = {}
 
-        sales[sale_id] = self.new(sale_id, amount, purchase_time, vendor_id, product_id)
+        CSV.read("support/sales.csv").each do |line|
+          sale_id, amount, purchase_time, vendor_id, product_id = line # parallel assignment!
+          sale_id = sale_id.to_i # need sale_id to be a fixnum
+          amount = amount.to_i # want amount to be a fixnum also
+          vendor_id = vendor_id.to_i # want vendor_id to be a fixnum
+          product_id = product_id.to_i # want product_id also to be a fixnum
+
+          @@all_sales[sale_id] = self.new(sale_id, amount, purchase_time, vendor_id, product_id)
+        end
       end
 
-      return sales
+      return @@all_sales
     end
 
     def self.find(id)
