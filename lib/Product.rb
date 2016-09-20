@@ -53,7 +53,10 @@ class FarMar::Product
       end
     end
     return found_sales
+  end
 
+  def sale_count
+    return get_sales.length
   end
 
 end

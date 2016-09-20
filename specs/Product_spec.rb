@@ -55,6 +55,10 @@ describe "Testing product" do
   end
 
   it "Tests that sale_count returns the count of sales for the instance of a product" do
+    new_product = FarMar::Product.find('30')
+    sale_count_of_product = new_product.sale_count
+    sale_count_of_product.must_equal 1
+
 
   end
 
