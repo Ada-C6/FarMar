@@ -38,6 +38,10 @@ describe "Testing product" do
   end
 
   it "Tests that get_vendor returns an instance of FarMar::Vendor using the FarMar::Product vendor_id field" do
+    new_product = FarMar::Product.find('30')
+    found_vendor = new_product.get_vendor
+    #vendor 11, depressed beets
+    found_vendor.id.must_equal '11'
 
   end
 

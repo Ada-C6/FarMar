@@ -38,4 +38,10 @@ class FarMar::Product
     end
     return found_product
   end
+
+  def get_vendor
+    #vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+    found_vendor = FarMar::Vendor.find(@vendor_id)
+    return found_vendor
+  end
 end
