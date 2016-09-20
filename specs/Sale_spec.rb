@@ -20,4 +20,10 @@ describe "Testing sale" do
 
   end
 
+  it "Tests that we can call self.all" do
+    quotidian_sale = FarMar::Sale.all
+    quotidian_sale.must_be_kind_of Array
+
+  end
+
 end
