@@ -84,6 +84,9 @@ describe "Testing vendor" do
     found_vendors = FarMar::Vendor.by_market('2')
     found_vendors.length.must_equal 3
 
+    found_vendors.each do |vendor|
+      vendor.market_id.must_equal '2'
+    end
   end
 end
 

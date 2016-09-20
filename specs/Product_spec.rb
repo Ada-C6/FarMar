@@ -37,4 +37,8 @@ describe "Testing product" do
     quotidian_product.must_equal nil
   end
 
+  it "Tests that get_vendor returns an instance of FarMar::Vendor using the FarMar::Product vendor_id field" do
+
+  end
+
 end
