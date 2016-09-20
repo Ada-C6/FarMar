@@ -24,5 +24,17 @@ describe "Testing product" do
     csv_array_array = CSV.read('./support/products.csv')
     csv_array_array.length.must_equal quotidian_product_array.length
   end
+  # testing the self.find methods
+
+  it "Tests that the id parameter returns a matching product id" do
+    quotidian_product = FarMar::Product.find('30')
+    quotidian_product.must_be_kind_of FarMar::Product
+    quotidian_product.id.must_equal '30'
+  end
+
+  it "Tests that the  method returns nil if no match is found" do
+    quotidian_product = FarMar::Product.find('8195')
+    quotidian_product.must_equal nil
+  end
 
 end

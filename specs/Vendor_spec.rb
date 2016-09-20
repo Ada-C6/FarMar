@@ -44,13 +44,11 @@ describe "Testing vendor" do
   it "Tests that the method returns nil if no match for market id found" do
     new_vendor = FarMar::Vendor.find('2691')
     new_vendor.must_equal nil
-
   end
 
+  # testing the additiona FarMar::Vendor methods
+  it "Tests that the instance method named market returns the  FarMar::Market instance associated with the vendor using FarMar::Vendor.market_id field" do
+    new_vendor = FarMar::Vendor.find('474')
+  end
 
-
-
-
-
-  
 end

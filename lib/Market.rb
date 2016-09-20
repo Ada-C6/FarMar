@@ -52,17 +52,18 @@ class FarMar::Market
   end
 
   # returns an array of vendors whose market_id matches this markets id
-  # instance method stuck to the current instantiation of market
+  # instance method running inside an instance of market
+  # because it is running *inside* of market it can refer to @id
   def vendors #111 for the test case
 
-    found_vendor = []
+    found_vendors = []
 
     FarMar::Vendor.all.each do |vendor|
       if vendor.market_id == @id
-         found_vendor.push(vendor)
+         found_vendors.push(vendor)
       end   
     end
-    return found_vendor
+    return found_vendors
   end
 end
 
