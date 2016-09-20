@@ -78,6 +78,16 @@ class FarMar::Vendor
     return sum_revenue
   end
 
+  def self.by_market(market_id)
+    found_vendors = []
+
+    all.each do |vendor|
+      if vendor.market_id == market_id
+        found_vendors.push(vendor)
+      end
+    end
+    return found_vendors
+  end 
 end
 
 

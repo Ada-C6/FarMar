@@ -53,7 +53,7 @@ describe "Testing vendor" do
     found_market.id.must_equal '89'
   end
 
-  it "Tests that the instance method named get_products returns a list of FarMar::Product instnaces associated by vendor id" do
+  it "Tests that the instance method named get_products returns a list of FarMar::Product instances associated by vendor id" do
     new_vendor = FarMar::Vendor.find('474')
     found_products = new_vendor.get_products
     found_products.must_be_kind_of Array
@@ -80,6 +80,11 @@ describe "Testing vendor" do
     revenue_earned.must_equal 11176
   end
 
+  it  "Tests that self.by_market returns all vendors associated with a market_id" do
+    found_vendors = FarMar::Vendor.by_market('2')
+    found_vendors.length.must_equal 3
+
+  end
 end
 
 
