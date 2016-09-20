@@ -58,6 +58,17 @@ class FarMar::Vendor
     return found_products
   end
 
+  def get_sales
+
+    found_sales = []
+    FarMar::Sale.all.each do |sale|
+      if sale.vendor_id == @id
+        found_sales.push(sale)
+      end
+    end
+    return found_sales
+  end
+
 end
 
 

@@ -64,6 +64,14 @@ describe "Testing vendor" do
     end
   end
 
+  it "Tests that the instance method named get_sales returns a list of FarMar::Sale instances associated by vendor_id field" do
+    new_vendor = FarMar::Vendor.find('474')
+    found_sales = new_vendor.get_sales
+    found_sales.length.must_equal 2
+
+
+  end
+
 end
 
 
