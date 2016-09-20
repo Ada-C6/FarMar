@@ -45,6 +45,19 @@ class FarMar::Vendor
     found_market = FarMar::Market.find(@market_id)
     return found_market
   end
+
+  def get_products
+
+    found_products = []
+
+    FarMar::Product.all.each do |product|
+      if product.vendor_id == @id
+        found_products.push(product)
+      end
+    end
+    return found_products
+  end
+
 end
 
 

@@ -54,7 +54,7 @@ class FarMar::Market
   # returns an array of vendors whose market_id matches this markets id
   # instance method running inside an instance of market
   # because it is running *inside* of market it can refer to @id
-  def vendors #111 for the test case
+  def get_vendors #111 for the test case
 
     found_vendors = []
 

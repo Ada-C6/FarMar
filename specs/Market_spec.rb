@@ -58,7 +58,7 @@ describe "Testing market" do
 
   it "Tests that a market id will return its associated vendor(s)" do
     new_market = FarMar::Market.find('111')
-    found_vendors = new_market.vendors
+    found_vendors = new_market.get_vendors
     found_vendors.must_be_kind_of Array
     found_vendors.length.must_equal 2
 
