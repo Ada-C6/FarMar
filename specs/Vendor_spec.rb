@@ -69,7 +69,15 @@ describe "Testing vendor" do
     found_sales = new_vendor.get_sales
     found_sales.length.must_equal 2
 
+    found_sales.each do |sale|
+      sale.vendor_id.must_equal '474'
+    end
+  end
 
+  it "Tests that the instance method get_revenue returns the sum of sales for the instance of vendor in cents." do
+    new_vendor = FarMar::Vendor.find('474')
+    revenue_earned = new_vendor.get_revenue
+    revenue_earned.must_equal 11176
   end
 
 end

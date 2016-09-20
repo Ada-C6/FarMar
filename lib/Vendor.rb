@@ -69,6 +69,15 @@ class FarMar::Vendor
     return found_sales
   end
 
+  def get_revenue 
+    found_sales = get_sales
+    sum_revenue = 0
+    found_sales.each do |sale|
+      sum_revenue += sale.sale_amount.to_f
+    end
+    return sum_revenue
+  end
+
 end
 
 
