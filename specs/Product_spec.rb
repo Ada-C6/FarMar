@@ -47,12 +47,16 @@ describe "Testing product" do
   #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
 
   # 64,8362,2013-11-07 05:30:08 -0800,11,30
-  it "returns an array of FarMar::Sale instance that use the FarMar::Sale product_id field" do
+  it "Tests that it returns an array of FarMar::Sale instance that use the FarMar::Sale product_id field" do
     new_product = FarMar::Product.find('30')
     found_sales = new_product.get_sales
-
+    found_sales.length.must_equal 1
+    found_sales.first.product_id.must_equal '30'
   end
 
+  it "Tests that sale_count returns the count of sales for the instance of a product" do
+
+  end
 
 end
 
