@@ -49,8 +49,8 @@ describe "Testing vendor" do
   # testing the additiona FarMar::Vendor methods
   it "Tests that the instance method named market returns the FarMar::Market instance associated with the vendor using FarMar::Vendor.market_id field" do
     new_vendor = FarMar::Vendor.find('474')
-    new_vendor.market_id.must_equal '89'
-    new_vendor.market
+    found_market = new_vendor.get_market
+    found_market.id.must_equal '89'
   end
 
 end

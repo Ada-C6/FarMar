@@ -40,8 +40,10 @@ class FarMar::Vendor
     return found_vendor
   end
 
-  def market 
-
+  #this method returns an instance of market that matches this vendors market_id
+  def get_market 
+    found_market = FarMar::Market.find(@market_id)
+    return found_market
   end
 end
 
