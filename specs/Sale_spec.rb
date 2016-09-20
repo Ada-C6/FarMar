@@ -23,7 +23,13 @@ describe "Testing sale" do
   it "Tests that we can call self.all" do
     quotidian_sale = FarMar::Sale.all
     quotidian_sale.must_be_kind_of Array
+    quotidian_sale[0].must_be_kind_of FarMar::Sale
+  end
 
+  it "Tests that the object number == the CSV array length" do
+    quotidian_sale_array = FarMar::Sale.all
+    csv_sale_array = CSV.read('./support/sales.csv')
+    csv_sale_array.length.must_equal quotidian_sale_array.length
   end
 
 end
