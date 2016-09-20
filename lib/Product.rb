@@ -44,4 +44,23 @@ class FarMar::Product
     found_vendor = FarMar::Vendor.find(@vendor_id)
     return found_vendor
   end
+
+  def get_sales
+
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

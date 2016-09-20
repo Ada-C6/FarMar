@@ -42,7 +42,32 @@ describe "Testing product" do
     found_vendor = new_product.get_vendor
     #vendor 11, depressed beets
     found_vendor.id.must_equal '11'
+  end
+
+  #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+
+  # 64,8362,2013-11-07 05:30:08 -0800,11,30
+  it "returns an array of FarMar::Sale instance that use the FarMar::Sale product_id field" do
+    new_product = FarMar::Product.find('30')
+    found_sales = new_product.get_sales
 
   end
 
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
