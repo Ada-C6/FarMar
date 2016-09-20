@@ -51,12 +51,14 @@ class FarMar::Market
       return found_market
   end
 
-  def self.vendors(market_id) #111 for the test case
+  # returns an array of vendors whose market_id matches this markets id
+  # instance method stuck to the current instantiation of market
+  def vendors #111 for the test case
 
     found_vendor = []
 
     FarMar::Vendor.all.each do |vendor|
-      if vendor.market_id == market_id
+      if vendor.market_id == @id
          found_vendor.push(vendor)
       end   
     end

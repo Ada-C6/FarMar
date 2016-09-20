@@ -57,15 +57,11 @@ describe "Testing market" do
   end
 
   it "Tests that a market id will return its associated vendor(s)" do
-    new_vendor_search = FarMar::Market.vendors("111")
-    new_vendor_search.must_be_kind_of Array
-    new_vendor_search.length.must_equal 2
+    new_market = FarMar::Market.find('111')
+    found_vendors = new_market.vendors
+    found_vendors.must_be_kind_of Array
+    found_vendors.length.must_equal 2
     
-  end
-
-  it "Tests that an invalid market id will return an empty array" do
-    new_vendor_search = FarMar::Market.vendors("11111")
-    new_vendor_search.length.must_equal 0
   end
 
 
