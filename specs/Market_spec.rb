@@ -61,6 +61,10 @@ describe "Testing market" do
     found_vendors = new_market.vendors
     found_vendors.must_be_kind_of Array
     found_vendors.length.must_equal 2
+
+    found_vendors.each do |vendor|
+       vendor.market_id.must_equal "111"
+    end
     
   end
 

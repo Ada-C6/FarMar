@@ -39,7 +39,12 @@ class FarMar::Vendor
     end
     return found_vendor
   end
+
+  def market 
+
+  end
 end
+
 
 
 # testing content moved to far_mar.rb
