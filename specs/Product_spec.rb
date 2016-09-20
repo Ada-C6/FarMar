@@ -19,4 +19,10 @@ describe "Testing product" do
     quotidian_product_array[0].must_be_kind_of FarMar::Product
   end
 
+  it "Test that the object number == the CSV array length" do
+    quotidian_product_array = FarMar::Product.all
+    csv_array_array = CSV.read('./support/products.csv')
+    csv_array_array.length.must_equal quotidian_product_array.length
+  end
+
 end
