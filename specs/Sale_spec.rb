@@ -32,4 +32,17 @@ describe "Testing sale" do
     csv_sale_array.length.must_equal quotidian_sale_array.length
   end
 
+   # testing the self.find methods
+
+   it "Tests that the id parameter returns a matching sale id" do
+    quotidian_sale = FarMar::Sale.find('32')
+    quotidian_sale.must_be_kind_of FarMar::Sale
+    quotidian_sale.id.must_equal '32'
+   end
+
+  it "Tests that the method returns nil if no match for the sale id is found" do
+    quotidian_sale = FarMar::Sale.find('13000')
+    quotidian_sale.must_equal nil
+
+  end
 end
