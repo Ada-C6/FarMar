@@ -43,6 +43,26 @@ describe "Testing sale" do
   it "Tests that the method returns nil if no match for the sale id is found" do
     quotidian_sale = FarMar::Sale.find('13000')
     quotidian_sale.must_equal nil
+  end
+
+  it "Tests that the get_vendor method returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
 
   end
+
+
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
