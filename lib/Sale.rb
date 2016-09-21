@@ -51,6 +51,33 @@ class FarMar::Sale  # can only chain one to another
     return found_vendor
   end 
 
+  def get_product
+    found_product = FarMar::Product.find(@product_id)
+    return found_product
+  end
+
+  # expects string, returns Sale objects
+  def self.between(begin_time, end_time)
+
+    found_sales = []
+
+    start_time = Time.parse(begin_time)
+    finish_time = Time.parse(end_time)
+
+    all.each do |sale|
+
+      purchase_date = sale.purchase_date
+      sale_time = Time.parse(purchase_date)
+
+      if sale_time >= start_time &&
+         sale_time <= finish_time
+
+        found_sales.push(sale)
+      end
+    end
+    return found_sales
+  end
+
 end
 
 

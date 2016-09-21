@@ -1,5 +1,6 @@
 require_relative 'spec_helper.rb'
 require_relative '../far_mar.rb'
+require 'date'
 
 describe "Testing sale" do 
 
@@ -48,10 +49,49 @@ describe "Testing sale" do
   it "Tests that the get_vendor method returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
     new_sale = FarMar::Sale.find('32')
     found_vendor = new_sale.get_vendor
-    #vendor_id 7 product_id 14
+    #vendor_id 7 
     found_vendor.id.must_equal '7'
   end
 
+  it "Tests that get_product returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field" do
+    new_sale = FarMar::Sale.find('32')
+    found_product = new_sale.get_product
+    #product_id 14
+    found_product.id.must_equal '14'
+  end
+
+  # "2013-11-13 04:14:40 -0800"
+  it "self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments" do
+
+    # tests for a single instance
+    start_time = "2013-11-13 04:14:40 -0800"
+    end_time = "2013-11-13 04:14:40 -0800"
+
+    found_sales = FarMar::Sale.between(start_time, end_time)
+    found_sales.length.must_equal 1
+
+    # tests for many instances
+    start_time = "2013-11-13 00:00:00 -0800"
+    end_time = "2013-11-13 23:59:59 -0800"
+
+    found_sales = FarMar::Sale.between(start_time, end_time)
+    found_sales.length.must_equal 669
+
+    # tests for instances where no sales are made
+    start_time = "2013-11-13 23:59:59 -0800"
+    end_time = "2013-11-13 00:00:00 -0800"
+
+    found_sales = FarMar::Sale.between(start_time, end_time)
+    found_sales.length.must_equal 0
+
+    
+    # dr. who test because wiggly wobbly timey wimey
+    start_time = "1900-01-01 00:00:01 -0800"
+    end_time = "3000-12-31 23:59:59 -0800"
+
+    found_sales = FarMar::Sale.between(start_time, end_time)
+    found_sales.length.must_equal 12798
+  end
 
 
 end
