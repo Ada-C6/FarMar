@@ -1,0 +1,121 @@
+Project Structure
+
+Create a Ruby class to represent each kind of data in the support/ directory. In the Product Data section, there are detailed descriptions of each csv file contents and its relation to other objects in the system. Your implementation will have class methods to handle finding, sorting, and collecting the data into instances representing individual rows of data. Each of those instances will have instance methods to provide details about the object.
+
+Encapsulation
+
+[ ] file named /far_mar.rb. It will  manage our data classes. It should look something like:
+
+# gems your project needs
+require 'csv'
+
+# our namespace module
+module FarMar; end
+
+# all of our data classes that live in the module
+require 'lib/farmar_market'
+# ...require all needed classes
+Each class you build will live in the /lib directory, and belong to the FarMar module:
+
+# lib/farmar_market.rb
+class FarMar::Market
+  # Your code goes here
+end
+
+The module provides a namespace for the application. A namespace ensures the classes we create will not 'collide' or 'overlap' with a class that could exist elsewhere in a codebase (like in a gem).
+
+For example, Sale is a very generic class name that could very realistically exist in many codebases. Creating a module called FarMar allows us to specify which Sale we're talking about; FarMar::Sale is much more explicit and likely to be unique.
+
+Specs & Testing
+
+You must have 90% test coverage from simplecov. The HTML files that are generated from simplecov should not be included in your git repository. Tests should be in the form of minitest specs. Complete the necessary boilerplate to create a Rakefile and spec_helper.rb so that all of your tests run when you run $ rake from the project root.
+
+Project Data
+
+FarMar::Market
+
+Each individual market has many vendors associated with it. The FarMar::Market data, in order in the CSV, consists of:
+
+ID - (Fixnum) a unique identifier for that market
+Name - (String) the name of the market (not guaranteed unique)
+Address - (String) street address of the market
+City - (String) city in which the market is located
+County - (String) county in which the market is located
+State - (String) state in which the market is located
+Zip - (String) zipcode in which the market is located
+FarMar::Vendor
+
+Each vendor belongs to a market, the market_id field refers to the FarMar::Market ID field. Each vendor has many products for sell. The FarMar::Vendor data, in order in the CSV, consists of:
+
+ID - (Fixnum) uniquely identifies the vendor
+Name - (String) the name of the vendor (not guaranteed unique)
+No. of Employees - (Fixnum) How many employees the vendor has at the market
+Market_id - (Fixnum) a reference to which market the vendor attends
+FarMar::Product
+
+Each product belongs to a vendor. The vendor_id field refers to the FarMar::Vendor ID field. The FarMar::Product data, in order in the CSV, consists of:
+
+ID - (Fixnum) uniquely identifies the product
+Name - (String) the name of the product (not guaranteed unique)
+Vendor_id - (Fixnum) a reference to which vendor sells this product
+FarMar::Sale
+
+Each sale belongs to a vendor AND a product. The vendor_id and product_id fields refer to the FarMar::Vendor and FarMar::Product ID fields, respectively. The FarMar::Sale data, in order in the CSV, consists of:
+
+ID - (Fixnum) uniquely identifies the sale
+Amount - (Fixnum) the amount of the transaction, in cents (i.e., 150 would be $1.50)
+Purchase_time - (Datetime) when the sale was completed
+Vendor_id - (Fixnum) a reference to which vendor completed the sale
+Product_id - (Fixnum) a reference to which product was sold
+Requirements
+##############################
+Baseline
+##############################
+Project Setup
+###############################
+You'll be working as an individual on this project. - but it's ok to get help from collleagues
+###################################
+
+[x] Fork the Ada-C6 repo to your Github account.
+[x] Clone your fork to your projects directory, and cd into the cloned repo.
+Create a gemset for your project
+$ echo 2.3.0 > .ruby-version
+$ echo farmar > .ruby-gemset
+$ cd .
+Install necessary gems via Terminal:
+$ gem install minitest-reporters
+$ gem install simplecov
+Baseline Requirements
+
+Create a class for each of the data types listed above. Each class should be a part of the FarMar module.
+You should be able to create instances of these classes that know about their associated data file.
+Create your far_mar.rb file which will bring together all classes created in the previous step.
+Complete the boilerplate necessary for testing. You should be able to $ rake from the project root to run your specs. Have at least one spec to verify this setup before submitting your baseline.
+Once you have completed your baseline, you must submit a pull-request and get it approved by an instructor.
+Primary Requirements
+
+For each of the data classes build the following methods:
+
+self.all: returns a collection of instances, representing all of the objects described in the CSV
+self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+Additional FarMar::Market Methods
+
+#vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
+Additional FarMar::Vendor Methods
+
+#market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
+#products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+#sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+#revenue: returns the the sum of all of the vendor's sales (in cents)
+self.by_market(market_id): returns all of the vendors with the given market_id
+Additional FarMar::Product Methods
+
+#vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+#sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+#number_of_sales: returns the number of times this product has been sold.
+self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+Additional FarMar::Sale Methods
+
+#vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+#product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
+self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
