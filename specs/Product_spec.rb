@@ -58,7 +58,11 @@ describe "Testing product" do
     new_product = FarMar::Product.find('30')
     sale_count_of_product = new_product.sale_count
     sale_count_of_product.must_equal 1
+  end
 
+  it "Test that  it  self.by_vendor(vendor_id): returns all of the products with the given vendor_id" do
+    found_products = FarMar::Product.by_vendor('474')
+    found_products.length.must_equal 5
 
   end
 

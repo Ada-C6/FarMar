@@ -59,6 +59,18 @@ class FarMar::Product
     return get_sales.length
   end
 
+  def self.by_vendor(vendor_id)
+    found_products = []
+
+    all.each do |product|
+      if product.vendor_id == vendor_id
+        found_products.push(product)
+      end
+    end
+    return found_products
+  end
+
+
 end
 
 
