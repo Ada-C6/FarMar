@@ -46,7 +46,10 @@ describe "Testing sale" do
   end
 
   it "Tests that the get_vendor method returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
-
+    new_sale = FarMar::Sale.find('32')
+    found_vendor = new_sale.get_vendor
+    #vendor_id 7 product_id 14
+    found_vendor.id.must_equal '7'
   end
 
 

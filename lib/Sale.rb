@@ -45,4 +45,21 @@ class FarMar::Sale  # can only chain one to another
     end
     return found_sale
   end
+
+  def get_vendor
+    found_vendor = FarMar::Vendor.find(@vendor_id)
+    return found_vendor
+  end 
+
 end
+
+
+
+
+
+
+
+
+
+
+
