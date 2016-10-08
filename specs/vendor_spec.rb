@@ -2,6 +2,8 @@ require_relative 'spec_helper'
 require_relative '../lib/far_mar'
 # require_relative '../lib/farmar_vendor'#file name(as same as class name)
 
+
+# create special csv case to test the 
 describe FarMar::Vendor do
 
   it "loading a vendor csv file creates an array of Vendor objects" do

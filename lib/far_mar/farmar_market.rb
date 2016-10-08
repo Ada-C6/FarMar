@@ -14,7 +14,6 @@ class FarMar::Market < Finder
      @zip = zip
   end
 
-
   # return an array of class Market objects
   def self.all
     market_csv_file = "/Users/mengyao/ADA_class/FarMar/support/markets.csv"
@@ -46,7 +45,7 @@ class FarMar::Market < Finder
   #   return found_market
   # end
   #============================================================
-  
+
   # return an array of FarMar::Market objects where the market name or vendor name contain the search_term
   def self.search(search_term)
     term = search_term.downcase
@@ -61,11 +60,6 @@ class FarMar::Market < Finder
       # find search_term in market name(a string) and in each vendor name in an array of vendor names string
       market_name.downcase.include?(term) || vendor_names.any?{ |vendor_name| vendor_name.downcase.include?(term) }
     end
-  end
-
-  # return an array of FarMar::Vendor objects that are associated with the market by the market_id field
-  def vendors
-    return FarMar::Vendor.all.select { |vendor| @id == vendor.market_id }
   end
 
   # return an array of FarMar::Product objects that are associated to the market through the FarMar::Vendor class.
@@ -87,6 +81,11 @@ class FarMar::Market < Finder
     vendors_by_revenue =  vendors.sort_by { |vendor| vendor.revenue }
     # get the vendor that has the highest revenue(the last element in the array)
     return vendors_by_revenue.last
+  end
+
+  # return an array of FarMar::Vendor objects that are associated with the market by the market_id field
+  def vendors
+    return FarMar::Vendor.all.select { |vendor| @id == vendor.market_id }
   end
 
   # ====================about MIXIN:=========================

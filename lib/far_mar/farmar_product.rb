@@ -9,9 +9,7 @@ class FarMar::Product < Finder
     @vendor_id = vendor_id
   end
 
-  # load product infomation from product csv file
-  # input: csv file name (optional)
-  # output: an array of class product objects
+  # return an array of class product objects
   def self.all
     if @products != nil
       return @products
